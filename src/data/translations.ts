@@ -691,12 +691,12 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     ja: 'リアルな雨粒、窓ガラスの雨、環境雷、カスタマイズ可能な背景、8色のカラープリセットを備えたデスクトップ、ノートPC、モニター、TV向けのオンライン雨画面。ダウンロード不要。',
   },
   'clock-screen': {
-    es: 'Un salvapantallas de reloj flip estético y minimalista con soporte para formato de 12/24 horas, temas premium (OLED, cristal) y un temporizador Pomodoro integrado.',
-    pt: 'Um protetor de tela de relógio flip estético e minimalista com suporte a formato de 12/24 horas, temas premium (OLED, vidro) e um temporizador Pomodoro integrado.',
-    fr: 'Un économiseur d\'écran d\'horloge à volets esthétique et minimaliste avec prise en charge du format 12/24 heures, des thèmes premium (OLED, verre) et un minuteur Pomodoro intégré.',
-    de: 'Ein ästhetischer und minimalistischer Klipp-Klapp-Uhr-Bildschirmschoner mit Unterstützung für das 12/24-Stunden-Format, Premium-Designs (OLED, Glas) und integriertem Pomodoro-Timer.',
-    hi: '12/24 घंटे के प्रारूप, प्रीमियम थीम (OLED, ग्लास) और एक एकीकृत पोमोडोरो टाइमर के समर्थन के साथ एक सौंदर्यपूर्ण और न्यूनतम फ्लिप घड़ी स्क्रीनसेवर।',
-    ja: '12/24時間表示、プレミアムテーマ（OLED、ガラス）、および統合されたポモドーロタイマーをサポートした、美しくミニマルなフリップ時計スクリーンセーバー。',
+    es: 'Un reloj flip online a pantalla completa con animación flip retro realista, 6 temas estéticos (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk), cronógrafo Pomodoro, sonido de clic ambiental y control de brillo — sin descarga.',
+    pt: 'Um relógio flip online em tela cheia com animação flip retrô realista, 6 temas estéticos (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk), timer Pomodoro, som de clique ambiente e controle de brilho — sem download.',
+    fr: 'Une horloge à volets en ligne plein écran avec animation flip rétro réaliste, 6 thèmes esthétiques (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk), minuteur Pomodoro, son de clic d\'ambiance et contrôle de la luminosité — sans téléchargement.',
+    de: 'Eine Online-Klappuhr im Vollbildmodus mit realistischer Retro-Flip-Animation, 6 ästhetischen Designs (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk), Pomodoro-Timer, Umgebungs-Klickgeräusch und Helligkeitsregelung — kein Download nötig.',
+    hi: 'यथार्थवादी रेट्रो फ्लिप एनिमेशन, 6 एस्थेटिक थीम (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk), पोमोडोरो टाइमर, एम्बिएंट क्लिक साउंड और ब्राइटनेस कंट्रोल के साथ फुलस्क्रीन ऑनलाइन फ्लिप घड़ी — बिना डाउनलोड के।',
+    ja: 'リアルなレトロフリップアニメーション、6つの美的テーマ（Warm Retro、Pure OLED、Soft White、Cyber Grid、Rose Gold、Space Dusk）、ポモドーロタイマー、環境クリック音、明るさ調節を備えた全画面オンラインフリップ時計。ダウンロード不要。',
   },
   'ambient-screen': {
     es: 'Una pantalla ambiental interactiva con gradientes animados, partículas cósmicas, mezclador de sonido de 4 canales, reloj, temporizador Pomodoro y respiración guiada — para escritorio, portátil, monitor, TV y móvil.',
@@ -4597,6 +4597,246 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
       }
     ]
   },
+  'clock-screen': {
+    en: [
+      {
+        question: 'What is a flip clock screen?',
+        answer: 'A flip clock screen is an online browser-based display that shows the current time using retro flip-card animation, where each digit flips down to reveal the next number — mimicking vintage mechanical alarm clocks and airport split-flap displays. Our version includes 6 aesthetic themes, Pomodoro timer, sound effects, and brightness control — all in fullscreen, no download needed.'
+      },
+      {
+        question: 'How do I use this flip clock on my desktop or laptop?',
+        answer: 'Open the page in your browser, click the Fullscreen button or press "F" on your keyboard. The clock fills your entire screen with the retro flip animation. Press Space to open the settings panel where you can customize the theme, toggle 12/24h format, show or hide seconds, enable the countdown timer, adjust brightness, and control sound.'
+      },
+      {
+        question: 'What themes are available?',
+        answer: 'There are 6 aesthetic themes to choose from: Warm Retro (vintage amber glow), Pure OLED (deep blacks with crisp white text), Soft White (clean minimal look), Cyber Grid (neon grid background), Rose Gold (warm pink metallic), and Space Dusk (dark cosmic gradient). Each theme transforms the entire look and feel of the clock.'
+      },
+      {
+        question: 'Does this flip clock have a fullscreen mode?',
+        answer: 'Yes. Click the Fullscreen button or press the "F" key to enter fullscreen mode. The browser UI hides automatically, letting the clock fill your entire display. Press Esc to exit. An idle detection feature dims controls after a few seconds of inactivity for a clean, distraction-free display.'
+      },
+      {
+        question: 'Can I use this as a Pomodoro timer or countdown?',
+        answer: 'Yes. Press "T" or open settings to switch to Countdown mode. Select from preset Pomodoro intervals (5, 10, 15, 25, 40, 60 minutes) or set a custom duration. The flip animation works during countdown too — digits flip down as the timer counts. Press "R" to reset, and an alarm chord sounds when the timer reaches zero.'
+      },
+      {
+        question: 'What keyboard shortcuts are available?',
+        answer: 'F — Fullscreen toggle, Space — Toggle settings/timer panel, S — Toggle sound on/off, T — Switch between clock and countdown mode, R — Reset countdown, Esc — Exit fullscreen or close settings.'
+      },
+      {
+        question: 'Does the flip clock have sound effects?',
+        answer: 'Yes. A retro click sound plays during flip animations, recreating the satisfying mechanical flap sound of vintage flip clocks. The "S" key toggles sound on and off, or use the Mute toggle in settings. When the countdown timer reaches zero, a synthesized alarm chord plays to alert you.'
+      },
+      {
+        question: 'Can I adjust the brightness?',
+        answer: 'Yes. Use the Brightness slider (10% to 100%) to control the clock\'s visual intensity. This is especially useful in dark rooms — lower the brightness for a soft, non-intrusive night clock that won\'t disturb your sleep.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Qué es una pantalla de reloj flip?',
+        answer: 'Una pantalla de reloj flip es una pantalla online basada en navegador que muestra la hora actual con animación retro de tarjetas giratorias, imitando los relojes despertadores mecánicos vintage. Nuestra versión incluye 6 temas estéticos, temporizador Pomodoro, efectos de sonido y control de brillo — todo en pantalla completa.'
+      },
+      {
+        question: '¿Cómo uso este reloj flip en mi escritorio o portátil?',
+        answer: 'Abre la página en tu navegador, haz clic en Pantalla Completa o presiona "F". Presiona Espacio para abrir el panel de ajustes donde puedes personalizar el tema, formato 12/24h, segundos, temporizador y brillo.'
+      },
+      {
+        question: '¿Qué temas están disponibles?',
+        answer: 'Hay 6 temas estéticos: Warm Retro (brillo ámbar vintage), Pure OLED (negros profundos), Soft White (minimalista), Cyber Grid (cuadrícula neón), Rose Gold (rosa metálico) y Space Dusk (gradiente cósmico oscuro).'
+      },
+      {
+        question: '¿Tiene modo de pantalla completa?',
+        answer: 'Sí. Haz clic en Pantalla Completa o presiona "F". La interfaz se oculta automáticamente. Presiona Esc para salir. La detección de inactividad atenúa los controles tras unos segundos para una visualización limpia.'
+      },
+      {
+        question: '¿Puedo usarlo como temporizador Pomodoro?',
+        answer: 'Sí. Presiona "T" para cambiar al modo Cuenta Atrás. Elige entre intervalos Pomodoro predefinidos (5, 10, 15, 25, 40, 60 min) o personaliza la duración. Presiona "R" para reiniciar.'
+      },
+      {
+        question: '¿Qué atajos de teclado hay?',
+        answer: 'F — Pantalla completa, Espacio — Abrir/cerrar configuración, S — Silenciar/activar sonido, T — Cambiar modo reloj/cuenta atrás, R — Reiniciar, Esc — Salir.'
+      },
+      {
+        question: '¿Tiene efectos de sonido?',
+        answer: 'Sí. Un clic retro suena durante las animaciones flip. La tecla "S" activa/desactiva el sonido. Al terminar la cuenta atrás, suena una alarma sintetizada.'
+      },
+      {
+        question: '¿Puedo ajustar el brillo?',
+        answer: 'Sí. Usa el control deslizante de Brillo (10% a 100%) para regular la intensidad visual, ideal para usar el reloj por la noche sin molestar.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O que é uma tela de relógio flip?',
+        answer: 'Uma tela de relógio flip é uma exibição online baseada em navegador que mostra as horas com animação retrô de cartas giratórias, imitando relógios mecânicos vintage. Nossa versão inclui 6 temas estéticos, timer Pomodoro, efeitos sonoros e controle de brilho — tudo em tela cheia.'
+      },
+      {
+        question: 'Como usar este relógio flip no meu desktop ou notebook?',
+        answer: 'Abra a página no navegador, clique em Tela Cheia ou pressione "F". Pressione Espaço para abrir o painel de configurações e personalizar tema, formato 12/24h, segundos, timer e brilho.'
+      },
+      {
+        question: 'Quais temas estão disponíveis?',
+        answer: '6 temas estéticos: Warm Retro (brilho âmbar vintage), Pure OLED (pretos profundos), Soft White (minimalista), Cyber Grid (grade neon), Rose Gold (rosa metálico) e Space Dusk (gradiente cósmico escuro).'
+      },
+      {
+        question: 'Tem modo tela cheia?',
+        answer: 'Sim. Clique em Tela Cheia ou pressione "F". A interface se oculta automaticamente. Pressione Esc para sair.'
+      },
+      {
+        question: 'Posso usar como timer Pomodoro?',
+        answer: 'Sim. Pressione "T" para mudar para o modo Contagem Regressiva. Escolha entre intervalos Pomodoro (5, 10, 15, 25, 40, 60 min) ou personalize. Pressione "R" para reiniciar.'
+      },
+      {
+        question: 'Quais atalhos de teclado existem?',
+        answer: 'F — Tela cheia, Espaço — Configurações, S — Som liga/desliga, T — Alternar modo, R — Reiniciar, Esc — Sair.'
+      },
+      {
+        question: 'Tem efeitos sonoros?',
+        answer: 'Sim. Um clique retrô soa nas animações flip. A tecla "S" liga/desliga o som. Um alarme toca quando o timer chega a zero.'
+      },
+      {
+        question: 'Posso ajustar o brilho?',
+        answer: 'Sim. Use o controle deslizante de Brilho (10% a 100%) para ajustar a intensidade, ideal para usar à noite sem incomodar.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Qu\'est-ce qu\'un écran d\'horloge à volets ?',
+        answer: 'Un écran d\'horloge à volets est un affichage en ligne basé sur navigateur qui montre l\'heure avec une animation rétro de cartes à bascule. Notre version inclut 6 thèmes esthétiques, un minuteur Pomodoro, des effets sonores et un contrôle de luminosité — tout en plein écran.'
+      },
+      {
+        question: 'Comment utiliser cette horloge sur mon PC ou portable ?',
+        answer: 'Ouvrez la page dans votre navigateur, cliquez sur Plein Écran ou appuyez sur "F". Appuyez sur Espace pour ouvrir les paramètres et personnaliser le thème, le format 12/24h, les secondes, le minuteur et la luminosité.'
+      },
+      {
+        question: 'Quels thèmes sont disponibles ?',
+        answer: '6 thèmes esthétiques : Warm Retro (lueur ambrée vintage), Pure OLED (noirs profonds), Soft White (minimaliste), Cyber Grid (grille néon), Rose Gold (rose métallique) et Space Dusk (dégradé cosmique sombre).'
+      },
+      {
+        question: 'A-t-elle un mode plein écran ?',
+        answer: 'Oui. Cliquez sur Plein Écran ou appuyez sur "F". L\'interface se masque automatiquement. Appuyez sur Esc pour quitter.'
+      },
+      {
+        question: 'Puis-je l\'utiliser comme minuteur Pomodoro ?',
+        answer: 'Oui. Appuyez sur "T" pour passer en mode Compte à Rebours. Choisissez parmi les intervalles Pomodoro (5, 10, 15, 25, 40, 60 min) ou personnalisez la durée. Appuyez sur "R" pour réinitialiser.'
+      },
+      {
+        question: 'Quels sont les raccourcis clavier ?',
+        answer: 'F — Plein écran, Espace — Paramètres, S — Son marche/arrêt, T — Changer de mode, R — Réinitialiser, Esc — Quitter.'
+      },
+      {
+        question: 'Y a-t-il des effets sonores ?',
+        answer: 'Oui. Un clic rétro se joue pendant les animations flip. La touche "S" active/désactive le son. Une alarme sonore retentit à la fin du compte à rebours.'
+      },
+      {
+        question: 'Puis-je régler la luminosité ?',
+        answer: 'Oui. Utilisez le curseur de Luminosité (10% à 100%) pour ajuster l\'intensité visuelle, idéal pour une utilisation nocturne.'
+      }
+    ],
+    de: [
+      {
+        question: 'Was ist ein Klipp-Klapp-Uhr-Bildschirm?',
+        answer: 'Ein Klipp-Klapp-Uhr-Bildschirm ist eine browserbasierte Online-Anzeige, die die aktuelle Uhrzeit mit einer Retro-Kippkarten-Animation darstellt. Unsere Version bietet 6 ästhetische Designs, Pomodoro-Timer, Soundeffekte und Helligkeitsregelung — alles im Vollbildmodus.'
+      },
+      {
+        question: 'Wie benutze ich diese Klappuhr auf meinem Desktop oder Laptop?',
+        answer: 'Öffnen Sie die Seite im Browser, klicken Sie auf Vollbild oder drücken Sie "F". Drücken Sie die Leertaste für die Einstellungen, um Design, 12/24h-Format, Sekunden, Timer und Helligkeit anzupassen.'
+      },
+      {
+        question: 'Welche Designs sind verfügbar?',
+        answer: '6 ästhetische Designs: Warm Retro (Vintage-Amber-Glow), Pure OLED (tiefe Schwarztöne), Soft White (minimalistisch), Cyber Grid (Neon-Gitter), Rose Gold (rosé-metallisch) und Space Dusk (dunkler kosmischer Verlauf).'
+      },
+      {
+        question: 'Hat es einen Vollbildmodus?',
+        answer: 'Ja. Klicken Sie auf Vollbild oder drücken Sie "F". Die Benutzeroberfläche blendet sich automatisch aus. Drücken Sie Esc zum Beenden.'
+      },
+      {
+        question: 'Kann ich es als Pomodoro-Timer verwenden?',
+        answer: 'Ja. Drücken Sie "T" für den Countdown-Modus. Wählen Sie aus voreingestellten Pomodoro-Intervallen (5, 10, 15, 25, 40, 60 Min.) oder stellen Sie eine benutzerdefinierte Dauer ein. Drücken Sie "R" zum Zurücksetzen.'
+      },
+      {
+        question: 'Welche Tastenkombinationen gibt es?',
+        answer: 'F — Vollbild, Leertaste — Einstellungen, S — Ton ein/aus, T — Modus wechseln, R — Zurücksetzen, Esc — Beenden.'
+      },
+      {
+        question: 'Hat es Soundeffekte?',
+        answer: 'Ja. Ein Retro-Klickgeräusch ertönt bei den Flip-Animationen. Die Taste "S" schaltet den Ton ein/aus. Ein Alarmton ertönt, wenn der Countdown Null erreicht.'
+      },
+      {
+        question: 'Kann ich die Helligkeit einstellen?',
+        answer: 'Ja. Mit dem Helligkeitsregler (10% bis 100%) können Sie die visuelle Intensität anpassen — ideal für die Nutzung als Nachtuhr.'
+      }
+    ],
+    hi: [
+      {
+        question: 'फ्लिप घड़ी स्क्रीन क्या है?',
+        answer: 'फ्लिप घड़ी स्क्रीन एक ब्राउज़र-आधारित ऑनलाइन डिस्प्ले है जो रेट्रो फ्लिप-कार्ड एनिमेशन के साथ वर्तमान समय दिखाती है। हमारे संस्करण में 6 एस्थेटिक थीम, पोमोडोरो टाइमर, ध्वनि प्रभाव और चमक नियंत्रण शामिल हैं — सभी फुलस्क्रीन में।'
+      },
+      {
+        question: 'मैं अपने डेस्कटॉप या लैपटॉप पर इस फ्लिप घड़ी का उपयोग कैसे करूं?',
+        answer: 'पेज को ब्राउज़र में खोलें, फुलस्क्रीन बटन पर क्लिक करें या "F" दबाएं। सेटिंग्स के लिए स्पेस दबाएं जहां आप थीम, 12/24 घंटे प्रारूप, सेकंड, टाइमर और चमक को कस्टमाइज़ कर सकते हैं।'
+      },
+      {
+        question: 'कौन सी थीम उपलब्ध हैं?',
+        answer: '6 एस्थेटिक थीम: वार्म रेट्रो (एम्बर ग्लो), प्योर OLED (गहरा काला), सॉफ्ट व्हाइट (मिनिमल), साइबर ग्रिड (नीयन ग्रिड), रोज़ गोल्ड (गुलाबी धात्विक) और स्पेस डस्क (कॉस्मिक ग्रेडिएंट)।'
+      },
+      {
+        question: 'क्या इसमें फुलस्क्रीन मोड है?',
+        answer: 'हां। फुलस्क्रीन बटन पर क्लिक करें या "F" दबाएं। Esc दबाकर बाहर निकलें।'
+      },
+      {
+        question: 'क्या मैं इसे पोमोडोरो टाइमर के रूप में उपयोग कर सकता हूं?',
+        answer: 'हां। "T" दबाकर काउंटडाउन मोड पर जाएं। प्रीसेट पोमोडोरो अंतराल (5, 10, 15, 25, 40, 60 मिनट) चुनें या कस्टम समय सेट करें।'
+      },
+      {
+        question: 'कौन से कीबोर्ड शॉर्टकट उपलब्ध हैं?',
+        answer: 'F — फुलस्क्रीन, स्पेस — सेटिंग्स, S — ध्वनि चालू/बंद, T — मोड बदलें, R — रीसेट, Esc — बाहर निकलें।'
+      },
+      {
+        question: 'क्या इसमें ध्वनि प्रभाव हैं?',
+        answer: 'हां। फ्लिप एनिमेशन के दौरान रेट्रो क्लिक ध्वनि बजती है। "S" कुंजी से ध्वनि चालू/बंद करें।'
+      },
+      {
+        question: 'क्या मैं चमक समायोजित कर सकता हूं?',
+        answer: 'हां। चमक स्लाइडर (10% से 100%) का उपयोग करें, रात में उपयोग के लिए आदर्श।'
+      }
+    ],
+    ja: [
+      {
+        question: 'フリップ時計画面とは何ですか？',
+        answer: 'フリップ時計画面は、ブラウザベースのオンライン表示で、数字がパタパタとめくれるレトロなフリップカードアニメーションで現在時刻を表示します。6つの美的テーマ、ポモドーロタイマー、効果音、明るさ調節を搭載。全画面表示対応、ダウンロード不要。'
+      },
+      {
+        question: 'デスクトップやノートPCでこのフリップ時計を使うには？',
+        answer: 'ブラウザでページを開き、全画面ボタンをクリックするか「F」キーを押します。スペースキーで設定パネルを開き、テーマ、12/24時間表示、秒表示、タイマー、明るさをカスタマイズできます。'
+      },
+      {
+        question: '利用可能なテーマは？',
+        answer: '6つの美的テーマ：Warm Retro（ビンテージアンバーグロー）、Pure OLED（深い黒）、Soft White（クリーンミニマル）、Cyber Grid（ネオングリッド）、Rose Gold（ローズゴールドメタリック）、Space Dusk（ダークコズミックグラデーション）。'
+      },
+      {
+        question: '全画面モードはありますか？',
+        answer: 'はい。全画面ボタンをクリックするか「F」キーを押します。Escキーで終了。数秒操作がないと自動的にコントロールがフェードアウトします。'
+      },
+      {
+        question: 'ポモドーロタイマーとして使えますか？',
+        answer: 'はい。「T」キーでカウントダウンモードに切り替え。プリセット（5、10、15、25、40、60分）から選択するか、カスタム時間を設定。「R」キーでリセット。'
+      },
+      {
+        question: 'キーボードショートカットは？',
+        answer: 'F — 全画面、スペース — 設定、S — サウンドON/OFF、T — モード切替、R — リセット、Esc — 終了。'
+      },
+      {
+        question: '効果音はありますか？',
+        answer: 'はい。フリップアニメーション時にレトロなクリック音が再生されます。「S」キーでON/OFF切り替え。'
+      },
+      {
+        question: '明るさの調整はできますか？',
+        answer: 'はい。明るさスライダー（10%〜100%）で視覚的な強度を調整。夜間の使用に最適です。'
+      }
+    ]
+  },
   'placeholder-screen': {
     en: []
   }
@@ -5067,6 +5307,68 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           'パソコン、ノートPC、モニター、Smart TVの画面を、アニメーショングラデーション、宇宙の星、インタラクティブなサウンドスケープで没入感あふれる<strong>アンビエント画面</strong>に変身させましょう。6つのカラープリセットとマウス操作可能なパーティクルを備えた無料のオンライン<strong>アンビエントディスプレイ</strong>ツールです。',
           '<strong>アンビエントアニメーション</strong>のあらゆる側面をカスタマイズ。6つのプリセット（Cyber Neon、Aurora Dreams、Sunset Solitude、Deep Forest、Cherry Blossom、Cosmic Myst）から選択。速度は0.0〜2.0で調整。星の密度は10〜150粒子まで調整可能。',
           '4チャンネルサウンドスケープミキサー：Lofi Synth、穏やかな雨、暖炉、カスタムトラック。オーバーレイモード：時計、ガイド付き呼吸法、ポモドーロタイマー（5、15、25、45分）。全画面は「F」キー、設定はスペースキー、時計は「C」キー、呼吸法は「B」キー。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'clock-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Flip Clock Online — Aesthetic Fullscreen Clock with Pomodoro Timer for Focus & Ambience',
+        paragraphs: [
+          'Transform any computer display, laptop monitor, PC, or Smart TV into a stunning <strong>flip clock online</strong> with realistic retro flip-card animation, 6 aesthetic themes, and an integrated Pomodoro focus timer. Our free online <strong>fullscreen clock</strong> recreates the satisfying mechanical flip motion of vintage split-flap alarm clocks and airport departure boards — each digit smoothly flips down to reveal the next number with a subtle click sound. Whether you need a <strong>flip clock display</strong> for your desktop while working, a <strong>fullscreen flip clock</strong> for your second monitor during deep focus sessions, a <strong>Pomodoro timer</strong> with flip animation for study sprints, or an aesthetic <strong>digital flip clock</strong> for your living room TV, this tool delivers a completely customizable experience — no downloads, no installation, no ads.',
+          'Personalize every aspect of the <strong>flip clock timer</strong> with comprehensive controls. Choose from 6 carefully crafted themes: <strong>Warm Retro</strong> with a vintage amber glow and classic flip clock aesthetic, <strong>Pure OLED</strong> with deep true blacks and crisp white digits for maximum contrast, <strong>Soft White</strong> for a clean minimal look, <strong>Cyber Grid</strong> with a neon grid background for a tech-inspired vibe, <strong>Rose Gold</strong> with warm pink metallic tones for an elegant feel, and <strong>Space Dusk</strong> with a dark cosmic gradient for a moody atmosphere. Each theme transforms the entire clock display — the background, digit colors, edges, and shadows — giving you a completely different visual experience without changing the core flip animation. Toggle between 12-hour and 24-hour format, show or hide seconds, and use the brightness slider (10% to 100%) to fine-tune the clock\'s visual intensity for any room lighting condition.',
+          'The built-in <strong>Pomodoro focus timer</strong> makes this flip clock a powerful productivity tool. Press "T" to switch from clock mode to Countdown mode, then choose from preset focus intervals: 5 minutes (micro-break), 10 minutes (quick task), 15 minutes (Pomodoro sprint), 25 minutes (classic Pomodoro), 40 minutes (deep work), or 60 minutes (marathon focus). The flip animation works during countdown too — digits flip down satisfyingly as each second passes, providing a visual and auditory rhythm that helps you stay aware of time passing. When the timer reaches zero, a synthesized alarm chord plays to signal your break. The <strong>retro click sound</strong> adds an authentic mechanical feel to every digit flip; press "S" or use the mute toggle to control it. Keyboard shortcuts make control effortless: F for fullscreen, Space for settings, T to switch modes, R to reset, and Esc to exit. All settings are saved automatically in your browser via localStorage, so your theme, timer preference, and sound settings persist between sessions.'
+        ]
+      },
+      es: {
+        heading: 'Reloj Flip Online — Reloj Estético a Pantalla Completa con Temporizador Pomodoro para Enfoque y Ambiente',
+        paragraphs: [
+          'Transforma cualquier pantalla de ordenador, portátil, monitor o Smart TV en un impresionante <strong>reloj flip online</strong> con animación retro realista de tarjetas giratorias, 6 temas estéticos y un temporizador Pomodoro integrado. Nuestro <strong>reloj a pantalla completa</strong> gratuito recrea el satisfactorio movimiento mecánico de los relojes despertadores vintage: cada dígito gira hacia abajo para revelar el siguiente número con un sutil clic. Perfecto como <strong>reloj flip digital</strong> para tu escritorio, <strong>reloj de pantalla completa</strong> para tu segundo monitor, o <strong>temporizador Pomodoro</strong> con animación flip para sesiones de estudio.',
+          'Personaliza cada aspecto del <strong>reloj flip temporizador</strong>. Elige entre 6 temas: Warm Retro (brillo ámbar vintage), Pure OLED (negros profundos con dígitos blancos nítidos), Soft White (minimalista), Cyber Grid (cuadrícula neón), Rose Gold (tonos rosas metálicos) y Space Dusk (gradiente cósmico oscuro). Cada tema transforma la apariencia completa del reloj: fondo, color de dígitos, bordes y sombras. Alterna entre formato de 12 y 24 horas, muestra u oculta los segundos, y ajusta el brillo del 10% al 100% para cualquier condición de iluminación.',
+          'El <strong>temporizador de enfoque Pomodoro</strong> integrado convierte este reloj flip en una potente herramienta de productividad. Presiona "T" para cambiar al modo de cuenta atrás y elige entre intervalos predefinidos: 5, 10, 15, 25, 40 o 60 minutos. La animación flip funciona durante la cuenta atrás: los dígitos giran satisfactoriamente mientras los segundos pasan. Cuando el temporizador llega a cero, suena un acorde de alarma sintetizado. El <strong>sonido de clic retro</strong> añade una sensación mecánica auténtica; presiona "S" para controlarlo. Atajos de teclado: F para pantalla completa, Espacio para configuración, T para cambiar modo, R para reiniciar, Esc para salir.'
+        ]
+      },
+      pt: {
+        heading: 'Relógio Flip Online — Relógio Estético em Tela Cheia com Timer Pomodoro para Foco e Ambiente',
+        paragraphs: [
+          'Transforme qualquer tela de computador, notebook, monitor ou Smart TV em um impressionante <strong>relógio flip online</strong> com animação retrô realista de cartas giratórias, 6 temas estéticos e um timer Pomodoro integrado. Nosso <strong>relógio em tela cheia</strong> gratuito recria o satisfatório movimento mecânico dos relógios vintage: cada dígito gira para baixo revelando o próximo número com um sutil clique. Perfeito como <strong>relógio flip digital</strong> para desktop, <strong>relógio de tela cheia</strong> para segundo monitor, ou <strong>timer Pomodoro</strong> com animação flip.',
+          'Personalize cada aspecto do <strong>relógio flip timer</strong>. Escolha entre 6 temas: Warm Retro (brilho âmbar vintage), Pure OLED (pretos profundos), Soft White (minimalista), Cyber Grid (grade neon), Rose Gold (rosa metálico) e Space Dusk (gradiente cósmico). Alterne entre 12/24h, mostre ou oculte segundos, ajuste o brilho de 10% a 100%.',
+          'O <strong>timer de foco Pomodoro</strong> integrado torna este relógio flip uma ferramenta de produtividade. Pressione "T" para modo contagem regressiva e escolha entre intervalos: 5, 10, 15, 25, 40 ou 60 minutos. A animação flip funciona durante a contagem. Quando o timer chega a zero, um alarme toca. O <strong>som de clique retrô</strong> adiciona sensação mecânica autêntica; pressione "S" para controlar. Atalhos: F para tela cheia, Espaço para configurações, T para modo, R para reiniciar, Esc para sair.'
+        ]
+      },
+      fr: {
+        heading: 'Horloge à Volets en Ligne — Horloge Esthétique Plein Écran avec Minuteur Pomodoro pour la Concentration',
+        paragraphs: [
+          'Transformez n\'importe quel écran d\'ordinateur, portable, moniteur ou Smart TV en une superbe <strong>horloge à volets en ligne</strong> avec animation rétro réaliste de cartes à bascule, 6 thèmes esthétiques et un minuteur Pomodoro intégré. Notre <strong>horloge plein écran</strong> gratuite recrée le mouvement mécanique satisfaisant des réveils vintage : chaque chiffre bascule pour révéler le suivant avec un subtil clic. Parfaite comme <strong>horloge à volets numérique</strong> pour votre bureau, <strong>horloge plein écran</strong> pour votre deuxième moniteur, ou <strong>minuteur Pomodoro</strong> avec animation.',
+          'Personnalisez chaque aspect de l\'<strong>horloge à volets minuteur</strong>. Choisissez parmi 6 thèmes : Warm Retro (lueur ambrée vintage), Pure OLED (noirs profonds), Soft White (minimaliste), Cyber Grid (grille néon), Rose Gold (tons rosés métalliques) et Space Dusk (dégradé cosmique sombre). Basculez entre 12/24h, affichez ou masquez les secondes, réglez la luminosité de 10% à 100%.',
+          'Le <strong>minuteur de concentration Pomodoro</strong> intégré fait de cette horloge un outil de productivité puissant. Appuyez sur "T" pour passer en mode compte à rebours et choisissez parmi les intervalles : 5, 10, 15, 25, 40 ou 60 minutes. L\'animation flip fonctionne pendant le décompte. Un accord d\'alarme retentit à zéro. Le <strong>son de clic rétro</strong> ajoute une sensation mécanique authentique ; appuyez sur "S" pour le contrôler. Raccourcis : F plein écran, Espace réglages, T mode, R réinitialiser, Esc quitter.'
+        ]
+      },
+      de: {
+        heading: 'Klipp-Klapp-Uhr Online — Ästhetische Vollbild-Uhr mit Pomodoro-Timer für Konzentration & Ambiente',
+        paragraphs: [
+          'Verwandeln Sie jeden Computerbildschirm, Laptop, Monitor oder Smart TV in eine atemberaubende <strong>Klipp-Klapp-Uhr online</strong> mit realistischer Retro-Kippkarten-Animation, 6 ästhetischen Designs und integriertem Pomodoro-Timer. Unsere kostenlose <strong>Vollbild-Uhr</strong> erschafft die zufriedenstellende mechanische Bewegung vintage Wecker: jede Ziffer klappt nach unten um die nächste Zahl mit einem dezenten Klick zu enthüllen. Perfekt als <strong>digitale Klappuhr</strong> für den Schreibtisch, <strong>Vollbild-Klappuhr</strong> für den Zweitmonitor, oder <strong>Pomodoro-Timer</strong> mit Flip-Animation.',
+          'Passen Sie jeden Aspekt der <strong>Klappuhr mit Timer</strong> an. Wählen Sie aus 6 Designs: Warm Retro (Vintage-Amber-Glow), Pure OLED (tiefe Schwarztöne), Soft White (minimalistisch), Cyber Grid (Neon-Gitter), Rose Gold (rosé-metallisch) und Space Dusk (dunkler kosmischer Verlauf). Wechseln Sie zwischen 12/24h, zeigen Sie Sekunden an oder aus, regeln Sie die Helligkeit von 10% bis 100%.',
+          'Der integrierte <strong>Pomodoro-Konzentrations-Timer</strong> macht diese Klappuhr zu einem leistungsstarken Produktivitätstool. Drücken Sie "T" für den Countdown-Modus und wählen Sie aus Intervallen: 5, 10, 15, 25, 40 oder 60 Minuten. Die Flip-Animation läuft während des Countdowns. Ein Alarmton ertönt bei Null. Das <strong>Retro-Klickgeräusch</strong> sorgt für authentisches mechanisches Gefühl; "S" zum Steuern. Tasten: F Vollbild, Leertaste Einstellungen, T Modus, R Zurücksetzen, Esc Beenden.'
+        ]
+      },
+      hi: {
+        heading: 'फ्लिप घड़ी ऑनलाइन — पोमोडोरो टाइमर के साथ एस्थेटिक फुलस्क्रीन घड़ी फोकस और माहौल के लिए',
+        paragraphs: [
+          'किसी भी कंप्यूटर डिस्प्ले, लैपटॉप मॉनिटर, पीसी या स्मार्ट टीवी को यथार्थवादी रेट्रो फ्लिप-कार्ड एनिमेशन, 6 एस्थेटिक थीम और एकीकृत पोमोडोरो फोकस टाइमर के साथ एक शानदार <strong>फ्लिप घड़ी ऑनलाइन</strong> में बदलें। हमारी मुफ्त <strong>फुलस्क्रीन घड़ी</strong> विंटेज स्प्लिट-फ्लैप अलार्म घड़ियों की संतोषजनक यांत्रिक गति को फिर से बनाती है। डेस्कटॉप के लिए <strong>फ्लिप घड़ी डिस्प्ले</strong>, सेकेंड मॉनिटर के लिए <strong>फुलस्क्रीन फ्लिप घड़ी</strong>, या अध्ययन के लिए <strong>पोमोडोरो टाइमर</strong> के रूप में एकदम सही।',
+          '<strong>फ्लिप घड़ी टाइमर</strong> के हर पहलू को कस्टमाइज़ करें। 6 थीम में से चुनें: वार्म रेट्रो (एम्बर ग्लो), प्योर OLED (गहरा काला), सॉफ्ट व्हाइट (मिनिमल), साइबर ग्रिड (नीयन ग्रिड), रोज़ गोल्ड (गुलाबी धात्विक) और स्पेस डस्क (कॉस्मिक ग्रेडिएंट)। 12/24 घंटे प्रारूप बदलें, सेकंड दिखाएं/छिपाएं, चमक 10% से 100% समायोजित करें।',
+          'एकीकृत <strong>पोमोडोरो फोकस टाइमर</strong> इस फ्लिप घड़ी को एक शक्तिशाली उत्पादकता उपकरण बनाता है। "T" दबाकर काउंटडाउन मोड पर जाएं और अंतराल चुनें: 5, 10, 15, 25, 40 या 60 मिनट। काउंटडाउन के दौरान फ्लिप एनिमेशन काम करता है। जब टाइमर शून्य पर पहुंचता है तो अलार्म बजता है। <strong>रेट्रो क्लिक ध्वनि</strong> प्रामाणिक यांत्रिक अनुभव जोड़ती है; "S" दबाकर नियंत्रित करें। शॉर्टकट: F फुलस्क्रीन, स्पेस सेटिंग्स, T मोड, R रीसेट, Esc बाहर।'
+        ]
+      },
+      ja: {
+        heading: 'フリップ時計 オンライン — ポモドーロタイマー付き高級感のある全画面時計',
+        paragraphs: [
+          'パソコン、ノートPC、モニター、Smart TVの画面を、リアルなレトロフリップカードアニメーション、6つの美的テーマ、統合されたポモドーロタイマーを備えた魅惑的な<strong>フリップ時計オンライン</strong>に変身させましょう。ビンテージのスプリットフラップ時計の満足感あるメカニカルな動きを再現。デスクトップ用<strong>フリップ時計表示</strong>、セカンドモニター用<strong>全画面フリップ時計</strong>、学習用<strong>ポモドーロタイマー</strong>として最適。',
+          '<strong>フリップ時計タイマー</strong>のあらゆる側面をカスタマイズ。6つのテーマから選択：Warm Retro（ビンテージアンバーグロー）、Pure OLED（深い黒）、Soft White（クリーンミニマル）、Cyber Grid（ネオングリッド）、Rose Gold（ローズゴールド）、Space Dusk（ダークコズミック）。12/24時間表示切替、秒表示ON/OFF、明るさ10%〜100%調節。',
+          '統合された<strong>ポモドーロフォーカスタイマー</strong>が、このフリップ時計を強力な生産性ツールに変えます。「T」キーでカウントダウンモードに切り替え、インターバル（5、10、15、25、40、60分）を選択。カウントダウン中もフリップアニメーションが作動。タイマーがゼロになるとアラームが鳴動。<strong>レトロクリック音</strong>が本物のメカニカル感を演出。「S」キーで制御。ショートカット：F全画面、スペース設定、Tモード切替、Rリセット、Esc終了。'
         ]
       }
     };

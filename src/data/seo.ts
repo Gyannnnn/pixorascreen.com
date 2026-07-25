@@ -111,6 +111,15 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'रेन स्क्रीन ऑनलाइन - डेस्कटॉप और टीवी के लिए यथार्थवादी बारिश का माहौल',
     ja: '雨の画面（レインスクリーン）オンライン - デスクトップ・TV向けリアルな雨の雰囲気',
   },
+  'clock-screen': {
+    en: 'Flip Clock Online – Aesthetic Fullscreen Flip Clock with Pomodoro Timer',
+    es: 'Reloj Flip Online - Reloj Flip Estético a Pantalla Completa con Temporizador Pomodoro',
+    pt: 'Relógio Flip Online - Relógio Flip Estético em Tela Cheia com Timer Pomodoro',
+    fr: 'Horloge à Volets en Ligne - Horloge à Volets Esthétique Plein Écran avec Minuteur Pomodoro',
+    de: 'Klipp-Klapp-Uhr Online - Ästhetische Vollbild-Klappuhr mit Pomodoro-Timer',
+    hi: 'फ्लिप घड़ी ऑनलाइन - पोमोडोरो टाइमर के साथ एस्थेटिक फुलस्क्रीन फ्लिप घड़ी',
+    ja: 'フリップ時計 オンライン - ポモドーロタイマー付き高級感のある全画面フリップ時計',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -194,6 +203,15 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Regenbildschirm mit realistischen Regentropfen, Regen auf Glas, einstellbarem Wind, Umgebungsblitzen und 8 Farben. Vollbild-Regenatmosphäre für Desktop, Laptop, Monitor und TV.',
     hi: 'किसी भी स्क्रीन को यथार्थवादी बारिश की बूंदों, कांच पर बारिश, समायोज्य हवा, एम्बिएंट लाइटनिंग और 8 रंगों के साथ मुफ्त ऑनलाइन रेन स्क्रीन में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रेन एम्बिएंस।',
     ja: 'リアルな雨粒、窓ガラスの雨、調整可能な風、環境雷、8色のカラープリセットを備えた無料のオンライン雨画面にどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向けの全画面雨の雰囲気。ダウンロード不要。',
+  },
+  'clock-screen': {
+    en: 'Turn any screen into a free online flip clock with realistic retro flip-card animation, 6 aesthetic themes, 12/24h format, seconds toggle, Pomodoro timer, and ambient click sound. Fullscreen clock for desktop, laptop, monitor, and TV — no download needed.',
+    es: 'Convierte cualquier pantalla en un reloj flip online gratis con animación realista de tarjetas giratorias, 6 temas estéticos, formato 12/24h, segundos, temporizador Pomodoro y sonido de clic ambiental. Reloj a pantalla completa para escritorio, portátil, monitor y TV.',
+    pt: 'Transforme qualquer tela em um relógio flip online grátis com animação realista de cartas giratórias, 6 temas estéticos, formato 12/24h, segundos, timer Pomodoro e som de clique ambiente. Relógio em tela cheia para desktop, notebook, monitor e TV.',
+    fr: 'Transformez n\'importe quel écran en une horloge à volets en ligne gratuite avec animation réaliste de cartes à bascule, 6 thèmes esthétiques, format 12/24h, secondes, minuteur Pomodoro et son de clic d\'ambiance. Horloge plein écran pour PC, portable, moniteur et TV.',
+    de: 'Verwandeln Sie jeden Bildschirm in eine kostenlose Online-Klappuhr mit realistischer Kippkarten-Animation, 6 ästhetischen Designs, 12/24h-Format, Sekunden, Pomodoro-Timer und dezentem Klick-Sound. Vollbild-Uhr für Desktop, Laptop, Monitor und TV.',
+    hi: 'किसी भी स्क्रीन को यथार्थवादी रेट्रो फ्लिप-कार्ड एनिमेशन, 6 एस्थेटिक थीम, 12/24 घंटे प्रारूप, सेकंड, पोमोडोरो टाइमर और एम्बिएंट क्लिक साउंड के साथ मुफ्त ऑनलाइन फ्लिप घड़ी में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन घड़ी — बिना डाउनलोड के।',
+    ja: 'リアルなレトロフリップカードアニメーション、6つの美的テーマ、12/24時間表示、秒表示、ポモドーロタイマー、環境クリック音を備えた無料のオンラインフリップ時計にどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面時計。ダウンロード不要。',
   },
 };
 
@@ -377,6 +395,42 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
           '@type': 'HowToStep',
           name: 'Set Optional Sleep Timer',
           text: 'Enable the automatic sleep timer (15, 30, 60, or 90 minutes) for nighttime relaxation, study sessions, or sleeping.'
+        }
+      ]
+    });
+  }
+
+  if (tool.id === 'clock-screen') {
+    baseSchemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to Use an Online Flip Clock as a Fullscreen Timer & Focus Tool',
+      description: 'A step-by-step guide to setting up and customizing an aesthetic flip clock online with Pomodoro timer, themes, and keyboard shortcuts.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Open the Flip Clock Tool',
+          text: 'Load the page on your laptop, desktop monitor, tablet, or Smart TV web browser. The flip clock displays the current time immediately with retro flip-card animation.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Customize Theme & Format',
+          text: 'Press Space to open settings. Choose from 6 themes (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk). Toggle 12/24-hour format and show or hide seconds.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Enable Fullscreen View',
+          text: 'Click the Fullscreen button or press "F" to fill your entire display with the flip clock. The interface auto-hides after a few seconds of inactivity for a clean view.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Activate the Pomodoro Timer',
+          text: 'Press "T" to switch to Countdown mode. Select a preset focus interval (5, 10, 15, 25, 40, or 60 minutes) or set a custom duration. The flip animation counts down visually.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Adjust Sound & Brightness',
+          text: 'Toggle retro click sound with "S" or the mute button. Use the brightness slider (10% to 100%) to adjust the clock visibility for any room lighting condition. Press "R" to reset the countdown.'
         }
       ]
     });
