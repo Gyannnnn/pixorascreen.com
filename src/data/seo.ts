@@ -120,6 +120,15 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'फ्लिप घड़ी ऑनलाइन - पोमोडोरो टाइमर के साथ एस्थेटिक फुलस्क्रीन फ्लिप घड़ी',
     ja: 'フリップ時計 オンライン - ポモドーロタイマー付き高級感のある全画面フリップ時計',
   },
+  'galaxy-screen': {
+    en: 'Galaxy Screen – Interactive Spiral Galaxy Simulation with Real-Time Controls',
+    es: 'Pantalla de Galaxia Online - Simulación Interactiva de Galaxia Espiral en Tiempo Real',
+    pt: 'Tela de Galáxia Online - Simulação Interativa de Galáxia Espiral em Tempo Real',
+    fr: 'Écran Galaxie en Ligne - Simulation Interactive de Galaxie Spirale en Temps Réel',
+    de: 'Galaxie-Bildschirm Online - Interaktive Spiralgalaxie-Simulation in Echtzeit',
+    hi: 'गैलेक्सी स्क्रीन ऑनलाइन - रीयल-टाइम नियंत्रणों के साथ इंटरैक्टिव सर्पिल आकाशगंगा सिमुलेशन',
+    ja: '銀河画面 オンライン - リアルタイム操作可能なインタラクティブ渦巻銀河シミュレーション',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -212,6 +221,15 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in eine kostenlose Online-Klappuhr mit realistischer Kippkarten-Animation, 6 ästhetischen Designs, 12/24h-Format, Sekunden, Pomodoro-Timer und dezentem Klick-Sound. Vollbild-Uhr für Desktop, Laptop, Monitor und TV.',
     hi: 'किसी भी स्क्रीन को यथार्थवादी रेट्रो फ्लिप-कार्ड एनिमेशन, 6 एस्थेटिक थीम, 12/24 घंटे प्रारूप, सेकंड, पोमोडोरो टाइमर और एम्बिएंट क्लिक साउंड के साथ मुफ्त ऑनलाइन फ्लिप घड़ी में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन घड़ी — बिना डाउनलोड के।',
     ja: 'リアルなレトロフリップカードアニメーション、6つの美的テーマ、12/24時間表示、秒表示、ポモドーロタイマー、環境クリック音を備えた無料のオンラインフリップ時計にどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面時計。ダウンロード不要。',
+  },
+  'galaxy-screen': {
+    en: 'Turn any screen into a free online galaxy screen with realistic spiral galaxy animation, 5 color themes, adjustable star density, rotation speed, 3D tilt, gravitational lensing black hole effect, and ambient space audio. Fullscreen galaxy for desktop, laptop, monitor, and TV — no download needed.',
+    es: 'Convierte cualquier pantalla en una pantalla de galaxia online gratis con animación realista de galaxia espiral, 5 temas de color, densidad de estrellas ajustable, velocidad de rotación, inclinación 3D, efecto de lente gravitacional de agujero negro y audio espacial ambiental. Galaxia a pantalla completa para escritorio, portátil, monitor y TV.',
+    pt: 'Transforme qualquer tela em uma tela de galáxia online grátis com animação realista de galáxia espiral, 5 temas de cor, densidade de estrelas ajustável, velocidade de rotação, inclinação 3D, efeito de lente gravitacional de buraco negro e áudio espacial ambiente. Galáxia em tela cheia para desktop, notebook, monitor e TV.',
+    fr: 'Transformez n\'importe quel écran en un écran de galaxie en ligne gratuit avec animation réaliste de galaxie spirale, 5 thèmes de couleur, densité d\'étoiles réglable, vitesse de rotation, inclinaison 3D, effet de lentille gravitationnelle de trou noir et audio spatial d\'ambiance. Galaxie plein écran pour PC, portable, moniteur et TV.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Galaxie-Bildschirm mit realistischer Spiralgalaxie-Animation, 5 Farbthemen, einstellbarer Sterndichte, Rotationsgeschwindigkeit, 3D-Neigung, Gravitationslinsen-Schwarzes-Loch-Effekt und Ambient-Weltraum-Audio. Vollbild-Galaxie für Desktop, Laptop, Monitor und TV.',
+    hi: 'किसी भी स्क्रीन को यथार्थवादी सर्पिल आकाशगंगा एनिमेशन, 5 रंग थीम, समायोज्य तारा घनत्व, घूर्णन गति, 3D झुकाव, गुरुत्वाकर्षण लेंसिंग ब्लैक होल प्रभाव और एम्बिएंट स्पेस ऑडियो के साथ मुफ्त ऑनलाइन गैलेक्सी स्क्रीन में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन गैलेक्सी — बिना डाउनलोड के।',
+    ja: 'リアルな渦巻銀河アニメーション、5つのカラーテーマ、調整可能な星の密度、回転速度、3D傾き、重力レンズ効果のブラックホール、環境宇宙音声を備えた無料のオンライン銀河画面にどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面銀河。ダウンロード不要。',
   },
 };
 

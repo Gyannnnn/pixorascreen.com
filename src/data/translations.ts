@@ -603,6 +603,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'hex-screen': { es: 'Pantalla HEX', pt: 'Tela HEX', fr: 'Écran HEX', de: 'HEX-Bildschirm', hi: 'हेक्स स्क्रीन', ja: 'HEX画面' },
   'aquarium-screen': { es: 'Pantalla de Acuario', pt: 'Tela de Aquário', fr: 'Écran d\'Aquarium', de: 'Aquarium-Bildschirm', hi: 'एक्वेरियम स्क्रीन', ja: 'アクアリウム画面' },
   'ambient-screen': { es: 'Pantalla Ambiental', pt: 'Tela Ambiente', fr: 'Écran Ambiant', de: 'Ambiente-Bildschirm', hi: 'एम्बिएंट स्क्रीन', ja: 'アンビエント画面' },
+  'galaxy-screen': { es: 'Pantalla de Galaxia', pt: 'Tela de Galáxia', fr: 'Écran Galaxie', de: 'Galaxie-Bildschirm', hi: 'गैलेक्सी स्क्रीन', ja: '銀河の画面' },
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
@@ -705,6 +706,14 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     de: 'Ein interaktiver Ambiente-Bildschirm mit animierten Farbverläufen, kosmischen Partikeln, 4-Kanal-Soundmixer, Uhr, Pomodoro-Timer und geführter Atmung — für Desktop, Laptop, Monitor, TV und Handy.',
     hi: 'एनिमेटेड ग्रेडिएंट, कॉस्मिक पार्टिकल्स, 4-चैनल साउंडस्केप मिक्सर, घड़ी, पोमोडोरो टाइमर और गाइडेड ब्रीदिंग के साथ एक इंटरैक्टिव एम्बिएंट स्क्रीन — डेस्कटॉप, लैपटॉप, मॉनिटर, टीवी और मोबाइल के लिए।',
     ja: 'アニメーショングラデーション、宇宙のパーティクル、4チャンネルサウンドスケープミキサー、時計、ポモドーロタイマー、ガイド付き呼吸法を備えたインタラクティブなアンビエント画面。デスクトップ、ノートPC、モニター、TV、モバイル対応。',
+  },
+  'galaxy-screen': {
+    es: 'Una pantalla de galaxia espiral interactiva online con simulación realista de galaxia, 5 temas de color (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), control de densidad estelar, velocidad de rotación, inclinación 3D, efecto de lente gravitacional de agujero negro y audio espacial ambiental — sin descarga.',
+    pt: 'Uma tela de galáxia espiral interativa online com simulação realista de galáxia, 5 temas de cor (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), controle de densidade estelar, velocidade de rotação, inclinação 3D, efeito de lente gravitacional de buraco negro e áudio espacial ambiente — sem download.',
+    fr: 'Un écran de galaxie spirale interactif en ligne avec simulation réaliste de galaxie, 5 thèmes de couleur (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), contrôle de la densité stellaire, vitesse de rotation, inclinaison 3D, effet de lentille gravitationnelle de trou noir et audio spatial d\'ambiance — sans téléchargement.',
+    de: 'Ein interaktiver Online-Spiralgalaxie-Bildschirm mit realistischer Galaxiensimulation, 5 Farbthemen (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), Sterndichteregelung, Rotationsgeschwindigkeit, 3D-Neigung, Gravitationslinsen-Schwarzes-Loch-Effekt und Ambient-Weltraum-Audio — kein Download nötig.',
+    hi: 'यथार्थवादी आकाशगंगा सिमुलेशन, 5 रंग थीम (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), तारा घनत्व नियंत्रण, घूर्णन गति, 3D झुकाव, गुरुत्वाकर्षण लेंसिंग ब्लैक होल प्रभाव और एम्बिएंट स्पेस ऑडियो के साथ एक इंटरैक्टिव ऑनलाइन सर्पिल गैलेक्सी स्क्रीन — बिना डाउनलोड के।',
+    ja: 'リアルな銀河シミュレーション、5つのカラーテーマ（Andromeda Blue、Cosmic Amber、Orion Purple、Ghostly Teal、OLED Monochrome）、星密度コントロール、回転速度、3D傾き、重力レンズ効果のブラックホール、環境宇宙音声を備えたインタラクティブなオンライン渦巻銀河画面。ダウンロード不要。',
   },
 };
 
