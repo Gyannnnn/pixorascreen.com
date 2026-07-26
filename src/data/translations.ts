@@ -604,6 +604,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'aquarium-screen': { es: 'Pantalla de Acuario', pt: 'Tela de Aquário', fr: 'Écran d\'Aquarium', de: 'Aquarium-Bildschirm', hi: 'एक्वेरियम स्क्रीन', ja: 'アクアリウム画面' },
   'ambient-screen': { es: 'Pantalla Ambiental', pt: 'Tela Ambiente', fr: 'Écran Ambiant', de: 'Ambiente-Bildschirm', hi: 'एम्बिएंट स्क्रीन', ja: 'アンビエント画面' },
   'galaxy-screen': { es: 'Pantalla de Galaxia', pt: 'Tela de Galáxia', fr: 'Écran Galaxie', de: 'Galaxie-Bildschirm', hi: 'गैलेक्सी स्क्रीन', ja: '銀河の画面' },
+  'broken-screen': { es: 'Pantalla Rota', pt: 'Tela Quebrada', fr: 'Écran Cassé', de: 'Kaputter Bildschirm', hi: 'टूटी स्क्रीन', ja: '壊れた画面' },
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
@@ -714,6 +715,14 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     de: 'Ein interaktiver Online-Spiralgalaxie-Bildschirm mit realistischer Galaxiensimulation, 5 Farbthemen (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), Sterndichteregelung, Rotationsgeschwindigkeit, 3D-Neigung, Gravitationslinsen-Schwarzes-Loch-Effekt und Ambient-Weltraum-Audio — kein Download nötig.',
     hi: 'यथार्थवादी आकाशगंगा सिमुलेशन, 5 रंग थीम (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), तारा घनत्व नियंत्रण, घूर्णन गति, 3D झुकाव, गुरुत्वाकर्षण लेंसिंग ब्लैक होल प्रभाव और एम्बिएंट स्पेस ऑडियो के साथ एक इंटरैक्टिव ऑनलाइन सर्पिल गैलेक्सी स्क्रीन — बिना डाउनलोड के।',
     ja: 'リアルな銀河シミュレーション、5つのカラーテーマ（Andromeda Blue、Cosmic Amber、Orion Purple、Ghostly Teal、OLED Monochrome）、星密度コントロール、回転速度、3D傾き、重力レンズ効果のブラックホール、環境宇宙音声を備えたインタラクティブなオンライン渦巻銀河画面。ダウンロード不要。',
+  },
+  'broken-screen': {
+    es: 'Una página de broma inofensiva de pantalla rota con un convincente efecto de pantalla agrietada a pantalla completa para bromas y diversión.',
+    pt: 'Uma página de pegadinha inofensiva de tela quebrada com um efeito convincente de tela rachada em tela cheia para brincadeiras e diversão.',
+    fr: 'Une page de blague inoffensive d\'écran cassé avec un effet d\'écran fissuré en plein écran convaincant pour des plaisanteries et du divertissement.',
+    de: 'Eine harmlose Scherzseite mit kaputtem Bildschirm und einem überzeugenden Vollbild-Cracked-Display-Effekt für Streiche und Spaß.',
+    hi: 'एक हानिरहित टूटी स्क्रीन प्रैंक पेज जिसमें मजाक और मनोरंजन के लिए एक विश्वसनीय फुलस्क्रीन क्रैक-डिस्प्ले इफ़ेक्ट है।',
+    ja: '壊れた画面のいたずらページ。ジョークや楽しみのために、説得力のある全画面ひび割れディスプレイエフェクトを備えた無害なページ。',
   },
 };
 
@@ -4848,6 +4857,146 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
   },
   'placeholder-screen': {
     en: []
+  },
+  'broken-screen': {
+    en: [
+      {
+        question: 'What is a fake broken screen?',
+        answer: 'A fake broken screen is a realistic cracked-screen image displayed on a monitor or device to simulate physical screen damage. It is a harmless prank tool used for jokes, video content, and theatrical effects without actually damaging the display.'
+      },
+      {
+        question: 'How does a broken screen prank work?',
+        answer: 'The broken screen prank works by displaying a high-resolution photo-realistic cracked-screen image in fullscreen mode. The effect is so convincing that observers often believe the display is physically shattered. You can switch between 8 different crack styles and adjust brightness to match the lighting environment for maximum realism.'
+      },
+      {
+        question: 'Can I use this broken screen simulator on my phone?',
+        answer: 'Yes, the broken screen simulator works on all smartphones and tablets. Open the page in your mobile browser, tap the fullscreen button, and rotate to landscape if desired. The realistic cracked display is perfect for convincing friends and family in any setting.'
+      },
+      {
+        question: 'Is the broken screen tool free to use?',
+        answer: 'Yes, the broken screen tool is completely free. No account, no signup, and no download required. It works directly in your browser on desktop, laptop, tablet, phone, and Smart TV. Perfect for last-minute pranks, April Fools Day, or spontaneous jokes.'
+      },
+      {
+        question: 'How to clean a simulated cracked screen?',
+        answer: 'Since the crack is just a fullscreen image and not real damage, no physical repair is needed. Simply click Fullscreen again or press the Escape key to exit fullscreen mode, and the screen will instantly return to normal. The tool is perfectly safe for all devices.'
+      },
+      {
+        question: 'What styles of cracked screens are available?',
+        answer: 'The tool includes 8 different cracked-screen images ranging from minor spiderweb cracks to heavy shatter patterns. You can cycle through them to find the most convincing look for your prank. Each image is rendered in high resolution for maximum realism on any display size.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Qué es una pantalla rota falsa?',
+        answer: 'Una pantalla rota falsa es una imagen realista de pantalla agrietada que se muestra en un monitor o dispositivo para simular daños físicos en la pantalla. Es una herramienta de broma inofensiva para chistes, videos y efectos teatrales sin dañar realmente la pantalla.'
+      },
+      {
+        question: '¿Cómo funciona la broma de la pantalla rota?',
+        answer: 'La broma de la pantalla rota funciona mostrando una imagen fotorrealista de pantalla agrietada en modo pantalla completa. El efecto es tan convincente que los observadores suelen creer que la pantalla está físicamente rota. Puedes cambiar entre 8 estilos de grietas diferentes y ajustar el brillo.'
+      },
+      {
+        question: '¿Puedo usar el simulador de pantalla rota en mi teléfono?',
+        answer: 'Sí, el simulador funciona en todos los teléfonos inteligentes y tabletas. Abre la página en tu navegador móvil, pulsa el botón de pantalla completa y, si lo deseas, gira a horizontal. La pantalla agrietada realista es perfecta para engañar a amigos y familiares.'
+      },
+      {
+        question: '¿La herramienta de pantalla rota es gratuita?',
+        answer: 'Sí, la herramienta de pantalla rota es completamente gratuita. Sin cuenta, sin registro y sin necesidad de descarga. Funciona directamente en tu navegador en cualquier dispositivo.'
+      },
+      {
+        question: '¿Hay diferentes estilos de pantalla agrietada?',
+        answer: 'La herramienta incluye 8 imágenes diferentes de pantallas agrietadas, desde pequeñas telarañas hasta patrones de rotura severos. Puedes recorrerlas para encontrar el aspecto más convincente para tu broma.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O que é uma tela quebrada falsa?',
+        answer: 'Uma tela quebrada falsa é uma imagem realista de tela rachada exibida em um monitor para simular danos físicos na tela. É uma ferramenta de pegadinha inofensiva para brincadeiras, vídeos e efeitos teatrais sem danificar a tela.'
+      },
+      {
+        question: 'Como funciona a pegadinha da tela quebrada?',
+        answer: 'A pegadinha funciona exibindo uma imagem fotorrealista de tela rachada em modo tela cheia. O efeito é tão convincente que observadores geralmente acreditam que a tela está fisicamente quebrada. Você pode alternar entre 8 estilos de rachaduras e ajustar o brilho.'
+      },
+      {
+        question: 'Posso usar o simulador de tela quebrada no meu celular?',
+        answer: 'Sim, o simulador funciona em todos os smartphones e tablets. Abra a página no seu navegador móvel, toque no botão de tela cheia e gire para paisagem se desejar. A tela rachada realista é perfeita para enganar amigos e familiares.'
+      },
+      {
+        question: 'A ferramenta de tela quebrada é gratuita?',
+        answer: 'Sim, a ferramenta é completamente gratuita. Sem conta, sem cadastro e sem necessidade de download. Funciona diretamente no seu navegador em desktop, laptop, tablet, celular e Smart TV.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Qu\'est-ce qu\'un faux écran cassé ?',
+        answer: 'Un faux écran cassé est une image réaliste d\'écran fissuré affichée sur un moniteur pour simuler des dommages physiques. C\'est un outil de blague inoffensif pour des farces, vidéos et effets théâtraux sans endommager l\'écran.'
+      },
+      {
+        question: 'Comment fonctionne la blague de l\'écran cassé ?',
+        answer: 'La blague fonctionne en affichant une image photoréaliste d\'écran fissuré en plein écran. L\'effet est si convaincant que les observateurs croient souvent que l\'écran est physiquement brisé. Vous pouvez changer entre 8 styles de fissures et ajuster la luminosité.'
+      },
+      {
+        question: 'Puis-je utiliser le simulateur d\'écran cassé sur mon téléphone ?',
+        answer: 'Oui, le simulateur fonctionne sur tous les smartphones et tablettes. Ouvrez la page dans votre navigateur mobile, appuyez sur le bouton plein écran et pivotez en paysage si souhaité. L\'écran fissuré réaliste est parfait pour tromper amis et famille.'
+      },
+      {
+        question: 'L\'outil d\'écran cassé est-il gratuit ?',
+        answer: 'Oui, l\'outil est entièrement gratuit. Sans compte, sans inscription et sans téléchargement nécessaire. Il fonctionne directement dans votre navigateur sur tous les appareils.'
+      }
+    ],
+    de: [
+      {
+        question: 'Was ist ein falscher kaputter Bildschirm?',
+        answer: 'Ein falscher kaputter Bildschirm ist ein realistisches Bild eines gesprungenen Displays, das auf einem Monitor angezeigt wird, um physische Schäden zu simulieren. Es ist ein harmloses Scherzwerkzeug für Witze, Videos und Theater-Effekte.'
+      },
+      {
+        question: 'Wie funktioniert der kaputter-Bildschirm-Streich?',
+        answer: 'Der Streich funktioniert durch die Anzeige eines fotorealistischen Bildes eines gesprungenen Bildschirms im Vollbildmodus. Der Effekt ist so überzeugend, dass Beobachter oft glauben, der Bildschirm sei physisch zerbrochen. Sie können zwischen 8 verschiedenen Riss-Stilen wechseln.'
+      },
+      {
+        question: 'Kann ich den kaputter-Bildschirm-Simulator auf meinem Handy verwenden?',
+        answer: 'Ja, der Simulator funktioniert auf allen Smartphones und Tablets. Öffnen Sie die Seite in Ihrem mobilen Browser, tippen Sie auf die Vollbild-Schaltfläche. Der realistische gesprungene Bildschirm ist perfekt, um Freunde und Familie zu überraschen.'
+      },
+      {
+        question: 'Ist das kaputter-Bildschirm-Tool kostenlos?',
+        answer: 'Ja, das Tool ist völlig kostenlos. Kein Konto, keine Anmeldung und kein Download erforderlich. Es funktioniert direkt in Ihrem Browser auf allen Geräten.'
+      }
+    ],
+    hi: [
+      {
+        question: 'फर्जी टूटी स्क्रीन क्या है?',
+        answer: 'फर्जी टूटी स्क्रीन एक यथार्थवादी क्रैक-डिस्प्ले इमेज है जो स्क्रीन पर शारीरिक क्षति का अनुकरण करने के लिए दिखाई जाती है। यह मजाक, वीडियो सामग्री और नाटकीय प्रभावों के लिए एक हानिरहित प्रैंक टूल है।'
+      },
+      {
+        question: 'टूटी स्क्रीन प्रैंक कैसे काम करता है?',
+        answer: 'टूटी स्क्रीन प्रैंक फुलस्क्रीन मोड में एक फोटो-रियलिस्टिक क्रैक-स्क्रीन इमेज प्रदर्शित करके काम करता है। प्रभाव इतना विश्वसनीय है कि देखने वाले अक्सर मान लेते हैं कि स्क्रीन वास्तव में टूट गई है। आप 8 अलग-अलग क्रैक स्टाइल के बीच स्विच कर सकते हैं।'
+      },
+      {
+        question: 'क्या मैं अपने फोन पर टूटी स्क्रीन सिम्युलेटर का उपयोग कर सकता हूँ?',
+        answer: 'हाँ, सिम्युलेटर सभी स्मार्टफोन और टैबलेट पर काम करता है। अपने मोबाइल ब्राउज़र में पेज खोलें और फुलस्क्रीन बटन दबाएँ। यथार्थवादी क्रैक डिस्प्ले दोस्तों और परिवार को आश्चर्यचकित करने के लिए एकदम सही है।'
+      },
+      {
+        question: 'क्या टूटी स्क्रीन टूल मुफ्त है?',
+        answer: 'हाँ, टूल पूरी तरह से मुफ्त है। कोई खाता, कोई साइनअप और कोई डाउनलोड आवश्यक नहीं है। यह डेस्कटॉप, लैपटॉप, टैबलेट, फोन और स्मार्ट टीवी पर आपके ब्राउज़र में सीधे काम करता है।'
+      }
+    ],
+    ja: [
+      {
+        question: '偽の壊れた画面とは何ですか？',
+        answer: '偽の壊れた画面とは、モニターに表示されるリアルなひび割れ画像で、物理的な画面の損傷をシミュレートします。ジョーク、ビデオコンテンツ、劇的な効果のための無害ないたずらツールです。'
+      },
+      {
+        question: '壊れた画面のいたずらはどのように機能しますか？',
+        answer: '全画面モードでフォトリアリスティックなひび割れ画像を表示することで機能します。その効果は非常に説得力があり、見た人はディスプレイが物理的に壊れていると信じてしまうことがよくあります。8種類のひび割れスタイルを切り替えられます。'
+      },
+      {
+        question: 'スマートフォンで壊れた画面シミュレーターを使用できますか？',
+        answer: 'はい、シミュレーターはすべてのスマートフォンとタブレットで動作します。モバイルブラウザでページを開き、全画面ボタンをタップしてください。リアルなひび割れディスプレイは、友人や家族を驚かせるのに最適です。'
+      },
+      {
+        question: '壊れた画面ツールは無料ですか？',
+        answer: 'はい、完全に無料です。アカウントやサインアップ、ダウンロードは必要ありません。デスクトップ、ノートPC、タブレット、スマートフォン、Smart TVでブラウザから直接動作します。'
+      }
+    ]
   }
 };
 
@@ -6260,6 +6409,69 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           '画面パネルのチェックにおいては、本ツールは詳細な <strong>黒い画面 テスト ノートパソコン</strong> や、定番の <strong>OLED 黒い画面 テスト</strong> 用途に最適です。画面の検査項目である <strong>黒い画面 AMOLED テスト</strong> や、モバイルディスプレイ向けの <strong>黒い画面 テスト スマホ</strong>、また <strong>黒い画面 テスト iPhone</strong> などを実行できます。このテストを実行すると、純粋な <strong>黒い画面 テスト 画像</strong> が出力され、初期確認などのドット抜け検知に役立ちます。',
           'メディア制作の現場では、映像クリエイターが <strong>全画面 黒い画面 1920x1080</strong> や、動画比率の <strong>1080p 黒い画面 全画面</strong>、スマホ向きの <strong>全画面 黒い画面 9:16</strong> などのサイズを必要とします。サイドメニューを使えば素早く <strong>黒い画面 全画面 ダウンロード</strong> を実行でき、<strong>黒い画面 全画面 画像</strong> や <strong>黒い全画面 画像</strong> をエクスポートできます。これにより <strong>無料 黒い画面 オンライン 著作権なし</strong> のテンプレート素材として使え、わざわざ <strong>無料 黒い画面 オンライン 動画</strong> を検索したり <strong>無料 黒い画面 オンライン ダウンロード</strong> で探す手間なしに、純粋な <strong>黒</strong> （ブラック）カラーを出力できます。',
           '黒い画面（無表示状態）は多くの目的で活用されます：モニターのキャリブレーションでスタックピクセルやバックライト漏れをチェックする、有機EL（OLED）スマートフォンの消灯ピクセル特性を利用してバッテリーを節約する、動画編集時のクロマキーチェックや合成動画の背景に使用する、パソコン本体を稼働させたまま（ダウンロードやエンコード中など）でサブモニターの輝度のみを暗くする、液晶テレビの焼き付き防止（Burn-in防止）、液晶表面のホコリ除去を楽にするためのクリーニング補助、または目の疲れを癒したり読書時の集中環境を整えるミニマリズム用途など、多岐にわたります。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'broken-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Broken Screen Prank – Fake Cracked Display Guide & Use Cases',
+        paragraphs: [
+          'The <strong>broken screen prank</strong> is one of the most effective and timeless pranks you can pull on friends, family, or coworkers. Our <strong>fake broken screen</strong> tool generates a photorealistic <strong>cracked screen</strong> effect that looks exactly like a physically shattered display. Whether you want a <strong>fake broken monitor prank</strong>, a <strong>fake broken laptop screen prank</strong>, or a <strong>fake cracked phone display</strong> to prank someone, this tool provides 8 high-resolution crack patterns that cycle through with a single click.',
+          'People search for many related terms when looking for this kind of prank. Common search phrases include <strong>fake broken screen</strong>, <strong>broken screen prank</strong>, <strong>cracked screen simulator</strong>, <strong>fake crack screen</strong>, <strong>cracked screen prank</strong>, <strong>broken monitor prank</strong>, and <strong>fake broken phone screen</strong>. By using our tool, you get instant access to a convincing <strong>cracked screen simulator</strong> without downloading any apps, installing software, or searching for <strong>fake cracked screen images</strong> online.',
+          'For the best prank experience, we recommend entering fullscreen mode before showing the screen to your target. The fullscreen effect hides browser UI elements that would otherwise reveal the prank. Adjust the brightness slider to match the ambient lighting of the room — a dimmer setting works best in darker environments, while higher brightness is more convincing in well-lit offices and living rooms. The tool also includes a <strong>brightness control</strong>, <strong>timer</strong>, and <strong>share</strong> feature to send the cracked screen to another device.',
+          'The <strong>broken screen simulator</strong> is ideal for April Fools Day pranks, office jokes, YouTube and TikTok prank videos, theater and stage productions, gaming stream intermissions, and even film and video production where a broken display is needed on set. Because the tool runs entirely in the browser, it works on any device — desktop PCs, laptops, MacBooks, Chromebooks, tablets, smartphones, and Smart TVs. No account, no signup, no download — just open and prank.'
+        ]
+      },
+      es: {
+        heading: 'Broma de Pantalla Rota – Guía y Casos de Uso del Simulador de Pantalla Agrietada',
+        paragraphs: [
+          'La <strong>broma de pantalla rota</strong> es una de las bromas más efectivas y atemporales que puedes hacer a amigos, familiares o compañeros de trabajo. Nuestra herramienta de <strong>pantalla rota falsa</strong> genera un efecto fotorrealista de <strong>pantalla agrietada</strong> que se ve exactamente como una pantalla físicamente rota. Ya sea que quieras una <strong>broma de monitor roto falso</strong>, una <strong>broma de portátil con pantalla rota falsa</strong> o un <strong>teléfono con pantalla agrietada falsa</strong>, esta herramienta ofrece 8 patrones de grietas de alta resolución.',
+          'Las frases de búsqueda comunes incluyen <strong>pantalla rota falsa</strong>, <strong>broma pantalla rota</strong>, <strong>simulador de pantalla agrietada</strong>, <strong>pantalla agrietada falsa</strong> y <strong>broma monitor roto</strong>. Con nuestra herramienta obtienes acceso instantáneo a un convincente <strong>simulador de pantalla rota</strong> sin descargar aplicaciones ni instalar software.',
+          'Para la mejor experiencia, recomendamos entrar en modo de pantalla completa antes de mostrar la pantalla. El brillo ajustable te permite igualar la iluminación ambiente de la habitación. La herramienta también incluye control de brillo, temporizador y función de compartir para enviar la pantalla agrietada a otro dispositivo.'
+        ]
+      },
+      pt: {
+        heading: 'Pegadinha de Tela Quebrada – Guia e Casos de Uso do Simulador de Tela Rachada',
+        paragraphs: [
+          'A <strong>pegadinha de tela quebrada</strong> é uma das brincadeiras mais eficazes e atemporais que você pode fazer com amigos, familiares ou colegas de trabalho. Nossa ferramenta de <strong>tela quebrada falsa</strong> gera um efeito fotorrealista de <strong>tela rachada</strong> que parece exatamente uma tela fisicamente destruída. A ferramenta oferece 8 padrões de rachadura de alta resolução.',
+          'Termos de busca comuns incluem <strong>tela quebrada falsa</strong>, <strong>pegadinha tela quebrada</strong>, <strong>simulador de tela rachada</strong>, <strong>tela rachada falsa</strong> e <strong>pegadinha monitor quebrado</strong>. Com nossa ferramenta você tem acesso instantâneo a um convincente <strong>simulador de tela quebrada</strong> sem baixar aplicativos.',
+          'Para a melhor experiência, recomendamos entrar em modo tela cheia antes de mostrar a tela. O brilho ajustável permite igualar a iluminação ambiente. A ferramenta também inclui controle de brilho, temporizador e recurso de compartilhar.'
+        ]
+      },
+      fr: {
+        heading: 'Blague d\'Écran Cassé – Guide et Cas d\'Utilisation du Simulateur d\'Écran Fissuré',
+        paragraphs: [
+          'La <strong>blague d\'écran cassé</strong> est l\'une des farces les plus efficaces et intemporelles que vous puissiez faire à vos amis, votre famille ou vos collègues. Notre outil de <strong>faux écran cassé</strong> génère un effet photoréaliste d\'<strong>écran fissuré</strong> qui ressemble exactement à un écran physiquement brisé. L\'outil propose 8 motifs de fissures en haute résolution.',
+          'Les termes de recherche courants incluent <strong>faux écran cassé</strong>, <strong>blague écran cassé</strong>, <strong>simulateur d\'écran fissuré</strong>, <strong>écran fissuré faux</strong> et <strong>farce écran cassé</strong>. Avec notre outil, vous avez un accès instantané à un <strong>simulateur d\'écran cassé</strong> convaincant sans téléchargement d\'application.',
+          'Pour la meilleure expérience, nous recommandons le mode plein écran avant de montrer l\'écran. La luminosité réglable permet de correspondre à l\'éclairage ambiant. L\'outil inclut également le contrôle de la luminosité, une minuterie et une fonction de partage.'
+        ]
+      },
+      de: {
+        heading: 'Kaputter Bildschirm Scherz – Anleitung und Anwendungsfälle für den Rissbildschirm-Simulator',
+        paragraphs: [
+          'Der <strong>kaputter-Bildschirm-Streich</strong> ist einer der effektivsten und zeitlosesten Streiche, die Sie Freunden, Familie oder Kollegen spielen können. Unser Tool für <strong>falschen kaputten Bildschirm</strong> erzeugt einen fotorealistischen <strong>gesprungenen Bildschirm</strong>-Effekt, der genau wie ein physisch zerbrochener Bildschirm aussieht. Das Tool bietet 8 hochauflösende Rissmuster.',
+          'Häufige Suchbegriffe sind <strong>falscher kaputter Bildschirm</strong>, <strong>Bildschirm kaputt Streich</strong>, <strong>Rissbildschirm-Simulator</strong>, <strong>gefälschter zerkratzter Bildschirm</strong> und <strong>Monitor kaputt Streich</strong>. Mit unserem Tool erhalten Sie sofortigen Zugang zu einem überzeugenden <strong>Rissbildschirm-Simulator</strong> ohne App-Download.',
+          'Für die beste Erfahrung empfehlen wir den Vollbildmodus, bevor Sie den Bildschirm zeigen. Die einstellbare Helligkeit passt sich der Raumbeleuchtung an. Das Tool enthält auch Helligkeitsregelung, Timer und Teilen-Funktion.'
+        ]
+      },
+      hi: {
+        heading: 'टूटी स्क्रीन प्रैंक – फर्जी क्रैक-डिस्प्ले गाइड और उपयोग के मामले',
+        paragraphs: [
+          '<strong>टूटी स्क्रीन प्रैंक</strong> सबसे प्रभावी और कालातीत मजाक में से एक है जो आप दोस्तों, परिवार या सहकर्मियों पर कर सकते हैं। हमारा <strong>फर्जी टूटी स्क्रीन</strong> टूल एक फोटोरियलिस्टिक <strong>क्रैक-स्क्रीन</strong> इफ़ेक्ट उत्पन्न करता है जो बिल्कुल शारीरिक रूप से टूटी हुई स्क्रीन जैसा दिखता है। यह टूल 8 हाई-रिज़ॉल्यूशन क्रैक पैटर्न प्रदान करता है।',
+          'सामान्य खोज वाक्यांशों में <strong>फर्जी टूटी स्क्रीन</strong>, <strong>टूटी स्क्रीन प्रैंक</strong>, <strong>क्रैक-डिस्प्ले सिम्युलेटर</strong>, <strong>फर्जी क्रैक स्क्रीन</strong> और <strong>टूटा मॉनिटर प्रैंक</strong> शामिल हैं। हमारे टूल से आपको बिना कोई ऐप डाउनलोड किए तुरंत एक विश्वसनीय <strong>क्रैक-स्क्रीन सिम्युलेटर</strong> मिल जाता है।',
+          'सबसे अच्छे अनुभव के लिए, हम स्क्रीन दिखाने से पहले फुलस्क्रीन मोड में जाने की सलाह देते हैं। एडजस्टेबल ब्राइटनेस आपको कमरे की रोशनी से मेल खाने देता है। टूल में ब्राइटनेस कंट्रोल, टाइमर और शेयर फीचर भी शामिल है।'
+        ]
+      },
+      ja: {
+        heading: '壊れた画面のいたずら – 偽のひび割れディスプレイガイドと使用例',
+        paragraphs: [
+          '<strong>壊れた画面のいたずら</strong>は、友人、家族、同僚に仕掛けられる最も効果的で時代を超越したいたずらの一つです。私たちの<strong>偽の壊れた画面</strong>ツールは、物理的に割れたディスプレイにまったくそっくりなフォトリアリスティックな<strong>ひび割れ画面</strong>エフェクトを生成します。このツールは8つの高解像度ひび割れパターンを提供します。',
+          '一般的な検索フレーズには、<strong>偽の壊れた画面</strong>、<strong>壊れた画面 いたずら</strong>、<strong>ひび割れ画面シミュレーター</strong>、<strong>偽のクラック画面</strong>、<strong>壊れたモニター いたずら</strong>などがあります。このツールを使えば、アプリをダウンロードすることなく、すぐに説得力のある<strong>ひび割れ画面シミュレーター</strong>を利用できます。',
+          '最良の体験のために、画面を見せる前に全画面モードに入ることをお勧めします。調整可能な明るさで部屋の照明に合わせることができます。明るさコントロール、タイマー、共有機能も含まれています。'
         ]
       }
     };

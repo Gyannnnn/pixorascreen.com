@@ -129,6 +129,15 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'गैलेक्सी स्क्रीन ऑनलाइन - रीयल-टाइम नियंत्रणों के साथ इंटरैक्टिव सर्पिल आकाशगंगा सिमुलेशन',
     ja: '銀河画面 オンライン - リアルタイム操作可能なインタラクティブ渦巻銀河シミュレーション',
   },
+  'broken-screen': {
+    en: 'Broken Screen Prank - Free Fake Cracked Screen Simulator Online',
+    es: 'Broma de Pantalla Rota - Simulador de Pantalla Agrietada Falsa Gratis Online',
+    pt: 'Pegadinha de Tela Quebrada - Simulador de Tela Rachada Falsa Grátis Online',
+    fr: 'Blague d\'Écran Cassé - Simulateur d\'Écran Fissuré Gratuit en Ligne',
+    de: 'Kaputter Bildschirm Scherz - Kostenloser Fake-Cracked-Screen-Simulator Online',
+    hi: 'टूटी स्क्रीन प्रैंक - मुफ्त ऑनलाइन फर्जी क्रैक-डिस्प्ले सिम्युलेटर',
+    ja: '壊れた画面 いたずら - 無料オンライン偽のひび割れ画面シミュレーター',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -230,6 +239,15 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Galaxie-Bildschirm mit realistischer Spiralgalaxie-Animation, 5 Farbthemen, einstellbarer Sterndichte, Rotationsgeschwindigkeit, 3D-Neigung, Gravitationslinsen-Schwarzes-Loch-Effekt und Ambient-Weltraum-Audio. Vollbild-Galaxie für Desktop, Laptop, Monitor und TV.',
     hi: 'किसी भी स्क्रीन को यथार्थवादी सर्पिल आकाशगंगा एनिमेशन, 5 रंग थीम, समायोज्य तारा घनत्व, घूर्णन गति, 3D झुकाव, गुरुत्वाकर्षण लेंसिंग ब्लैक होल प्रभाव और एम्बिएंट स्पेस ऑडियो के साथ मुफ्त ऑनलाइन गैलेक्सी स्क्रीन में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन गैलेक्सी — बिना डाउनलोड के।',
     ja: 'リアルな渦巻銀河アニメーション、5つのカラーテーマ、調整可能な星の密度、回転速度、3D傾き、重力レンズ効果のブラックホール、環境宇宙音声を備えた無料のオンライン銀河画面にどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面銀河。ダウンロード不要。',
+  },
+  'broken-screen': {
+    en: 'Turn any screen into a realistic fake broken screen. The best free online prank tool for April Fools, office jokes, social media content, and harmless fun. 8 cracked-screen styles in fullscreen.',
+    es: 'Convierte cualquier pantalla en una falsa pantalla rota realista. La mejor herramienta de broma online gratis para bromas de oficina y contenido para redes sociales. 8 estilos de pantalla agrietada a pantalla completa.',
+    pt: 'Transforme qualquer tela em uma tela quebrada falsa realista. A melhor ferramenta de pegadinha online grátis para brincadeiras de escritório e conteúdo para mídias sociais. 8 estilos de tela rachada em tela cheia.',
+    fr: 'Transformez n\'importe quel écran en un faux écran cassé réaliste. Le meilleur outil de blague en ligne gratuit pour les farces au bureau et le contenu pour les réseaux sociaux. 8 styles d\'écran fissuré en plein écran.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen realistischen falschen kaputten Bildschirm. Das beste kostenlose Online-Scherz-Tool für Bürostreiche und Social-Media-Inhalte. 8 Stile für gesprungene Bildschirme im Vollbildmodus.',
+    hi: 'किसी भी स्क्रीन को यथार्थवादी फर्जी टूटी स्क्रीन में बदलें। ऑफिस मजाक और सोशल मीडिया कंटेंट के लिए सबसे अच्छा मुफ्त ऑनलाइन प्रैंक टूल। फुलस्क्रीन में 8 क्रैक-स्क्रीन शैलियाँ।',
+    ja: 'あらゆる画面をリアルな偽の壊れた画面に変身。エイプリルフール、オフィスジョーク、ソーシャルメディアコンテンツに最適な無料オンラインいたずらツール。全画面で8種類のひび割れスタイル。',
   },
 };
 

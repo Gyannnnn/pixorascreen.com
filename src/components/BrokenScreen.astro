@@ -2,22 +2,12 @@
 import type { Tool } from "../data/tools";
 import type { Locale } from "../data/locales";
 import { t } from "../data/translations";
-import fs from "fs";
-import path from "path";
+import { brokenScreenAssets } from "../data/brokenScreenAssets";
 
 type Props = { tool: Tool; locale: Locale; isCard?: boolean };
 const { tool, locale, isCard = false } = Astro.props;
 
-const imagesDir = path.join(process.cwd(), "public", "assets", "broken-screen");
-const imageExtensions = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"];
-let images: string[] = [];
-try {
-  images = fs
-    .readdirSync(imagesDir)
-    .filter((file) => imageExtensions.includes(path.extname(file).toLowerCase()))
-    .sort()
-    .map((file) => `/assets/broken-screen/${file}`);
-} catch {}
+const images = brokenScreenAssets.map((file) => `/assets/broken-screen/${file}`);
 ---
 
 <section
