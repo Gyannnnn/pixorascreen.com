@@ -12,7 +12,7 @@ const { tool, locale } = Astro.props;
 const useCases = tool.useCases.join(', ');
 const controls = tool.controls.join(', ');
 const name = toolName(locale, tool);
-const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen' || tool.id === 'blue-screen-prank' || tool.id === 'windows-xp-crash') ? getBlogKeywordsContent(locale, tool.id) : null;
+const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen' || tool.id === 'blue-screen-prank' || tool.id === 'windows-xp-crash' || tool.id === 'radar-screen') ? getBlogKeywordsContent(locale, tool.id) : null;
 ---
 
 <article class="site-shell rich-article max-w-3xl py-16">
@@ -80,6 +80,28 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
       </p>
       <p>
         Fine-tune the ambient audio volume to complement your environment. Pair it with soft background lo-fi music, cozy lighting, a warm beverage, or quiet reading to build the ultimate soothing atmosphere in any home, apartment, office, coffee shop, studio, or waiting room.
+      </p>
+    </>
+  ) : tool.kind === 'prank' && tool.id === 'radar-screen' ? (
+    <>
+      <h2>Radar display setup and immersion tips.</h2>
+      <p>
+        When using the <strong>radar screen simulator</strong> as a display background, presentation visual, or streaming overlay, fullscreen mode is
+        essential for the most authentic effect. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> or click the fullscreen
+        button to hide all browser UI and let the radar fill the entire display. The rotating sweep beam, concentric range rings, and compass headings
+        create a convincing tactical dashboard aesthetic that works beautifully in both light and dark room environments.
+      </p>
+      <p>
+        Customize the radar before or during use through the settings panel (gear icon). Adjust the sweep speed between 4 and 30 RPM — slower speeds
+        produce a calm, realistic radar feel while faster speeds create tension and urgency. The three color themes let you match the display to your
+        setting: Military Green for classic radar authenticity, Oceanic Blue for a modern naval sonar look, or Red Alert for high-stakes tactical
+        scenarios. Enable geolocation to display real coordinates on the HUD, adding an extra layer of authenticity.
+      </p>
+      <p>
+        The sonar ping audio adds significant immersion. Leave it on for a realistic command-center atmosphere, or mute it (press <kbd class="rounded border border-hairline px-2 py-1 font-mono">S</kbd>) when
+        the radar is used as a quiet ambient background. For presentations, we recommend keeping the ping volume moderate so it complements without
+        overpowering your voice. The radar animation continues even when paused or muted, making it a versatile and reliable visual tool for any
+        setting — from gaming room decoration to professional livestream environments.
       </p>
     </>
   ) : tool.kind === 'prank' ? (

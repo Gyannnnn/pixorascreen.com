@@ -647,12 +647,12 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
   'green-screen': { hi: 'क्रोमा की प्रीव्यू, पैनल जांच और रंग संदर्भ के लिए एक जीवंत हरा फुलस्क्रीन पेज।' },
   'blue-screen': { hi: 'डिस्प्ले रंग जांच, एम्बिएंट टोन और वीडियो सेटअप के लिए एक संतृप्त नीला फुलस्क्रीन क्षेत्र।' },
   'radar-screen': {
-    es: 'Una pantalla de radar a pantalla completa para tableros teatrales, videos y configuraciones divertidas.',
-    pt: 'Uma tela de radar em tela cheia para painéis teatrais, vídeos e setups divertidos.',
-    fr: 'Un affichage radar en plein écran pour les tableaux de bord théâtraux, les vidéos et les configurations ludiques.',
-    de: 'Ein Radar-Vollbildschirm für theatralische Dashboards, Videos und spielerische Setups.',
-    hi: 'नाटकीय डैशबोर्ड, वीडियो और चंचल सेटअप के लिए रडार-शैली का फुलस्क्रीन डिस्प्ले।',
-    ja: '演劇用ダッシュボード、ビデオ、および遊び心のあるセットアップ用のレーダー風全画面表示。',
+    es: 'Un simulador de radar online gratis con animación de barrido en tiempo real, sonido de ping de sónar, seguimiento de objetivos y pantalla táctica personalizable. Efecto radar a pantalla completa para escritorio, portátil, monitor y TV — sin descarga.',
+    pt: 'Um simulador de radar online grátis com animação de varredura em tempo real, som de ping de sonar, rastreamento de alvos e display tático personalizável. Efeito radar em tela cheia para desktop, notebook, monitor e TV — sem download.',
+    fr: 'Un simulateur radar en ligne gratuit avec animation de balayage en temps réel, son ping sonar, suivi de cibles et affichage tactique personnalisable. Effet radar plein écran pour PC, portable, moniteur et TV — sans téléchargement.',
+    de: 'Ein kostenloser Online-Radar-Simulator mit Echtzeit-Sweep-Animation, Sonar-Ping-Audio, Zielverfolgung und anpassbarer taktischer Anzeige. Vollbild-Radar-Effekt für Desktop, Laptop, Monitor und TV — kein Download nötig.',
+    hi: 'रीयल-टाइम स्वीप एनिमेशन, सोनार पिंग ऑडियो, टार्गेट ट्रैकिंग और कस्टमाइज़ेबल टैक्टिकल डिस्प्ले के साथ मुफ्त ऑनलाइन रडार स्क्रीन सिम्युलेटर। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रडार इफ़ेक्ट — बिना डाउनलोड के।',
+    ja: 'リアルタイムスイープアニメーション、ソナーピング音声、ターゲット追跡、カスタマイズ可能な戦術ディスプレイを備えた無料のオンラインレーダー画面シミュレーター。デスクトップ、ノートPC、モニター、TV向け全画面レーダー効果。ダウンロード不要。',
   },
   'fireplace-screen': {
     es: 'Un protector de pantalla cálido inspirado en una chimenea para ambientación, calor de fondo y configuraciones de escritorio acogedoras.',
@@ -5307,6 +5307,138 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
         answer: 'はい。「On Start」ドロップダウンでカスケードモード（BSOD前の段階的なエラーダイアログ）またはインスタントBSODモードを選択できます。「BSOD Delay」で5、12、20、30秒の遅延を設定できます。XP警告音のオン/オフも切り替えられます。'
       }
     ]
+  },
+  'radar-screen': {
+    en: [
+      {
+        question: 'What is the Radar Screen simulator?',
+        answer: 'The Radar Screen is a free, browser-based radar simulation that displays a realistic animated radar display with a rotating sweep beam, concentric range rings, compass headings, procedural terrain coastline, and simulated bogey targets. It is designed for entertainment, presentations, streaming backgrounds, room decoration, and creative staging — not as an actual radar instrument.'
+      },
+      {
+        question: 'Is the Radar Screen simulator safe?',
+        answer: 'Yes, it is completely safe. The radar simulation runs entirely in your browser using HTML, CSS, JavaScript, and Canvas. It does not install any software, modify system files, access personal data, or make any changes to your operating system. It is a purely visual browser-based simulation.'
+      },
+      {
+        question: 'Is the Radar Screen simulator really free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The radar screen is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'Does the radar simulator require downloading?',
+        answer: 'No. The radar screen simulator runs directly in your browser. There is nothing to download, install, or configure. Just open the page and the radar animation starts immediately. Works on any device with a modern browser.'
+      },
+      {
+        question: 'Can I control the radar sweep speed?',
+        answer: 'Yes. Open the settings panel (gear icon) and use the Sweep Speed slider to adjust the rotation speed from 4 to 30 RPM. A slower speed creates a more realistic, calm radar display. A faster speed creates a more intense, action-oriented feel.'
+      },
+      {
+        question: 'Can I mute the sonar ping sound?',
+        answer: 'Yes. Open the settings panel and use the Sonar Ping Sound Volume slider to adjust the volume, or click the Mute button to disable sonar audio entirely. The radar continues to animate visually even when audio is muted. You can also press the S key to toggle sonar audio.'
+      },
+      {
+        question: 'Does it work on mobile devices?',
+        answer: 'Yes, the radar screen simulator works on any device with a modern web browser — Windows PCs, Macs, Linux machines, Chromebooks, tablets, smartphones, and Smart TVs. The simulation adapts to different screen sizes and touch input.'
+      },
+      {
+        question: 'Can I use the radar screen in presentations and videos?',
+        answer: 'Yes, the radar screen makes an excellent presentation background, livestream backdrop, YouTube video background, or video conference visual. Enter fullscreen mode by pressing F or clicking the fullscreen button for the most immersive display. Three color themes let you match the radar aesthetic to your content style.'
+      },
+      {
+        question: 'What do the different radar color themes do?',
+        answer: 'The radar offers three color themes. Military Green recreates the classic green phosphor radar display. Oceanic Blue gives a modern naval sonar aesthetic. Red Alert creates a high-tension tactical look. Switch between them in the settings panel under Styling Frequency Theme.'
+      },
+      {
+        question: 'How does the radar target system work?',
+        answer: 'The radar randomly generates bogey targets that move toward the center. Friendly targets appear as green dots. Hostile targets appear as red dots with tracking boxes and trigger an Impact Intrusion Warning when entering the critical center corridor. Click a hostile bogey to intercept it — a yellow crosshair marks intercepted targets.'
+      },
+      {
+        question: 'Can I use the radar screen on a Smart TV?',
+        answer: 'Yes. The radar screen works on Smart TVs with web browsers. Open the URL in the TV browser, enter fullscreen mode, and the animated radar display fills the screen. Great as a decorative ambient display for themed parties and room decoration.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Qué es el simulador de pantalla de radar?',
+        answer: 'El Radar Screen es una simulación de radar gratuita basada en navegador que muestra una pantalla de radar animada realista con un haz de barrido giratorio, anillos de alcance concéntricos, rumbos de brújula, costa de terreno procedural y objetivos simulados. Está diseñado para entretenimiento, presentaciones, fondos de streaming, decoración de habitaciones y montajes creativos.'
+      },
+      {
+        question: '¿Es seguro el simulador de radar?',
+        answer: 'Sí, es completamente seguro. La simulación de radar se ejecuta completamente en su navegador usando HTML, CSS, JavaScript y Canvas. No instala software, modifica archivos del sistema ni accede a datos personales.'
+      },
+      {
+        question: '¿El simulador de radar es realmente gratuito?',
+        answer: 'Sí, es completamente gratuito. Sin cuenta, sin registro, sin tarjeta de crédito y sin cargos ocultos. Es una herramienta gratuita disponible para todos.'
+      },
+      {
+        question: '¿Requiere descarga el simulador de radar?',
+        answer: 'No. El simulador de radar se ejecuta directamente en su navegador. No hay nada que descargar, instalar o configurar. Solo abra la página y la animación comienza inmediatamente.'
+      },
+      {
+        question: '¿Puedo controlar la velocidad del barrido del radar?',
+        answer: 'Sí. Abra el panel de configuración y use el control deslizante de velocidad de barrido para ajustar la velocidad de rotación de 4 a 30 RPM.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O que é o simulador de tela de radar?',
+        answer: 'O Radar Screen é uma simulação de radar gratuita baseada em navegador que exibe uma tela de radar animada realista com feixe de varredura giratório, anéis de alcance concêntricos, marcas de bússola, costa de terreno procedural e alvos simulados. Projetado para entretenimento, apresentações, fundos de streaming e decoração.'
+      },
+      {
+        question: 'O simulador de radar é seguro?',
+        answer: 'Sim, é completamente seguro. A simulação de radar funciona inteiramente no seu navegador usando HTML, CSS, JavaScript e Canvas. Não instala software nem modifica arquivos do sistema.'
+      },
+      {
+        question: 'O simulador de radar é realmente grátis?',
+        answer: 'Sim, é completamente grátis. Sem conta, sem registro, sem cartão de crédito e sem taxas ocultas. É uma ferramenta gratuita disponível para todos.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Qu\'est-ce que le simulateur d\'écran radar ?',
+        answer: 'Le Radar Screen est une simulation radar gratuite basée sur navigateur qui affiche un affichage radar animé réaliste avec un faisceau de balayage rotatif, des anneaux de portée concentriques, des relèvements de boussole, un littoral de terrain procédural et des cibles simulées.'
+      },
+      {
+        question: 'Le simulateur radar est-il sûr ?',
+        answer: 'Oui, il est totalement sûr. La simulation radar fonctionne entièrement dans votre navigateur en utilisant HTML, CSS, JavaScript et Canvas. Elle n\'installe aucun logiciel et ne modifie aucun fichier système.'
+      },
+      {
+        question: 'Le simulateur radar est-il vraiment gratuit ?',
+        answer: 'Oui, il est complètement gratuit. Sans compte, sans inscription, sans carte de crédit et sans frais cachés. C\'est un outil gratuit accessible à tous.'
+      }
+    ],
+    de: [
+      {
+        question: 'Was ist der Radar-Bildschirm-Simulator?',
+        answer: 'Der Radar Screen ist eine kostenlose, browserbasierte Radarsimulation, die eine realistische animierte Radar-Anzeige mit rotierendem Sweep-Strahl, konzentrischen Reichweitenringen, Kompasspeilungen, prozeduraler Küstenlinie und simulierten Bogey-Zielen darstellt.'
+      },
+      {
+        question: 'Ist der Radar-Simulator sicher?',
+        answer: 'Ja, er ist völlig sicher. Die Radarsimulation läuft vollständig in Ihrem Browser mit HTML, CSS, JavaScript und Canvas. Sie installiert keine Software und ändert keine Systemdateien.'
+      },
+      {
+        question: 'Ist der Radar-Simulator wirklich kostenlos?',
+        answer: 'Ja, er ist völlig kostenlos. Kein Konto, keine Registrierung, keine Kreditkarte und keine versteckten Gebühren. Es ist ein kostenloses Tool, das allen zur Verfügung steht.'
+      }
+    ],
+    hi: [
+      {
+        question: 'रडार स्क्रीन सिम्युलेटर क्या है?',
+        answer: 'रडार स्क्रीन एक मुफ्त, ब्राउज़र-आधारित रडार सिमुलेशन है जो घूमने वाली स्वीप बीम, संकेंद्रित रेंज रिंग, कम्पास हेडिंग, प्रोसीजरल टेरेन कोस्टलाइन और सिम्युलेटेड बोगी टार्गेट के साथ एक यथार्थवादी एनिमेटेड रडार डिस्प्ले प्रदर्शित करता है।'
+      },
+      {
+        question: 'क्या रडार सिम्युलेटर सुरक्षित है?',
+        answer: 'हाँ, यह पूरी तरह से सुरक्षित है। रडार सिमुलेशन HTML, CSS, JavaScript और Canvas का उपयोग करके पूरी तरह से आपके ब्राउज़र में चलता है। यह कोई सॉफ़्टवेयर इंस्टॉल नहीं करता या सिस्टम फ़ाइलों को संशोधित नहीं करता।'
+      }
+    ],
+    ja: [
+      {
+        question: 'レーダー画面シミュレーターとは何ですか？',
+        answer: 'レーダー画面は、回転するスイープビーム、同心円状のレンジリング、コンパス方位、手続き型地形海岸線、シミュレートされたブギーターゲットを備えたリアルなアニメーションレーダーディスプレイを表示する無料のブラウザベースレーダーシミュレーションです。'
+      },
+      {
+        question: 'レーダーシミュレーターは安全ですか？',
+        answer: 'はい、完全に安全です。レーダーシミュレーションはHTML、CSS、JavaScript、Canvasを使用してブラウザ内で完全に動作します。ソフトウェアをインストールしたり、システムファイルを変更したりすることはありません。'
+      }
+    ]
   }
 };
 
@@ -6908,6 +7040,69 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           '<strong>Windows XPクラッシュいたずら</strong>は、コンピューティング史上最もノスタルジックなクラッシュ体験をよみがえらせます。私たちの<strong>Windows XPクラッシュシミュレーター</strong>は、クラシックなBlissの壁紙、explorer.exeのエラーカスケードウィンドウ、伝説的なブルースクリーンオブデスを備えた完全なXPデスクトップ環境を再現します。',
           '一般的な検索フレーズには、<strong>Windows XPクラッシュシミュレーター</strong>、<strong>偽のWindows XPクラッシュ</strong>、<strong>XP BSODいたずら</strong>、<strong>Windows XPブルースクリーン</strong>、<strong>Windows XPいたずら</strong>などがあります。',
           '最も説得力のある体験のために、開始前に設定を構成してください。「On Start」でCascadeまたはInstant BSODを選択します。BSOD遅延を5、12、20、30秒に設定します。信頼性を高めるために警告音をオンにします。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'radar-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Radar Screen Simulator – Fullscreen Tactical Display Guide & Use Cases',
+        paragraphs: [
+          'The <strong>radar screen simulator</strong> is an interactive fullscreen radar display that recreates the look and feel of real radar and sonar systems — complete with a rotating sweep beam, concentric range rings, compass headings, procedural terrain coastline, and simulated bogey targets. Unlike static radar images or pre-recorded radar video loops, this is a live, interactive <strong>radar simulation</strong> that responds to your input. Click to intercept hostile bogeys, adjust sweep speed in real time, switch between three tactical color themes, and watch the HUD update with live coordinates when geolocation is enabled.',
+          'Users search for many related terms when looking for this type of display tool. Common search phrases include <strong>radar screen online</strong>, <strong>radar screen simulator</strong>, <strong>radar display</strong>, <strong>radar animation</strong>, <strong>radar screen fullscreen</strong>, <strong>military radar screen</strong>, <strong>green radar screen</strong>, <strong>sonar screen</strong>, <strong>tactical radar</strong>, <strong>radar scanner</strong>, <strong>radar sweep animation</strong>, <strong>radar visualization</strong>, <strong>free radar screen simulator</strong>, <strong>fullscreen radar display online</strong>, <strong>interactive radar screen</strong>, <strong>browser radar simulator</strong>, and <strong>online sonar display</strong>. Our simulator delivers all of these in a single page — no download, no installation, no account required. It works instantly in any modern browser on desktop, laptop, tablet, phone, and Smart TV.',
+          'For the most immersive radar experience, enter fullscreen mode by pressing F or clicking the fullscreen button. The fullscreen effect hides all browser UI for a truly authentic tactical display. Configure the settings before or during the simulation: adjust sweep speed from 4 to 30 RPM using the slider, set sonar ping volume or mute audio completely, choose your target intrusion density to control how many bogeys appear on screen, and switch between Military Green, Oceanic Blue, or Red Alert frequency themes. Enable Dynamic Geolocator Nodes to display your actual coordinates on the HUD. The radar runs continuously with real-time animated sweep and audio feedback — pause with the Space key whenever needed.',
+          'The <strong>radar screen</strong> is ideal for presentation and livestream backgrounds, YouTube and TikTok video production, sci-fi and cyberpunk room decoration, escape room and theatrical staging, gaming room and hacker setup ambience, classroom STEM demonstrations, party and event displays, and film production backgrounds. Because the tool runs entirely in the browser with Canvas-based rendering and Web Audio API, it works offline after the initial page load and leaves zero trace on the device.'
+        ]
+      },
+      es: {
+        heading: 'Simulador de Pantalla de Radar – Guía de Pantalla Táctica a Pantalla Completa y Casos de Uso',
+        paragraphs: [
+          'El <strong>simulador de pantalla de radar</strong> es una pantalla de radar interactiva a pantalla completa que recrea el aspecto y la sensación de los sistemas de radar y sónar reales, con un haz de barrido giratorio, anillos de alcance concéntricos, marcas de brújula, costa de terreno procedural y objetivos simulados. A diferencia de las imágenes de radar estáticas, esta es una <strong>simulación de radar</strong> en vivo e interactiva que responde a sus acciones.',
+          'Los términos de búsqueda comunes incluyen <strong>pantalla de radar online</strong>, <strong>simulador de pantalla de radar</strong>, <strong>pantalla de radar militar</strong>, <strong>pantalla de radar verde</strong>, <strong>pantalla de sónar</strong> y <strong>visualización de radar</strong>. Nuestro simulador ofrece todo en una página — sin descarga, sin instalación, sin necesidad de cuenta.',
+          'Para la experiencia más inmersiva, entre en modo de pantalla completa presionando F. Configure la velocidad de barrido, el volumen del sónar y el tema de color en el panel de configuración antes o durante la simulación.'
+        ]
+      },
+      pt: {
+        heading: 'Simulador de Tela de Radar – Guia de Exibição Tática em Tela Cheia e Casos de Uso',
+        paragraphs: [
+          'O <strong>simulador de tela de radar</strong> é uma tela de radar interativa em tela cheia que recria a aparência e a sensação de sistemas reais de radar e sonar, com feixe de varredura giratório, anéis de alcance concêntricos, marcas de bússola, costa de terreno procedural e alvos simulados. Esta é uma <strong>simulação de radar</strong> ao vivo e interativa.',
+          'Termos de busca comuns incluem <strong>tela de radar online</strong>, <strong>simulador de tela de radar</strong>, <strong>tela de radar militar</strong>, <strong>tela de radar verde</strong>, <strong>tela de sonar</strong> e <strong>visualização de radar</strong>. Tudo em uma página — sem download ou instalação.',
+          'Para a experiência mais imersiva, entre em modo tela cheia pressionando F. Ajuste a velocidade de varredura, volume do sonar e tema de cor no painel de configurações.'
+        ]
+      },
+      fr: {
+        heading: 'Simulateur d\'Écran Radar – Guide d\'Affichage Tactique Plein Écran et Cas d\'Utilisation',
+        paragraphs: [
+          'Le <strong>simulateur d\'écran radar</strong> est un affichage radar interactif plein écran qui recrée l\'aspect et la sensation des systèmes radar et sonar réels, avec un faisceau de balayage rotatif, des anneaux de portée concentriques, des relèvements de boussole, un littoral de terrain procédural et des cibles simulées. Il s\'agit d\'une <strong>simulation radar</strong> interactive en direct.',
+          'Les termes de recherche courants incluent <strong>écran radar en ligne</strong>, <strong>simulateur d\'écran radar</strong>, <strong>écran radar militaire</strong>, <strong>écran radar vert</strong>, <strong>écran sonar</strong> et <strong>visualisation radar</strong>. Le tout sur une seule page — sans téléchargement ni installation.',
+          'Pour l\'expérience la plus immersive, passez en plein écran en appuyant sur F. Ajustez la vitesse de balayage, le volume sonar et le thème de couleur dans le panneau des paramètres.'
+        ]
+      },
+      de: {
+        heading: 'Radar-Bildschirm-Simulator – Leitfaden für taktische Vollbildanzeige und Anwendungsfälle',
+        paragraphs: [
+          'Der <strong>Radar-Bildschirm-Simulator</strong> ist eine interaktive Vollbild-Radar-Anzeige, die das Aussehen und Gefühl echter Radar- und Sonarsysteme nachbildet — mit rotierendem Sweep-Strahl, konzentrischen Reichweitenringen, Kompasspeilungen, prozeduraler Küstenlinie und simulierten Bogey-Zielen. Es handelt sich um eine Live-<strong>Radar-Simulation</strong>, die auf Ihre Eingaben reagiert.',
+          'Häufige Suchbegriffe sind <strong>Radar-Bildschirm online</strong>, <strong>Radar-Simulator</strong>, <strong>militärischer Radar-Bildschirm</strong>, <strong>grüner Radar-Bildschirm</strong>, <strong>Sonar-Bildschirm</strong> und <strong>Radar-Visualisierung</strong>. Alles auf einer Seite — kein Download, keine Installation.',
+          'Für das immersivste Erlebnis wechseln Sie durch Drücken von F in den Vollbildmodus. Passen Sie Sweep-Geschwindigkeit, Sonar-Lautstärke und Farbthema im Einstellungsbereich an.'
+        ]
+      },
+      hi: {
+        heading: 'रडार स्क्रीन सिम्युलेटर – फुलस्क्रीन सामरिक डिस्प्ले गाइड और उपयोग के मामले',
+        paragraphs: [
+          '<strong>रडार स्क्रीन सिम्युलेटर</strong> एक इंटरैक्टिव फुलस्क्रीन रडार डिस्प्ले है जो घूमने वाली स्वीप बीम, संकेंद्रित रेंज रिंग, कम्पास हेडिंग, प्रोसीजरल टेरेन कोस्टलाइन और सिम्युलेटेड बोगी टार्गेट के साथ वास्तविक रडार और सोनार सिस्टम के रूप और अनुभव को फिर से बनाता है। यह एक लाइव, इंटरैक्टिव <strong>रडार सिमुलेशन</strong> है।',
+          'सामान्य खोज वाक्यांशों में <strong>रडार स्क्रीन ऑनलाइन</strong>, <strong>रडार स्क्रीन सिम्युलेटर</strong>, <strong>सैन्य रडार स्क्रीन</strong>, <strong>हरी रडार स्क्रीन</strong>, <strong>सोनार स्क्रीन</strong> और <strong>रडार विज़ुअलाइज़ेशन</strong> शामिल हैं। हमारा सिम्युलेटर एक ही पेज पर सब कुछ प्रदान करता है — बिना डाउनलोड या इंस्टॉलेशन के।',
+          'सबसे इमर्सिव अनुभव के लिए, F दबाकर फुलस्क्रीन मोड में जाएँ। सेटिंग्स पैनल में स्वीप स्पीड, सोनार वॉल्यूम और रंग थीम को एडजस्ट करें।'
+        ]
+      },
+      ja: {
+        heading: 'レーダー画面シミュレーター – 全画面戦術ディスプレイガイドと使用例',
+        paragraphs: [
+          '<strong>レーダー画面シミュレーター</strong>は、回転するスイープビーム、同心円状のレンジリング、コンパス方位、手続き型地形海岸線、シミュレートされたブギーターゲットを備え、実際のレーダーおよびソナーシステムの外観と雰囲気を再現するインタラクティブな全画面レーダーディスプレイです。これはライブのインタラクティブな<strong>レーダーシミュレーション</strong>です。',
+          '一般的な検索フレーズには、<strong>レーダー画面 オンライン</strong>、<strong>レーダー画面シミュレーター</strong>、<strong>ミリタリーレーダー画面</strong>、<strong>緑のレーダー画面</strong>、<strong>ソナー画面</strong>、<strong>レーダー表示</strong>などがあります。すべて1ページで提供 — ダウンロードもインストールも不要。',
+          '最も没入感のある体験のために、Fキーを押して全画面モードに切り替えてください。設定パネルでスイープ速度、ソナー音量、カラーテーマを調整できます。'
         ]
       }
     };

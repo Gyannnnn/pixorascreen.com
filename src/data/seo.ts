@@ -156,6 +156,15 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'विंडोज एक्सपी क्रैश सिम्युलेटर - फर्जी explorer.exe त्रुटि और BSOD प्रैंक ऑनलाइन',
     ja: 'Windows XPクラッシュシミュレーター - 偽のexplorer.exeエラー＆BSODいたずらオンライン',
   },
+  'radar-screen': {
+    en: 'Radar Screen – Free Online Radar Simulator with Fullscreen Sonar Sweep & Target Tracking',
+    es: 'Pantalla de Radar Online - Simulador de Radar Gratis con Barrido Sonar y Rastreo de Objetivos',
+    pt: 'Tela de Radar Online - Simulador de Radar Grátis com Varredura Sonar e Rastreio de Alvos',
+    fr: 'Écran Radar en Ligne - Simulateur Radar Gratuit avec Balayage Sonar et Suivi de Cibles',
+    de: 'Radar-Bildschirm Online - Kostenloser Radar-Simulator mit Vollbild-Sonar-Sweep & Zielverfolgung',
+    hi: 'रडार स्क्रीन ऑनलाइन - फुलस्क्रीन सोनार स्वीप और टार्गेट ट्रैकिंग के साथ मुफ्त रडार सिम्युलेटर',
+    ja: 'レーダー画面 オンライン - 全画面ソナースイープ＆ターゲット追跡機能付き無料レーダーシミュレーター',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -284,6 +293,15 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen realistischen Windows XP Absturzsimulator mit vollständiger Desktop-Simulation, Explorer.exe-Fehlerdialogen, kaskadierenden Fehlerfenstern und klassischem BSOD-Übergang. Kostenlos, harmlos, kein Download — pure Retro-Nostalgie.',
     hi: 'किसी भी स्क्रीन को एक यथार्थवादी विंडोज एक्सपी क्रैश सिम्युलेटर में बदलें, जिसमें पूर्ण डेस्कटॉप सिमुलेशन, explorer.exe त्रुटि डायलॉग, कैस्केडिंग क्रैश विंडो और क्लासिक BSOD ट्रांज़िशन शामिल है। मुफ्त, हानिरहित, बिना डाउनलोड — शुद्ध रेट्रो नॉस्टेल्जिया।',
     ja: 'あらゆる画面を、完全なデスクトップシミュレーション、explorer.exeエラーダイアログ、カスケードクラッシュウィンドウ、クラシックBSOD移行を備えたリアルなWindows XPクラッシュシミュレーターに変身。無料、無害、ダウンロード不要 — 純粋なレトロノスタルジア。',
+  },
+  'radar-screen': {
+    en: 'Turn any screen into a free online radar screen simulator with real-time sweep animation, sonar ping audio, target interception, and three tactical color themes. Fullscreen radar display for desktop, laptop, monitor, and TV — no download needed.',
+    es: 'Convierte cualquier pantalla en un simulador de radar online gratis con animación de barrido en tiempo real, sonido de ping de sonar, interceptación de objetivos y tres temas tácticos de color. Pantalla de radar a pantalla completa para escritorio, portátil, monitor y TV — sin descarga.',
+    pt: 'Transforme qualquer tela em um simulador de radar online grátis com animação de varredura em tempo real, som de ping sonar, interceptação de alvos e três temas táticos de cor. Tela de radar em tela cheia para desktop, notebook, monitor e TV — sem download.',
+    fr: 'Transformez n\'importe quel écran en un simulateur radar en ligne gratuit avec animation de balayage en temps réel, son ping sonar, interception de cibles et trois thèmes de couleur tactiques. Affichage radar plein écran pour PC, portable, moniteur et TV — sans téléchargement.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Radar-Simulator mit Echtzeit-Sweep-Animation, Sonar-Ping-Audio, Zielabfang und drei taktischen Farbthemen. Vollbild-Radar-Display für Desktop, Laptop, Monitor und TV — kein Download nötig.',
+    hi: 'किसी भी स्क्रीन को रीयल-टाइम स्वीप एनिमेशन, सोनार पिंग ऑडियो, टार्गेट इंटरसेप्शन और तीन सामरिक रंग थीम के साथ मुफ्त ऑनलाइन रडार स्क्रीन सिम्युलेटर में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रडार डिस्प्ले — बिना डाउनलोड के।',
+    ja: 'リアルタイムスイープアニメーション、ソナーピング音声、ターゲット迎撃、3つの戦術カラーテーマを備えた無料のオンラインレーダー画面シミュレーターにどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面レーダーディスプレイ。ダウンロード不要。',
   },
 };
 

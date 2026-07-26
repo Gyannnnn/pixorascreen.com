@@ -199,7 +199,60 @@ export const tools: Tool[] = [
         answer: 'Yes. The simulator recreates the classic Windows XP desktop including the Bliss wallpaper (blue sky, green hills, sun), desktop icons (My Computer, Recycle Bin, Internet Explorer, My Documents), the iconic green Start button, and the taskbar with system tray and live clock.'
       }
     ] },
-  { id: 'radar-screen', name: 'Radar Screen', shortName: 'Radar', slug: 'radar-screen', localizedSlugs: { es: 'pantalla-de-radar', pt: 'tela-de-radar', fr: 'ecran-radar', de: 'radar-bildschirm', hi: 'radar-screen', ja: 'radar-gamen' }, category: 'pranks', kind: 'prank', color: '#001b0b', summary: 'A radar-style fullscreen display for theatrical dashboards, videos, and playful setups.', intent: 'clean scanning visual for staged interfaces', useCases: ['video props', 'dashboard staging', 'event screens', 'playful demos'], controls: ['fullscreen', 'speed control', 'brightness', 'ambient mode', 'pause'], faqs: effectFaqs('Radar Screen') },
+  { id: 'radar-screen', name: 'Radar Screen', shortName: 'Radar', slug: 'radar-screen', localizedSlugs: { es: 'pantalla-de-radar', pt: 'tela-de-radar', fr: 'ecran-radar', de: 'radar-bildschirm', hi: 'radar-screen', ja: 'radar-gamen' }, category: 'pranks', kind: 'prank', color: '#001b0b', summary: 'A free online radar screen simulator with real-time sweep animation, sonar ping audio, target tracking, and customizable tactical display. Fullscreen radar effect for desktop, laptop, monitor, and TV — no download needed.', intent: 'immersive fullscreen radar simulation with authentic sweep beam, target interception, simple geolocation, and customizable tactical HUD for presentations, streaming, room decoration, and creative staging', useCases: ['presentation and livestream backgrounds', 'sci-fi and cyberpunk room decoration', 'YouTube and video production props', 'escape room and theatrical staging', 'gaming room and hacker setup ambience', 'classroom STEM demonstrations', 'party decoration and event displays', 'streaming overlays and intermission screens', 'tactical and military themed displays', 'film and content creation backgrounds'], controls: ['fullscreen mode', 'sweep speed RPM slider', 'sonar ping volume and mute', 'target intrusion density', 'three color themes', 'geolocation detection', 'click-to-intercept targets', 'pause and resume sweep', 'brightness', 'reset simulation logs'], faqs: [
+      {
+        question: 'What is the Radar Screen simulator?',
+        answer: 'The Radar Screen is a free, browser-based radar simulation that displays a realistic animated radar display with a rotating sweep beam, concentric range rings, compass headings, procedural terrain coastline, and simulated bogey targets. It is designed for entertainment, presentations, streaming backgrounds, room decoration, and creative staging — not as an actual radar instrument.'
+      },
+      {
+        question: 'Is the Radar Screen simulator safe?',
+        answer: 'Yes, it is completely safe. The radar simulation runs entirely in your browser using HTML, CSS, JavaScript, and Canvas. It does not install any software, modify system files, access personal data, or make any changes to your operating system. It is a purely visual browser-based simulation.'
+      },
+      {
+        question: 'Is the Radar Screen simulator really free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The radar screen is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'Does the radar simulator require downloading anything?',
+        answer: 'No. The radar screen simulator runs directly in your browser. There is nothing to download, install, or configure. Just open the page and the radar animation starts immediately. Works on any device with a modern browser.'
+      },
+      {
+        question: 'Can I control the radar sweep speed?',
+        answer: 'Yes. Open the settings panel (gear icon) and use the Sweep Speed slider to adjust the rotation speed from 4 to 30 RPM (rotations per minute). A slower speed creates a more realistic, calm radar display. A faster speed creates a more intense, action-oriented feel.'
+      },
+      {
+        question: 'Can I mute the sonar ping sound?',
+        answer: 'Yes. Open the settings panel and use the Sonar Ping Sound Volume slider to adjust the volume, or click the Mute button to disable sonar audio entirely. The radar continues to animate visually even when audio is muted. You can also press the S key to toggle sonar audio on and off.'
+      },
+      {
+        question: 'Does the radar screen work on mobile devices?',
+        answer: 'Yes, the radar screen simulator works on any device with a modern web browser — Windows PCs, Macs, Linux machines, Chromebooks, tablets, smartphones, and Smart TVs. The simulation adapts to different screen sizes and touch input for interactive target clicking.'
+      },
+      {
+        question: 'Can I use the radar screen in a presentation?',
+        answer: 'Yes, the radar screen makes an excellent presentation background, livestream backdrop, or video conference visual. Enter fullscreen mode by pressing F or clicking the fullscreen button for the most immersive display. The ambient radar animation adds a professional tactical aesthetic to any presentation or stream.'
+      },
+      {
+        question: 'Can I use the radar screen as a video background?',
+        answer: 'Absolutely. The radar simulation works as a fullscreen background for YouTube videos, Twitch streams, TikTok content, video calls, and screen recordings. The three color themes — Military Green, Oceanic Blue, and Red Alert — let you match the radar aesthetic to your content style.'
+      },
+      {
+        question: 'What do the different radar color themes do?',
+        answer: 'The radar offers three color themes. Military Green (the default) recreates the classic green radar phosphor display found in aviation and military systems. Oceanic Blue gives a modern naval sonar aesthetic. Red Alert creates a high-tension tactical look. Switch between them in the settings panel under "Styling Frequency Theme."'
+      },
+      {
+        question: 'How does the radar target system work?',
+        answer: 'The radar randomly generates bogey targets that move toward the center of the display. Friendly targets appear as green dots. Hostile targets appear as red dots with tracking boxes and trigger an Impact Intrusion Warning banner when they enter the critical center corridor. Click on a hostile bogey to intercept it — a yellow crosshair marks intercepted targets.'
+      },
+      {
+        question: 'Does the radar work offline?',
+        answer: 'After the initial page load, the radar simulation runs entirely client-side using Canvas and JavaScript. Once the page is cached by your browser, the animation continues to work without an active internet connection.'
+      },
+      {
+        question: 'Can I use this on a Smart TV?',
+        answer: 'Yes. The radar screen works on Smart TVs with web browsers. Open the URL in the TV browser, enter fullscreen mode, and the animated radar display fills the screen. It works great as a decorative ambient display for themed parties, gaming rooms, and room decoration.'
+      }
+    ] },
   { id: 'white-noise-screen', name: 'White Noise Screen', shortName: 'White Noise', slug: 'white-noise-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#d4d4d4', summary: 'A static-style white noise visual for retro TV effects, transitions, and prank screens.', intent: 'safe static-screen effect with motion controls', useCases: ['retro TV scenes', 'transition screens', 'video props', 'friendly jokes'], controls: ['fullscreen', 'brightness', 'reduced motion', 'timer', 'pause'], faqs: effectFaqs('White Noise Screen') },
   { id: 'fake-virus-screen', name: 'Fake Virus Screen', shortName: 'Fake Virus', slug: 'fake-virus-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#111827', summary: 'A clearly harmless fake virus screen for theatrical browser pranks and video staging.', intent: 'dramatic visual effect that stays safe and reversible', useCases: ['friendly pranks', 'video scenes', 'training examples', 'event visuals'], controls: ['fullscreen', 'escape hint', 'timer', 'brightness', 'clear screen'], faqs: effectFaqs('Fake Virus Screen') },
   // { id: 'terminal-screen', name: 'Terminal Screen', shortName: 'Terminal', slug: 'terminal-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#050505', summary: 'A premium terminal-style fullscreen page for demos, code-themed scenes, and ambient setups.', intent: 'minimal terminal atmosphere without installing anything', useCases: ['developer videos', 'demo backdrops', 'event staging', 'ambient screen'], controls: ['fullscreen', 'theme toggle', 'brightness', 'keyboard shortcuts', 'copy prompt'], faqs: effectFaqs('Terminal Screen') },
