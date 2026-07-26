@@ -165,6 +165,15 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'रडार स्क्रीन ऑनलाइन - फुलस्क्रीन सोनार स्वीप और टार्गेट ट्रैकिंग के साथ मुफ्त रडार सिम्युलेटर',
     ja: 'レーダー画面 オンライン - 全画面ソナースイープ＆ターゲット追跡機能付き無料レーダーシミュレーター',
   },
+  'white-noise-screen': {
+    en: 'White Noise Screen – Free Online TV Static Simulator with CRT Scanlines & Audio Noise',
+    es: 'Pantalla de Ruido Blanco Online - Simulador de TV Estática Gratis con Líneas CRT y Ruido de Audio',
+    pt: 'Tela de Ruído Branco Online - Simulador de TV Estática Grátis com Linhas CRT e Ruído de Áudio',
+    fr: 'Écran Bruit Blanc en Ligne - Simulateur de Neige TV Gratuit avec Lignes CRT et Bruit Audio',
+    de: 'Weißes-Rauschen-Bildschirm Online - Kostenloser TV-Rauschen-Simulator mit CRT-Zeilen & Audiogeräusch',
+    hi: 'व्हाइट नॉइज़ स्क्रीन ऑनलाइन - CRT स्कैनलाइन और ऑडियो नॉइज़ के साथ मुफ्त टीवी स्टैटिक सिम्युलेटर',
+    ja: 'ホワイトノイズ画面 オンライン - CRTスキャンライン＆オーディオノイズ付き無料テレビ静止画シミュレーター',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -302,6 +311,15 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Radar-Simulator mit Echtzeit-Sweep-Animation, Sonar-Ping-Audio, Zielabfang und drei taktischen Farbthemen. Vollbild-Radar-Display für Desktop, Laptop, Monitor und TV — kein Download nötig.',
     hi: 'किसी भी स्क्रीन को रीयल-टाइम स्वीप एनिमेशन, सोनार पिंग ऑडियो, टार्गेट इंटरसेप्शन और तीन सामरिक रंग थीम के साथ मुफ्त ऑनलाइन रडार स्क्रीन सिम्युलेटर में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रडार डिस्प्ले — बिना डाउनलोड के।',
     ja: 'リアルタイムスイープアニメーション、ソナーピング音声、ターゲット迎撃、3つの戦術カラーテーマを備えた無料のオンラインレーダー画面シミュレーターにどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面レーダーディスプレイ。ダウンロード不要。',
+  },
+  'white-noise-screen': {
+    en: 'Turn any screen into a free online white noise screen (TV static) simulator with authentic analog noise, 3 static styles, CRT scanlines, VHS glitch, and audio static. Fullscreen retro TV effect for desktop, laptop, monitor, and TV — no download needed.',
+    es: 'Convierte cualquier pantalla en un simulador de ruido blanco online gratis con ruido analógico auténtico, 3 estilos de estática, líneas CRT, glitch VHS y audio de estática. Efecto retro de TV a pantalla completa para escritorio, portátil, monitor y TV — sin descarga.',
+    pt: 'Transforme qualquer tela em um simulador de ruído branco online grátis com ruído analógico autêntico, 3 estilos de estática, linhas CRT, glitch VHS e áudio de estática. Efeito retrô de TV em tela cheia para desktop, notebook, monitor e TV — sem download.',
+    fr: 'Transformez n\'importe quel écran en un simulateur de bruit blanc en ligne gratuit avec bruit analogique authentique, 3 styles de neige TV, lignes CRT, effet VHS et audio statique. Effet TV rétro plein écran pour PC, portable, moniteur et TV — sans téléchargement.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Weißes-Rauschen-Simulator mit authentischem Analograuschen, 3 Statik-Stilen, CRT-Zeilen, VHS-Glitch und Audiostatik. Vollbild-Retro-TV-Effekt für Desktop, Laptop, Monitor und TV — kein Download nötig.',
+    hi: 'किसी भी स्क्रीन को प्रामाणिक एनालॉग नॉइज़, 3 स्टैटिक स्टाइल, CRT स्कैनलाइन, VHS ग्लिच और ऑडियो स्टैटिक के साथ मुफ्त ऑनलाइन व्हाइट नॉइज़ स्क्रीन सिम्युलेटर में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रेट्रो टीवी इफ़ेक्ट — बिना डाउनलोड के।',
+    ja: '本物そっくりのアナログノイズ、3種類のスタティックスタイル、CRTスキャンライン、VHSグリッチ、オーディオノイズを備えた無料のオンラインホワイトノイズ画面シミュレーターにどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面レトロTV効果。ダウンロード不要。',
   },
 };
 

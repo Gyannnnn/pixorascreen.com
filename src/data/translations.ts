@@ -607,6 +607,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'broken-screen': { es: 'Pantalla Rota', pt: 'Tela Quebrada', fr: 'Écran Cassé', de: 'Kaputter Bildschirm', hi: 'टूटी स्क्रीन', ja: '壊れた画面' },
   'blue-screen-prank': { es: 'Broma de Pantalla Azul', pt: 'Pegadinha de Tela Azul', fr: 'Blague d\'Écran Bleu', de: 'Blauer-Bildschirm-Streich', hi: 'ब्लू स्क्रीन प्रैंक', ja: '青い画面のいたずら' },
   'windows-xp-crash': { es: 'Crash de Windows XP', pt: 'Crash do Windows XP', fr: 'Plantage Windows XP', de: 'Windows XP Absturz', hi: 'विंडोज एक्सपी क्रैश', ja: 'Windows XPクラッシュ' },
+  'white-noise-screen': { es: 'Pantalla de Ruido Blanco', pt: 'Tela de Ruído Branco', fr: 'Écran Bruit Blanc', de: 'Weißes-Rauschen-Bildschirm', hi: 'व्हाइट नॉइज़ स्क्रीन', ja: 'ホワイトノイズ画面' },
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
@@ -741,6 +742,14 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     de: 'Ein realistischer Windows XP-Absturzsimulator mit vollständigem Desktop, Explorer.exe-Fehlerdialogen und klassischem BSOD-Übergang für Streiche und Retro-Nostalgie.',
     hi: 'पूर्ण डेस्कटॉप, explorer.exe त्रुटि संवाद और क्लासिक BSOD संक्रमण के साथ एक यथार्थवादी विंडोज एक्सपी क्रैश सिम्युलेटर प्रैंक और रेट्रो नॉस्टेल्जिया के लिए।',
     ja: '完全なデスクトップ、explorer.exeエラーダイアログ、クラシックなBSOD移行を備えたリアルなWindows XPクラッシュシミュレーター。いたずらやレトロノスタルジアに最適。',
+  },
+  'white-noise-screen': {
+    es: 'Un simulador de ruido blanco (estática de TV) online gratis con ruido analógico auténtico, líneas CRT, efectos VHS y audio de estática. Efecto retro de TV a pantalla completa para escritorio, portátil, monitor y TV — sin descarga.',
+    pt: 'Um simulador de ruído branco (estática de TV) online grátis com ruído analógico autêntico, linhas CRT, efeitos VHS e áudio de estática. Efeito retrô de TV em tela cheia para desktop, notebook, monitor e TV — sem download.',
+    fr: 'Un simulateur de bruit blanc (neige TV) en ligne gratuit avec bruit analogique authentique, lignes CRT, effets VHS et audio statique. Effet TV rétro plein écran pour PC, portable, moniteur et TV — sans téléchargement.',
+    de: 'Ein kostenloser Online-Weißes-Rauschen-Simulator (TV-Rauschen) mit authentischem Analograuschen, CRT-Zeilen, VHS-Effekten und Audiostatik. Vollbild-Retro-TV-Effekt für Desktop, Laptop, Monitor und TV — kein Download nötig.',
+    hi: 'प्रामाणिक एनालॉग नॉइज़, CRT स्कैनलाइन, VHS इफ़ेक्ट और ऑडियो स्टैटिक के साथ मुफ्त ऑनलाइन व्हाइट नॉइज़ स्क्रीन (टीवी स्टैटिक) सिम्युलेटर। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रेट्रो टीवी इफ़ेक्ट — बिना डाउनलोड के।',
+    ja: '本物そっくりのアナログノイズ、CRTスキャンライン、VHSエフェクト、オーディオノイズを備えた無料のオンラインホワイトノイズ画面（テレビノイズ）シミュレーター。デスクトップ、ノートPC、モニター、TV向け全画面レトロTV効果。ダウンロード不要。',
   },
 };
 
@@ -5439,6 +5448,114 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
         answer: 'はい、完全に安全です。レーダーシミュレーションはHTML、CSS、JavaScript、Canvasを使用してブラウザ内で完全に動作します。ソフトウェアをインストールしたり、システムファイルを変更したりすることはありません。'
       }
     ]
+  },
+  'white-noise-screen': {
+    en: [
+      {
+        question: 'What is the White Noise Screen simulator?',
+        answer: 'The White Noise Screen is a free, browser-based TV static simulator that generates realistic analog television noise (snow), CRT scanline effects, and VHS glitch visuals directly in your browser. It is designed for entertainment, film production, streaming backgrounds, and creative staging — not as an actual television diagnostic tool.'
+      },
+      {
+        question: 'Is the White Noise Screen safe?',
+        answer: 'Yes, it is completely safe. The white noise simulation runs entirely in your browser using HTML, CSS, JavaScript, and Canvas. It does not install any software, modify system files, access personal data, or make any changes to your operating system.'
+      },
+      {
+        question: 'Is the White Noise Screen really free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The white noise screen is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'Does the white noise simulator require downloading?',
+        answer: 'No. The white noise screen runs directly in your browser. There is nothing to download, install, or configure. Just open the page and the static animation starts immediately.'
+      },
+      {
+        question: 'What static styles are available?',
+        answer: 'Three static styles are included. Analog mode generates classic gray television snow. Color mode creates rainbow static with full-spectrum noise. VHS mode adds drifting horizontal bands, noise streak lines, and analog sync sway that mimics damaged VHS cassette playback.'
+      },
+      {
+        question: 'What are CRT scanlines?',
+        answer: 'CRT scanlines simulate the horizontal lines visible on old cathode-ray tube televisions. The effect uses a repeating overlay pattern across the display and can be toggled on or off via the CRT Scanlines checkbox in settings.'
+      },
+      {
+        question: 'Does the white noise screen include sound?',
+        answer: 'Yes, the simulator includes three audio noise modes. Static mode generates a pulsing sound with a gentle breathing effect like a detuned analog TV. White noise mode produces a flat, consistent hiss. Pink noise mode creates a deeper, warmer sound. Audio can also be set to Off.'
+      },
+      {
+        question: 'Can I enable a No Signal screen?',
+        answer: 'Yes. In the settings panel, check the NO SIGNAL Logo checkbox to display a retro-style AV-1 NO SIGNAL TV indicator badge in the top-left corner of the screen.'
+      },
+      {
+        question: 'Can I use the white noise screen for videos?',
+        answer: 'Absolutely. The white noise simulation works as a fullscreen background for YouTube videos, Twitch streams, TikTok content, film production, and screen recordings. The three static styles and CRT effects are ideal for retro intros, horror scenes, and cinematic transitions.'
+      },
+      {
+        question: 'Does the white noise screen work offline?',
+        answer: 'After the initial page load, the white noise simulation runs entirely client-side using Canvas, JavaScript, and the Web Audio API. Once the page is cached, the static animation and audio continue without an active internet connection.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Qué es el simulador de pantalla de ruido blanco?',
+        answer: 'El White Noise Screen es un simulador de estática de TV gratuito basado en navegador que genera ruido de televisión analógico realista, efectos de líneas CRT y efectos visuales VHS directamente en su navegador.'
+      },
+      {
+        question: '¿Es segura la pantalla de ruido blanco?',
+        answer: 'Sí, es completamente segura. La simulación de ruido blanco se ejecuta completamente en su navegador usando HTML, CSS, JavaScript y Canvas. No instala software ni modifica archivos del sistema.'
+      },
+      {
+        question: '¿La pantalla de ruido blanco es realmente gratuita?',
+        answer: 'Sí, es completamente gratuita. Sin cuenta, sin registro, sin tarjeta de crédito y sin cargos ocultos.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O que é o simulador de tela de ruído branco?',
+        answer: 'O White Noise Screen é um simulador de estática de TV gratuito baseado em navegador que gera ruído de televisão analógico realista, efeitos de linhas CRT e efeitos visuais VHS diretamente no seu navegador.'
+      },
+      {
+        question: 'A tela de ruído branco é segura?',
+        answer: 'Sim, é completamente segura. A simulação de ruído branco funciona inteiramente no seu navegador usando HTML, CSS, JavaScript e Canvas. Não instala software nem modifica arquivos do sistema.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Qu\'est-ce que le simulateur d\'écran bruit blanc ?',
+        answer: 'Le White Noise Screen est un simulateur de neige TV gratuit basé sur navigateur qui génère un bruit de télévision analogique réaliste, des effets de lignes CRT et des effets visuels VHS directement dans votre navigateur.'
+      },
+      {
+        question: 'L\'écran bruit blanc est-il sûr ?',
+        answer: 'Oui, il est totalement sûr. La simulation de bruit blanc fonctionne entièrement dans votre navigateur en utilisant HTML, CSS, JavaScript et Canvas. Elle n\'installe aucun logiciel et ne modifie aucun fichier système.'
+      }
+    ],
+    de: [
+      {
+        question: 'Was ist der Weißes-Rauschen-Bildschirm-Simulator?',
+        answer: 'Der White Noise Screen ist ein kostenloser, browserbasierter TV-Rauschen-Simulator, der realistisches analoges Fernsehflimmern, CRT-Zeileneffekte und VHS-Glitcheffekte direkt in Ihrem Browser erzeugt.'
+      },
+      {
+        question: 'Ist der Weißes-Rauschen-Bildschirm sicher?',
+        answer: 'Ja, er ist völlig sicher. Die Weißes-Rauschen-Simulation läuft vollständig in Ihrem Browser mit HTML, CSS, JavaScript und Canvas. Sie installiert keine Software und ändert keine Systemdateien.'
+      }
+    ],
+    hi: [
+      {
+        question: 'व्हाइट नॉइज़ स्क्रीन सिम्युलेटर क्या है?',
+        answer: 'व्हाइट नॉइज़ स्क्रीन एक मुफ्त, ब्राउज़र-आधारित टीवी स्टैटिक सिम्युलेटर है जो सीधे आपके ब्राउज़र में यथार्थवादी एनालॉग टेलीविज़न नॉइज़, CRT स्कैनलाइन प्रभाव और VHS ग्लिच विज़ुअल उत्पन्न करता है।'
+      },
+      {
+        question: 'क्या व्हाइट नॉइज़ स्क्रीन सुरक्षित है?',
+        answer: 'हाँ, यह पूरी तरह से सुरक्षित है। व्हाइट नॉइज़ सिमुलेशन HTML, CSS, JavaScript और Canvas का उपयोग करके पूरी तरह से आपके ब्राउज़र में चलता है।'
+      }
+    ],
+    ja: [
+      {
+        question: 'ホワイトノイズ画面シミュレーターとは何ですか？',
+        answer: 'ホワイトノイズ画面は、ブラウザベースの無料テレビノイズシミュレーターで、リアルなアナログテレビノイズ、CRTスキャンライン効果、VHSグリッチ映像をブラウザ上で直接生成します。'
+      },
+      {
+        question: 'ホワイトノイズ画面は安全ですか？',
+        answer: 'はい、完全に安全です。ホワイトノイズシミュレーションはHTML、CSS、JavaScript、Canvasを使用してブラウザ内で完全に動作します。ソフトウェアをインストールしたり、システムファイルを変更したりすることはありません。'
+      }
+    ]
   }
 };
 
@@ -7103,6 +7220,69 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           '<strong>レーダー画面シミュレーター</strong>は、回転するスイープビーム、同心円状のレンジリング、コンパス方位、手続き型地形海岸線、シミュレートされたブギーターゲットを備え、実際のレーダーおよびソナーシステムの外観と雰囲気を再現するインタラクティブな全画面レーダーディスプレイです。これはライブのインタラクティブな<strong>レーダーシミュレーション</strong>です。',
           '一般的な検索フレーズには、<strong>レーダー画面 オンライン</strong>、<strong>レーダー画面シミュレーター</strong>、<strong>ミリタリーレーダー画面</strong>、<strong>緑のレーダー画面</strong>、<strong>ソナー画面</strong>、<strong>レーダー表示</strong>などがあります。すべて1ページで提供 — ダウンロードもインストールも不要。',
           '最も没入感のある体験のために、Fキーを押して全画面モードに切り替えてください。設定パネルでスイープ速度、ソナー音量、カラーテーマを調整できます。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'white-noise-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'White Noise Screen (TV Static) – Fullscreen Analog Television Simulator Guide & Use Cases',
+        paragraphs: [
+          'The <strong>white noise screen</strong> (also called <strong>TV static</strong> or <strong>television snow</strong>) recreates the iconic look and sound of an analog television with no signal. Our <strong>white noise simulator</strong> generates authentic <strong>analog TV static</strong> directly in your browser using Canvas-based rendering — no video files, no pre-recorded loops, no downloads. It generates real-time <strong>analog noise</strong> with three distinct static styles, CRT scanline overlays, VHS glitch drift effects, and Web Audio API-generated static audio for complete retro television authenticity.',
+          'Users search for many related terms when looking for this type of visual effect. Common search phrases include <strong>white noise screen online</strong>, <strong>white noise static</strong>, <strong>TV static screen</strong>, <strong>analog TV static</strong>, <strong>fullscreen white noise</strong>, <strong>TV noise screen</strong>, <strong>white noise simulator</strong>, <strong>CRT static</strong>, <strong>no signal screen</strong>, <strong>TV snow</strong>, <strong>static effect</strong>, <strong>television noise</strong>, <strong>TV static animation</strong>, <strong>CRT simulation</strong>, <strong>free white noise screen online</strong>, <strong>fullscreen TV static generator</strong>, <strong>analog television simulator</strong>, <strong>browser white noise display</strong>, <strong>animated TV snow</strong>, <strong>CRT white noise effect</strong>, and <strong>no signal TV simulator</strong>. Our simulator delivers all of these in a single page — no download, no installation, no account required. It works instantly in any modern browser on desktop, laptop, tablet, phone, and Smart TV.',
+          'For the most authentic retro TV experience, enter fullscreen mode by pressing F or clicking the fullscreen button. Audio static starts automatically in fullscreen mode for complete immersion. Configure the experience using the settings panel: choose between Analog (classic gray snow), Color (rainbow spectrum static), or VHS (glitchy drift with noise bands) styles. Toggle the CRT Scanlines overlay for that authentic cathode-ray tube look. Enable the "NO SIGNAL" badge for a retro television indicator in the corner. Adjust the Static Speed slider to control how fast the noise pattern updates. Select your audio mode — Static (pulsing detuned TV sound), White (flat hiss), Pink (deep ambient rumble), or Off — and set the volume to your preference. The audio runs through a low-pass filter and gain stage for realistic television speaker tone.',
+          'The <strong>white noise screen</strong> is ideal for retro TV and VHS aesthetic scenes, film and video production backgrounds, YouTube and streaming intermission screens, horror and Halloween themed displays, cinematic transitions and title sequences, escape room and theatre stage props, photography and creative backdrops, gaming room and ambience decoration, presentation and event visual effects, and music video and content creation props. The tool runs entirely in the browser with Canvas rendering and Web Audio API — it works offline after the initial page load and leaves zero trace on the device. It also respects reduced motion preferences for accessibility.'
+        ]
+      },
+      es: {
+        heading: 'Pantalla de Ruido Blanco (Estática de TV) – Guía del Simulador de Televisión Analógica a Pantalla Completa y Casos de Uso',
+        paragraphs: [
+          'La <strong>pantalla de ruido blanco</strong> (también llamada <strong>estática de TV</strong> o <strong>nieve de televisión</strong>) recrea el aspecto y sonido icónicos de un televisor analógico sin señal. Nuestro <strong>simulador de ruido blanco</strong> genera <strong>estática de TV analógica</strong> auténtica directamente en su navegador.',
+          'Los términos de búsqueda comunes incluyen <strong>pantalla de ruido blanco online</strong>, <strong>estática de TV</strong>, <strong>simulador de TV analógica</strong>, <strong>pantalla de nieve TV</strong>, <strong>efecto CRT</strong> y <strong>pantalla sin señal</strong>. Ofrecemos todo en una página — sin descarga, sin instalación.',
+          'Para la experiencia más auténtica, entre en modo de pantalla completa presionando F. Elija entre los estilos Analógico, Color o VHS en el panel de configuración. Active las líneas CRT o el indicador SIN SEÑAL para mayor realismo retro.'
+        ]
+      },
+      pt: {
+        heading: 'Tela de Ruído Branco (Estática de TV) – Guia do Simulador de TV Analógica em Tela Cheia e Casos de Uso',
+        paragraphs: [
+          'A <strong>tela de ruído branco</strong> (também chamada de <strong>estática de TV</strong> ou <strong>neve de televisão</strong>) recria a aparência e o som icônicos de uma televisão analógica sem sinal. Nosso <strong>simulador de ruído branco</strong> gera <strong>estática de TV analógica</strong> autêntica diretamente no seu navegador.',
+          'Termos de busca comuns incluem <strong>tela de ruído branco online</strong>, <strong>estática de TV</strong>, <strong>simulador de TV analógica</strong>, <strong>tela de neve TV</strong> e <strong>efeito CRT</strong>. Tudo em uma página — sem download ou instalação.',
+          'Para a experiência mais autêntica, entre em modo tela cheia pressionando F. Escolha entre os estilos Analógico, Colorido ou VHS no painel de configurações.'
+        ]
+      },
+      fr: {
+        heading: 'Écran Bruit Blanc (Neige TV) – Guide du Simulateur de Télévision Analogique Plein Écran et Cas d\'Utilisation',
+        paragraphs: [
+          'L\'<strong>écran bruit blanc</strong> (également appelé <strong>neige TV</strong> ou <strong>statique télévision</strong>) recrée l\'aspect et le son emblématiques d\'un téléviseur analogique sans signal. Notre <strong>simulateur de bruit blanc</strong> génère de la <strong>statique TV analogique</strong> authentique directement dans votre navigateur.',
+          'Les termes de recherche courants incluent <strong>écran bruit blanc en ligne</strong>, <strong>neige TV</strong>, <strong>simulateur de télévision analogique</strong>, <strong>statique télévision</strong> et <strong>effet CRT</strong>. Le tout sur une seule page — sans téléchargement ni installation.',
+          'Pour l\'expérience la plus authentique, passez en plein écran en appuyant sur F. Choisissez entre les styles Analogique, Couleur ou VHS dans le panneau des paramètres.'
+        ]
+      },
+      de: {
+        heading: 'Weißes-Rauschen-Bildschirm (TV-Rauschen) – Leitfaden für den analogen Vollbild-TV-Simulator und Anwendungsfälle',
+        paragraphs: [
+          'Der <strong>Weißes-Rauschen-Bildschirm</strong> (auch <strong>TV-Rauschen</strong> oder <strong>Fernsehschnee</strong> genannt) erzeugt das ikonische Aussehen und Geräusch eines analogen Fernsehers ohne Signal. Unser <strong>Weißes-Rauschen-Simulator</strong> erzeugt authentisches <strong>analoges TV-Rauschen</strong> direkt in Ihrem Browser.',
+          'Häufige Suchbegriffe sind <strong>Weißes-Rauschen-Bildschirm online</strong>, <strong>TV-Rauschen</strong>, <strong>Analog-TV-Simulator</strong>, <strong>Fernsehschnee</strong> und <strong>CRT-Effekt</strong>. Alles auf einer Seite — kein Download, keine Installation.',
+          'Für das authentischste Erlebnis wechseln Sie durch Drücken von F in den Vollbildmodus. Wählen Sie zwischen den Stilen Analog, Farbe oder VHS im Einstellungsbereich.'
+        ]
+      },
+      hi: {
+        heading: 'व्हाइट नॉइज़ स्क्रीन (टीवी स्टैटिक) – फुलस्क्रीन एनालॉग टेलीविज़न सिम्युलेटर गाइड और उपयोग के मामले',
+        paragraphs: [
+          '<strong>व्हाइट नॉइज़ स्क्रीन</strong> (जिसे <strong>टीवी स्टैटिक</strong> या <strong>टेलीविज़न स्नो</strong> भी कहा जाता है) बिना सिग्नल के एनालॉग टेलीविज़न के प्रतिष्ठित रूप और ध्वनि को फिर से बनाता है। हमारा <strong>व्हाइट नॉइज़ सिम्युलेटर</strong> सीधे आपके ब्राउज़र में प्रामाणिक <strong>एनालॉग टीवी स्टैटिक</strong> उत्पन्न करता है।',
+          'सामान्य खोज वाक्यांशों में <strong>व्हाइट नॉइज़ स्क्रीन ऑनलाइन</strong>, <strong>टीवी स्टैटिक</strong>, <strong>एनालॉग टेलीविज़न सिम्युलेटर</strong>, <strong>टेलीविज़न स्नो</strong> और <strong>CRT प्रभाव</strong> शामिल हैं। हमारा सिम्युलेटर एक ही पेज पर सब कुछ प्रदान करता है — बिना डाउनलोड के।',
+          'सबसे प्रामाणिक अनुभव के लिए, F दबाकर फुलस्क्रीन मोड में जाएँ। सेटिंग्स पैनल में एनालॉग, कलर या VHS शैलियों में से चुनें।'
+        ]
+      },
+      ja: {
+        heading: 'ホワイトノイズ画面（TVノイズ） – 全画面アナログテレビシミュレーターガイドと使用例',
+        paragraphs: [
+          '<strong>ホワイトノイズ画面</strong>（<strong>TVノイズ</strong>または<strong>テレビスノー</strong>とも呼ばれます）は、信号のないアナログテレビの象徴的な外観と音を再現します。私たちの<strong>ホワイトノイズシミュレーター</strong>は、ブラウザ上で直接本物の<strong>アナログTVノイズ</strong>を生成します。',
+          '一般的な検索フレーズには、<strong>ホワイトノイズ画面 オンライン</strong>、<strong>TVノイズ</strong>、<strong>アナログテレビシミュレーター</strong>、<strong>テレビスノー</strong>、<strong>CRT効果</strong>などがあります。すべて1ページで提供 — ダウンロード不要。',
+          '最も本格的な体験のために、Fキーを押して全画面モードに切り替えてください。設定パネルでアナログ、カラー、VHSのスタイルから選択できます。'
         ]
       }
     };

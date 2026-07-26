@@ -253,7 +253,60 @@ export const tools: Tool[] = [
         answer: 'Yes. The radar screen works on Smart TVs with web browsers. Open the URL in the TV browser, enter fullscreen mode, and the animated radar display fills the screen. It works great as a decorative ambient display for themed parties, gaming rooms, and room decoration.'
       }
     ] },
-  { id: 'white-noise-screen', name: 'White Noise Screen', shortName: 'White Noise', slug: 'white-noise-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#d4d4d4', summary: 'A static-style white noise visual for retro TV effects, transitions, and prank screens.', intent: 'safe static-screen effect with motion controls', useCases: ['retro TV scenes', 'transition screens', 'video props', 'friendly jokes'], controls: ['fullscreen', 'brightness', 'reduced motion', 'timer', 'pause'], faqs: effectFaqs('White Noise Screen') },
+  { id: 'white-noise-screen', name: 'White Noise Screen', shortName: 'White Noise', slug: 'white-noise-screen', localizedSlugs: { es: 'pantalla-ruido-blanco', pt: 'tela-ruido-branco', fr: 'ecran-bruit-blanc', de: 'weiss-rauschen-bildschirm', hi: 'white-noise-screen', ja: 'shiroi-noizu-gamen' }, category: 'pranks', kind: 'prank', color: '#d4d4d4', summary: 'A free online white noise screen (TV static) simulator with authentic analog noise, CRT scanlines, VHS glitch effects, and audio static. Fullscreen retro TV effect for desktop, laptop, monitor, and TV — no download needed.', intent: 'authentic fullscreen analog television static simulation with multiple noise styles, CRT scanline overlay, VHS drift effects, and realistic audio static for retro effects, film production, and entertainment', useCases: ['retro TV and VHS aesthetic scenes', 'film and video production backgrounds', 'YouTube and streaming intermission screens', 'horror and Halloween themed displays', 'cinematic transitions and title sequences', 'escape room and theatre stage props', 'photography and creative backdrops', 'gaming room and ambience decoration', 'presentation and event visual effects', 'music video and content creation props'], controls: ['fullscreen mode', 'three static styles (analog, color, VHS)', 'CRT scanline overlay toggle', 'No Signal TV indicator toggle', 'audio noise modes (static, white, pink, off)', 'volume slider', 'static playback speed', 'keyboard shortcuts (1-3, S, ↑↓, F, Esc)'], faqs: [
+      {
+        question: 'What is the White Noise Screen simulator?',
+        answer: 'The White Noise Screen is a free, browser-based TV static simulator that generates realistic analog television noise (snow), CRT scanline effects, and VHS glitch visuals directly in your browser. It recreates the look and sound of an analog television with no signal — complete with authentic gray static noise, rainbow color noise, retro VHS drift effects, and a "No Signal" TV indicator overlay. It is designed for entertainment, film production, streaming backgrounds, and creative staging — not as an actual television diagnostic tool.'
+      },
+      {
+        question: 'Is the White Noise Screen safe?',
+        answer: 'Yes, it is completely safe. The white noise simulation runs entirely in your browser using HTML, CSS, JavaScript, and Canvas. It does not install any software, modify system files, access personal data, or make any changes to your operating system. It is a purely visual and audio browser-based simulation.'
+      },
+      {
+        question: 'Is the White Noise Screen really free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The white noise screen is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'Does the white noise simulator require downloading?',
+        answer: 'No. The white noise screen runs directly in your browser. There is nothing to download, install, or configure. Just open the page and the static animation starts immediately. Works on any device with a modern browser.'
+      },
+      {
+        question: 'What static styles are available?',
+        answer: 'The simulator includes three static styles. Analog mode generates classic gray television snow — the iconic black-and-white static noise from vintage CRT televisions. Color mode creates rainbow static with full-spectrum noise for a vibrant retro effect. VHS mode adds drifting horizontal bands, noise streak lines, and analog sync sway that mimics a damaged VHS cassette playback.'
+      },
+      {
+        question: 'What are CRT scanlines?',
+        answer: 'CRT scanlines are the horizontal lines visible on old cathode-ray tube televisions and monitors. The White Noise Screen simulates this effect using a repeating overlay pattern that adds authentic scanline lines across the display. You can toggle this effect on or off using the CRT Scanlines checkbox in the settings panel.'
+      },
+      {
+        question: 'Does the white noise screen include sound?',
+        answer: 'Yes, the simulator includes three audio noise modes. Static mode generates a pulsing "see" sound with a gentle 1.3 Hz breathing effect, just like a detuned analog TV. White noise mode produces a flat, consistent hiss ideal for ambience and sound masking. Pink noise mode creates a deeper, warmer sound similar to light rain or a gentle waterfall. You can also set audio to Off for silent operation.'
+      },
+      {
+        question: 'Can I disable the sound?',
+        answer: 'Yes. Open the settings panel (gear icon) and set the Audio Noise dropdown to Off. You can also press the S key to mute and unmute audio. The static animation continues visually whether audio is on or off.'
+      },
+      {
+        question: 'Can I enable a "No Signal" screen?',
+        answer: 'Yes. In the settings panel, check the "NO SIGNAL" Logo checkbox. This displays a retro-style "AV-1 NO SIGNAL" TV indicator badge in the top-left corner of the screen, adding extra authenticity to the outdated television aesthetic.'
+      },
+      {
+        question: 'Does the white noise simulator work fullscreen?',
+        answer: 'Yes. Press the F key or click the fullscreen button to enter fullscreen mode. The static fills your entire display with no browser UI visible. Audio starts automatically in fullscreen mode for the most immersive experience. Press Escape to exit.'
+      },
+      {
+        question: 'Does the white noise screen work on mobile devices?',
+        answer: 'Yes, the white noise screen works on any device with a modern web browser — Windows PCs, Macs, Linux machines, Chromebooks, tablets, smartphones, and Smart TVs. The canvas rendering adapts to different screen sizes automatically.'
+      },
+      {
+        question: 'Can I use the white noise screen for videos and streaming?',
+        answer: 'Absolutely. The white noise simulation works as a fullscreen background for YouTube videos, Twitch streams, TikTok content, film production, video calls, and screen recordings. The three static styles and CRT effects make it versatile for retro intros, horror scenes, cinematic transitions, and vintage aesthetic content.'
+      },
+      {
+        question: 'Does the white noise screen work offline?',
+        answer: 'After the initial page load, the white noise simulation runs entirely client-side using Canvas, JavaScript, and the Web Audio API. Once the page is cached by your browser, the static animation and audio continue to work without an active internet connection.'
+      }
+    ] },
   { id: 'fake-virus-screen', name: 'Fake Virus Screen', shortName: 'Fake Virus', slug: 'fake-virus-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#111827', summary: 'A clearly harmless fake virus screen for theatrical browser pranks and video staging.', intent: 'dramatic visual effect that stays safe and reversible', useCases: ['friendly pranks', 'video scenes', 'training examples', 'event visuals'], controls: ['fullscreen', 'escape hint', 'timer', 'brightness', 'clear screen'], faqs: effectFaqs('Fake Virus Screen') },
   // { id: 'terminal-screen', name: 'Terminal Screen', shortName: 'Terminal', slug: 'terminal-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#050505', summary: 'A premium terminal-style fullscreen page for demos, code-themed scenes, and ambient setups.', intent: 'minimal terminal atmosphere without installing anything', useCases: ['developer videos', 'demo backdrops', 'event staging', 'ambient screen'], controls: ['fullscreen', 'theme toggle', 'brightness', 'keyboard shortcuts', 'copy prompt'], faqs: effectFaqs('Terminal Screen') },
   { id: 'windows-update', name: 'Fake Windows Update Screen', shortName: 'Windows Update', slug: 'windows-update', localizedSlugs: {}, category: 'fake', kind: 'fake', color: '#0078d7', summary: 'A fake update progress screen for harmless staged demos, pauses, and prank scenarios.', intent: 'recognizable update-progress concept without system access', useCases: ['friendly pauses', 'video props', 'classroom jokes', 'event screens'], controls: ['fullscreen', 'timer', 'progress control', 'escape hint', 'brightness'], faqs: effectFaqs('Windows Update Screen') },
