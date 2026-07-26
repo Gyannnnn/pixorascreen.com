@@ -603,6 +603,8 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'hex-screen': { es: 'Pantalla HEX', pt: 'Tela HEX', fr: 'Écran HEX', de: 'HEX-Bildschirm', hi: 'हेक्स स्क्रीन', ja: 'HEX画面' },
   'aquarium-screen': { es: 'Pantalla de Acuario', pt: 'Tela de Aquário', fr: 'Écran d\'Aquarium', de: 'Aquarium-Bildschirm', hi: 'एक्वेरियम स्क्रीन', ja: 'アクアリウム画面' },
   'ambient-screen': { es: 'Pantalla Ambiental', pt: 'Tela Ambiente', fr: 'Écran Ambiant', de: 'Ambiente-Bildschirm', hi: 'एम्बिएंट स्क्रीन', ja: 'アンビエント画面' },
+  'galaxy-screen': { es: 'Pantalla de Galaxia', pt: 'Tela de Galáxia', fr: 'Écran Galaxie', de: 'Galaxie-Bildschirm', hi: 'गैलेक्सी स्क्रीन', ja: '銀河の画面' },
+  'broken-screen': { es: 'Pantalla Rota', pt: 'Tela Quebrada', fr: 'Écran Cassé', de: 'Kaputter Bildschirm', hi: 'टूटी स्क्रीन', ja: '壊れた画面' },
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
@@ -691,12 +693,12 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     ja: 'リアルな雨粒、窓ガラスの雨、環境雷、カスタマイズ可能な背景、8色のカラープリセットを備えたデスクトップ、ノートPC、モニター、TV向けのオンライン雨画面。ダウンロード不要。',
   },
   'clock-screen': {
-    es: 'Un salvapantallas de reloj flip estético y minimalista con soporte para formato de 12/24 horas, temas premium (OLED, cristal) y un temporizador Pomodoro integrado.',
-    pt: 'Um protetor de tela de relógio flip estético e minimalista com suporte a formato de 12/24 horas, temas premium (OLED, vidro) e um temporizador Pomodoro integrado.',
-    fr: 'Un économiseur d\'écran d\'horloge à volets esthétique et minimaliste avec prise en charge du format 12/24 heures, des thèmes premium (OLED, verre) et un minuteur Pomodoro intégré.',
-    de: 'Ein ästhetischer und minimalistischer Klipp-Klapp-Uhr-Bildschirmschoner mit Unterstützung für das 12/24-Stunden-Format, Premium-Designs (OLED, Glas) und integriertem Pomodoro-Timer.',
-    hi: '12/24 घंटे के प्रारूप, प्रीमियम थीम (OLED, ग्लास) और एक एकीकृत पोमोडोरो टाइमर के समर्थन के साथ एक सौंदर्यपूर्ण और न्यूनतम फ्लिप घड़ी स्क्रीनसेवर।',
-    ja: '12/24時間表示、プレミアムテーマ（OLED、ガラス）、および統合されたポモドーロタイマーをサポートした、美しくミニマルなフリップ時計スクリーンセーバー。',
+    es: 'Un reloj flip online a pantalla completa con animación flip retro realista, 6 temas estéticos (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk), cronógrafo Pomodoro, sonido de clic ambiental y control de brillo — sin descarga.',
+    pt: 'Um relógio flip online em tela cheia com animação flip retrô realista, 6 temas estéticos (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk), timer Pomodoro, som de clique ambiente e controle de brilho — sem download.',
+    fr: 'Une horloge à volets en ligne plein écran avec animation flip rétro réaliste, 6 thèmes esthétiques (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk), minuteur Pomodoro, son de clic d\'ambiance et contrôle de la luminosité — sans téléchargement.',
+    de: 'Eine Online-Klappuhr im Vollbildmodus mit realistischer Retro-Flip-Animation, 6 ästhetischen Designs (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk), Pomodoro-Timer, Umgebungs-Klickgeräusch und Helligkeitsregelung — kein Download nötig.',
+    hi: 'यथार्थवादी रेट्रो फ्लिप एनिमेशन, 6 एस्थेटिक थीम (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk), पोमोडोरो टाइमर, एम्बिएंट क्लिक साउंड और ब्राइटनेस कंट्रोल के साथ फुलस्क्रीन ऑनलाइन फ्लिप घड़ी — बिना डाउनलोड के।',
+    ja: 'リアルなレトロフリップアニメーション、6つの美的テーマ（Warm Retro、Pure OLED、Soft White、Cyber Grid、Rose Gold、Space Dusk）、ポモドーロタイマー、環境クリック音、明るさ調節を備えた全画面オンラインフリップ時計。ダウンロード不要。',
   },
   'ambient-screen': {
     es: 'Una pantalla ambiental interactiva con gradientes animados, partículas cósmicas, mezclador de sonido de 4 canales, reloj, temporizador Pomodoro y respiración guiada — para escritorio, portátil, monitor, TV y móvil.',
@@ -705,6 +707,22 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     de: 'Ein interaktiver Ambiente-Bildschirm mit animierten Farbverläufen, kosmischen Partikeln, 4-Kanal-Soundmixer, Uhr, Pomodoro-Timer und geführter Atmung — für Desktop, Laptop, Monitor, TV und Handy.',
     hi: 'एनिमेटेड ग्रेडिएंट, कॉस्मिक पार्टिकल्स, 4-चैनल साउंडस्केप मिक्सर, घड़ी, पोमोडोरो टाइमर और गाइडेड ब्रीदिंग के साथ एक इंटरैक्टिव एम्बिएंट स्क्रीन — डेस्कटॉप, लैपटॉप, मॉनिटर, टीवी और मोबाइल के लिए।',
     ja: 'アニメーショングラデーション、宇宙のパーティクル、4チャンネルサウンドスケープミキサー、時計、ポモドーロタイマー、ガイド付き呼吸法を備えたインタラクティブなアンビエント画面。デスクトップ、ノートPC、モニター、TV、モバイル対応。',
+  },
+  'galaxy-screen': {
+    es: 'Una pantalla de galaxia espiral interactiva online con simulación realista de galaxia, 5 temas de color (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), control de densidad estelar, velocidad de rotación, inclinación 3D, efecto de lente gravitacional de agujero negro y audio espacial ambiental — sin descarga.',
+    pt: 'Uma tela de galáxia espiral interativa online com simulação realista de galáxia, 5 temas de cor (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), controle de densidade estelar, velocidade de rotação, inclinação 3D, efeito de lente gravitacional de buraco negro e áudio espacial ambiente — sem download.',
+    fr: 'Un écran de galaxie spirale interactif en ligne avec simulation réaliste de galaxie, 5 thèmes de couleur (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), contrôle de la densité stellaire, vitesse de rotation, inclinaison 3D, effet de lentille gravitationnelle de trou noir et audio spatial d\'ambiance — sans téléchargement.',
+    de: 'Ein interaktiver Online-Spiralgalaxie-Bildschirm mit realistischer Galaxiensimulation, 5 Farbthemen (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), Sterndichteregelung, Rotationsgeschwindigkeit, 3D-Neigung, Gravitationslinsen-Schwarzes-Loch-Effekt und Ambient-Weltraum-Audio — kein Download nötig.',
+    hi: 'यथार्थवादी आकाशगंगा सिमुलेशन, 5 रंग थीम (Andromeda Blue, Cosmic Amber, Orion Purple, Ghostly Teal, OLED Monochrome), तारा घनत्व नियंत्रण, घूर्णन गति, 3D झुकाव, गुरुत्वाकर्षण लेंसिंग ब्लैक होल प्रभाव और एम्बिएंट स्पेस ऑडियो के साथ एक इंटरैक्टिव ऑनलाइन सर्पिल गैलेक्सी स्क्रीन — बिना डाउनलोड के।',
+    ja: 'リアルな銀河シミュレーション、5つのカラーテーマ（Andromeda Blue、Cosmic Amber、Orion Purple、Ghostly Teal、OLED Monochrome）、星密度コントロール、回転速度、3D傾き、重力レンズ効果のブラックホール、環境宇宙音声を備えたインタラクティブなオンライン渦巻銀河画面。ダウンロード不要。',
+  },
+  'broken-screen': {
+    es: 'Una página de broma inofensiva de pantalla rota con un convincente efecto de pantalla agrietada a pantalla completa para bromas y diversión.',
+    pt: 'Uma página de pegadinha inofensiva de tela quebrada com um efeito convincente de tela rachada em tela cheia para brincadeiras e diversão.',
+    fr: 'Une page de blague inoffensive d\'écran cassé avec un effet d\'écran fissuré en plein écran convaincant pour des plaisanteries et du divertissement.',
+    de: 'Eine harmlose Scherzseite mit kaputtem Bildschirm und einem überzeugenden Vollbild-Cracked-Display-Effekt für Streiche und Spaß.',
+    hi: 'एक हानिरहित टूटी स्क्रीन प्रैंक पेज जिसमें मजाक और मनोरंजन के लिए एक विश्वसनीय फुलस्क्रीन क्रैक-डिस्प्ले इफ़ेक्ट है।',
+    ja: '壊れた画面のいたずらページ。ジョークや楽しみのために、説得力のある全画面ひび割れディスプレイエフェクトを備えた無害なページ。',
   },
 };
 
@@ -4597,8 +4615,388 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
       }
     ]
   },
+  'clock-screen': {
+    en: [
+      {
+        question: 'What is a flip clock screen?',
+        answer: 'A flip clock screen is an online browser-based display that shows the current time using retro flip-card animation, where each digit flips down to reveal the next number — mimicking vintage mechanical alarm clocks and airport split-flap displays. Our version includes 6 aesthetic themes, Pomodoro timer, sound effects, and brightness control — all in fullscreen, no download needed.'
+      },
+      {
+        question: 'How do I use this flip clock on my desktop or laptop?',
+        answer: 'Open the page in your browser, click the Fullscreen button or press "F" on your keyboard. The clock fills your entire screen with the retro flip animation. Press Space to open the settings panel where you can customize the theme, toggle 12/24h format, show or hide seconds, enable the countdown timer, adjust brightness, and control sound.'
+      },
+      {
+        question: 'What themes are available?',
+        answer: 'There are 6 aesthetic themes to choose from: Warm Retro (vintage amber glow), Pure OLED (deep blacks with crisp white text), Soft White (clean minimal look), Cyber Grid (neon grid background), Rose Gold (warm pink metallic), and Space Dusk (dark cosmic gradient). Each theme transforms the entire look and feel of the clock.'
+      },
+      {
+        question: 'Does this flip clock have a fullscreen mode?',
+        answer: 'Yes. Click the Fullscreen button or press the "F" key to enter fullscreen mode. The browser UI hides automatically, letting the clock fill your entire display. Press Esc to exit. An idle detection feature dims controls after a few seconds of inactivity for a clean, distraction-free display.'
+      },
+      {
+        question: 'Can I use this as a Pomodoro timer or countdown?',
+        answer: 'Yes. Press "T" or open settings to switch to Countdown mode. Select from preset Pomodoro intervals (5, 10, 15, 25, 40, 60 minutes) or set a custom duration. The flip animation works during countdown too — digits flip down as the timer counts. Press "R" to reset, and an alarm chord sounds when the timer reaches zero.'
+      },
+      {
+        question: 'What keyboard shortcuts are available?',
+        answer: 'F — Fullscreen toggle, Space — Toggle settings/timer panel, S — Toggle sound on/off, T — Switch between clock and countdown mode, R — Reset countdown, Esc — Exit fullscreen or close settings.'
+      },
+      {
+        question: 'Does the flip clock have sound effects?',
+        answer: 'Yes. A retro click sound plays during flip animations, recreating the satisfying mechanical flap sound of vintage flip clocks. The "S" key toggles sound on and off, or use the Mute toggle in settings. When the countdown timer reaches zero, a synthesized alarm chord plays to alert you.'
+      },
+      {
+        question: 'Can I adjust the brightness?',
+        answer: 'Yes. Use the Brightness slider (10% to 100%) to control the clock\'s visual intensity. This is especially useful in dark rooms — lower the brightness for a soft, non-intrusive night clock that won\'t disturb your sleep.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Qué es una pantalla de reloj flip?',
+        answer: 'Una pantalla de reloj flip es una pantalla online basada en navegador que muestra la hora actual con animación retro de tarjetas giratorias, imitando los relojes despertadores mecánicos vintage. Nuestra versión incluye 6 temas estéticos, temporizador Pomodoro, efectos de sonido y control de brillo — todo en pantalla completa.'
+      },
+      {
+        question: '¿Cómo uso este reloj flip en mi escritorio o portátil?',
+        answer: 'Abre la página en tu navegador, haz clic en Pantalla Completa o presiona "F". Presiona Espacio para abrir el panel de ajustes donde puedes personalizar el tema, formato 12/24h, segundos, temporizador y brillo.'
+      },
+      {
+        question: '¿Qué temas están disponibles?',
+        answer: 'Hay 6 temas estéticos: Warm Retro (brillo ámbar vintage), Pure OLED (negros profundos), Soft White (minimalista), Cyber Grid (cuadrícula neón), Rose Gold (rosa metálico) y Space Dusk (gradiente cósmico oscuro).'
+      },
+      {
+        question: '¿Tiene modo de pantalla completa?',
+        answer: 'Sí. Haz clic en Pantalla Completa o presiona "F". La interfaz se oculta automáticamente. Presiona Esc para salir. La detección de inactividad atenúa los controles tras unos segundos para una visualización limpia.'
+      },
+      {
+        question: '¿Puedo usarlo como temporizador Pomodoro?',
+        answer: 'Sí. Presiona "T" para cambiar al modo Cuenta Atrás. Elige entre intervalos Pomodoro predefinidos (5, 10, 15, 25, 40, 60 min) o personaliza la duración. Presiona "R" para reiniciar.'
+      },
+      {
+        question: '¿Qué atajos de teclado hay?',
+        answer: 'F — Pantalla completa, Espacio — Abrir/cerrar configuración, S — Silenciar/activar sonido, T — Cambiar modo reloj/cuenta atrás, R — Reiniciar, Esc — Salir.'
+      },
+      {
+        question: '¿Tiene efectos de sonido?',
+        answer: 'Sí. Un clic retro suena durante las animaciones flip. La tecla "S" activa/desactiva el sonido. Al terminar la cuenta atrás, suena una alarma sintetizada.'
+      },
+      {
+        question: '¿Puedo ajustar el brillo?',
+        answer: 'Sí. Usa el control deslizante de Brillo (10% a 100%) para regular la intensidad visual, ideal para usar el reloj por la noche sin molestar.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O que é uma tela de relógio flip?',
+        answer: 'Uma tela de relógio flip é uma exibição online baseada em navegador que mostra as horas com animação retrô de cartas giratórias, imitando relógios mecânicos vintage. Nossa versão inclui 6 temas estéticos, timer Pomodoro, efeitos sonoros e controle de brilho — tudo em tela cheia.'
+      },
+      {
+        question: 'Como usar este relógio flip no meu desktop ou notebook?',
+        answer: 'Abra a página no navegador, clique em Tela Cheia ou pressione "F". Pressione Espaço para abrir o painel de configurações e personalizar tema, formato 12/24h, segundos, timer e brilho.'
+      },
+      {
+        question: 'Quais temas estão disponíveis?',
+        answer: '6 temas estéticos: Warm Retro (brilho âmbar vintage), Pure OLED (pretos profundos), Soft White (minimalista), Cyber Grid (grade neon), Rose Gold (rosa metálico) e Space Dusk (gradiente cósmico escuro).'
+      },
+      {
+        question: 'Tem modo tela cheia?',
+        answer: 'Sim. Clique em Tela Cheia ou pressione "F". A interface se oculta automaticamente. Pressione Esc para sair.'
+      },
+      {
+        question: 'Posso usar como timer Pomodoro?',
+        answer: 'Sim. Pressione "T" para mudar para o modo Contagem Regressiva. Escolha entre intervalos Pomodoro (5, 10, 15, 25, 40, 60 min) ou personalize. Pressione "R" para reiniciar.'
+      },
+      {
+        question: 'Quais atalhos de teclado existem?',
+        answer: 'F — Tela cheia, Espaço — Configurações, S — Som liga/desliga, T — Alternar modo, R — Reiniciar, Esc — Sair.'
+      },
+      {
+        question: 'Tem efeitos sonoros?',
+        answer: 'Sim. Um clique retrô soa nas animações flip. A tecla "S" liga/desliga o som. Um alarme toca quando o timer chega a zero.'
+      },
+      {
+        question: 'Posso ajustar o brilho?',
+        answer: 'Sim. Use o controle deslizante de Brilho (10% a 100%) para ajustar a intensidade, ideal para usar à noite sem incomodar.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Qu\'est-ce qu\'un écran d\'horloge à volets ?',
+        answer: 'Un écran d\'horloge à volets est un affichage en ligne basé sur navigateur qui montre l\'heure avec une animation rétro de cartes à bascule. Notre version inclut 6 thèmes esthétiques, un minuteur Pomodoro, des effets sonores et un contrôle de luminosité — tout en plein écran.'
+      },
+      {
+        question: 'Comment utiliser cette horloge sur mon PC ou portable ?',
+        answer: 'Ouvrez la page dans votre navigateur, cliquez sur Plein Écran ou appuyez sur "F". Appuyez sur Espace pour ouvrir les paramètres et personnaliser le thème, le format 12/24h, les secondes, le minuteur et la luminosité.'
+      },
+      {
+        question: 'Quels thèmes sont disponibles ?',
+        answer: '6 thèmes esthétiques : Warm Retro (lueur ambrée vintage), Pure OLED (noirs profonds), Soft White (minimaliste), Cyber Grid (grille néon), Rose Gold (rose métallique) et Space Dusk (dégradé cosmique sombre).'
+      },
+      {
+        question: 'A-t-elle un mode plein écran ?',
+        answer: 'Oui. Cliquez sur Plein Écran ou appuyez sur "F". L\'interface se masque automatiquement. Appuyez sur Esc pour quitter.'
+      },
+      {
+        question: 'Puis-je l\'utiliser comme minuteur Pomodoro ?',
+        answer: 'Oui. Appuyez sur "T" pour passer en mode Compte à Rebours. Choisissez parmi les intervalles Pomodoro (5, 10, 15, 25, 40, 60 min) ou personnalisez la durée. Appuyez sur "R" pour réinitialiser.'
+      },
+      {
+        question: 'Quels sont les raccourcis clavier ?',
+        answer: 'F — Plein écran, Espace — Paramètres, S — Son marche/arrêt, T — Changer de mode, R — Réinitialiser, Esc — Quitter.'
+      },
+      {
+        question: 'Y a-t-il des effets sonores ?',
+        answer: 'Oui. Un clic rétro se joue pendant les animations flip. La touche "S" active/désactive le son. Une alarme sonore retentit à la fin du compte à rebours.'
+      },
+      {
+        question: 'Puis-je régler la luminosité ?',
+        answer: 'Oui. Utilisez le curseur de Luminosité (10% à 100%) pour ajuster l\'intensité visuelle, idéal pour une utilisation nocturne.'
+      }
+    ],
+    de: [
+      {
+        question: 'Was ist ein Klipp-Klapp-Uhr-Bildschirm?',
+        answer: 'Ein Klipp-Klapp-Uhr-Bildschirm ist eine browserbasierte Online-Anzeige, die die aktuelle Uhrzeit mit einer Retro-Kippkarten-Animation darstellt. Unsere Version bietet 6 ästhetische Designs, Pomodoro-Timer, Soundeffekte und Helligkeitsregelung — alles im Vollbildmodus.'
+      },
+      {
+        question: 'Wie benutze ich diese Klappuhr auf meinem Desktop oder Laptop?',
+        answer: 'Öffnen Sie die Seite im Browser, klicken Sie auf Vollbild oder drücken Sie "F". Drücken Sie die Leertaste für die Einstellungen, um Design, 12/24h-Format, Sekunden, Timer und Helligkeit anzupassen.'
+      },
+      {
+        question: 'Welche Designs sind verfügbar?',
+        answer: '6 ästhetische Designs: Warm Retro (Vintage-Amber-Glow), Pure OLED (tiefe Schwarztöne), Soft White (minimalistisch), Cyber Grid (Neon-Gitter), Rose Gold (rosé-metallisch) und Space Dusk (dunkler kosmischer Verlauf).'
+      },
+      {
+        question: 'Hat es einen Vollbildmodus?',
+        answer: 'Ja. Klicken Sie auf Vollbild oder drücken Sie "F". Die Benutzeroberfläche blendet sich automatisch aus. Drücken Sie Esc zum Beenden.'
+      },
+      {
+        question: 'Kann ich es als Pomodoro-Timer verwenden?',
+        answer: 'Ja. Drücken Sie "T" für den Countdown-Modus. Wählen Sie aus voreingestellten Pomodoro-Intervallen (5, 10, 15, 25, 40, 60 Min.) oder stellen Sie eine benutzerdefinierte Dauer ein. Drücken Sie "R" zum Zurücksetzen.'
+      },
+      {
+        question: 'Welche Tastenkombinationen gibt es?',
+        answer: 'F — Vollbild, Leertaste — Einstellungen, S — Ton ein/aus, T — Modus wechseln, R — Zurücksetzen, Esc — Beenden.'
+      },
+      {
+        question: 'Hat es Soundeffekte?',
+        answer: 'Ja. Ein Retro-Klickgeräusch ertönt bei den Flip-Animationen. Die Taste "S" schaltet den Ton ein/aus. Ein Alarmton ertönt, wenn der Countdown Null erreicht.'
+      },
+      {
+        question: 'Kann ich die Helligkeit einstellen?',
+        answer: 'Ja. Mit dem Helligkeitsregler (10% bis 100%) können Sie die visuelle Intensität anpassen — ideal für die Nutzung als Nachtuhr.'
+      }
+    ],
+    hi: [
+      {
+        question: 'फ्लिप घड़ी स्क्रीन क्या है?',
+        answer: 'फ्लिप घड़ी स्क्रीन एक ब्राउज़र-आधारित ऑनलाइन डिस्प्ले है जो रेट्रो फ्लिप-कार्ड एनिमेशन के साथ वर्तमान समय दिखाती है। हमारे संस्करण में 6 एस्थेटिक थीम, पोमोडोरो टाइमर, ध्वनि प्रभाव और चमक नियंत्रण शामिल हैं — सभी फुलस्क्रीन में।'
+      },
+      {
+        question: 'मैं अपने डेस्कटॉप या लैपटॉप पर इस फ्लिप घड़ी का उपयोग कैसे करूं?',
+        answer: 'पेज को ब्राउज़र में खोलें, फुलस्क्रीन बटन पर क्लिक करें या "F" दबाएं। सेटिंग्स के लिए स्पेस दबाएं जहां आप थीम, 12/24 घंटे प्रारूप, सेकंड, टाइमर और चमक को कस्टमाइज़ कर सकते हैं।'
+      },
+      {
+        question: 'कौन सी थीम उपलब्ध हैं?',
+        answer: '6 एस्थेटिक थीम: वार्म रेट्रो (एम्बर ग्लो), प्योर OLED (गहरा काला), सॉफ्ट व्हाइट (मिनिमल), साइबर ग्रिड (नीयन ग्रिड), रोज़ गोल्ड (गुलाबी धात्विक) और स्पेस डस्क (कॉस्मिक ग्रेडिएंट)।'
+      },
+      {
+        question: 'क्या इसमें फुलस्क्रीन मोड है?',
+        answer: 'हां। फुलस्क्रीन बटन पर क्लिक करें या "F" दबाएं। Esc दबाकर बाहर निकलें।'
+      },
+      {
+        question: 'क्या मैं इसे पोमोडोरो टाइमर के रूप में उपयोग कर सकता हूं?',
+        answer: 'हां। "T" दबाकर काउंटडाउन मोड पर जाएं। प्रीसेट पोमोडोरो अंतराल (5, 10, 15, 25, 40, 60 मिनट) चुनें या कस्टम समय सेट करें।'
+      },
+      {
+        question: 'कौन से कीबोर्ड शॉर्टकट उपलब्ध हैं?',
+        answer: 'F — फुलस्क्रीन, स्पेस — सेटिंग्स, S — ध्वनि चालू/बंद, T — मोड बदलें, R — रीसेट, Esc — बाहर निकलें।'
+      },
+      {
+        question: 'क्या इसमें ध्वनि प्रभाव हैं?',
+        answer: 'हां। फ्लिप एनिमेशन के दौरान रेट्रो क्लिक ध्वनि बजती है। "S" कुंजी से ध्वनि चालू/बंद करें।'
+      },
+      {
+        question: 'क्या मैं चमक समायोजित कर सकता हूं?',
+        answer: 'हां। चमक स्लाइडर (10% से 100%) का उपयोग करें, रात में उपयोग के लिए आदर्श।'
+      }
+    ],
+    ja: [
+      {
+        question: 'フリップ時計画面とは何ですか？',
+        answer: 'フリップ時計画面は、ブラウザベースのオンライン表示で、数字がパタパタとめくれるレトロなフリップカードアニメーションで現在時刻を表示します。6つの美的テーマ、ポモドーロタイマー、効果音、明るさ調節を搭載。全画面表示対応、ダウンロード不要。'
+      },
+      {
+        question: 'デスクトップやノートPCでこのフリップ時計を使うには？',
+        answer: 'ブラウザでページを開き、全画面ボタンをクリックするか「F」キーを押します。スペースキーで設定パネルを開き、テーマ、12/24時間表示、秒表示、タイマー、明るさをカスタマイズできます。'
+      },
+      {
+        question: '利用可能なテーマは？',
+        answer: '6つの美的テーマ：Warm Retro（ビンテージアンバーグロー）、Pure OLED（深い黒）、Soft White（クリーンミニマル）、Cyber Grid（ネオングリッド）、Rose Gold（ローズゴールドメタリック）、Space Dusk（ダークコズミックグラデーション）。'
+      },
+      {
+        question: '全画面モードはありますか？',
+        answer: 'はい。全画面ボタンをクリックするか「F」キーを押します。Escキーで終了。数秒操作がないと自動的にコントロールがフェードアウトします。'
+      },
+      {
+        question: 'ポモドーロタイマーとして使えますか？',
+        answer: 'はい。「T」キーでカウントダウンモードに切り替え。プリセット（5、10、15、25、40、60分）から選択するか、カスタム時間を設定。「R」キーでリセット。'
+      },
+      {
+        question: 'キーボードショートカットは？',
+        answer: 'F — 全画面、スペース — 設定、S — サウンドON/OFF、T — モード切替、R — リセット、Esc — 終了。'
+      },
+      {
+        question: '効果音はありますか？',
+        answer: 'はい。フリップアニメーション時にレトロなクリック音が再生されます。「S」キーでON/OFF切り替え。'
+      },
+      {
+        question: '明るさの調整はできますか？',
+        answer: 'はい。明るさスライダー（10%〜100%）で視覚的な強度を調整。夜間の使用に最適です。'
+      }
+    ]
+  },
   'placeholder-screen': {
     en: []
+  },
+  'broken-screen': {
+    en: [
+      {
+        question: 'What is a fake broken screen?',
+        answer: 'A fake broken screen is a realistic cracked-screen image displayed on a monitor or device to simulate physical screen damage. It is a harmless prank tool used for jokes, video content, and theatrical effects without actually damaging the display.'
+      },
+      {
+        question: 'How does a broken screen prank work?',
+        answer: 'The broken screen prank works by displaying a high-resolution photo-realistic cracked-screen image in fullscreen mode. The effect is so convincing that observers often believe the display is physically shattered. You can switch between 8 different crack styles and adjust brightness to match the lighting environment for maximum realism.'
+      },
+      {
+        question: 'Can I use this broken screen simulator on my phone?',
+        answer: 'Yes, the broken screen simulator works on all smartphones and tablets. Open the page in your mobile browser, tap the fullscreen button, and rotate to landscape if desired. The realistic cracked display is perfect for convincing friends and family in any setting.'
+      },
+      {
+        question: 'Is the broken screen tool free to use?',
+        answer: 'Yes, the broken screen tool is completely free. No account, no signup, and no download required. It works directly in your browser on desktop, laptop, tablet, phone, and Smart TV. Perfect for last-minute pranks, April Fools Day, or spontaneous jokes.'
+      },
+      {
+        question: 'How to clean a simulated cracked screen?',
+        answer: 'Since the crack is just a fullscreen image and not real damage, no physical repair is needed. Simply click Fullscreen again or press the Escape key to exit fullscreen mode, and the screen will instantly return to normal. The tool is perfectly safe for all devices.'
+      },
+      {
+        question: 'What styles of cracked screens are available?',
+        answer: 'The tool includes 8 different cracked-screen images ranging from minor spiderweb cracks to heavy shatter patterns. You can cycle through them to find the most convincing look for your prank. Each image is rendered in high resolution for maximum realism on any display size.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Qué es una pantalla rota falsa?',
+        answer: 'Una pantalla rota falsa es una imagen realista de pantalla agrietada que se muestra en un monitor o dispositivo para simular daños físicos en la pantalla. Es una herramienta de broma inofensiva para chistes, videos y efectos teatrales sin dañar realmente la pantalla.'
+      },
+      {
+        question: '¿Cómo funciona la broma de la pantalla rota?',
+        answer: 'La broma de la pantalla rota funciona mostrando una imagen fotorrealista de pantalla agrietada en modo pantalla completa. El efecto es tan convincente que los observadores suelen creer que la pantalla está físicamente rota. Puedes cambiar entre 8 estilos de grietas diferentes y ajustar el brillo.'
+      },
+      {
+        question: '¿Puedo usar el simulador de pantalla rota en mi teléfono?',
+        answer: 'Sí, el simulador funciona en todos los teléfonos inteligentes y tabletas. Abre la página en tu navegador móvil, pulsa el botón de pantalla completa y, si lo deseas, gira a horizontal. La pantalla agrietada realista es perfecta para engañar a amigos y familiares.'
+      },
+      {
+        question: '¿La herramienta de pantalla rota es gratuita?',
+        answer: 'Sí, la herramienta de pantalla rota es completamente gratuita. Sin cuenta, sin registro y sin necesidad de descarga. Funciona directamente en tu navegador en cualquier dispositivo.'
+      },
+      {
+        question: '¿Hay diferentes estilos de pantalla agrietada?',
+        answer: 'La herramienta incluye 8 imágenes diferentes de pantallas agrietadas, desde pequeñas telarañas hasta patrones de rotura severos. Puedes recorrerlas para encontrar el aspecto más convincente para tu broma.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O que é uma tela quebrada falsa?',
+        answer: 'Uma tela quebrada falsa é uma imagem realista de tela rachada exibida em um monitor para simular danos físicos na tela. É uma ferramenta de pegadinha inofensiva para brincadeiras, vídeos e efeitos teatrais sem danificar a tela.'
+      },
+      {
+        question: 'Como funciona a pegadinha da tela quebrada?',
+        answer: 'A pegadinha funciona exibindo uma imagem fotorrealista de tela rachada em modo tela cheia. O efeito é tão convincente que observadores geralmente acreditam que a tela está fisicamente quebrada. Você pode alternar entre 8 estilos de rachaduras e ajustar o brilho.'
+      },
+      {
+        question: 'Posso usar o simulador de tela quebrada no meu celular?',
+        answer: 'Sim, o simulador funciona em todos os smartphones e tablets. Abra a página no seu navegador móvel, toque no botão de tela cheia e gire para paisagem se desejar. A tela rachada realista é perfeita para enganar amigos e familiares.'
+      },
+      {
+        question: 'A ferramenta de tela quebrada é gratuita?',
+        answer: 'Sim, a ferramenta é completamente gratuita. Sem conta, sem cadastro e sem necessidade de download. Funciona diretamente no seu navegador em desktop, laptop, tablet, celular e Smart TV.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Qu\'est-ce qu\'un faux écran cassé ?',
+        answer: 'Un faux écran cassé est une image réaliste d\'écran fissuré affichée sur un moniteur pour simuler des dommages physiques. C\'est un outil de blague inoffensif pour des farces, vidéos et effets théâtraux sans endommager l\'écran.'
+      },
+      {
+        question: 'Comment fonctionne la blague de l\'écran cassé ?',
+        answer: 'La blague fonctionne en affichant une image photoréaliste d\'écran fissuré en plein écran. L\'effet est si convaincant que les observateurs croient souvent que l\'écran est physiquement brisé. Vous pouvez changer entre 8 styles de fissures et ajuster la luminosité.'
+      },
+      {
+        question: 'Puis-je utiliser le simulateur d\'écran cassé sur mon téléphone ?',
+        answer: 'Oui, le simulateur fonctionne sur tous les smartphones et tablettes. Ouvrez la page dans votre navigateur mobile, appuyez sur le bouton plein écran et pivotez en paysage si souhaité. L\'écran fissuré réaliste est parfait pour tromper amis et famille.'
+      },
+      {
+        question: 'L\'outil d\'écran cassé est-il gratuit ?',
+        answer: 'Oui, l\'outil est entièrement gratuit. Sans compte, sans inscription et sans téléchargement nécessaire. Il fonctionne directement dans votre navigateur sur tous les appareils.'
+      }
+    ],
+    de: [
+      {
+        question: 'Was ist ein falscher kaputter Bildschirm?',
+        answer: 'Ein falscher kaputter Bildschirm ist ein realistisches Bild eines gesprungenen Displays, das auf einem Monitor angezeigt wird, um physische Schäden zu simulieren. Es ist ein harmloses Scherzwerkzeug für Witze, Videos und Theater-Effekte.'
+      },
+      {
+        question: 'Wie funktioniert der kaputter-Bildschirm-Streich?',
+        answer: 'Der Streich funktioniert durch die Anzeige eines fotorealistischen Bildes eines gesprungenen Bildschirms im Vollbildmodus. Der Effekt ist so überzeugend, dass Beobachter oft glauben, der Bildschirm sei physisch zerbrochen. Sie können zwischen 8 verschiedenen Riss-Stilen wechseln.'
+      },
+      {
+        question: 'Kann ich den kaputter-Bildschirm-Simulator auf meinem Handy verwenden?',
+        answer: 'Ja, der Simulator funktioniert auf allen Smartphones und Tablets. Öffnen Sie die Seite in Ihrem mobilen Browser, tippen Sie auf die Vollbild-Schaltfläche. Der realistische gesprungene Bildschirm ist perfekt, um Freunde und Familie zu überraschen.'
+      },
+      {
+        question: 'Ist das kaputter-Bildschirm-Tool kostenlos?',
+        answer: 'Ja, das Tool ist völlig kostenlos. Kein Konto, keine Anmeldung und kein Download erforderlich. Es funktioniert direkt in Ihrem Browser auf allen Geräten.'
+      }
+    ],
+    hi: [
+      {
+        question: 'फर्जी टूटी स्क्रीन क्या है?',
+        answer: 'फर्जी टूटी स्क्रीन एक यथार्थवादी क्रैक-डिस्प्ले इमेज है जो स्क्रीन पर शारीरिक क्षति का अनुकरण करने के लिए दिखाई जाती है। यह मजाक, वीडियो सामग्री और नाटकीय प्रभावों के लिए एक हानिरहित प्रैंक टूल है।'
+      },
+      {
+        question: 'टूटी स्क्रीन प्रैंक कैसे काम करता है?',
+        answer: 'टूटी स्क्रीन प्रैंक फुलस्क्रीन मोड में एक फोटो-रियलिस्टिक क्रैक-स्क्रीन इमेज प्रदर्शित करके काम करता है। प्रभाव इतना विश्वसनीय है कि देखने वाले अक्सर मान लेते हैं कि स्क्रीन वास्तव में टूट गई है। आप 8 अलग-अलग क्रैक स्टाइल के बीच स्विच कर सकते हैं।'
+      },
+      {
+        question: 'क्या मैं अपने फोन पर टूटी स्क्रीन सिम्युलेटर का उपयोग कर सकता हूँ?',
+        answer: 'हाँ, सिम्युलेटर सभी स्मार्टफोन और टैबलेट पर काम करता है। अपने मोबाइल ब्राउज़र में पेज खोलें और फुलस्क्रीन बटन दबाएँ। यथार्थवादी क्रैक डिस्प्ले दोस्तों और परिवार को आश्चर्यचकित करने के लिए एकदम सही है।'
+      },
+      {
+        question: 'क्या टूटी स्क्रीन टूल मुफ्त है?',
+        answer: 'हाँ, टूल पूरी तरह से मुफ्त है। कोई खाता, कोई साइनअप और कोई डाउनलोड आवश्यक नहीं है। यह डेस्कटॉप, लैपटॉप, टैबलेट, फोन और स्मार्ट टीवी पर आपके ब्राउज़र में सीधे काम करता है।'
+      }
+    ],
+    ja: [
+      {
+        question: '偽の壊れた画面とは何ですか？',
+        answer: '偽の壊れた画面とは、モニターに表示されるリアルなひび割れ画像で、物理的な画面の損傷をシミュレートします。ジョーク、ビデオコンテンツ、劇的な効果のための無害ないたずらツールです。'
+      },
+      {
+        question: '壊れた画面のいたずらはどのように機能しますか？',
+        answer: '全画面モードでフォトリアリスティックなひび割れ画像を表示することで機能します。その効果は非常に説得力があり、見た人はディスプレイが物理的に壊れていると信じてしまうことがよくあります。8種類のひび割れスタイルを切り替えられます。'
+      },
+      {
+        question: 'スマートフォンで壊れた画面シミュレーターを使用できますか？',
+        answer: 'はい、シミュレーターはすべてのスマートフォンとタブレットで動作します。モバイルブラウザでページを開き、全画面ボタンをタップしてください。リアルなひび割れディスプレイは、友人や家族を驚かせるのに最適です。'
+      },
+      {
+        question: '壊れた画面ツールは無料ですか？',
+        answer: 'はい、完全に無料です。アカウントやサインアップ、ダウンロードは必要ありません。デスクトップ、ノートPC、タブレット、スマートフォン、Smart TVでブラウザから直接動作します。'
+      }
+    ]
   }
 };
 
@@ -5067,6 +5465,68 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           'パソコン、ノートPC、モニター、Smart TVの画面を、アニメーショングラデーション、宇宙の星、インタラクティブなサウンドスケープで没入感あふれる<strong>アンビエント画面</strong>に変身させましょう。6つのカラープリセットとマウス操作可能なパーティクルを備えた無料のオンライン<strong>アンビエントディスプレイ</strong>ツールです。',
           '<strong>アンビエントアニメーション</strong>のあらゆる側面をカスタマイズ。6つのプリセット（Cyber Neon、Aurora Dreams、Sunset Solitude、Deep Forest、Cherry Blossom、Cosmic Myst）から選択。速度は0.0〜2.0で調整。星の密度は10〜150粒子まで調整可能。',
           '4チャンネルサウンドスケープミキサー：Lofi Synth、穏やかな雨、暖炉、カスタムトラック。オーバーレイモード：時計、ガイド付き呼吸法、ポモドーロタイマー（5、15、25、45分）。全画面は「F」キー、設定はスペースキー、時計は「C」キー、呼吸法は「B」キー。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'clock-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Flip Clock Online — Aesthetic Fullscreen Clock with Pomodoro Timer for Focus & Ambience',
+        paragraphs: [
+          'Transform any computer display, laptop monitor, PC, or Smart TV into a stunning <strong>flip clock online</strong> with realistic retro flip-card animation, 6 aesthetic themes, and an integrated Pomodoro focus timer. Our free online <strong>fullscreen clock</strong> recreates the satisfying mechanical flip motion of vintage split-flap alarm clocks and airport departure boards — each digit smoothly flips down to reveal the next number with a subtle click sound. Whether you need a <strong>flip clock display</strong> for your desktop while working, a <strong>fullscreen flip clock</strong> for your second monitor during deep focus sessions, a <strong>Pomodoro timer</strong> with flip animation for study sprints, or an aesthetic <strong>digital flip clock</strong> for your living room TV, this tool delivers a completely customizable experience — no downloads, no installation, no ads.',
+          'Personalize every aspect of the <strong>flip clock timer</strong> with comprehensive controls. Choose from 6 carefully crafted themes: <strong>Warm Retro</strong> with a vintage amber glow and classic flip clock aesthetic, <strong>Pure OLED</strong> with deep true blacks and crisp white digits for maximum contrast, <strong>Soft White</strong> for a clean minimal look, <strong>Cyber Grid</strong> with a neon grid background for a tech-inspired vibe, <strong>Rose Gold</strong> with warm pink metallic tones for an elegant feel, and <strong>Space Dusk</strong> with a dark cosmic gradient for a moody atmosphere. Each theme transforms the entire clock display — the background, digit colors, edges, and shadows — giving you a completely different visual experience without changing the core flip animation. Toggle between 12-hour and 24-hour format, show or hide seconds, and use the brightness slider (10% to 100%) to fine-tune the clock\'s visual intensity for any room lighting condition.',
+          'The built-in <strong>Pomodoro focus timer</strong> makes this flip clock a powerful productivity tool. Press "T" to switch from clock mode to Countdown mode, then choose from preset focus intervals: 5 minutes (micro-break), 10 minutes (quick task), 15 minutes (Pomodoro sprint), 25 minutes (classic Pomodoro), 40 minutes (deep work), or 60 minutes (marathon focus). The flip animation works during countdown too — digits flip down satisfyingly as each second passes, providing a visual and auditory rhythm that helps you stay aware of time passing. When the timer reaches zero, a synthesized alarm chord plays to signal your break. The <strong>retro click sound</strong> adds an authentic mechanical feel to every digit flip; press "S" or use the mute toggle to control it. Keyboard shortcuts make control effortless: F for fullscreen, Space for settings, T to switch modes, R to reset, and Esc to exit. All settings are saved automatically in your browser via localStorage, so your theme, timer preference, and sound settings persist between sessions.'
+        ]
+      },
+      es: {
+        heading: 'Reloj Flip Online — Reloj Estético a Pantalla Completa con Temporizador Pomodoro para Enfoque y Ambiente',
+        paragraphs: [
+          'Transforma cualquier pantalla de ordenador, portátil, monitor o Smart TV en un impresionante <strong>reloj flip online</strong> con animación retro realista de tarjetas giratorias, 6 temas estéticos y un temporizador Pomodoro integrado. Nuestro <strong>reloj a pantalla completa</strong> gratuito recrea el satisfactorio movimiento mecánico de los relojes despertadores vintage: cada dígito gira hacia abajo para revelar el siguiente número con un sutil clic. Perfecto como <strong>reloj flip digital</strong> para tu escritorio, <strong>reloj de pantalla completa</strong> para tu segundo monitor, o <strong>temporizador Pomodoro</strong> con animación flip para sesiones de estudio.',
+          'Personaliza cada aspecto del <strong>reloj flip temporizador</strong>. Elige entre 6 temas: Warm Retro (brillo ámbar vintage), Pure OLED (negros profundos con dígitos blancos nítidos), Soft White (minimalista), Cyber Grid (cuadrícula neón), Rose Gold (tonos rosas metálicos) y Space Dusk (gradiente cósmico oscuro). Cada tema transforma la apariencia completa del reloj: fondo, color de dígitos, bordes y sombras. Alterna entre formato de 12 y 24 horas, muestra u oculta los segundos, y ajusta el brillo del 10% al 100% para cualquier condición de iluminación.',
+          'El <strong>temporizador de enfoque Pomodoro</strong> integrado convierte este reloj flip en una potente herramienta de productividad. Presiona "T" para cambiar al modo de cuenta atrás y elige entre intervalos predefinidos: 5, 10, 15, 25, 40 o 60 minutos. La animación flip funciona durante la cuenta atrás: los dígitos giran satisfactoriamente mientras los segundos pasan. Cuando el temporizador llega a cero, suena un acorde de alarma sintetizado. El <strong>sonido de clic retro</strong> añade una sensación mecánica auténtica; presiona "S" para controlarlo. Atajos de teclado: F para pantalla completa, Espacio para configuración, T para cambiar modo, R para reiniciar, Esc para salir.'
+        ]
+      },
+      pt: {
+        heading: 'Relógio Flip Online — Relógio Estético em Tela Cheia com Timer Pomodoro para Foco e Ambiente',
+        paragraphs: [
+          'Transforme qualquer tela de computador, notebook, monitor ou Smart TV em um impressionante <strong>relógio flip online</strong> com animação retrô realista de cartas giratórias, 6 temas estéticos e um timer Pomodoro integrado. Nosso <strong>relógio em tela cheia</strong> gratuito recria o satisfatório movimento mecânico dos relógios vintage: cada dígito gira para baixo revelando o próximo número com um sutil clique. Perfeito como <strong>relógio flip digital</strong> para desktop, <strong>relógio de tela cheia</strong> para segundo monitor, ou <strong>timer Pomodoro</strong> com animação flip.',
+          'Personalize cada aspecto do <strong>relógio flip timer</strong>. Escolha entre 6 temas: Warm Retro (brilho âmbar vintage), Pure OLED (pretos profundos), Soft White (minimalista), Cyber Grid (grade neon), Rose Gold (rosa metálico) e Space Dusk (gradiente cósmico). Alterne entre 12/24h, mostre ou oculte segundos, ajuste o brilho de 10% a 100%.',
+          'O <strong>timer de foco Pomodoro</strong> integrado torna este relógio flip uma ferramenta de produtividade. Pressione "T" para modo contagem regressiva e escolha entre intervalos: 5, 10, 15, 25, 40 ou 60 minutos. A animação flip funciona durante a contagem. Quando o timer chega a zero, um alarme toca. O <strong>som de clique retrô</strong> adiciona sensação mecânica autêntica; pressione "S" para controlar. Atalhos: F para tela cheia, Espaço para configurações, T para modo, R para reiniciar, Esc para sair.'
+        ]
+      },
+      fr: {
+        heading: 'Horloge à Volets en Ligne — Horloge Esthétique Plein Écran avec Minuteur Pomodoro pour la Concentration',
+        paragraphs: [
+          'Transformez n\'importe quel écran d\'ordinateur, portable, moniteur ou Smart TV en une superbe <strong>horloge à volets en ligne</strong> avec animation rétro réaliste de cartes à bascule, 6 thèmes esthétiques et un minuteur Pomodoro intégré. Notre <strong>horloge plein écran</strong> gratuite recrée le mouvement mécanique satisfaisant des réveils vintage : chaque chiffre bascule pour révéler le suivant avec un subtil clic. Parfaite comme <strong>horloge à volets numérique</strong> pour votre bureau, <strong>horloge plein écran</strong> pour votre deuxième moniteur, ou <strong>minuteur Pomodoro</strong> avec animation.',
+          'Personnalisez chaque aspect de l\'<strong>horloge à volets minuteur</strong>. Choisissez parmi 6 thèmes : Warm Retro (lueur ambrée vintage), Pure OLED (noirs profonds), Soft White (minimaliste), Cyber Grid (grille néon), Rose Gold (tons rosés métalliques) et Space Dusk (dégradé cosmique sombre). Basculez entre 12/24h, affichez ou masquez les secondes, réglez la luminosité de 10% à 100%.',
+          'Le <strong>minuteur de concentration Pomodoro</strong> intégré fait de cette horloge un outil de productivité puissant. Appuyez sur "T" pour passer en mode compte à rebours et choisissez parmi les intervalles : 5, 10, 15, 25, 40 ou 60 minutes. L\'animation flip fonctionne pendant le décompte. Un accord d\'alarme retentit à zéro. Le <strong>son de clic rétro</strong> ajoute une sensation mécanique authentique ; appuyez sur "S" pour le contrôler. Raccourcis : F plein écran, Espace réglages, T mode, R réinitialiser, Esc quitter.'
+        ]
+      },
+      de: {
+        heading: 'Klipp-Klapp-Uhr Online — Ästhetische Vollbild-Uhr mit Pomodoro-Timer für Konzentration & Ambiente',
+        paragraphs: [
+          'Verwandeln Sie jeden Computerbildschirm, Laptop, Monitor oder Smart TV in eine atemberaubende <strong>Klipp-Klapp-Uhr online</strong> mit realistischer Retro-Kippkarten-Animation, 6 ästhetischen Designs und integriertem Pomodoro-Timer. Unsere kostenlose <strong>Vollbild-Uhr</strong> erschafft die zufriedenstellende mechanische Bewegung vintage Wecker: jede Ziffer klappt nach unten um die nächste Zahl mit einem dezenten Klick zu enthüllen. Perfekt als <strong>digitale Klappuhr</strong> für den Schreibtisch, <strong>Vollbild-Klappuhr</strong> für den Zweitmonitor, oder <strong>Pomodoro-Timer</strong> mit Flip-Animation.',
+          'Passen Sie jeden Aspekt der <strong>Klappuhr mit Timer</strong> an. Wählen Sie aus 6 Designs: Warm Retro (Vintage-Amber-Glow), Pure OLED (tiefe Schwarztöne), Soft White (minimalistisch), Cyber Grid (Neon-Gitter), Rose Gold (rosé-metallisch) und Space Dusk (dunkler kosmischer Verlauf). Wechseln Sie zwischen 12/24h, zeigen Sie Sekunden an oder aus, regeln Sie die Helligkeit von 10% bis 100%.',
+          'Der integrierte <strong>Pomodoro-Konzentrations-Timer</strong> macht diese Klappuhr zu einem leistungsstarken Produktivitätstool. Drücken Sie "T" für den Countdown-Modus und wählen Sie aus Intervallen: 5, 10, 15, 25, 40 oder 60 Minuten. Die Flip-Animation läuft während des Countdowns. Ein Alarmton ertönt bei Null. Das <strong>Retro-Klickgeräusch</strong> sorgt für authentisches mechanisches Gefühl; "S" zum Steuern. Tasten: F Vollbild, Leertaste Einstellungen, T Modus, R Zurücksetzen, Esc Beenden.'
+        ]
+      },
+      hi: {
+        heading: 'फ्लिप घड़ी ऑनलाइन — पोमोडोरो टाइमर के साथ एस्थेटिक फुलस्क्रीन घड़ी फोकस और माहौल के लिए',
+        paragraphs: [
+          'किसी भी कंप्यूटर डिस्प्ले, लैपटॉप मॉनिटर, पीसी या स्मार्ट टीवी को यथार्थवादी रेट्रो फ्लिप-कार्ड एनिमेशन, 6 एस्थेटिक थीम और एकीकृत पोमोडोरो फोकस टाइमर के साथ एक शानदार <strong>फ्लिप घड़ी ऑनलाइन</strong> में बदलें। हमारी मुफ्त <strong>फुलस्क्रीन घड़ी</strong> विंटेज स्प्लिट-फ्लैप अलार्म घड़ियों की संतोषजनक यांत्रिक गति को फिर से बनाती है। डेस्कटॉप के लिए <strong>फ्लिप घड़ी डिस्प्ले</strong>, सेकेंड मॉनिटर के लिए <strong>फुलस्क्रीन फ्लिप घड़ी</strong>, या अध्ययन के लिए <strong>पोमोडोरो टाइमर</strong> के रूप में एकदम सही।',
+          '<strong>फ्लिप घड़ी टाइमर</strong> के हर पहलू को कस्टमाइज़ करें। 6 थीम में से चुनें: वार्म रेट्रो (एम्बर ग्लो), प्योर OLED (गहरा काला), सॉफ्ट व्हाइट (मिनिमल), साइबर ग्रिड (नीयन ग्रिड), रोज़ गोल्ड (गुलाबी धात्विक) और स्पेस डस्क (कॉस्मिक ग्रेडिएंट)। 12/24 घंटे प्रारूप बदलें, सेकंड दिखाएं/छिपाएं, चमक 10% से 100% समायोजित करें।',
+          'एकीकृत <strong>पोमोडोरो फोकस टाइमर</strong> इस फ्लिप घड़ी को एक शक्तिशाली उत्पादकता उपकरण बनाता है। "T" दबाकर काउंटडाउन मोड पर जाएं और अंतराल चुनें: 5, 10, 15, 25, 40 या 60 मिनट। काउंटडाउन के दौरान फ्लिप एनिमेशन काम करता है। जब टाइमर शून्य पर पहुंचता है तो अलार्म बजता है। <strong>रेट्रो क्लिक ध्वनि</strong> प्रामाणिक यांत्रिक अनुभव जोड़ती है; "S" दबाकर नियंत्रित करें। शॉर्टकट: F फुलस्क्रीन, स्पेस सेटिंग्स, T मोड, R रीसेट, Esc बाहर।'
+        ]
+      },
+      ja: {
+        heading: 'フリップ時計 オンライン — ポモドーロタイマー付き高級感のある全画面時計',
+        paragraphs: [
+          'パソコン、ノートPC、モニター、Smart TVの画面を、リアルなレトロフリップカードアニメーション、6つの美的テーマ、統合されたポモドーロタイマーを備えた魅惑的な<strong>フリップ時計オンライン</strong>に変身させましょう。ビンテージのスプリットフラップ時計の満足感あるメカニカルな動きを再現。デスクトップ用<strong>フリップ時計表示</strong>、セカンドモニター用<strong>全画面フリップ時計</strong>、学習用<strong>ポモドーロタイマー</strong>として最適。',
+          '<strong>フリップ時計タイマー</strong>のあらゆる側面をカスタマイズ。6つのテーマから選択：Warm Retro（ビンテージアンバーグロー）、Pure OLED（深い黒）、Soft White（クリーンミニマル）、Cyber Grid（ネオングリッド）、Rose Gold（ローズゴールド）、Space Dusk（ダークコズミック）。12/24時間表示切替、秒表示ON/OFF、明るさ10%〜100%調節。',
+          '統合された<strong>ポモドーロフォーカスタイマー</strong>が、このフリップ時計を強力な生産性ツールに変えます。「T」キーでカウントダウンモードに切り替え、インターバル（5、10、15、25、40、60分）を選択。カウントダウン中もフリップアニメーションが作動。タイマーがゼロになるとアラームが鳴動。<strong>レトロクリック音</strong>が本物のメカニカル感を演出。「S」キーで制御。ショートカット：F全画面、スペース設定、Tモード切替、Rリセット、Esc終了。'
         ]
       }
     };
@@ -5949,6 +6409,69 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           '画面パネルのチェックにおいては、本ツールは詳細な <strong>黒い画面 テスト ノートパソコン</strong> や、定番の <strong>OLED 黒い画面 テスト</strong> 用途に最適です。画面の検査項目である <strong>黒い画面 AMOLED テスト</strong> や、モバイルディスプレイ向けの <strong>黒い画面 テスト スマホ</strong>、また <strong>黒い画面 テスト iPhone</strong> などを実行できます。このテストを実行すると、純粋な <strong>黒い画面 テスト 画像</strong> が出力され、初期確認などのドット抜け検知に役立ちます。',
           'メディア制作の現場では、映像クリエイターが <strong>全画面 黒い画面 1920x1080</strong> や、動画比率の <strong>1080p 黒い画面 全画面</strong>、スマホ向きの <strong>全画面 黒い画面 9:16</strong> などのサイズを必要とします。サイドメニューを使えば素早く <strong>黒い画面 全画面 ダウンロード</strong> を実行でき、<strong>黒い画面 全画面 画像</strong> や <strong>黒い全画面 画像</strong> をエクスポートできます。これにより <strong>無料 黒い画面 オンライン 著作権なし</strong> のテンプレート素材として使え、わざわざ <strong>無料 黒い画面 オンライン 動画</strong> を検索したり <strong>無料 黒い画面 オンライン ダウンロード</strong> で探す手間なしに、純粋な <strong>黒</strong> （ブラック）カラーを出力できます。',
           '黒い画面（無表示状態）は多くの目的で活用されます：モニターのキャリブレーションでスタックピクセルやバックライト漏れをチェックする、有機EL（OLED）スマートフォンの消灯ピクセル特性を利用してバッテリーを節約する、動画編集時のクロマキーチェックや合成動画の背景に使用する、パソコン本体を稼働させたまま（ダウンロードやエンコード中など）でサブモニターの輝度のみを暗くする、液晶テレビの焼き付き防止（Burn-in防止）、液晶表面のホコリ除去を楽にするためのクリーニング補助、または目の疲れを癒したり読書時の集中環境を整えるミニマリズム用途など、多岐にわたります。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'broken-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Broken Screen Prank – Fake Cracked Display Guide & Use Cases',
+        paragraphs: [
+          'The <strong>broken screen prank</strong> is one of the most effective and timeless pranks you can pull on friends, family, or coworkers. Our <strong>fake broken screen</strong> tool generates a photorealistic <strong>cracked screen</strong> effect that looks exactly like a physically shattered display. Whether you want a <strong>fake broken monitor prank</strong>, a <strong>fake broken laptop screen prank</strong>, or a <strong>fake cracked phone display</strong> to prank someone, this tool provides 8 high-resolution crack patterns that cycle through with a single click.',
+          'People search for many related terms when looking for this kind of prank. Common search phrases include <strong>fake broken screen</strong>, <strong>broken screen prank</strong>, <strong>cracked screen simulator</strong>, <strong>fake crack screen</strong>, <strong>cracked screen prank</strong>, <strong>broken monitor prank</strong>, and <strong>fake broken phone screen</strong>. By using our tool, you get instant access to a convincing <strong>cracked screen simulator</strong> without downloading any apps, installing software, or searching for <strong>fake cracked screen images</strong> online.',
+          'For the best prank experience, we recommend entering fullscreen mode before showing the screen to your target. The fullscreen effect hides browser UI elements that would otherwise reveal the prank. Adjust the brightness slider to match the ambient lighting of the room — a dimmer setting works best in darker environments, while higher brightness is more convincing in well-lit offices and living rooms. The tool also includes a <strong>brightness control</strong>, <strong>timer</strong>, and <strong>share</strong> feature to send the cracked screen to another device.',
+          'The <strong>broken screen simulator</strong> is ideal for April Fools Day pranks, office jokes, YouTube and TikTok prank videos, theater and stage productions, gaming stream intermissions, and even film and video production where a broken display is needed on set. Because the tool runs entirely in the browser, it works on any device — desktop PCs, laptops, MacBooks, Chromebooks, tablets, smartphones, and Smart TVs. No account, no signup, no download — just open and prank.'
+        ]
+      },
+      es: {
+        heading: 'Broma de Pantalla Rota – Guía y Casos de Uso del Simulador de Pantalla Agrietada',
+        paragraphs: [
+          'La <strong>broma de pantalla rota</strong> es una de las bromas más efectivas y atemporales que puedes hacer a amigos, familiares o compañeros de trabajo. Nuestra herramienta de <strong>pantalla rota falsa</strong> genera un efecto fotorrealista de <strong>pantalla agrietada</strong> que se ve exactamente como una pantalla físicamente rota. Ya sea que quieras una <strong>broma de monitor roto falso</strong>, una <strong>broma de portátil con pantalla rota falsa</strong> o un <strong>teléfono con pantalla agrietada falsa</strong>, esta herramienta ofrece 8 patrones de grietas de alta resolución.',
+          'Las frases de búsqueda comunes incluyen <strong>pantalla rota falsa</strong>, <strong>broma pantalla rota</strong>, <strong>simulador de pantalla agrietada</strong>, <strong>pantalla agrietada falsa</strong> y <strong>broma monitor roto</strong>. Con nuestra herramienta obtienes acceso instantáneo a un convincente <strong>simulador de pantalla rota</strong> sin descargar aplicaciones ni instalar software.',
+          'Para la mejor experiencia, recomendamos entrar en modo de pantalla completa antes de mostrar la pantalla. El brillo ajustable te permite igualar la iluminación ambiente de la habitación. La herramienta también incluye control de brillo, temporizador y función de compartir para enviar la pantalla agrietada a otro dispositivo.'
+        ]
+      },
+      pt: {
+        heading: 'Pegadinha de Tela Quebrada – Guia e Casos de Uso do Simulador de Tela Rachada',
+        paragraphs: [
+          'A <strong>pegadinha de tela quebrada</strong> é uma das brincadeiras mais eficazes e atemporais que você pode fazer com amigos, familiares ou colegas de trabalho. Nossa ferramenta de <strong>tela quebrada falsa</strong> gera um efeito fotorrealista de <strong>tela rachada</strong> que parece exatamente uma tela fisicamente destruída. A ferramenta oferece 8 padrões de rachadura de alta resolução.',
+          'Termos de busca comuns incluem <strong>tela quebrada falsa</strong>, <strong>pegadinha tela quebrada</strong>, <strong>simulador de tela rachada</strong>, <strong>tela rachada falsa</strong> e <strong>pegadinha monitor quebrado</strong>. Com nossa ferramenta você tem acesso instantâneo a um convincente <strong>simulador de tela quebrada</strong> sem baixar aplicativos.',
+          'Para a melhor experiência, recomendamos entrar em modo tela cheia antes de mostrar a tela. O brilho ajustável permite igualar a iluminação ambiente. A ferramenta também inclui controle de brilho, temporizador e recurso de compartilhar.'
+        ]
+      },
+      fr: {
+        heading: 'Blague d\'Écran Cassé – Guide et Cas d\'Utilisation du Simulateur d\'Écran Fissuré',
+        paragraphs: [
+          'La <strong>blague d\'écran cassé</strong> est l\'une des farces les plus efficaces et intemporelles que vous puissiez faire à vos amis, votre famille ou vos collègues. Notre outil de <strong>faux écran cassé</strong> génère un effet photoréaliste d\'<strong>écran fissuré</strong> qui ressemble exactement à un écran physiquement brisé. L\'outil propose 8 motifs de fissures en haute résolution.',
+          'Les termes de recherche courants incluent <strong>faux écran cassé</strong>, <strong>blague écran cassé</strong>, <strong>simulateur d\'écran fissuré</strong>, <strong>écran fissuré faux</strong> et <strong>farce écran cassé</strong>. Avec notre outil, vous avez un accès instantané à un <strong>simulateur d\'écran cassé</strong> convaincant sans téléchargement d\'application.',
+          'Pour la meilleure expérience, nous recommandons le mode plein écran avant de montrer l\'écran. La luminosité réglable permet de correspondre à l\'éclairage ambiant. L\'outil inclut également le contrôle de la luminosité, une minuterie et une fonction de partage.'
+        ]
+      },
+      de: {
+        heading: 'Kaputter Bildschirm Scherz – Anleitung und Anwendungsfälle für den Rissbildschirm-Simulator',
+        paragraphs: [
+          'Der <strong>kaputter-Bildschirm-Streich</strong> ist einer der effektivsten und zeitlosesten Streiche, die Sie Freunden, Familie oder Kollegen spielen können. Unser Tool für <strong>falschen kaputten Bildschirm</strong> erzeugt einen fotorealistischen <strong>gesprungenen Bildschirm</strong>-Effekt, der genau wie ein physisch zerbrochener Bildschirm aussieht. Das Tool bietet 8 hochauflösende Rissmuster.',
+          'Häufige Suchbegriffe sind <strong>falscher kaputter Bildschirm</strong>, <strong>Bildschirm kaputt Streich</strong>, <strong>Rissbildschirm-Simulator</strong>, <strong>gefälschter zerkratzter Bildschirm</strong> und <strong>Monitor kaputt Streich</strong>. Mit unserem Tool erhalten Sie sofortigen Zugang zu einem überzeugenden <strong>Rissbildschirm-Simulator</strong> ohne App-Download.',
+          'Für die beste Erfahrung empfehlen wir den Vollbildmodus, bevor Sie den Bildschirm zeigen. Die einstellbare Helligkeit passt sich der Raumbeleuchtung an. Das Tool enthält auch Helligkeitsregelung, Timer und Teilen-Funktion.'
+        ]
+      },
+      hi: {
+        heading: 'टूटी स्क्रीन प्रैंक – फर्जी क्रैक-डिस्प्ले गाइड और उपयोग के मामले',
+        paragraphs: [
+          '<strong>टूटी स्क्रीन प्रैंक</strong> सबसे प्रभावी और कालातीत मजाक में से एक है जो आप दोस्तों, परिवार या सहकर्मियों पर कर सकते हैं। हमारा <strong>फर्जी टूटी स्क्रीन</strong> टूल एक फोटोरियलिस्टिक <strong>क्रैक-स्क्रीन</strong> इफ़ेक्ट उत्पन्न करता है जो बिल्कुल शारीरिक रूप से टूटी हुई स्क्रीन जैसा दिखता है। यह टूल 8 हाई-रिज़ॉल्यूशन क्रैक पैटर्न प्रदान करता है।',
+          'सामान्य खोज वाक्यांशों में <strong>फर्जी टूटी स्क्रीन</strong>, <strong>टूटी स्क्रीन प्रैंक</strong>, <strong>क्रैक-डिस्प्ले सिम्युलेटर</strong>, <strong>फर्जी क्रैक स्क्रीन</strong> और <strong>टूटा मॉनिटर प्रैंक</strong> शामिल हैं। हमारे टूल से आपको बिना कोई ऐप डाउनलोड किए तुरंत एक विश्वसनीय <strong>क्रैक-स्क्रीन सिम्युलेटर</strong> मिल जाता है।',
+          'सबसे अच्छे अनुभव के लिए, हम स्क्रीन दिखाने से पहले फुलस्क्रीन मोड में जाने की सलाह देते हैं। एडजस्टेबल ब्राइटनेस आपको कमरे की रोशनी से मेल खाने देता है। टूल में ब्राइटनेस कंट्रोल, टाइमर और शेयर फीचर भी शामिल है।'
+        ]
+      },
+      ja: {
+        heading: '壊れた画面のいたずら – 偽のひび割れディスプレイガイドと使用例',
+        paragraphs: [
+          '<strong>壊れた画面のいたずら</strong>は、友人、家族、同僚に仕掛けられる最も効果的で時代を超越したいたずらの一つです。私たちの<strong>偽の壊れた画面</strong>ツールは、物理的に割れたディスプレイにまったくそっくりなフォトリアリスティックな<strong>ひび割れ画面</strong>エフェクトを生成します。このツールは8つの高解像度ひび割れパターンを提供します。',
+          '一般的な検索フレーズには、<strong>偽の壊れた画面</strong>、<strong>壊れた画面 いたずら</strong>、<strong>ひび割れ画面シミュレーター</strong>、<strong>偽のクラック画面</strong>、<strong>壊れたモニター いたずら</strong>などがあります。このツールを使えば、アプリをダウンロードすることなく、すぐに説得力のある<strong>ひび割れ画面シミュレーター</strong>を利用できます。',
+          '最良の体験のために、画面を見せる前に全画面モードに入ることをお勧めします。調整可能な明るさで部屋の照明に合わせることができます。明るさコントロール、タイマー、共有機能も含まれています。'
         ]
       }
     };

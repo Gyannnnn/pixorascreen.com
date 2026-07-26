@@ -12,7 +12,7 @@ const { tool, locale } = Astro.props;
 const useCases = tool.useCases.join(', ');
 const controls = tool.controls.join(', ');
 const name = toolName(locale, tool);
-const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen') ? getBlogKeywordsContent(locale, tool.id) : null;
+const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen') ? getBlogKeywordsContent(locale, tool.id) : null;
 ---
 
 <article class="site-shell rich-article max-w-3xl py-16">
@@ -62,6 +62,16 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         Fine-tune the crackling fire audio volume to complement your environment. Pair it with soft background lo-fi music, cozy lighting, a warm beverage, or quiet reading to build the ultimate soothing atmosphere in any home, apartment, office, coffee shop, studio, or waiting room.
       </p>
     </>
+  ) : tool.kind === 'saver' && tool.id === 'clock-screen' ? (
+    <>
+      <h2>Focus setup and productivity workflow.</h2>
+      <p>
+        When using {name.toLowerCase()} for focus sessions, study sprints, or as a desktop companion, place it on a second monitor or beside your primary display. The flip clock provides an always-visible time reference without demanding attention, while the integrated Pomodoro timer helps structure your work into focused intervals and restorative breaks. The gentle flip animation and optional click sound create a subtle productivity rhythm.
+      </p>
+      <p>
+        For optimal use, set the clock to 24-hour format or toggle seconds off depending on your preference. Switch to Countdown mode and select a Pomodoro interval that matches your workflow. Adjust brightness downward in low-light environments to reduce eye strain and make the clock a comfortable presence rather than a distraction. The retro flip animation is designed to be satisfying without being intrusive, making it suitable for long-running sessions in offices, libraries, study rooms, and home workspaces.
+      </p>
+    </>
   ) : tool.kind === 'saver' ? (
     <>
       <h2>Ambient setup and room atmosphere.</h2>
@@ -70,6 +80,22 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
       </p>
       <p>
         Fine-tune the ambient audio volume to complement your environment. Pair it with soft background lo-fi music, cozy lighting, a warm beverage, or quiet reading to build the ultimate soothing atmosphere in any home, apartment, office, coffee shop, studio, or waiting room.
+      </p>
+    </>
+  ) : tool.kind === 'prank' ? (
+    <>
+      <h2>Prank setup and performance tips.</h2>
+      <p>
+        When using {name.toLowerCase()} for a prank, timing and presentation matter as much as the visual effect. Enter fullscreen mode on your device
+        before your target sees the screen. If possible, keep the device at a slight angle so the simulated crack lines catch the light naturally.
+        The 8 crack patterns cycle through different levels of severity, from subtle spiderweb fractures to dramatic full-shatter effects, so choose
+        the one that best matches the situation.
+      </p>
+      <p>
+        The brightness control is especially important for prank realism. Lower brightness works best in dim rooms — a bright cracked screen in a dark
+        room can look obviously fake. For daytime office pranks, raise the brightness to match the ambient overhead lighting. The optional timer can
+        be set to exit fullscreen automatically after a few seconds as a self-reveal punchline. For the most convincing effect, mute your device
+        beforehand — unexpected audio can break the illusion before the visual has time to sink in.
       </p>
     </>
   ) : (

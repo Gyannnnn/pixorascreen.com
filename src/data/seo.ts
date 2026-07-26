@@ -111,6 +111,33 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'रेन स्क्रीन ऑनलाइन - डेस्कटॉप और टीवी के लिए यथार्थवादी बारिश का माहौल',
     ja: '雨の画面（レインスクリーン）オンライン - デスクトップ・TV向けリアルな雨の雰囲気',
   },
+  'clock-screen': {
+    en: 'Flip Clock Online – Aesthetic Fullscreen Flip Clock with Pomodoro Timer',
+    es: 'Reloj Flip Online - Reloj Flip Estético a Pantalla Completa con Temporizador Pomodoro',
+    pt: 'Relógio Flip Online - Relógio Flip Estético em Tela Cheia com Timer Pomodoro',
+    fr: 'Horloge à Volets en Ligne - Horloge à Volets Esthétique Plein Écran avec Minuteur Pomodoro',
+    de: 'Klipp-Klapp-Uhr Online - Ästhetische Vollbild-Klappuhr mit Pomodoro-Timer',
+    hi: 'फ्लिप घड़ी ऑनलाइन - पोमोडोरो टाइमर के साथ एस्थेटिक फुलस्क्रीन फ्लिप घड़ी',
+    ja: 'フリップ時計 オンライン - ポモドーロタイマー付き高級感のある全画面フリップ時計',
+  },
+  'galaxy-screen': {
+    en: 'Galaxy Screen – Interactive Spiral Galaxy Simulation with Real-Time Controls',
+    es: 'Pantalla de Galaxia Online - Simulación Interactiva de Galaxia Espiral en Tiempo Real',
+    pt: 'Tela de Galáxia Online - Simulação Interativa de Galáxia Espiral em Tempo Real',
+    fr: 'Écran Galaxie en Ligne - Simulation Interactive de Galaxie Spirale en Temps Réel',
+    de: 'Galaxie-Bildschirm Online - Interaktive Spiralgalaxie-Simulation in Echtzeit',
+    hi: 'गैलेक्सी स्क्रीन ऑनलाइन - रीयल-टाइम नियंत्रणों के साथ इंटरैक्टिव सर्पिल आकाशगंगा सिमुलेशन',
+    ja: '銀河画面 オンライン - リアルタイム操作可能なインタラクティブ渦巻銀河シミュレーション',
+  },
+  'broken-screen': {
+    en: 'Broken Screen Prank - Free Fake Cracked Screen Simulator Online',
+    es: 'Broma de Pantalla Rota - Simulador de Pantalla Agrietada Falsa Gratis Online',
+    pt: 'Pegadinha de Tela Quebrada - Simulador de Tela Rachada Falsa Grátis Online',
+    fr: 'Blague d\'Écran Cassé - Simulateur d\'Écran Fissuré Gratuit en Ligne',
+    de: 'Kaputter Bildschirm Scherz - Kostenloser Fake-Cracked-Screen-Simulator Online',
+    hi: 'टूटी स्क्रीन प्रैंक - मुफ्त ऑनलाइन फर्जी क्रैक-डिस्प्ले सिम्युलेटर',
+    ja: '壊れた画面 いたずら - 無料オンライン偽のひび割れ画面シミュレーター',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -194,6 +221,33 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Regenbildschirm mit realistischen Regentropfen, Regen auf Glas, einstellbarem Wind, Umgebungsblitzen und 8 Farben. Vollbild-Regenatmosphäre für Desktop, Laptop, Monitor und TV.',
     hi: 'किसी भी स्क्रीन को यथार्थवादी बारिश की बूंदों, कांच पर बारिश, समायोज्य हवा, एम्बिएंट लाइटनिंग और 8 रंगों के साथ मुफ्त ऑनलाइन रेन स्क्रीन में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रेन एम्बिएंस।',
     ja: 'リアルな雨粒、窓ガラスの雨、調整可能な風、環境雷、8色のカラープリセットを備えた無料のオンライン雨画面にどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向けの全画面雨の雰囲気。ダウンロード不要。',
+  },
+  'clock-screen': {
+    en: 'Turn any screen into a free online flip clock with realistic retro flip-card animation, 6 aesthetic themes, 12/24h format, seconds toggle, Pomodoro timer, and ambient click sound. Fullscreen clock for desktop, laptop, monitor, and TV — no download needed.',
+    es: 'Convierte cualquier pantalla en un reloj flip online gratis con animación realista de tarjetas giratorias, 6 temas estéticos, formato 12/24h, segundos, temporizador Pomodoro y sonido de clic ambiental. Reloj a pantalla completa para escritorio, portátil, monitor y TV.',
+    pt: 'Transforme qualquer tela em um relógio flip online grátis com animação realista de cartas giratórias, 6 temas estéticos, formato 12/24h, segundos, timer Pomodoro e som de clique ambiente. Relógio em tela cheia para desktop, notebook, monitor e TV.',
+    fr: 'Transformez n\'importe quel écran en une horloge à volets en ligne gratuite avec animation réaliste de cartes à bascule, 6 thèmes esthétiques, format 12/24h, secondes, minuteur Pomodoro et son de clic d\'ambiance. Horloge plein écran pour PC, portable, moniteur et TV.',
+    de: 'Verwandeln Sie jeden Bildschirm in eine kostenlose Online-Klappuhr mit realistischer Kippkarten-Animation, 6 ästhetischen Designs, 12/24h-Format, Sekunden, Pomodoro-Timer und dezentem Klick-Sound. Vollbild-Uhr für Desktop, Laptop, Monitor und TV.',
+    hi: 'किसी भी स्क्रीन को यथार्थवादी रेट्रो फ्लिप-कार्ड एनिमेशन, 6 एस्थेटिक थीम, 12/24 घंटे प्रारूप, सेकंड, पोमोडोरो टाइमर और एम्बिएंट क्लिक साउंड के साथ मुफ्त ऑनलाइन फ्लिप घड़ी में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन घड़ी — बिना डाउनलोड के।',
+    ja: 'リアルなレトロフリップカードアニメーション、6つの美的テーマ、12/24時間表示、秒表示、ポモドーロタイマー、環境クリック音を備えた無料のオンラインフリップ時計にどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面時計。ダウンロード不要。',
+  },
+  'galaxy-screen': {
+    en: 'Turn any screen into a free online galaxy screen with realistic spiral galaxy animation, 5 color themes, adjustable star density, rotation speed, 3D tilt, gravitational lensing black hole effect, and ambient space audio. Fullscreen galaxy for desktop, laptop, monitor, and TV — no download needed.',
+    es: 'Convierte cualquier pantalla en una pantalla de galaxia online gratis con animación realista de galaxia espiral, 5 temas de color, densidad de estrellas ajustable, velocidad de rotación, inclinación 3D, efecto de lente gravitacional de agujero negro y audio espacial ambiental. Galaxia a pantalla completa para escritorio, portátil, monitor y TV.',
+    pt: 'Transforme qualquer tela em uma tela de galáxia online grátis com animação realista de galáxia espiral, 5 temas de cor, densidade de estrelas ajustável, velocidade de rotação, inclinação 3D, efeito de lente gravitacional de buraco negro e áudio espacial ambiente. Galáxia em tela cheia para desktop, notebook, monitor e TV.',
+    fr: 'Transformez n\'importe quel écran en un écran de galaxie en ligne gratuit avec animation réaliste de galaxie spirale, 5 thèmes de couleur, densité d\'étoiles réglable, vitesse de rotation, inclinaison 3D, effet de lentille gravitationnelle de trou noir et audio spatial d\'ambiance. Galaxie plein écran pour PC, portable, moniteur et TV.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Galaxie-Bildschirm mit realistischer Spiralgalaxie-Animation, 5 Farbthemen, einstellbarer Sterndichte, Rotationsgeschwindigkeit, 3D-Neigung, Gravitationslinsen-Schwarzes-Loch-Effekt und Ambient-Weltraum-Audio. Vollbild-Galaxie für Desktop, Laptop, Monitor und TV.',
+    hi: 'किसी भी स्क्रीन को यथार्थवादी सर्पिल आकाशगंगा एनिमेशन, 5 रंग थीम, समायोज्य तारा घनत्व, घूर्णन गति, 3D झुकाव, गुरुत्वाकर्षण लेंसिंग ब्लैक होल प्रभाव और एम्बिएंट स्पेस ऑडियो के साथ मुफ्त ऑनलाइन गैलेक्सी स्क्रीन में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन गैलेक्सी — बिना डाउनलोड के।',
+    ja: 'リアルな渦巻銀河アニメーション、5つのカラーテーマ、調整可能な星の密度、回転速度、3D傾き、重力レンズ効果のブラックホール、環境宇宙音声を備えた無料のオンライン銀河画面にどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面銀河。ダウンロード不要。',
+  },
+  'broken-screen': {
+    en: 'Turn any screen into a realistic fake broken screen. The best free online prank tool for April Fools, office jokes, social media content, and harmless fun. 8 cracked-screen styles in fullscreen.',
+    es: 'Convierte cualquier pantalla en una falsa pantalla rota realista. La mejor herramienta de broma online gratis para bromas de oficina y contenido para redes sociales. 8 estilos de pantalla agrietada a pantalla completa.',
+    pt: 'Transforme qualquer tela em uma tela quebrada falsa realista. A melhor ferramenta de pegadinha online grátis para brincadeiras de escritório e conteúdo para mídias sociais. 8 estilos de tela rachada em tela cheia.',
+    fr: 'Transformez n\'importe quel écran en un faux écran cassé réaliste. Le meilleur outil de blague en ligne gratuit pour les farces au bureau et le contenu pour les réseaux sociaux. 8 styles d\'écran fissuré en plein écran.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen realistischen falschen kaputten Bildschirm. Das beste kostenlose Online-Scherz-Tool für Bürostreiche und Social-Media-Inhalte. 8 Stile für gesprungene Bildschirme im Vollbildmodus.',
+    hi: 'किसी भी स्क्रीन को यथार्थवादी फर्जी टूटी स्क्रीन में बदलें। ऑफिस मजाक और सोशल मीडिया कंटेंट के लिए सबसे अच्छा मुफ्त ऑनलाइन प्रैंक टूल। फुलस्क्रीन में 8 क्रैक-स्क्रीन शैलियाँ।',
+    ja: 'あらゆる画面をリアルな偽の壊れた画面に変身。エイプリルフール、オフィスジョーク、ソーシャルメディアコンテンツに最適な無料オンラインいたずらツール。全画面で8種類のひび割れスタイル。',
   },
 };
 
@@ -377,6 +431,42 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
           '@type': 'HowToStep',
           name: 'Set Optional Sleep Timer',
           text: 'Enable the automatic sleep timer (15, 30, 60, or 90 minutes) for nighttime relaxation, study sessions, or sleeping.'
+        }
+      ]
+    });
+  }
+
+  if (tool.id === 'clock-screen') {
+    baseSchemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to Use an Online Flip Clock as a Fullscreen Timer & Focus Tool',
+      description: 'A step-by-step guide to setting up and customizing an aesthetic flip clock online with Pomodoro timer, themes, and keyboard shortcuts.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Open the Flip Clock Tool',
+          text: 'Load the page on your laptop, desktop monitor, tablet, or Smart TV web browser. The flip clock displays the current time immediately with retro flip-card animation.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Customize Theme & Format',
+          text: 'Press Space to open settings. Choose from 6 themes (Warm Retro, Pure OLED, Soft White, Cyber Grid, Rose Gold, Space Dusk). Toggle 12/24-hour format and show or hide seconds.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Enable Fullscreen View',
+          text: 'Click the Fullscreen button or press "F" to fill your entire display with the flip clock. The interface auto-hides after a few seconds of inactivity for a clean view.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Activate the Pomodoro Timer',
+          text: 'Press "T" to switch to Countdown mode. Select a preset focus interval (5, 10, 15, 25, 40, or 60 minutes) or set a custom duration. The flip animation counts down visually.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Adjust Sound & Brightness',
+          text: 'Toggle retro click sound with "S" or the mute button. Use the brightness slider (10% to 100%) to adjust the clock visibility for any room lighting condition. Press "R" to reset the countdown.'
         }
       ]
     });
