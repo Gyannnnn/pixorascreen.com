@@ -138,6 +138,15 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'टूटी स्क्रीन प्रैंक - मुफ्त ऑनलाइन फर्जी क्रैक-डिस्प्ले सिम्युलेटर',
     ja: '壊れた画面 いたずら - 無料オンライン偽のひび割れ画面シミュレーター',
   },
+  'blue-screen-prank': {
+    en: 'Fake Blue Screen Prank - BSOD Simulator & Windows Crash Prank Online',
+    es: 'Broma de Pantalla Azul Falsa - Simulador BSOD y Broma de Fallo de Windows',
+    pt: 'Pegadinha de Tela Azul Falsa - Simulador BSOD e Pegadinha de Crash do Windows',
+    fr: 'Blague d\'Écran Bleu Faux - Simulateur BSOD et Farce de Plantage Windows',
+    de: 'Falscher Blauer Bildschirm Streich - BSOD-Simulator & Windows-Absturz-Prank',
+    hi: 'फर्जी ब्लू स्क्रीन प्रैंक - BSOD सिम्युलेटर और विंडोज क्रैश प्रैंक ऑनलाइन',
+    ja: '偽のブルースクリーンいたずら - BSODシミュレーター＆Windowsクラッシュいたずらオンライン',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -248,6 +257,15 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen realistischen falschen kaputten Bildschirm. Das beste kostenlose Online-Scherz-Tool für Bürostreiche und Social-Media-Inhalte. 8 Stile für gesprungene Bildschirme im Vollbildmodus.',
     hi: 'किसी भी स्क्रीन को यथार्थवादी फर्जी टूटी स्क्रीन में बदलें। ऑफिस मजाक और सोशल मीडिया कंटेंट के लिए सबसे अच्छा मुफ्त ऑनलाइन प्रैंक टूल। फुलस्क्रीन में 8 क्रैक-स्क्रीन शैलियाँ।',
     ja: 'あらゆる画面をリアルな偽の壊れた画面に変身。エイプリルフール、オフィスジョーク、ソーシャルメディアコンテンツに最適な無料オンラインいたずらツール。全画面で8種類のひび割れスタイル。',
+  },
+  'blue-screen-prank': {
+    en: 'Turn any screen into a realistic fake Windows BSOD crash. The most convincing blue screen prank online with animated progress, 8 stop codes, QR code, and configurable simulation. Free, harmless, no download.',
+    es: 'Convierte cualquier pantalla en un falso fallo BSOD de Windows realista. La broma de pantalla azul más convincente online con progreso animado, 8 códigos de fallo, código QR y simulación configurable. Gratis, inofensivo, sin descarga.',
+    pt: 'Transforme qualquer tela em um falso crash BSOD do Windows realista. A pegadinha de tela azul mais convincente online com progresso animado, 8 códigos de parada, QR Code e simulação configurável. Grátis, inofensivo, sem download.',
+    fr: 'Transformez n\'importe quel écran en un faux plantage BSOD Windows réaliste. La blague d\'écran bleu la plus convaincante en ligne avec progression animée, 8 codes d\'arrêt, QR code et simulation configurable. Gratuit, inoffensif, sans téléchargement.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen realistischen falschen Windows-BSOD-Absturz. Der überzeugendste blaue-Bildschirm-Streich online mit animiertem Fortschritt, 8 Stoppcodes, QR-Code und konfigurierbarer Simulation. Kostenlos, harmlos, kein Download.',
+    hi: 'किसी भी स्क्रीन को यथार्थवादी फर्जी विंडोज BSOD क्रैश में बदलें। एनिमेटेड प्रोग्रेस, 8 स्टॉप कोड, QR कोड और कॉन्फ़िगरेबल सिमुलेशन के साथ सबसे विश्वसनीय ब्लू स्क्रीन प्रैंक ऑनलाइन। मुफ्त, हानिरहित, बिना डाउनलोड।',
+    ja: 'あらゆる画面をリアルな偽のWindows BSODクラッシュに変身。アニメーション進行、8つのストップコード、QRコード、設定可能なシミュレーションを備えた最も説得力のあるオンラインブルースクリーンいたずら。無料、無害、ダウンロード不要。',
   },
 };
 
@@ -467,6 +485,42 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
           '@type': 'HowToStep',
           name: 'Adjust Sound & Brightness',
           text: 'Toggle retro click sound with "S" or the mute button. Use the brightness slider (10% to 100%) to adjust the clock visibility for any room lighting condition. Press "R" to reset the countdown.'
+        }
+      ]
+    });
+  }
+
+  if (tool.id === 'blue-screen-prank') {
+    baseSchemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to Prank Someone with a Fake Blue Screen of Death (BSOD)',
+      description: 'A step-by-step guide to using the online fake blue screen prank tool to simulate a realistic Windows crash screen for harmless pranks, video content, and tech demonstrations.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Open the Fake BSOD Simulator',
+          text: 'Load the blue-screen-prank page on any device with a modern browser — desktop, laptop, tablet, phone, or Smart TV.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Configure the Simulation',
+          text: 'Click the gear icon to open settings. Adjust the total duration (5 to 180 seconds) to control how fast the progress percentage climbs. Set the starting percentage (0% to 95%) to skip ahead for immediate effect.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Launch Fullscreen Mode',
+          text: 'Click the Fullscreen button or press the "F" key on your keyboard. The screen will instantly fill with an authentic Windows BSOD, hiding all browser chrome for maximum realism.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Watch the Animated Crash Simulation',
+          text: 'The progress percentage climbs automatically from the configured start point using realistic Windows easing curves with randomized pauses. The displayed stop code, QR code, and sad face emoticon match the real Windows 10/11 BSOD design.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Exit the Simulation Safely',
+          text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation ends immediately and the page returns to normal. No system changes, no installed software, zero trace left on the device.'
         }
       ]
     });

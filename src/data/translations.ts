@@ -605,6 +605,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'ambient-screen': { es: 'Pantalla Ambiental', pt: 'Tela Ambiente', fr: 'Écran Ambiant', de: 'Ambiente-Bildschirm', hi: 'एम्बिएंट स्क्रीन', ja: 'アンビエント画面' },
   'galaxy-screen': { es: 'Pantalla de Galaxia', pt: 'Tela de Galáxia', fr: 'Écran Galaxie', de: 'Galaxie-Bildschirm', hi: 'गैलेक्सी स्क्रीन', ja: '銀河の画面' },
   'broken-screen': { es: 'Pantalla Rota', pt: 'Tela Quebrada', fr: 'Écran Cassé', de: 'Kaputter Bildschirm', hi: 'टूटी स्क्रीन', ja: '壊れた画面' },
+  'blue-screen-prank': { es: 'Broma de Pantalla Azul', pt: 'Pegadinha de Tela Azul', fr: 'Blague d\'Écran Bleu', de: 'Blauer-Bildschirm-Streich', hi: 'ब्लू स्क्रीन प्रैंक', ja: '青い画面のいたずら' },
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
@@ -723,6 +724,14 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     de: 'Eine harmlose Scherzseite mit kaputtem Bildschirm und einem überzeugenden Vollbild-Cracked-Display-Effekt für Streiche und Spaß.',
     hi: 'एक हानिरहित टूटी स्क्रीन प्रैंक पेज जिसमें मजाक और मनोरंजन के लिए एक विश्वसनीय फुलस्क्रीन क्रैक-डिस्प्ले इफ़ेक्ट है।',
     ja: '壊れた画面のいたずらページ。ジョークや楽しみのために、説得力のある全画面ひび割れディスプレイエフェクトを備えた無害なページ。',
+  },
+  'blue-screen-prank': {
+    es: 'Una simulación realista de la pantalla azul de Windows (BSOD) con progreso animado, códigos de fallo y comportamiento de pantalla completa para bromas y contenido de vídeo.',
+    pt: 'Uma simulação realista da tela azul do Windows (BSOD) com progresso animado, códigos de erro e comportamento em tela cheia para pegadinhas e conteúdo de vídeo.',
+    fr: 'Une simulation réaliste de l\'écran bleu Windows (BSOD) avec progression animée, codes d\'erreur et comportement plein écran pour des farces et du contenu vidéo.',
+    de: 'Eine realistische Windows-BSOD-Simulation mit animiertem Fortschritt, Stoppcodes und Vollbild-Crash-Verhalten für Streiche und Videoinhalte.',
+    hi: 'एनिमेटेड प्रोग्रेस, स्टॉप कोड और फुलस्क्रीन क्रैश व्यवहार के साथ एक यथार्थवादी विंडोज़ BSOD सिमुलेशन प्रैंक और वीडियो कंटेंट के लिए।',
+    ja: 'アニメーション進行、ストップコード、全画面クラッシュ動作を備えたリアルなWindows BSODシミュレーション。いたずらや動画コンテンツに最適。',
   },
 };
 
@@ -4997,6 +5006,162 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
         answer: 'はい、完全に無料です。アカウントやサインアップ、ダウンロードは必要ありません。デスクトップ、ノートPC、タブレット、スマートフォン、Smart TVでブラウザから直接動作します。'
       }
     ]
+  },
+  'blue-screen-prank': {
+    en: [
+      {
+        question: 'What is a fake blue screen of death (BSOD)?',
+        answer: 'A fake blue screen of death is a browser-based simulation that replicates the Windows BSOD error screen. It displays the familiar blue background, sad face emoticon, stop code, QR code, and animated progress counter — all without actually crashing the computer. It is a harmless prank tool used for jokes, video content, and tech demonstrations.'
+      },
+      {
+        question: 'Is the fake BSOD prank safe for my computer?',
+        answer: 'Yes, completely safe. The fake BSOD is rendered entirely in your browser using HTML, CSS, and JavaScript. It does not install software, modify system files, access personal data, or change any settings. Closing the browser tab or pressing Escape instantly ends the simulation with zero impact on your device.'
+      },
+      {
+        question: 'How realistic is the blue screen simulator?',
+        answer: 'The simulator is a pixel-accurate replica of the modern Windows 10 and Windows 11 BSOD. It includes the authentic blue background (#0078D7), the large sad face ":/" emoticon, the "Your PC ran into a problem" message, a randomly selected stop code (like CRITICAL_PROCESS_DIED or SYSTEM_SERVICE_EXCEPTION), a QR code matching Windows style, and an animated progress percentage that uses realistic Windows easing and random pauses. In fullscreen mode on any device it is highly convincing.'
+      },
+      {
+        question: 'How do I launch the blue screen prank?',
+        answer: 'Click the Fullscreen button or press the "F" key on your keyboard. The screen will instantly switch to fullscreen mode and begin the animated crash simulation with the progress counter climbing from your configured start percentage. The entire browser interface is hidden for maximum realism.'
+      },
+      {
+        question: 'How do I exit the fake blue screen?',
+        answer: 'Press the Escape (Esc) key on your keyboard to exit fullscreen mode instantly. The prank ends immediately and the page returns to normal. This works on all devices and browsers. The tool deliberately provides no other way to interact during fullscreen to maintain the illusion, but Escape always works.'
+      },
+      {
+        question: 'Can I customize the blue screen simulation?',
+        answer: 'Yes. Click the gear icon in the bottom-left corner to open the settings panel. You can adjust the total duration (5 to 180 seconds) which controls how fast the progress percentage climbs, and the starting percentage (0% to 95%) which lets you skip ahead to a more advanced progress state for immediate effect.'
+      },
+      {
+        question: 'Does the fake BSOD work on Mac, Linux, or Chromebook?',
+        answer: 'Yes, the simulator works in any modern browser on any operating system including Windows, macOS, Linux, and ChromeOS. While the prank is most convincing on a Windows PC where users expect to see a Windows BSOD, the simulation works identically on all platforms and is equally effective for video content and demonstrations.'
+      },
+      {
+        question: 'What stop codes does the BSOD simulator use?',
+        answer: 'The simulator randomly selects from 8 authentic Windows stop codes: CRITICAL_PROCESS_DIED, SYSTEM_SERVICE_EXCEPTION, MEMORY_MANAGEMENT, IRQL_NOT_LESS_OR_EQUAL, KMODE_EXCEPTION_NOT_HANDLED, PAGE_FAULT_IN_NONPAGED_AREA, DRIVER_IRQL_NOT_LESS_OR_EQUAL, and BAD_POOL_HEADER. Each one is a real Windows stop code, making the simulation more convincing.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Qué es una pantalla azul de la muerte (BSOD) falsa?',
+        answer: 'Es una simulación en el navegador que replica la pantalla de error BSOD de Windows. Muestra el fondo azul, el emoticono de cara triste, el código de fallo, el código QR y el contador de progreso animado — todo sin estrellar realmente el ordenador. Es una herramienta de broma inofensiva.'
+      },
+      {
+        question: '¿Es segura la broma de la pantalla azul falsa?',
+        answer: 'Sí, completamente segura. Se renderiza enteramente en tu navegador usando HTML, CSS y JavaScript. No instala software, modifica archivos del sistema ni cambia ninguna configuración.'
+      },
+      {
+        question: '¿Qué realista es el simulador de pantalla azul?',
+        answer: 'Es una réplica de precisión de píxel del BSOD moderno de Windows 10 y 11. Incluye el fondo azul auténtico, la cara triste ":(" , el mensaje de error, un código de fallo aleatorio, un código QR y un porcentaje de progreso animado con easing realista de Windows y pausas aleatorias.'
+      },
+      {
+        question: '¿Cómo lanzo la broma de pantalla azul?',
+        answer: 'Haz clic en el botón de Pantalla Completa o presiona la tecla "F". La pantalla cambiará a modo completo y comenzará la simulación animada de fallo con el contador de progreso subiendo.'
+      },
+      {
+        question: '¿Cómo salgo de la pantalla azul falsa?',
+        answer: 'Presiona la tecla Escape (Esc) para salir del modo pantalla completa instantáneamente. La broma termina de inmediato y la página vuelve a la normalidad.'
+      },
+      {
+        question: '¿Puedo personalizar la simulación?',
+        answer: 'Sí. Haz clic en el icono de engranaje en la esquina inferior izquierda para abrir el panel de configuración. Puedes ajustar la duración total (5 a 180 segundos) y el porcentaje inicial (0% a 95%).'
+      },
+      {
+        question: '¿Funciona la pantalla azul falsa en Mac, Linux o Chromebook?',
+        answer: 'Sí, funciona en cualquier navegador moderno en cualquier sistema operativo. La broma es más convincente en una PC con Windows, pero la simulación funciona igual en todas las plataformas.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O que é uma tela azul da morte (BSOD) falsa?',
+        answer: 'É uma simulação baseada em navegador que replica a tela de erro BSOD do Windows. Exibe o fundo azul, rosto triste, código de parada, QR Code e contador de progresso animado — sem realmente travar o computador.'
+      },
+      {
+        question: 'A pegadinha da tela azul falsa é segura?',
+        answer: 'Sim, completamente segura. É renderizada inteiramente no navegador usando HTML, CSS e JavaScript. Não instala software nem modifica arquivos do sistema.'
+      },
+      {
+        question: 'Quão realista é o simulador de tela azul?',
+        answer: 'É uma réplica em nível de pixel do BSOD moderno do Windows 10 e 11. Inclui o fundo azul autêntico, rosto triste ":(" , mensagem de erro, código de parada aleatório, QR Code e porcentagem de progresso animada.'
+      },
+      {
+        question: 'Como saio da tela azul falsa?',
+        answer: 'Pressione a tecla Escape (Esc) para sair do modo tela cheia instantaneamente. A pegadinha termina imediatamente.'
+      },
+      {
+        question: 'Funciona no Mac, Linux ou Chromebook?',
+        answer: 'Sim, funciona em qualquer navegador moderno em qualquer sistema operacional. A pegadinha é mais convincente em um PC Windows, mas funciona igualmente em todas as plataformas.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Qu\'est-ce qu\'un écran bleu de la mort (BSOD) faux ?',
+        answer: 'C\'est une simulation dans le navigateur qui reproduit l\'écran d\'erreur BSOD de Windows. Elle affiche le fond bleu, le visage triste, le code d\'arrêt, le QR code et le compteur de progression animé — sans vraiment planter l\'ordinateur.'
+      },
+      {
+        question: 'La blague de l\'écran bleu est-elle sûre ?',
+        answer: 'Oui, totalement sûre. Elle est entièrement rendue dans votre navigateur avec HTML, CSS et JavaScript. Elle n\'installe aucun logiciel et ne modifie aucun fichier système.'
+      },
+      {
+        question: 'Comment lancer la simulation d\'écran bleu ?',
+        answer: 'Cliquez sur le bouton Plein écran ou appuyez sur la touche "F". L\'écran passe en mode plein écran et la simulation animée de plantage commence.'
+      },
+      {
+        question: 'Comment quitter l\'écran bleu simulé ?',
+        answer: 'Appuyez sur la touche Échap (Esc) pour quitter instantanément le mode plein écran. La blague se termine immédiatement.'
+      }
+    ],
+    de: [
+      {
+        question: 'Was ist ein falscher blauer Bildschirm des Todes (BSOD)?',
+        answer: 'Eine browserbasierte Simulation, die den Windows-BSOD-Fehlerbildschirm nachbildet. Sie zeigt den blauen Hintergrund, das traurige Gesicht, den Stoppcode, den QR-Code und den animierten Fortschrittszähler — ohne den Computer tatsächlich abstürzen zu lassen.'
+      },
+      {
+        question: 'Ist der falsche BSOD-Streich sicher?',
+        answer: 'Ja, völlig sicher. Er wird vollständig im Browser mit HTML, CSS und JavaScript dargestellt. Es wird keine Software installiert und keine Systemdateien werden geändert.'
+      },
+      {
+        question: 'Wie starte ich den Blauen-Bildschirm-Streich?',
+        answer: 'Klicken Sie auf die Vollbild-Schaltfläche oder drücken Sie die Taste "F". Der Bildschirm wechselt sofort in den Vollbildmodus und die animierte Absturzsimulation beginnt.'
+      },
+      {
+        question: 'Wie beende ich den falschen blauen Bildschirm?',
+        answer: 'Drücken Sie die Escape-Taste (Esc), um den Vollbildmodus sofort zu beenden. Der Streich ist sofort vorbei.'
+      }
+    ],
+    hi: [
+      {
+        question: 'फर्जी ब्लू स्क्रीन ऑफ डेथ (BSOD) क्या है?',
+        answer: 'यह एक ब्राउज़र-आधारित सिमुलेशन है जो विंडोज़ BSOD एरर स्क्रीन की नकल करता है। यह कंप्यूटर को क्रैश किए बिना नीली पृष्ठभूमि, उदास चेहरा, स्टॉप कोड, QR कोड और एनिमेटेड प्रोग्रेस काउंटर प्रदर्शित करता है।'
+      },
+      {
+        question: 'क्या फर्जी BSOD प्रैंक मेरे कंप्यूटर के लिए सुरक्षित है?',
+        answer: 'हाँ, पूरी तरह से सुरक्षित। यह पूरी तरह से आपके ब्राउज़र में HTML, CSS और JavaScript का उपयोग करके रेंडर किया जाता है। यह कोई सॉफ़्टवेयर इंस्टॉल नहीं करता या सिस्टम फ़ाइलों को संशोधित नहीं करता।'
+      },
+      {
+        question: 'मैं ब्लू स्क्रीन प्रैंक कैसे शुरू करूँ?',
+        answer: 'फुलस्क्रीन बटन पर क्लिक करें या कीबोर्ड पर "F" कुंजी दबाएँ। स्क्रीन तुरंत फुलस्क्रीन मोड में बदल जाएगी और एनिमेटेड क्रैश सिमुलेशन शुरू हो जाएगा।'
+      },
+      {
+        question: 'मैं फर्जी ब्लू स्क्रीन से कैसे बाहर निकलूँ?',
+        answer: 'अपने कीबोर्ड पर Escape (Esc) कुंजी दबाएँ। प्रैंक तुरंत समाप्त हो जाता है और पेज सामान्य हो जाता है।'
+      }
+    ],
+    ja: [
+      {
+        question: '偽のブルースクリーンオブデス（BSOD）とは何ですか？',
+        answer: 'WindowsのBSODエラー画面を再現するブラウザベースのシミュレーションです。実際にコンピュータをクラッシュさせることなく、青い背景、悲しい顔、ストップコード、QRコード、アニメーション進行カウンターを表示します。'
+      },
+      {
+        question: '偽のBSODいたずらは安全ですか？',
+        answer: 'はい、完全に安全です。ブラウザ内でHTML、CSS、JavaScriptを使用してレンダリングされます。ソフトウェアをインストールしたり、システムファイルを変更したりすることはありません。'
+      },
+      {
+        question: '偽のブルースクリーンを終了するには？',
+        answer: 'キーボードのEscape（Esc）キーを押すと、全画面モードが即座に終了します。いたずらはすぐに終了し、ページは通常に戻ります。'
+      }
+    ]
   }
 };
 
@@ -6472,6 +6637,69 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           '<strong>壊れた画面のいたずら</strong>は、友人、家族、同僚に仕掛けられる最も効果的で時代を超越したいたずらの一つです。私たちの<strong>偽の壊れた画面</strong>ツールは、物理的に割れたディスプレイにまったくそっくりなフォトリアリスティックな<strong>ひび割れ画面</strong>エフェクトを生成します。このツールは8つの高解像度ひび割れパターンを提供します。',
           '一般的な検索フレーズには、<strong>偽の壊れた画面</strong>、<strong>壊れた画面 いたずら</strong>、<strong>ひび割れ画面シミュレーター</strong>、<strong>偽のクラック画面</strong>、<strong>壊れたモニター いたずら</strong>などがあります。このツールを使えば、アプリをダウンロードすることなく、すぐに説得力のある<strong>ひび割れ画面シミュレーター</strong>を利用できます。',
           '最良の体験のために、画面を見せる前に全画面モードに入ることをお勧めします。調整可能な明るさで部屋の照明に合わせることができます。明るさコントロール、タイマー、共有機能も含まれています。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'blue-screen-prank') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Fake Blue Screen Prank – BSOD Simulator Guide & Use Cases',
+        paragraphs: [
+          'The <strong>fake blue screen prank</strong> is one of the most iconic computer pranks in history. Our <strong>BSOD simulator</strong> generates a photorealistic <strong>blue screen of death</strong> that replicates the modern Windows 10 and Windows 11 crash screen in stunning detail — complete with the sad face emoticon, authentic <strong>stop codes</strong> like CRITICAL_PROCESS_DIED and SYSTEM_SERVICE_EXCEPTION, a Windows-style QR code, and an animated progress percentage that follows real Windows easing curves with randomized pauses for maximum authenticity.',
+          'Users search for many related terms when looking for this type of prank. Common search phrases include <strong>fake blue screen</strong>, <strong>blue screen prank</strong>, <strong>BSOD prank</strong>, <strong>fake windows crash</strong>, <strong>windows bsod simulator</strong>, <strong>online bsod prank</strong>, <strong>fullscreen blue screen prank</strong>, <strong>fake windows error screen</strong>, <strong>windows crash prank</strong>, and <strong>computer prank</strong>. Our simulator delivers all of these in a single page — no download, no installation, no account required. It works instantly in any modern browser on desktop, laptop, tablet, phone, and Smart TV.',
+          'For the most convincing prank experience, we recommend entering fullscreen mode before your target sees the screen. The fullscreen effect hides all browser UI elements that would otherwise reveal the prank. Configure the duration and starting percentage using the settings panel (gear icon) to fine-tune the simulation speed. A longer duration (60-120 seconds) with a low start percentage makes the crash look like Windows is still collecting error information. For instant impact, set the start percentage higher so the progress appears to have been running for a while.',
+          'The <strong>fake BSOD simulator</strong> is ideal for April Fools Day pranks, office and workplace jokes, YouTube and TikTok prank content, livestream intermissions, gaming entertainment, theater and stage productions, tech training demonstrations, and educational settings where teaching users to recognize and respond to BSOD errors is valuable. Because the tool runs entirely in the browser with no server-side processing, it works offline after the initial page load and leaves zero trace on the device when closed.'
+        ]
+      },
+      es: {
+        heading: 'Broma de Pantalla Azul Falsa – Guía del Simulador BSOD y Casos de Uso',
+        paragraphs: [
+          'La <strong>broma de pantalla azul falsa</strong> es una de las bromas informáticas más icónicas de la historia. Nuestro <strong>simulador BSOD</strong> genera una <strong>pantalla azul de la muerte</strong> fotorrealista que replica la pantalla de fallo moderna de Windows 10 y 11 con un detalle impresionante.',
+          'Los usuarios buscan términos como <strong>pantalla azul falsa</strong>, <strong>broma pantalla azul</strong>, <strong>BSOD falso</strong>, <strong>simulador de pantalla azul</strong> y <strong>broma de windows falsa</strong>. Nuestro simulador ofrece todo esto en una sola página — sin descarga, sin instalación, sin necesidad de cuenta.',
+          'Para la experiencia más convincente, recomendamos el modo pantalla completa antes de que la víctima vea la pantalla. Configura la duración y el porcentaje inicial usando el panel de ajustes (icono de engranaje) para afinar la velocidad de la simulación.'
+        ]
+      },
+      pt: {
+        heading: 'Pegadinha de Tela Azul Falsa – Guia do Simulador BSOD e Casos de Uso',
+        paragraphs: [
+          'A <strong>pegadinha de tela azul falsa</strong> é uma das brincadeiras de computador mais icônicas da história. Nosso <strong>simulador BSOD</strong> gera uma <strong>tela azul da morte</strong> fotorrealista que replica a tela de falha moderna do Windows 10 e 11.',
+          'Termos de busca comuns incluem <strong>tela azul falsa</strong>, <strong>pegadinha tela azul</strong>, <strong>BSOD falso</strong>, <strong>simulador de tela azul</strong> e <strong>pegadinha windows falsa</strong>. Oferecemos tudo em uma página — sem download, sem instalação.',
+          'Para maior realismo, entre em modo tela cheia antes da vítima ver a tela. Configure a duração e porcentagem inicial no painel de configurações.'
+        ]
+      },
+      fr: {
+        heading: 'Blague d\'Écran Bleu Faux – Guide du Simulateur BSOD et Cas d\'Utilisation',
+        paragraphs: [
+          'La <strong>blague d\'écran bleu faux</strong> est l\'une des farces informatiques les plus emblématiques de l\'histoire. Notre <strong>simulateur BSOD</strong> génère un <strong>écran bleu de la mort</strong> photoréaliste qui reproduit l\'écran de panne moderne de Windows 10 et 11.',
+          'Les termes de recherche courants incluent <strong>faux écran bleu</strong>, <strong>blague écran bleu</strong>, <strong>faux BSOD</strong>, <strong>simulateur d\'écran bleu</strong> et <strong>blague windows</strong>. Notre simulateur offre tout cela en une page — sans téléchargement ni installation.',
+          'Pour l\'expérience la plus convaincante, passez en plein écran avant que la cible ne voie l\'écran. Configurez la durée et le pourcentage de départ dans le panneau de configuration.'
+        ]
+      },
+      de: {
+        heading: 'Falscher Blauer Bildschirm Streich – BSOD-Simulator-Guide & Anwendungsfälle',
+        paragraphs: [
+          'Der <strong>falsche blaue Bildschirm Streich</strong> ist einer der ikonischsten Computerstreiche der Geschichte. Unser <strong>BSOD-Simulator</strong> erzeugt einen fotorealistischen <strong>blauen Bildschirm des Todes</strong>, der den modernen Windows 10- und 11-Absturzbildschirm detailgetreu nachbildet.',
+          'Häufige Suchbegriffe sind <strong>falscher blauer Bildschirm</strong>, <strong>blauer Bildschirm Streich</strong>, <strong>falscher BSOD</strong>, <strong>Blauer-Bildschirm-Simulator</strong> und <strong>Windows-Streich</strong>. Unser Simulator bietet alles auf einer Seite — kein Download, keine Installation.',
+          'Für die überzeugendste Erfahrung wechseln Sie in den Vollbildmodus, bevor die Zielperson den Bildschirm sieht. Passen Sie Dauer und Startprozentsatz im Einstellungsfeld an.'
+        ]
+      },
+      hi: {
+        heading: 'फर्जी ब्लू स्क्रीन प्रैंक – BSOD सिम्युलेटर गाइड और उपयोग के मामले',
+        paragraphs: [
+          '<strong>फर्जी ब्लू स्क्रीन प्रैंक</strong> इतिहास के सबसे प्रतिष्ठित कंप्यूटर प्रैंक में से एक है। हमारा <strong>BSOD सिम्युलेटर</strong> एक फोटोरियलिस्टिक <strong>ब्लू स्क्रीन ऑफ डेथ</strong> उत्पन्न करता है जो आधुनिक विंडोज 10 और 11 क्रैश स्क्रीन को विस्तार से रिप्लिकेट करता है।',
+          'सामान्य खोज वाक्यांशों में <strong>फर्जी ब्लू स्क्रीन</strong>, <strong>ब्लू स्क्रीन प्रैंक</strong>, <strong>फर्जी BSOD</strong>, <strong>ब्लू स्क्रीन सिम्युलेटर</strong> और <strong>फर्जी विंडोज क्रैश</strong> शामिल हैं।',
+          'सबसे विश्वसनीय अनुभव के लिए, लक्ष्य को स्क्रीन दिखाने से पहले फुलस्क्रीन मोड में जाएँ। सेटिंग्स पैनल का उपयोग करके अवधि और शुरुआती प्रतिशत कॉन्फ़िगर करें।'
+        ]
+      },
+      ja: {
+        heading: '偽のブルースクリーンいたずら – BSODシミュレーターガイドと使用例',
+        paragraphs: [
+          '<strong>偽のブルースクリーンいたずら</strong>は、歴史的なコンピュータいたずらの最も象徴的なものの一つです。私たちの<strong>BSODシミュレーター</strong>は、現代のWindows 10および11のクラッシュ画面を驚くほど詳細に再現するフォトリアリスティックな<strong>ブルースクリーンオブデス</strong>を生成します。',
+          '一般的な検索フレーズには、<strong>偽のブルースクリーン</strong>、<strong>ブルースクリーンいたずら</strong>、<strong>偽BSOD</strong>、<strong>ブルースクリーンシミュレーター</strong>、<strong>偽のWindowsクラッシュ</strong>などがあります。',
+          '最も説得力のある体験のために、ターゲットに画面を見せる前に全画面モードに切り替えてください。設定パネルを使用して、期間と開始パーセンテージを設定できます。'
         ]
       }
     };
