@@ -606,6 +606,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'galaxy-screen': { es: 'Pantalla de Galaxia', pt: 'Tela de Galáxia', fr: 'Écran Galaxie', de: 'Galaxie-Bildschirm', hi: 'गैलेक्सी स्क्रीन', ja: '銀河の画面' },
   'broken-screen': { es: 'Pantalla Rota', pt: 'Tela Quebrada', fr: 'Écran Cassé', de: 'Kaputter Bildschirm', hi: 'टूटी स्क्रीन', ja: '壊れた画面' },
   'blue-screen-prank': { es: 'Broma de Pantalla Azul', pt: 'Pegadinha de Tela Azul', fr: 'Blague d\'Écran Bleu', de: 'Blauer-Bildschirm-Streich', hi: 'ब्लू स्क्रीन प्रैंक', ja: '青い画面のいたずら' },
+  'windows-xp-crash': { es: 'Crash de Windows XP', pt: 'Crash do Windows XP', fr: 'Plantage Windows XP', de: 'Windows XP Absturz', hi: 'विंडोज एक्सपी क्रैश', ja: 'Windows XPクラッシュ' },
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
@@ -732,6 +733,14 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     de: 'Eine realistische Windows-BSOD-Simulation mit animiertem Fortschritt, Stoppcodes und Vollbild-Crash-Verhalten für Streiche und Videoinhalte.',
     hi: 'एनिमेटेड प्रोग्रेस, स्टॉप कोड और फुलस्क्रीन क्रैश व्यवहार के साथ एक यथार्थवादी विंडोज़ BSOD सिमुलेशन प्रैंक और वीडियो कंटेंट के लिए।',
     ja: 'アニメーション進行、ストップコード、全画面クラッシュ動作を備えたリアルなWindows BSODシミュレーション。いたずらや動画コンテンツに最適。',
+  },
+  'windows-xp-crash': {
+    es: 'Un simulador realista de crash de Windows XP con escritorio completo, diálogos de error de explorer.exe y transición BSOD clásica para bromas y nostalgia retro.',
+    pt: 'Um simulador realista de crash do Windows XP com área de trabalho completa, diálogos de erro do explorer.exe e transição BSOD clássica para pegadinhas e nostalgia retrô.',
+    fr: 'Un simulateur réaliste de plantage Windows XP avec bureau complet, dialogues d\'erreur explorer.exe et transition BSOD classique pour farces et nostalgie rétro.',
+    de: 'Ein realistischer Windows XP-Absturzsimulator mit vollständigem Desktop, Explorer.exe-Fehlerdialogen und klassischem BSOD-Übergang für Streiche und Retro-Nostalgie.',
+    hi: 'पूर्ण डेस्कटॉप, explorer.exe त्रुटि संवाद और क्लासिक BSOD संक्रमण के साथ एक यथार्थवादी विंडोज एक्सपी क्रैश सिम्युलेटर प्रैंक और रेट्रो नॉस्टेल्जिया के लिए।',
+    ja: '完全なデスクトップ、explorer.exeエラーダイアログ、クラシックなBSOD移行を備えたリアルなWindows XPクラッシュシミュレーター。いたずらやレトロノスタルジアに最適。',
   },
 };
 
@@ -5162,6 +5171,142 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
         answer: 'キーボードのEscape（Esc）キーを押すと、全画面モードが即座に終了します。いたずらはすぐに終了し、ページは通常に戻ります。'
       }
     ]
+  },
+  'windows-xp-crash': {
+    en: [
+      {
+        question: 'Is the Windows XP Crash Simulator safe?',
+        answer: 'Yes, it is completely safe. The Windows XP crash simulator runs entirely in your browser using HTML, CSS, and JavaScript. It does not install any software, modify system files, access personal data, or make any changes to your operating system. It is a purely visual browser-based simulation.'
+      },
+      {
+        question: 'How do I start the Windows XP crash simulation?',
+        answer: 'Click the "Fullscreen Prank" button or press the "F" key on your keyboard. The simulation launches in fullscreen mode. By default, clicking around the desktop spawns cascading explorer.exe error windows. After the configured delay (5-30 seconds), the screen transitions to the classic Windows XP BSOD with a memory dump counter.'
+      },
+      {
+        question: 'How do I exit the Windows XP crash prank?',
+        answer: 'Press the Escape (Esc) key on your keyboard. This exits fullscreen mode and automatically resets the simulation, returning the page to its normal state. All error dialogs disappear and the desktop returns to its initial setup.'
+      },
+      {
+        question: 'Can I customise the Windows XP crash settings?',
+        answer: 'Yes. Use the "On Start" dropdown to choose between Cascade mode (progressively escalating error dialogs before BSOD) or Instant BSOD mode. Use the "BSOD Delay" dropdown to set the crash delay to 5, 12, 20, or 30 seconds. You can also toggle the XP warning bell sound on or off.'
+      },
+      {
+        question: 'Does the Windows XP crash simulation work on Mac or Linux?',
+        answer: 'Yes, it works on any device with a modern web browser — Windows PCs, Macs, Linux machines, Chromebooks, tablets, and smartphones. The entire simulation runs in the browser using standard web technologies.'
+      },
+      {
+        question: 'What makes this different from a real Windows XP crash?',
+        answer: 'This is a purely visual recreation using HTML, CSS, and JavaScript. It simulates the look and feel of a Windows XP desktop and crash sequence but makes no actual system changes. No files are modified, no software is installed, and no operating system settings are altered. It is completely harmless and reversible by pressing Escape.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Es seguro el simulador de crash de Windows XP?',
+        answer: 'Sí, es completamente seguro. El simulador de crash de Windows XP se ejecuta enteramente en su navegador usando HTML, CSS y JavaScript. No instala software, modifica archivos del sistema ni realiza cambios en su sistema operativo.'
+      },
+      {
+        question: '¿Cómo inicio la simulación de crash de Windows XP?',
+        answer: 'Haga clic en el botón "Fullscreen Prank" o presione la tecla "F" en su teclado. La simulación se inicia en modo de pantalla completa. Por defecto, al hacer clic en el escritorio aparecen ventanas de error de explorer.exe en cascada. Después de la demora configurada (5-30 segundos), la pantalla transiciona al BSOD clásico de Windows XP.'
+      },
+      {
+        question: '¿Cómo salgo de la broma de crash de Windows XP?',
+        answer: 'Presione la tecla Escape (Esc) en su teclado. Esto sale del modo de pantalla completa y reinicia automáticamente la simulación. Todos los diálogos de error desaparecen y el escritorio vuelve a su estado inicial.'
+      },
+      {
+        question: '¿Puedo personalizar la configuración del crash?',
+        answer: 'Sí. Use el menú desplegable "On Start" para elegir entre el modo Cascade (diálogos de error progresivos antes del BSOD) o el modo Instant BSOD. Use "BSOD Delay" para establecer la demora en 5, 12, 20 o 30 segundos. También puede activar o desactivar el sonido de advertencia de XP.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O simulador de crash do Windows XP é seguro?',
+        answer: 'Sim, é completamente seguro. O simulador de crash do Windows XP funciona inteiramente no seu navegador usando HTML, CSS e JavaScript. Não instala software, modifica arquivos do sistema nem altera o sistema operacional.'
+      },
+      {
+        question: 'Como iniciar a simulação de crash do Windows XP?',
+        answer: 'Clique no botão "Fullscreen Prank" ou pressione a tecla "F" no teclado. A simulação inicia em modo tela cheia. Clicar na área de trabalho gera janelas de erro do explorer.exe em cascata. Após o atraso configurado (5-30 segundos), a tela faz a transição para o BSOD clássico do Windows XP.'
+      },
+      {
+        question: 'Como sair da pegadinha de crash do Windows XP?',
+        answer: 'Pressione a tecla Escape (Esc) no teclado. Isso sai do modo tela cheia e reinicia automaticamente a simulação. Todos os diálogos de erro desaparecem e a área de trabalho volta ao estado inicial.'
+      },
+      {
+        question: 'Posso personalizar as configurações do crash?',
+        answer: 'Sim. Use o menu "On Start" para escolher entre o modo Cascade (diálogos de erro progressivos antes do BSOD) ou o modo Instant BSOD. Use "BSOD Delay" para definir o atraso em 5, 12, 20 ou 30 segundos. Você também pode ativar ou desativar o som de aviso do XP.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Le simulateur de plantage Windows XP est-il sûr ?',
+        answer: 'Oui, il est totalement sûr. Le simulateur de plantage Windows XP fonctionne entièrement dans votre navigateur en utilisant HTML, CSS et JavaScript. Il n\'installe aucun logiciel, ne modifie aucun fichier système et n\'apporte aucune modification à votre système d\'exploitation.'
+      },
+      {
+        question: 'Comment démarrer la simulation de plantage Windows XP ?',
+        answer: 'Cliquez sur le bouton "Fullscreen Prank" ou appuyez sur la touche "F" de votre clavier. La simulation se lance en plein écran. Cliquer sur le bureau génère des fenêtres d\'erreur explorer.exe en cascade. Après le délai configuré (5-30 secondes), l\'écran passe au BSOD classique de Windows XP.'
+      },
+      {
+        question: 'Comment quitter la farce de plantage Windows XP ?',
+        answer: 'Appuyez sur la touche Échap (Esc) de votre clavier. Cela quitte le mode plein écran et réinitialise automatiquement la simulation. Toutes les boîtes de dialogue d\'erreur disparaissent et le bureau revient à son état initial.'
+      },
+      {
+        question: 'Puis-je personnaliser les paramètres du plantage ?',
+        answer: 'Oui. Utilisez le menu "On Start" pour choisir entre le mode Cascade (boîtes de dialogue d\'erreur progressives avant le BSOD) ou le mode Instant BSOD. Utilisez "BSOD Delay" pour définir le délai à 5, 12, 20 ou 30 secondes. Vous pouvez également activer ou désactiver le son d\'avertissement XP.'
+      }
+    ],
+    de: [
+      {
+        question: 'Ist der Windows XP Absturzsimulator sicher?',
+        answer: 'Ja, er ist völlig sicher. Der Windows XP Absturzsimulator läuft vollständig in Ihrem Browser mit HTML, CSS und JavaScript. Er installiert keine Software, ändert keine Systemdateien und nimmt keine Änderungen an Ihrem Betriebssystem vor.'
+      },
+      {
+        question: 'Wie starte ich die Windows XP Absturzsimulation?',
+        answer: 'Klicken Sie auf den "Fullscreen Prank"-Button oder drücken Sie die "F"-Taste auf Ihrer Tastatur. Die Simulation startet im Vollbildmodus. Durch Klicken auf den Desktop erscheinen kaskadierende Explorer.exe-Fehlerfenster. Nach der eingestellten Verzögerung (5-30 Sekunden) erfolgt der Übergang zum klassischen Windows XP BSOD.'
+      },
+      {
+        question: 'Wie beende ich den Windows XP Absturz-Streich?',
+        answer: 'Drücken Sie die Escape-Taste (Esc) auf Ihrer Tastatur. Dies beendet den Vollbildmodus und setzt die Simulation automatisch zurück. Alle Fehlerdialoge verschwinden und der Desktop kehrt in seinen Ausgangszustand zurück.'
+      },
+      {
+        question: 'Kann ich die Absturzeinstellungen anpassen?',
+        answer: 'Ja. Verwenden Sie das "On Start"-Menü, um zwischen Cascade-Modus (fortschreitende Fehlerdialoge vor dem BSOD) oder Instant BSOD-Modus zu wählen. Mit "BSOD Delay" stellen Sie die Verzögerung auf 5, 12, 20 oder 30 Sekunden ein. Sie können auch den XP-Warnton ein- oder ausschalten.'
+      }
+    ],
+    hi: [
+      {
+        question: 'क्या विंडोज एक्सपी क्रैश सिम्युलेटर सुरक्षित है?',
+        answer: 'हाँ, यह पूरी तरह से सुरक्षित है। विंडोज एक्सपी क्रैश सिम्युलेटर HTML, CSS और JavaScript का उपयोग करके पूरी तरह से आपके ब्राउज़र में चलता है। यह कोई सॉफ़्टवेयर इंस्टॉल नहीं करता, सिस्टम फ़ाइलों में बदलाव नहीं करता, या आपके ऑपरेटिंग सिस्टम में कोई बदलाव नहीं करता।'
+      },
+      {
+        question: 'मैं विंडोज एक्सपी क्रैश सिमुलेशन कैसे शुरू करूँ?',
+        answer: '"Fullscreen Prank" बटन पर क्लिक करें या अपने कीबोर्ड पर "F" कुंजी दबाएँ। सिमुलेशन फुलस्क्रीन मोड में शुरू होता है। डेस्कटॉप पर क्लिक करने से कैस्केडिंग explorer.exe त्रुटि विंडो दिखाई देती हैं। निर्धारित देरी (5-30 सेकंड) के बाद, स्क्रीन क्लासिक विंडोज एक्सपी BSOD में बदल जाती है।'
+      },
+      {
+        question: 'मैं विंडोज एक्सपी क्रैश प्रैंक से कैसे बाहर निकलूँ?',
+        answer: 'अपने कीबोर्ड पर Escape (Esc) कुंजी दबाएँ। यह फुलस्क्रीन मोड से बाहर निकलता है और स्वचालित रूप से सिमुलेशन को रीसेट करता है। सभी त्रुटि डायलॉग गायब हो जाते हैं और डेस्कटॉप अपनी प्रारंभिक स्थिति में वापस आ जाता है।'
+      },
+      {
+        question: 'क्या मैं क्रैश सेटिंग्स को कस्टमाइज़ कर सकता हूँ?',
+        answer: 'हाँ। "On Start" ड्रॉपडाउन का उपयोग करके कैस्केड मोड (BSOD से पहले प्रगतिशील त्रुटि डायलॉग) या इंस्टेंट BSOD मोड चुनें। "BSOD Delay" का उपयोग करके 5, 12, 20 या 30 सेकंड की देरी सेट करें। आप XP चेतावनी घंटी ध्वनि को चालू या बंद भी कर सकते हैं।'
+      }
+    ],
+    ja: [
+      {
+        question: 'Windows XPクラッシュシミュレーターは安全ですか？',
+        answer: 'はい、完全に安全です。Windows XPクラッシュシミュレーターはHTML、CSS、JavaScriptを使用してブラウザ内で完全に動作します。ソフトウェアをインストールしたり、システムファイルを変更したり、オペレーティングシステムに変更を加えたりすることはありません。'
+      },
+      {
+        question: 'Windows XPクラッシュシミュレーションを開始するには？',
+        answer: '「Fullscreen Prank」ボタンをクリックするか、キーボードの「F」キーを押します。シミュレーションが全画面モードで起動します。デスクトップをクリックすると、explorer.exeエラーウィンドウがカスケード表示されます。設定された遅延（5〜30秒）後、画面はクラシックなWindows XP BSODに移行します。'
+      },
+      {
+        question: 'Windows XPクラッシュのいたずらを終了するには？',
+        answer: 'キーボードのEscape（Esc）キーを押します。全画面モードが終了し、シミュレーションが自動的にリセットされます。すべてのエラーダイアログが消え、デスクトップは初期状態に戻ります。'
+      },
+      {
+        question: 'クラッシュ設定をカスタマイズできますか？',
+        answer: 'はい。「On Start」ドロップダウンでカスケードモード（BSOD前の段階的なエラーダイアログ）またはインスタントBSODモードを選択できます。「BSOD Delay」で5、12、20、30秒の遅延を設定できます。XP警告音のオン/オフも切り替えられます。'
+      }
+    ]
   }
 };
 
@@ -6700,6 +6845,69 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           '<strong>偽のブルースクリーンいたずら</strong>は、歴史的なコンピュータいたずらの最も象徴的なものの一つです。私たちの<strong>BSODシミュレーター</strong>は、現代のWindows 10および11のクラッシュ画面を驚くほど詳細に再現するフォトリアリスティックな<strong>ブルースクリーンオブデス</strong>を生成します。',
           '一般的な検索フレーズには、<strong>偽のブルースクリーン</strong>、<strong>ブルースクリーンいたずら</strong>、<strong>偽BSOD</strong>、<strong>ブルースクリーンシミュレーター</strong>、<strong>偽のWindowsクラッシュ</strong>などがあります。',
           '最も説得力のある体験のために、ターゲットに画面を見せる前に全画面モードに切り替えてください。設定パネルを使用して、期間と開始パーセンテージを設定できます。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'windows-xp-crash') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Windows XP Crash Prank – Classic BSOD Simulator Guide & Use Cases',
+        paragraphs: [
+          'The <strong>Windows XP crash prank</strong> brings back the most nostalgic crash experience in computing history. Our <strong>Windows XP crash simulator</strong> recreates the full XP desktop environment — complete with the classic Bliss wallpaper, explorer.exe error cascading windows, and the legendary blue screen of death that defined an era. Unlike generic BSOD tools, this simulator builds the complete crash narrative: start with a functional-looking XP desktop, watch error dialogs multiply as you click around, and culminate in the iconic dark-blue <strong>Windows XP BSOD</strong> with its chkdsk-style memory dump counter and text-mode error codes.',
+          'Users search for many related terms for this experience. Common search phrases include <strong>Windows XP crash simulator</strong>, <strong>fake Windows XP crash</strong>, <strong>XP BSOD prank</strong>, <strong>Windows XP blue screen</strong>, <strong>fake XP desktop crash</strong>, <strong>Windows XP error prank</strong>, <strong>explorer.exe fake error</strong>, <strong>retro BSOD prank</strong>, <strong>Windows XP prank online</strong>, and <strong>classic Windows crash</strong>. Our simulator delivers the complete XP crash journey — no download, no installation, no account required. It works instantly in any modern browser across desktop, laptop, tablet, and phone.',
+          'For the most convincing XP prank experience, configure the settings before launching. Use the "On Start" dropdown to choose Cascade mode (error windows escalate progressively before the BSOD for dramatic effect) or Instant BSOD mode (immediate transition for a faster prank). Set the "BSOD Delay" to 5, 12, 20, or 30 seconds to control the pacing. Toggle the warning bell sound on for added authenticity — the classic Windows XP error chime adds nostalgic realism. Once configured, click "Fullscreen Prank" or press F and the simulation takes over.',
+          'The <strong>XP crash simulator</strong> is perfect for retro tech pranks, nostalgia trips for millennials who grew up with Windows XP, YouTube and TikTok content recreating "the good old days" of Windows crashes, office pranks targeting colleagues who remember the XP era, livestream entertainment, tech nostalgia podcasts and videos, and educational demonstrations showing how far Windows crash handling has evolved. The tool runs entirely in the browser — no software installs, no system changes, completely reversible by pressing Escape.'
+        ]
+      },
+      es: {
+        heading: 'Broma de Crash de Windows XP – Guía del Simulador BSOD Clásico y Casos de Uso',
+        paragraphs: [
+          'La <strong>broma de crash de Windows XP</strong> revive la experiencia de crash más nostálgica en la historia de la informática. Nuestro <strong>simulador de crash de Windows XP</strong> recrea el entorno completo del escritorio XP con el fondo Bliss, ventanas de error de explorer.exe en cascada y la legendaria pantalla azul de la muerte.',
+          'Los términos de búsqueda comunes incluyen <strong>simulador de crash Windows XP</strong>, <strong>falso crash Windows XP</strong>, <strong>BSOD XP broma</strong>, <strong>pantalla azul Windows XP</strong> y <strong>broma de Windows XP falsa</strong>. Ofrecemos todo en una página — sin descarga ni instalación.',
+          'Para la experiencia más convincente, configure los ajustes antes de iniciar. Use "On Start" para elegir Cascade o Instant BSOD. Ajuste el retardo del BSOD a 5, 12, 20 o 30 segundos. Active el sonido de advertencia para mayor autenticidad.'
+        ]
+      },
+      pt: {
+        heading: 'Pegadinha de Crash do Windows XP – Guia do Simulador BSOD Clássico e Casos de Uso',
+        paragraphs: [
+          'A <strong>pegadinha de crash do Windows XP</strong> traz de volta a experiência de crash mais nostálgica da história da computação. Nosso <strong>simulador de crash do Windows XP</strong> recria o ambiente completo da área de trabalho do XP com o papel de parede Bliss, janelas de erro do explorer.exe em cascata e a lendária tela azul da morte.',
+          'Termos de busca comuns incluem <strong>simulador de crash Windows XP</strong>, <strong>falso crash Windows XP</strong>, <strong>BSOD XP pegadinha</strong>, <strong>tela azul Windows XP</strong> e <strong>pegadinha Windows XP</strong>. Tudo em uma página — sem download ou instalação.',
+          'Para maior realismo, configure antes de iniciar. Use "On Start" para Cascade ou Instant BSOD. Ajuste o atraso do BSOD para 5, 12, 20 ou 30 segundos. Ative o som de aviso para mais autenticidade.'
+        ]
+      },
+      fr: {
+        heading: 'Farce de Plantage Windows XP – Guide du Simulateur BSOD Classique et Cas d\'Utilisation',
+        paragraphs: [
+          'La <strong>farce de plantage Windows XP</strong> ravive l\'expérience de plantage la plus nostalgique de l\'histoire informatique. Notre <strong>simulateur de plantage Windows XP</strong> recrée l\'environnement complet du bureau XP avec le fond d\'écran Bliss, les fenêtres d\'erreur explorer.exe en cascade et le légendaire écran bleu de la mort.',
+          'Les termes de recherche courants incluent <strong>simulateur de plantage Windows XP</strong>, <strong>faux plantage Windows XP</strong>, <strong>farce BSOD XP</strong>, <strong>écran bleu Windows XP</strong> et <strong>farce Windows XP</strong>. Le tout sur une seule page — sans téléchargement ni installation.',
+          'Pour l\'expérience la plus convaincante, configurez les paramètres avant de lancer. Utilisez "On Start" pour Cascade ou Instant BSOD. Réglez le délai BSOD à 5, 12, 20 ou 30 secondes. Activez le son d\'avertissement pour plus d\'authenticité.'
+        ]
+      },
+      de: {
+        heading: 'Windows XP Absturz-Streich – Leitfaden für den klassischen BSOD-Simulator und Anwendungsfälle',
+        paragraphs: [
+          'Der <strong>Windows XP Absturz-Streich</strong> bringt die nostagischste Absturzerfahrung der Computergeschichte zurück. Unser <strong>Windows XP Absturzsimulator</strong> erschafft die vollständige XP-Desktop-Umgebung mit dem klassischen Bliss-Hintergrundbild, kaskadierenden Explorer.exe-Fehlermeldungen und dem legendären blauen Bildschirm des Todes.',
+          'Häufige Suchbegriffe sind <strong>Windows XP Absturzsimulator</strong>, <strong>falscher Windows XP Absturz</strong>, <strong>XP BSOD Streich</strong>, <strong>blauer Bildschirm Windows XP</strong> und <strong>Windows XP Streich</strong>. Alles auf einer Seite — kein Download, keine Installation.',
+          'Konfigurieren Sie die Einstellungen vor dem Start für die überzeugendste Erfahrung. Verwenden Sie "On Start" für Cascade oder Instant BSOD. Stellen Sie die BSOD-Verzögerung auf 5, 12, 20 oder 30 Sekunden ein. Schalten Sie den Warnton für zusätzliche Authentizität ein.'
+        ]
+      },
+      hi: {
+        heading: 'विंडोज एक्सपी क्रैश प्रैंक – क्लासिक BSOD सिम्युलेटर गाइड और उपयोग के मामले',
+        paragraphs: [
+          '<strong>विंडोज एक्सपी क्रैश प्रैंक</strong> कंप्यूटिंग इतिहास के सबसे नॉस्टैल्जिक क्रैश अनुभव को वापस लाता है। हमारा <strong>विंडोज एक्सपी क्रैश सिम्युलेटर</strong> क्लासिक ब्लिस वॉलपेपर, कैस्केडिंग explorer.exe त्रुटि विंडो और प्रतिष्ठित ब्लू स्क्रीन ऑफ डेथ के साथ पूर्ण XP डेस्कटॉप वातावरण को फिर से बनाता है।',
+          'सामान्य खोज वाक्यांशों में <strong>विंडोज एक्सपी क्रैश सिम्युलेटर</strong>, <strong>फर्जी विंडोज एक्सपी क्रैश</strong>, <strong>XP BSOD प्रैंक</strong>, <strong>विंडोज एक्सपी ब्लू स्क्रीन</strong> और <strong>विंडोज एक्सपी प्रैंक</strong> शामिल हैं।',
+          'सबसे विश्वसनीय अनुभव के लिए, शुरू करने से पहले सेटिंग्स कॉन्फ़िगर करें। "On Start" का उपयोग करके Cascade या Instant BSOD चुनें। BSOD देरी को 5, 12, 20 या 30 सेकंड पर सेट करें। अधिक प्रामाणिकता के लिए चेतावनी घंटी ध्वनि चालू करें।'
+        ]
+      },
+      ja: {
+        heading: 'Windows XPクラッシュいたずら – クラシックBSODシミュレーターガイドと使用例',
+        paragraphs: [
+          '<strong>Windows XPクラッシュいたずら</strong>は、コンピューティング史上最もノスタルジックなクラッシュ体験をよみがえらせます。私たちの<strong>Windows XPクラッシュシミュレーター</strong>は、クラシックなBlissの壁紙、explorer.exeのエラーカスケードウィンドウ、伝説的なブルースクリーンオブデスを備えた完全なXPデスクトップ環境を再現します。',
+          '一般的な検索フレーズには、<strong>Windows XPクラッシュシミュレーター</strong>、<strong>偽のWindows XPクラッシュ</strong>、<strong>XP BSODいたずら</strong>、<strong>Windows XPブルースクリーン</strong>、<strong>Windows XPいたずら</strong>などがあります。',
+          '最も説得力のある体験のために、開始前に設定を構成してください。「On Start」でCascadeまたはInstant BSODを選択します。BSOD遅延を5、12、20、30秒に設定します。信頼性を高めるために警告音をオンにします。'
         ]
       }
     };

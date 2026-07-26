@@ -147,6 +147,15 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'फर्जी ब्लू स्क्रीन प्रैंक - BSOD सिम्युलेटर और विंडोज क्रैश प्रैंक ऑनलाइन',
     ja: '偽のブルースクリーンいたずら - BSODシミュレーター＆Windowsクラッシュいたずらオンライン',
   },
+  'windows-xp-crash': {
+    en: 'Windows XP Crash Simulator - Fake Explorer.exe Error & BSOD Prank Online',
+    es: 'Simulador de Crash de Windows XP - Falso Error de Explorer.exe y Broma BSOD',
+    pt: 'Simulador de Crash do Windows XP - Erro Falso do Explorer.exe e Pegadinha BSOD',
+    fr: 'Simulateur de Plantage Windows XP - Fausse Erreur Explorer.exe et Farce BSOD',
+    de: 'Windows XP Absturz Simulator - Gefälschter Explorer.exe Fehler & BSOD Streich',
+    hi: 'विंडोज एक्सपी क्रैश सिम्युलेटर - फर्जी explorer.exe त्रुटि और BSOD प्रैंक ऑनलाइन',
+    ja: 'Windows XPクラッシュシミュレーター - 偽のexplorer.exeエラー＆BSODいたずらオンライン',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -266,6 +275,15 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen realistischen falschen Windows-BSOD-Absturz. Der überzeugendste blaue-Bildschirm-Streich online mit animiertem Fortschritt, 8 Stoppcodes, QR-Code und konfigurierbarer Simulation. Kostenlos, harmlos, kein Download.',
     hi: 'किसी भी स्क्रीन को यथार्थवादी फर्जी विंडोज BSOD क्रैश में बदलें। एनिमेटेड प्रोग्रेस, 8 स्टॉप कोड, QR कोड और कॉन्फ़िगरेबल सिमुलेशन के साथ सबसे विश्वसनीय ब्लू स्क्रीन प्रैंक ऑनलाइन। मुफ्त, हानिरहित, बिना डाउनलोड।',
     ja: 'あらゆる画面をリアルな偽のWindows BSODクラッシュに変身。アニメーション進行、8つのストップコード、QRコード、設定可能なシミュレーションを備えた最も説得力のあるオンラインブルースクリーンいたずら。無料、無害、ダウンロード不要。',
+  },
+  'windows-xp-crash': {
+    en: 'Turn any screen into a realistic Windows XP crash simulator with full desktop simulation, explorer.exe error dialogs, cascading crash windows, and classic BSOD transition. Free, harmless, no download — pure retro nostalgia.',
+    es: 'Convierte cualquier pantalla en un realista simulador de crash de Windows XP con simulación completa del escritorio, diálogos de error de explorer.exe, ventanas de error en cascada y transición BSOD clásica. Gratis, inofensivo, sin descarga — pura nostalgia retro.',
+    pt: 'Transforme qualquer tela em um realista simulador de crash do Windows XP com simulação completa da área de trabalho, diálogos de erro do explorer.exe, janelas de erro em cascata e transição BSOD clássica. Grátis, inofensivo, sem download — pura nostalgia retrô.',
+    fr: 'Transformez n\'importe quel écran en un simulateur réaliste de plantage Windows XP avec simulation complète du bureau, dialogues d\'erreur explorer.exe, fenêtres d\'erreur en cascade et transition BSOD classique. Gratuit, inoffensif, sans téléchargement — pure nostalgie rétro.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen realistischen Windows XP Absturzsimulator mit vollständiger Desktop-Simulation, Explorer.exe-Fehlerdialogen, kaskadierenden Fehlerfenstern und klassischem BSOD-Übergang. Kostenlos, harmlos, kein Download — pure Retro-Nostalgie.',
+    hi: 'किसी भी स्क्रीन को एक यथार्थवादी विंडोज एक्सपी क्रैश सिम्युलेटर में बदलें, जिसमें पूर्ण डेस्कटॉप सिमुलेशन, explorer.exe त्रुटि डायलॉग, कैस्केडिंग क्रैश विंडो और क्लासिक BSOD ट्रांज़िशन शामिल है। मुफ्त, हानिरहित, बिना डाउनलोड — शुद्ध रेट्रो नॉस्टेल्जिया।',
+    ja: 'あらゆる画面を、完全なデスクトップシミュレーション、explorer.exeエラーダイアログ、カスケードクラッシュウィンドウ、クラシックBSOD移行を備えたリアルなWindows XPクラッシュシミュレーターに変身。無料、無害、ダウンロード不要 — 純粋なレトロノスタルジア。',
   },
 };
 
@@ -521,6 +539,42 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
           '@type': 'HowToStep',
           name: 'Exit the Simulation Safely',
           text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation ends immediately and the page returns to normal. No system changes, no installed software, zero trace left on the device.'
+        }
+      ]
+    });
+  }
+
+  if (tool.id === 'windows-xp-crash') {
+    baseSchemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to Use the Windows XP Crash Simulator for Pranks & Nostalgia',
+      description: 'A step-by-step guide to using the online Windows XP crash simulator to recreate the classic XP desktop crash experience for harmless pranks, retro nostalgia, and content creation.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Open the Windows XP Crash Simulator',
+          text: 'Load the windows-xp-crash page on any device with a modern browser — desktop, laptop, tablet, phone, or Smart TV.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Configure the Crash Settings',
+          text: 'Use the controls panel to select the trigger mode: "Encounter Dialog -> Cascade -> BSOD" for a gradual crash escalation, or "Instant BSOD" for immediate blue screen. Set the BSOD delay (5, 12, 20, or 30 seconds) and toggle the XP warning bell sound on or off.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Launch Fullscreen Prank Mode',
+          text: 'Click the "Fullscreen Prank" button or press the "F" key on your keyboard. The screen fills with an authentic Windows XP desktop featuring the Bliss wallpaper, desktop icons, taskbar, and live system clock.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Trigger the Crash Simulation',
+          text: 'Click anywhere on the desktop or click the dialog buttons to spawn cascading explorer.exe error windows. Each click creates more error dialogs, escalating the crash effect. After the configured delay, the screen transitions to the classic Windows XP BSOD with a memory dump counter.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Reset and Exit Safely',
+          text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation resets automatically — all error dialogs disappear, the BSOD hides, and the desktop returns to its initial state. No system changes, no installed software, zero trace left on the device.'
         }
       ]
     });
