@@ -161,9 +161,152 @@ export const tools: Tool[] = [
   { id: 'broken-screen', name: 'Broken Screen', shortName: 'Broken', slug: 'broken-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#0b0b0b', summary: 'A harmless broken-screen prank page with a convincing fullscreen cracked-display effect. The best fake broken screen simulator for pranks, jokes, and funny theatrical moments.', intent: 'realistic cracked display simulation for harmless pranks, video scenes, and theatrical staging without any downloads or installations', useCases: ['friendly jokes on friends and family', 'fake broken monitor prank', 'fake broken laptop screen prank', 'fake cracked phone display prank', 'April Fool prank and office jokes', 'video scenes and YouTube prank content', 'TikTok and social media prank videos', 'stage props and theatrical productions', 'gaming stream intermissions', 'classroom demonstrations'], controls: ['fullscreen', 'escape hint', 'brightness', 'share current screen', 'timer'], faqs: effectFaqs('Broken Screen') },
   { id: 'hacker-typer', name: 'Hacker Typer', shortName: 'Hacker Typer', slug: 'hacker-typer', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#001b0b', summary: 'A fake terminal typing screen for cinematic demos, jokes, and presentation moments.', intent: 'convincing terminal-style interaction in the browser', useCases: ['video scenes', 'classroom demos', 'friendly jokes', 'event screens'], controls: ['fullscreen', 'keyboard shortcuts', 'speed control', 'theme toggle', 'clear screen'], faqs: effectFaqs('Hacker Typer') },
   { id: 'blue-screen-prank', name: 'Blue Screen Prank', shortName: 'Blue Screen', slug: 'blue-screen-prank', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#0078d7', summary: 'A highly realistic Windows BSOD simulation with animated progress, stop codes, and fullscreen crash behavior. The most convincing fake blue screen prank online — no download, no risk.', intent: 'an authentic Windows BSOD experience that feels indistinguishable from the real screen — perfect for pranks, content creation, and tech demonstrations', useCases: ['pranking friends and family', 'fake Windows crash at the office', 'YouTube and TikTok prank videos', 'livestream and gaming intermissions', 'tech training and educational demos', 'theater and stage productions', 'April Fools Day pranks', 'content creation and thumbnail props'], controls: ['fullscreen', 'escape hint', 'animated progress', 'stop codes', 'QR code'], faqs: effectFaqs('Blue Screen Prank') },
-  { id: 'windows-xp-crash', name: 'Windows XP Crash', shortName: 'XP Crash', slug: 'windows-xp-crash', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#003399', summary: 'A retro crash-style prank screen inspired by old desktop eras, built as a safe web visual.', intent: 'nostalgic crash-screen staging for browser demos', useCases: ['retro video scenes', 'friendly jokes', 'event props', 'software demos'], controls: ['fullscreen', 'escape hint', 'timer', 'brightness', 'related pranks'], faqs: effectFaqs('Windows XP Crash') },
-  { id: 'radar-screen', name: 'Radar Screen', shortName: 'Radar', slug: 'radar-screen', localizedSlugs: { es: 'pantalla-de-radar', pt: 'tela-de-radar', fr: 'ecran-radar', de: 'radar-bildschirm', hi: 'radar-screen', ja: 'radar-gamen' }, category: 'pranks', kind: 'prank', color: '#001b0b', summary: 'A radar-style fullscreen display for theatrical dashboards, videos, and playful setups.', intent: 'clean scanning visual for staged interfaces', useCases: ['video props', 'dashboard staging', 'event screens', 'playful demos'], controls: ['fullscreen', 'speed control', 'brightness', 'ambient mode', 'pause'], faqs: effectFaqs('Radar Screen') },
-  { id: 'white-noise-screen', name: 'White Noise Screen', shortName: 'White Noise', slug: 'white-noise-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#d4d4d4', summary: 'A static-style white noise visual for retro TV effects, transitions, and prank screens.', intent: 'safe static-screen effect with motion controls', useCases: ['retro TV scenes', 'transition screens', 'video props', 'friendly jokes'], controls: ['fullscreen', 'brightness', 'reduced motion', 'timer', 'pause'], faqs: effectFaqs('White Noise Screen') },
+  { id: 'windows-xp-crash', name: 'Windows XP Crash', shortName: 'XP Crash', slug: 'windows-xp-crash', localizedSlugs: { es: 'xp-crash', pt: 'xp-crash', fr: 'xp-crash', de: 'xp-crash', hi: 'xp-crash', ja: 'xp-crash' }, category: 'pranks', kind: 'prank', color: '#003399', summary: 'A realistic Windows XP crash simulator for desktop pranks, retro nostalgia, and harmless fun. Recreate the full XP desktop experience — explorer.exe error dialogs, cascading crash windows, and classic BSOD transition.', intent: 'authentic Windows XP crash simulation with desktop environment, explorer.exe error dialogs, cascading crash windows, and nostalgic BSOD transition for pranks and retro computing enthusiasts', useCases: ['Windows XP desktop prank simulation', 'retro computing nostalgia experience', 'friendly office and classroom pranks', 'YouTube and TikTok prank video content', 'livestream and gaming intermissions', 'April Fools pranks and creative staging', 'BSOD nostalgia and retro desktop recreation', 'explorer.exe error cascade visual effect', 'fullscreen prank effect for friends', 'educational retro OS demonstration'], controls: ['fullscreen prank mode', 'explorer.exe error dialogs', 'cascading crash windows', 'BSOD transition', 'configurable crash delay', 'XP warning sound effects', 'desktop reset', 'drag cascade glitch', 'keyboard shortcuts', 'brightness control'], faqs: [
+      {
+        question: 'Is the Windows XP Crash prank safe?',
+        answer: 'Yes, it is completely safe. The Windows XP crash simulator runs entirely in your browser using HTML, CSS, and JavaScript. It does not install any software, modify system files, access personal data, or make any changes to your operating system.'
+      },
+      {
+        question: 'Can this damage my computer?',
+        answer: 'No. This is a purely visual browser-based simulation. It displays an animated version of the Windows XP desktop with simulated error dialogs and a fake BSOD screen. No files are modified, no system settings are changed, and no software is installed. Press Escape to exit fullscreen at any time.'
+      },
+      {
+        question: 'How do I start the Windows XP crash simulation?',
+        answer: 'Click the "Fullscreen Prank" button or press the "F" key on your keyboard. The simulation will launch in fullscreen mode. By default, clicking around the desktop or clicking dialog buttons spawns cascading explorer.exe error windows. After the configured delay (5-30 seconds), the screen transitions to the classic Windows XP Blue Screen of Death (BSOD).'
+      },
+      {
+        question: 'How do I exit the XP crash prank?',
+        answer: 'Press the Escape (Esc) key on your keyboard. This will exit fullscreen mode and automatically reset the simulation, returning the page to its normal state. No trace of the prank remains on your device.'
+      },
+      {
+        question: 'Does the prank work on Mac, Linux, or Chromebook?',
+        answer: 'Yes, the Windows XP crash simulator works on any device with a modern web browser — Windows PCs, Macs, Linux machines, Chromebooks, tablets, and smartphones. The entire simulation runs in the browser using standard web technologies.'
+      },
+      {
+        question: 'Can I customise the crash timing?',
+        answer: 'Yes. Use the "On Start" dropdown to choose between Cascade mode (error dialogs -> BSOD) or Instant BSOD mode. Use the "BSOD Delay" dropdown to set the crash delay to 5, 12, 20, or 30 seconds. You can also toggle the XP warning bell sound on or off.'
+      },
+      {
+        question: 'What happens when I click the error dialogs?',
+        answer: 'Clicking "Send Error Report", "Don\'t Send", or the close button on an explorer.exe error dialog spawns additional error windows in a cascading pattern. Each click creates more dialogs, escalating the chaos. Clicking the desktop itself also spawns new error windows, making the simulation increasingly dramatic.'
+      },
+      {
+        question: 'What is the drag cascade glitch?',
+        answer: 'When you drag an error dialog by its title bar, the dialog leaves visual "trails" on a canvas overlay behind it. This simulates the glitchy artifact effect common on old Windows systems when multiple error dialogs overlapped, creating a nostalgic visual artifact.'
+      },
+      {
+        question: 'Does the simulation include the Windows XP desktop?',
+        answer: 'Yes. The simulator recreates the classic Windows XP desktop including the Bliss wallpaper (blue sky, green hills, sun), desktop icons (My Computer, Recycle Bin, Internet Explorer, My Documents), the iconic green Start button, and the taskbar with system tray and live clock.'
+      }
+    ] },
+  { id: 'radar-screen', name: 'Radar Screen', shortName: 'Radar', slug: 'radar-screen', localizedSlugs: { es: 'pantalla-de-radar', pt: 'tela-de-radar', fr: 'ecran-radar', de: 'radar-bildschirm', hi: 'radar-screen', ja: 'radar-gamen' }, category: 'pranks', kind: 'prank', color: '#001b0b', summary: 'A free online radar screen simulator with real-time sweep animation, sonar ping audio, target tracking, and customizable tactical display. Fullscreen radar effect for desktop, laptop, monitor, and TV — no download needed.', intent: 'immersive fullscreen radar simulation with authentic sweep beam, target interception, simple geolocation, and customizable tactical HUD for presentations, streaming, room decoration, and creative staging', useCases: ['presentation and livestream backgrounds', 'sci-fi and cyberpunk room decoration', 'YouTube and video production props', 'escape room and theatrical staging', 'gaming room and hacker setup ambience', 'classroom STEM demonstrations', 'party decoration and event displays', 'streaming overlays and intermission screens', 'tactical and military themed displays', 'film and content creation backgrounds'], controls: ['fullscreen mode', 'sweep speed RPM slider', 'sonar ping volume and mute', 'target intrusion density', 'three color themes', 'geolocation detection', 'click-to-intercept targets', 'pause and resume sweep', 'brightness', 'reset simulation logs'], faqs: [
+      {
+        question: 'What is the Radar Screen simulator?',
+        answer: 'The Radar Screen is a free, browser-based radar simulation that displays a realistic animated radar display with a rotating sweep beam, concentric range rings, compass headings, procedural terrain coastline, and simulated bogey targets. It is designed for entertainment, presentations, streaming backgrounds, room decoration, and creative staging — not as an actual radar instrument.'
+      },
+      {
+        question: 'Is the Radar Screen simulator safe?',
+        answer: 'Yes, it is completely safe. The radar simulation runs entirely in your browser using HTML, CSS, JavaScript, and Canvas. It does not install any software, modify system files, access personal data, or make any changes to your operating system. It is a purely visual browser-based simulation.'
+      },
+      {
+        question: 'Is the Radar Screen simulator really free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The radar screen is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'Does the radar simulator require downloading anything?',
+        answer: 'No. The radar screen simulator runs directly in your browser. There is nothing to download, install, or configure. Just open the page and the radar animation starts immediately. Works on any device with a modern browser.'
+      },
+      {
+        question: 'Can I control the radar sweep speed?',
+        answer: 'Yes. Open the settings panel (gear icon) and use the Sweep Speed slider to adjust the rotation speed from 4 to 30 RPM (rotations per minute). A slower speed creates a more realistic, calm radar display. A faster speed creates a more intense, action-oriented feel.'
+      },
+      {
+        question: 'Can I mute the sonar ping sound?',
+        answer: 'Yes. Open the settings panel and use the Sonar Ping Sound Volume slider to adjust the volume, or click the Mute button to disable sonar audio entirely. The radar continues to animate visually even when audio is muted. You can also press the S key to toggle sonar audio on and off.'
+      },
+      {
+        question: 'Does the radar screen work on mobile devices?',
+        answer: 'Yes, the radar screen simulator works on any device with a modern web browser — Windows PCs, Macs, Linux machines, Chromebooks, tablets, smartphones, and Smart TVs. The simulation adapts to different screen sizes and touch input for interactive target clicking.'
+      },
+      {
+        question: 'Can I use the radar screen in a presentation?',
+        answer: 'Yes, the radar screen makes an excellent presentation background, livestream backdrop, or video conference visual. Enter fullscreen mode by pressing F or clicking the fullscreen button for the most immersive display. The ambient radar animation adds a professional tactical aesthetic to any presentation or stream.'
+      },
+      {
+        question: 'Can I use the radar screen as a video background?',
+        answer: 'Absolutely. The radar simulation works as a fullscreen background for YouTube videos, Twitch streams, TikTok content, video calls, and screen recordings. The three color themes — Military Green, Oceanic Blue, and Red Alert — let you match the radar aesthetic to your content style.'
+      },
+      {
+        question: 'What do the different radar color themes do?',
+        answer: 'The radar offers three color themes. Military Green (the default) recreates the classic green radar phosphor display found in aviation and military systems. Oceanic Blue gives a modern naval sonar aesthetic. Red Alert creates a high-tension tactical look. Switch between them in the settings panel under "Styling Frequency Theme."'
+      },
+      {
+        question: 'How does the radar target system work?',
+        answer: 'The radar randomly generates bogey targets that move toward the center of the display. Friendly targets appear as green dots. Hostile targets appear as red dots with tracking boxes and trigger an Impact Intrusion Warning banner when they enter the critical center corridor. Click on a hostile bogey to intercept it — a yellow crosshair marks intercepted targets.'
+      },
+      {
+        question: 'Does the radar work offline?',
+        answer: 'After the initial page load, the radar simulation runs entirely client-side using Canvas and JavaScript. Once the page is cached by your browser, the animation continues to work without an active internet connection.'
+      },
+      {
+        question: 'Can I use this on a Smart TV?',
+        answer: 'Yes. The radar screen works on Smart TVs with web browsers. Open the URL in the TV browser, enter fullscreen mode, and the animated radar display fills the screen. It works great as a decorative ambient display for themed parties, gaming rooms, and room decoration.'
+      }
+    ] },
+  { id: 'white-noise-screen', name: 'White Noise Screen', shortName: 'White Noise', slug: 'white-noise-screen', localizedSlugs: { es: 'pantalla-ruido-blanco', pt: 'tela-ruido-branco', fr: 'ecran-bruit-blanc', de: 'weiss-rauschen-bildschirm', hi: 'white-noise-screen', ja: 'shiroi-noizu-gamen' }, category: 'pranks', kind: 'prank', color: '#d4d4d4', summary: 'A free online white noise screen (TV static) simulator with authentic analog noise, CRT scanlines, VHS glitch effects, and audio static. Fullscreen retro TV effect for desktop, laptop, monitor, and TV — no download needed.', intent: 'authentic fullscreen analog television static simulation with multiple noise styles, CRT scanline overlay, VHS drift effects, and realistic audio static for retro effects, film production, and entertainment', useCases: ['retro TV and VHS aesthetic scenes', 'film and video production backgrounds', 'YouTube and streaming intermission screens', 'horror and Halloween themed displays', 'cinematic transitions and title sequences', 'escape room and theatre stage props', 'photography and creative backdrops', 'gaming room and ambience decoration', 'presentation and event visual effects', 'music video and content creation props'], controls: ['fullscreen mode', 'three static styles (analog, color, VHS)', 'CRT scanline overlay toggle', 'No Signal TV indicator toggle', 'audio noise modes (static, white, pink, off)', 'volume slider', 'static playback speed', 'keyboard shortcuts (1-3, S, ↑↓, F, Esc)'], faqs: [
+      {
+        question: 'What is the White Noise Screen simulator?',
+        answer: 'The White Noise Screen is a free, browser-based TV static simulator that generates realistic analog television noise (snow), CRT scanline effects, and VHS glitch visuals directly in your browser. It recreates the look and sound of an analog television with no signal — complete with authentic gray static noise, rainbow color noise, retro VHS drift effects, and a "No Signal" TV indicator overlay. It is designed for entertainment, film production, streaming backgrounds, and creative staging — not as an actual television diagnostic tool.'
+      },
+      {
+        question: 'Is the White Noise Screen safe?',
+        answer: 'Yes, it is completely safe. The white noise simulation runs entirely in your browser using HTML, CSS, JavaScript, and Canvas. It does not install any software, modify system files, access personal data, or make any changes to your operating system. It is a purely visual and audio browser-based simulation.'
+      },
+      {
+        question: 'Is the White Noise Screen really free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The white noise screen is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'Does the white noise simulator require downloading?',
+        answer: 'No. The white noise screen runs directly in your browser. There is nothing to download, install, or configure. Just open the page and the static animation starts immediately. Works on any device with a modern browser.'
+      },
+      {
+        question: 'What static styles are available?',
+        answer: 'The simulator includes three static styles. Analog mode generates classic gray television snow — the iconic black-and-white static noise from vintage CRT televisions. Color mode creates rainbow static with full-spectrum noise for a vibrant retro effect. VHS mode adds drifting horizontal bands, noise streak lines, and analog sync sway that mimics a damaged VHS cassette playback.'
+      },
+      {
+        question: 'What are CRT scanlines?',
+        answer: 'CRT scanlines are the horizontal lines visible on old cathode-ray tube televisions and monitors. The White Noise Screen simulates this effect using a repeating overlay pattern that adds authentic scanline lines across the display. You can toggle this effect on or off using the CRT Scanlines checkbox in the settings panel.'
+      },
+      {
+        question: 'Does the white noise screen include sound?',
+        answer: 'Yes, the simulator includes three audio noise modes. Static mode generates a pulsing "see" sound with a gentle 1.3 Hz breathing effect, just like a detuned analog TV. White noise mode produces a flat, consistent hiss ideal for ambience and sound masking. Pink noise mode creates a deeper, warmer sound similar to light rain or a gentle waterfall. You can also set audio to Off for silent operation.'
+      },
+      {
+        question: 'Can I disable the sound?',
+        answer: 'Yes. Open the settings panel (gear icon) and set the Audio Noise dropdown to Off. You can also press the S key to mute and unmute audio. The static animation continues visually whether audio is on or off.'
+      },
+      {
+        question: 'Can I enable a "No Signal" screen?',
+        answer: 'Yes. In the settings panel, check the "NO SIGNAL" Logo checkbox. This displays a retro-style "AV-1 NO SIGNAL" TV indicator badge in the top-left corner of the screen, adding extra authenticity to the outdated television aesthetic.'
+      },
+      {
+        question: 'Does the white noise simulator work fullscreen?',
+        answer: 'Yes. Press the F key or click the fullscreen button to enter fullscreen mode. The static fills your entire display with no browser UI visible. Audio starts automatically in fullscreen mode for the most immersive experience. Press Escape to exit.'
+      },
+      {
+        question: 'Does the white noise screen work on mobile devices?',
+        answer: 'Yes, the white noise screen works on any device with a modern web browser — Windows PCs, Macs, Linux machines, Chromebooks, tablets, smartphones, and Smart TVs. The canvas rendering adapts to different screen sizes automatically.'
+      },
+      {
+        question: 'Can I use the white noise screen for videos and streaming?',
+        answer: 'Absolutely. The white noise simulation works as a fullscreen background for YouTube videos, Twitch streams, TikTok content, film production, video calls, and screen recordings. The three static styles and CRT effects make it versatile for retro intros, horror scenes, cinematic transitions, and vintage aesthetic content.'
+      },
+      {
+        question: 'Does the white noise screen work offline?',
+        answer: 'After the initial page load, the white noise simulation runs entirely client-side using Canvas, JavaScript, and the Web Audio API. Once the page is cached by your browser, the static animation and audio continue to work without an active internet connection.'
+      }
+    ] },
   { id: 'fake-virus-screen', name: 'Fake Virus Screen', shortName: 'Fake Virus', slug: 'fake-virus-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#111827', summary: 'A clearly harmless fake virus screen for theatrical browser pranks and video staging.', intent: 'dramatic visual effect that stays safe and reversible', useCases: ['friendly pranks', 'video scenes', 'training examples', 'event visuals'], controls: ['fullscreen', 'escape hint', 'timer', 'brightness', 'clear screen'], faqs: effectFaqs('Fake Virus Screen') },
   // { id: 'terminal-screen', name: 'Terminal Screen', shortName: 'Terminal', slug: 'terminal-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#050505', summary: 'A premium terminal-style fullscreen page for demos, code-themed scenes, and ambient setups.', intent: 'minimal terminal atmosphere without installing anything', useCases: ['developer videos', 'demo backdrops', 'event staging', 'ambient screen'], controls: ['fullscreen', 'theme toggle', 'brightness', 'keyboard shortcuts', 'copy prompt'], faqs: effectFaqs('Terminal Screen') },
   { id: 'windows-update', name: 'Fake Windows Update Screen', shortName: 'Windows Update', slug: 'windows-update', localizedSlugs: {}, category: 'fake', kind: 'fake', color: '#0078d7', summary: 'A fake update progress screen for harmless staged demos, pauses, and prank scenarios.', intent: 'recognizable update-progress concept without system access', useCases: ['friendly pauses', 'video props', 'classroom jokes', 'event screens'], controls: ['fullscreen', 'timer', 'progress control', 'escape hint', 'brightness'], faqs: effectFaqs('Windows Update Screen') },

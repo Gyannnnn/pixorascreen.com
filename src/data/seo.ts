@@ -147,6 +147,33 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'फर्जी ब्लू स्क्रीन प्रैंक - BSOD सिम्युलेटर और विंडोज क्रैश प्रैंक ऑनलाइन',
     ja: '偽のブルースクリーンいたずら - BSODシミュレーター＆Windowsクラッシュいたずらオンライン',
   },
+  'windows-xp-crash': {
+    en: 'Windows XP Crash Simulator - Fake Explorer.exe Error & BSOD Prank Online',
+    es: 'Simulador de Crash de Windows XP - Falso Error de Explorer.exe y Broma BSOD',
+    pt: 'Simulador de Crash do Windows XP - Erro Falso do Explorer.exe e Pegadinha BSOD',
+    fr: 'Simulateur de Plantage Windows XP - Fausse Erreur Explorer.exe et Farce BSOD',
+    de: 'Windows XP Absturz Simulator - Gefälschter Explorer.exe Fehler & BSOD Streich',
+    hi: 'विंडोज एक्सपी क्रैश सिम्युलेटर - फर्जी explorer.exe त्रुटि और BSOD प्रैंक ऑनलाइन',
+    ja: 'Windows XPクラッシュシミュレーター - 偽のexplorer.exeエラー＆BSODいたずらオンライン',
+  },
+  'radar-screen': {
+    en: 'Radar Screen – Free Online Radar Simulator with Fullscreen Sonar Sweep & Target Tracking',
+    es: 'Pantalla de Radar Online - Simulador de Radar Gratis con Barrido Sonar y Rastreo de Objetivos',
+    pt: 'Tela de Radar Online - Simulador de Radar Grátis com Varredura Sonar e Rastreio de Alvos',
+    fr: 'Écran Radar en Ligne - Simulateur Radar Gratuit avec Balayage Sonar et Suivi de Cibles',
+    de: 'Radar-Bildschirm Online - Kostenloser Radar-Simulator mit Vollbild-Sonar-Sweep & Zielverfolgung',
+    hi: 'रडार स्क्रीन ऑनलाइन - फुलस्क्रीन सोनार स्वीप और टार्गेट ट्रैकिंग के साथ मुफ्त रडार सिम्युलेटर',
+    ja: 'レーダー画面 オンライン - 全画面ソナースイープ＆ターゲット追跡機能付き無料レーダーシミュレーター',
+  },
+  'white-noise-screen': {
+    en: 'White Noise Screen – Free Online TV Static Simulator with CRT Scanlines & Audio Noise',
+    es: 'Pantalla de Ruido Blanco Online - Simulador de TV Estática Gratis con Líneas CRT y Ruido de Audio',
+    pt: 'Tela de Ruído Branco Online - Simulador de TV Estática Grátis com Linhas CRT e Ruído de Áudio',
+    fr: 'Écran Bruit Blanc en Ligne - Simulateur de Neige TV Gratuit avec Lignes CRT et Bruit Audio',
+    de: 'Weißes-Rauschen-Bildschirm Online - Kostenloser TV-Rauschen-Simulator mit CRT-Zeilen & Audiogeräusch',
+    hi: 'व्हाइट नॉइज़ स्क्रीन ऑनलाइन - CRT स्कैनलाइन और ऑडियो नॉइज़ के साथ मुफ्त टीवी स्टैटिक सिम्युलेटर',
+    ja: 'ホワイトノイズ画面 オンライン - CRTスキャンライン＆オーディオノイズ付き無料テレビ静止画シミュレーター',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -266,6 +293,33 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen realistischen falschen Windows-BSOD-Absturz. Der überzeugendste blaue-Bildschirm-Streich online mit animiertem Fortschritt, 8 Stoppcodes, QR-Code und konfigurierbarer Simulation. Kostenlos, harmlos, kein Download.',
     hi: 'किसी भी स्क्रीन को यथार्थवादी फर्जी विंडोज BSOD क्रैश में बदलें। एनिमेटेड प्रोग्रेस, 8 स्टॉप कोड, QR कोड और कॉन्फ़िगरेबल सिमुलेशन के साथ सबसे विश्वसनीय ब्लू स्क्रीन प्रैंक ऑनलाइन। मुफ्त, हानिरहित, बिना डाउनलोड।',
     ja: 'あらゆる画面をリアルな偽のWindows BSODクラッシュに変身。アニメーション進行、8つのストップコード、QRコード、設定可能なシミュレーションを備えた最も説得力のあるオンラインブルースクリーンいたずら。無料、無害、ダウンロード不要。',
+  },
+  'windows-xp-crash': {
+    en: 'Turn any screen into a realistic Windows XP crash simulator with full desktop simulation, explorer.exe error dialogs, cascading crash windows, and classic BSOD transition. Free, harmless, no download — pure retro nostalgia.',
+    es: 'Convierte cualquier pantalla en un realista simulador de crash de Windows XP con simulación completa del escritorio, diálogos de error de explorer.exe, ventanas de error en cascada y transición BSOD clásica. Gratis, inofensivo, sin descarga — pura nostalgia retro.',
+    pt: 'Transforme qualquer tela em um realista simulador de crash do Windows XP com simulação completa da área de trabalho, diálogos de erro do explorer.exe, janelas de erro em cascata e transição BSOD clássica. Grátis, inofensivo, sem download — pura nostalgia retrô.',
+    fr: 'Transformez n\'importe quel écran en un simulateur réaliste de plantage Windows XP avec simulation complète du bureau, dialogues d\'erreur explorer.exe, fenêtres d\'erreur en cascade et transition BSOD classique. Gratuit, inoffensif, sans téléchargement — pure nostalgie rétro.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen realistischen Windows XP Absturzsimulator mit vollständiger Desktop-Simulation, Explorer.exe-Fehlerdialogen, kaskadierenden Fehlerfenstern und klassischem BSOD-Übergang. Kostenlos, harmlos, kein Download — pure Retro-Nostalgie.',
+    hi: 'किसी भी स्क्रीन को एक यथार्थवादी विंडोज एक्सपी क्रैश सिम्युलेटर में बदलें, जिसमें पूर्ण डेस्कटॉप सिमुलेशन, explorer.exe त्रुटि डायलॉग, कैस्केडिंग क्रैश विंडो और क्लासिक BSOD ट्रांज़िशन शामिल है। मुफ्त, हानिरहित, बिना डाउनलोड — शुद्ध रेट्रो नॉस्टेल्जिया।',
+    ja: 'あらゆる画面を、完全なデスクトップシミュレーション、explorer.exeエラーダイアログ、カスケードクラッシュウィンドウ、クラシックBSOD移行を備えたリアルなWindows XPクラッシュシミュレーターに変身。無料、無害、ダウンロード不要 — 純粋なレトロノスタルジア。',
+  },
+  'radar-screen': {
+    en: 'Turn any screen into a free online radar screen simulator with real-time sweep animation, sonar ping audio, target interception, and three tactical color themes. Fullscreen radar display for desktop, laptop, monitor, and TV — no download needed.',
+    es: 'Convierte cualquier pantalla en un simulador de radar online gratis con animación de barrido en tiempo real, sonido de ping de sonar, interceptación de objetivos y tres temas tácticos de color. Pantalla de radar a pantalla completa para escritorio, portátil, monitor y TV — sin descarga.',
+    pt: 'Transforme qualquer tela em um simulador de radar online grátis com animação de varredura em tempo real, som de ping sonar, interceptação de alvos e três temas táticos de cor. Tela de radar em tela cheia para desktop, notebook, monitor e TV — sem download.',
+    fr: 'Transformez n\'importe quel écran en un simulateur radar en ligne gratuit avec animation de balayage en temps réel, son ping sonar, interception de cibles et trois thèmes de couleur tactiques. Affichage radar plein écran pour PC, portable, moniteur et TV — sans téléchargement.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Radar-Simulator mit Echtzeit-Sweep-Animation, Sonar-Ping-Audio, Zielabfang und drei taktischen Farbthemen. Vollbild-Radar-Display für Desktop, Laptop, Monitor und TV — kein Download nötig.',
+    hi: 'किसी भी स्क्रीन को रीयल-टाइम स्वीप एनिमेशन, सोनार पिंग ऑडियो, टार्गेट इंटरसेप्शन और तीन सामरिक रंग थीम के साथ मुफ्त ऑनलाइन रडार स्क्रीन सिम्युलेटर में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रडार डिस्प्ले — बिना डाउनलोड के।',
+    ja: 'リアルタイムスイープアニメーション、ソナーピング音声、ターゲット迎撃、3つの戦術カラーテーマを備えた無料のオンラインレーダー画面シミュレーターにどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面レーダーディスプレイ。ダウンロード不要。',
+  },
+  'white-noise-screen': {
+    en: 'Turn any screen into a free online white noise screen (TV static) simulator with authentic analog noise, 3 static styles, CRT scanlines, VHS glitch, and audio static. Fullscreen retro TV effect for desktop, laptop, monitor, and TV — no download needed.',
+    es: 'Convierte cualquier pantalla en un simulador de ruido blanco online gratis con ruido analógico auténtico, 3 estilos de estática, líneas CRT, glitch VHS y audio de estática. Efecto retro de TV a pantalla completa para escritorio, portátil, monitor y TV — sin descarga.',
+    pt: 'Transforme qualquer tela em um simulador de ruído branco online grátis com ruído analógico autêntico, 3 estilos de estática, linhas CRT, glitch VHS e áudio de estática. Efeito retrô de TV em tela cheia para desktop, notebook, monitor e TV — sem download.',
+    fr: 'Transformez n\'importe quel écran en un simulateur de bruit blanc en ligne gratuit avec bruit analogique authentique, 3 styles de neige TV, lignes CRT, effet VHS et audio statique. Effet TV rétro plein écran pour PC, portable, moniteur et TV — sans téléchargement.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Weißes-Rauschen-Simulator mit authentischem Analograuschen, 3 Statik-Stilen, CRT-Zeilen, VHS-Glitch und Audiostatik. Vollbild-Retro-TV-Effekt für Desktop, Laptop, Monitor und TV — kein Download nötig.',
+    hi: 'किसी भी स्क्रीन को प्रामाणिक एनालॉग नॉइज़, 3 स्टैटिक स्टाइल, CRT स्कैनलाइन, VHS ग्लिच और ऑडियो स्टैटिक के साथ मुफ्त ऑनलाइन व्हाइट नॉइज़ स्क्रीन सिम्युलेटर में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रेट्रो टीवी इफ़ेक्ट — बिना डाउनलोड के।',
+    ja: '本物そっくりのアナログノイズ、3種類のスタティックスタイル、CRTスキャンライン、VHSグリッチ、オーディオノイズを備えた無料のオンラインホワイトノイズ画面シミュレーターにどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面レトロTV効果。ダウンロード不要。',
   },
 };
 
@@ -521,6 +575,42 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
           '@type': 'HowToStep',
           name: 'Exit the Simulation Safely',
           text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation ends immediately and the page returns to normal. No system changes, no installed software, zero trace left on the device.'
+        }
+      ]
+    });
+  }
+
+  if (tool.id === 'windows-xp-crash') {
+    baseSchemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to Use the Windows XP Crash Simulator for Pranks & Nostalgia',
+      description: 'A step-by-step guide to using the online Windows XP crash simulator to recreate the classic XP desktop crash experience for harmless pranks, retro nostalgia, and content creation.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Open the Windows XP Crash Simulator',
+          text: 'Load the windows-xp-crash page on any device with a modern browser — desktop, laptop, tablet, phone, or Smart TV.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Configure the Crash Settings',
+          text: 'Use the controls panel to select the trigger mode: "Encounter Dialog -> Cascade -> BSOD" for a gradual crash escalation, or "Instant BSOD" for immediate blue screen. Set the BSOD delay (5, 12, 20, or 30 seconds) and toggle the XP warning bell sound on or off.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Launch Fullscreen Prank Mode',
+          text: 'Click the "Fullscreen Prank" button or press the "F" key on your keyboard. The screen fills with an authentic Windows XP desktop featuring the Bliss wallpaper, desktop icons, taskbar, and live system clock.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Trigger the Crash Simulation',
+          text: 'Click anywhere on the desktop or click the dialog buttons to spawn cascading explorer.exe error windows. Each click creates more error dialogs, escalating the crash effect. After the configured delay, the screen transitions to the classic Windows XP BSOD with a memory dump counter.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Reset and Exit Safely',
+          text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation resets automatically — all error dialogs disappear, the BSOD hides, and the desktop returns to its initial state. No system changes, no installed software, zero trace left on the device.'
         }
       ]
     });

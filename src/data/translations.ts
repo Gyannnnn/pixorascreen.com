@@ -606,6 +606,8 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'galaxy-screen': { es: 'Pantalla de Galaxia', pt: 'Tela de Galáxia', fr: 'Écran Galaxie', de: 'Galaxie-Bildschirm', hi: 'गैलेक्सी स्क्रीन', ja: '銀河の画面' },
   'broken-screen': { es: 'Pantalla Rota', pt: 'Tela Quebrada', fr: 'Écran Cassé', de: 'Kaputter Bildschirm', hi: 'टूटी स्क्रीन', ja: '壊れた画面' },
   'blue-screen-prank': { es: 'Broma de Pantalla Azul', pt: 'Pegadinha de Tela Azul', fr: 'Blague d\'Écran Bleu', de: 'Blauer-Bildschirm-Streich', hi: 'ब्लू स्क्रीन प्रैंक', ja: '青い画面のいたずら' },
+  'windows-xp-crash': { es: 'Crash de Windows XP', pt: 'Crash do Windows XP', fr: 'Plantage Windows XP', de: 'Windows XP Absturz', hi: 'विंडोज एक्सपी क्रैश', ja: 'Windows XPクラッシュ' },
+  'white-noise-screen': { es: 'Pantalla de Ruido Blanco', pt: 'Tela de Ruído Branco', fr: 'Écran Bruit Blanc', de: 'Weißes-Rauschen-Bildschirm', hi: 'व्हाइट नॉइज़ स्क्रीन', ja: 'ホワイトノイズ画面' },
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
@@ -646,12 +648,12 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
   'green-screen': { hi: 'क्रोमा की प्रीव्यू, पैनल जांच और रंग संदर्भ के लिए एक जीवंत हरा फुलस्क्रीन पेज।' },
   'blue-screen': { hi: 'डिस्प्ले रंग जांच, एम्बिएंट टोन और वीडियो सेटअप के लिए एक संतृप्त नीला फुलस्क्रीन क्षेत्र।' },
   'radar-screen': {
-    es: 'Una pantalla de radar a pantalla completa para tableros teatrales, videos y configuraciones divertidas.',
-    pt: 'Uma tela de radar em tela cheia para painéis teatrais, vídeos e setups divertidos.',
-    fr: 'Un affichage radar en plein écran pour les tableaux de bord théâtraux, les vidéos et les configurations ludiques.',
-    de: 'Ein Radar-Vollbildschirm für theatralische Dashboards, Videos und spielerische Setups.',
-    hi: 'नाटकीय डैशबोर्ड, वीडियो और चंचल सेटअप के लिए रडार-शैली का फुलस्क्रीन डिस्प्ले।',
-    ja: '演劇用ダッシュボード、ビデオ、および遊び心のあるセットアップ用のレーダー風全画面表示。',
+    es: 'Un simulador de radar online gratis con animación de barrido en tiempo real, sonido de ping de sónar, seguimiento de objetivos y pantalla táctica personalizable. Efecto radar a pantalla completa para escritorio, portátil, monitor y TV — sin descarga.',
+    pt: 'Um simulador de radar online grátis com animação de varredura em tempo real, som de ping de sonar, rastreamento de alvos e display tático personalizável. Efeito radar em tela cheia para desktop, notebook, monitor e TV — sem download.',
+    fr: 'Un simulateur radar en ligne gratuit avec animation de balayage en temps réel, son ping sonar, suivi de cibles et affichage tactique personnalisable. Effet radar plein écran pour PC, portable, moniteur et TV — sans téléchargement.',
+    de: 'Ein kostenloser Online-Radar-Simulator mit Echtzeit-Sweep-Animation, Sonar-Ping-Audio, Zielverfolgung und anpassbarer taktischer Anzeige. Vollbild-Radar-Effekt für Desktop, Laptop, Monitor und TV — kein Download nötig.',
+    hi: 'रीयल-टाइम स्वीप एनिमेशन, सोनार पिंग ऑडियो, टार्गेट ट्रैकिंग और कस्टमाइज़ेबल टैक्टिकल डिस्प्ले के साथ मुफ्त ऑनलाइन रडार स्क्रीन सिम्युलेटर। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रडार इफ़ेक्ट — बिना डाउनलोड के।',
+    ja: 'リアルタイムスイープアニメーション、ソナーピング音声、ターゲット追跡、カスタマイズ可能な戦術ディスプレイを備えた無料のオンラインレーダー画面シミュレーター。デスクトップ、ノートPC、モニター、TV向け全画面レーダー効果。ダウンロード不要。',
   },
   'fireplace-screen': {
     es: 'Un protector de pantalla cálido inspirado en una chimenea para ambientación, calor de fondo y configuraciones de escritorio acogedoras.',
@@ -732,6 +734,22 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     de: 'Eine realistische Windows-BSOD-Simulation mit animiertem Fortschritt, Stoppcodes und Vollbild-Crash-Verhalten für Streiche und Videoinhalte.',
     hi: 'एनिमेटेड प्रोग्रेस, स्टॉप कोड और फुलस्क्रीन क्रैश व्यवहार के साथ एक यथार्थवादी विंडोज़ BSOD सिमुलेशन प्रैंक और वीडियो कंटेंट के लिए।',
     ja: 'アニメーション進行、ストップコード、全画面クラッシュ動作を備えたリアルなWindows BSODシミュレーション。いたずらや動画コンテンツに最適。',
+  },
+  'windows-xp-crash': {
+    es: 'Un simulador realista de crash de Windows XP con escritorio completo, diálogos de error de explorer.exe y transición BSOD clásica para bromas y nostalgia retro.',
+    pt: 'Um simulador realista de crash do Windows XP com área de trabalho completa, diálogos de erro do explorer.exe e transição BSOD clássica para pegadinhas e nostalgia retrô.',
+    fr: 'Un simulateur réaliste de plantage Windows XP avec bureau complet, dialogues d\'erreur explorer.exe et transition BSOD classique pour farces et nostalgie rétro.',
+    de: 'Ein realistischer Windows XP-Absturzsimulator mit vollständigem Desktop, Explorer.exe-Fehlerdialogen und klassischem BSOD-Übergang für Streiche und Retro-Nostalgie.',
+    hi: 'पूर्ण डेस्कटॉप, explorer.exe त्रुटि संवाद और क्लासिक BSOD संक्रमण के साथ एक यथार्थवादी विंडोज एक्सपी क्रैश सिम्युलेटर प्रैंक और रेट्रो नॉस्टेल्जिया के लिए।',
+    ja: '完全なデスクトップ、explorer.exeエラーダイアログ、クラシックなBSOD移行を備えたリアルなWindows XPクラッシュシミュレーター。いたずらやレトロノスタルジアに最適。',
+  },
+  'white-noise-screen': {
+    es: 'Un simulador de ruido blanco (estática de TV) online gratis con ruido analógico auténtico, líneas CRT, efectos VHS y audio de estática. Efecto retro de TV a pantalla completa para escritorio, portátil, monitor y TV — sin descarga.',
+    pt: 'Um simulador de ruído branco (estática de TV) online grátis com ruído analógico autêntico, linhas CRT, efeitos VHS e áudio de estática. Efeito retrô de TV em tela cheia para desktop, notebook, monitor e TV — sem download.',
+    fr: 'Un simulateur de bruit blanc (neige TV) en ligne gratuit avec bruit analogique authentique, lignes CRT, effets VHS et audio statique. Effet TV rétro plein écran pour PC, portable, moniteur et TV — sans téléchargement.',
+    de: 'Ein kostenloser Online-Weißes-Rauschen-Simulator (TV-Rauschen) mit authentischem Analograuschen, CRT-Zeilen, VHS-Effekten und Audiostatik. Vollbild-Retro-TV-Effekt für Desktop, Laptop, Monitor und TV — kein Download nötig.',
+    hi: 'प्रामाणिक एनालॉग नॉइज़, CRT स्कैनलाइन, VHS इफ़ेक्ट और ऑडियो स्टैटिक के साथ मुफ्त ऑनलाइन व्हाइट नॉइज़ स्क्रीन (टीवी स्टैटिक) सिम्युलेटर। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रेट्रो टीवी इफ़ेक्ट — बिना डाउनलोड के।',
+    ja: '本物そっくりのアナログノイズ、CRTスキャンライン、VHSエフェクト、オーディオノイズを備えた無料のオンラインホワイトノイズ画面（テレビノイズ）シミュレーター。デスクトップ、ノートPC、モニター、TV向け全画面レトロTV効果。ダウンロード不要。',
   },
 };
 
@@ -5162,6 +5180,382 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
         answer: 'キーボードのEscape（Esc）キーを押すと、全画面モードが即座に終了します。いたずらはすぐに終了し、ページは通常に戻ります。'
       }
     ]
+  },
+  'windows-xp-crash': {
+    en: [
+      {
+        question: 'Is the Windows XP Crash Simulator safe?',
+        answer: 'Yes, it is completely safe. The Windows XP crash simulator runs entirely in your browser using HTML, CSS, and JavaScript. It does not install any software, modify system files, access personal data, or make any changes to your operating system. It is a purely visual browser-based simulation.'
+      },
+      {
+        question: 'How do I start the Windows XP crash simulation?',
+        answer: 'Click the "Fullscreen Prank" button or press the "F" key on your keyboard. The simulation launches in fullscreen mode. By default, clicking around the desktop spawns cascading explorer.exe error windows. After the configured delay (5-30 seconds), the screen transitions to the classic Windows XP BSOD with a memory dump counter.'
+      },
+      {
+        question: 'How do I exit the Windows XP crash prank?',
+        answer: 'Press the Escape (Esc) key on your keyboard. This exits fullscreen mode and automatically resets the simulation, returning the page to its normal state. All error dialogs disappear and the desktop returns to its initial setup.'
+      },
+      {
+        question: 'Can I customise the Windows XP crash settings?',
+        answer: 'Yes. Use the "On Start" dropdown to choose between Cascade mode (progressively escalating error dialogs before BSOD) or Instant BSOD mode. Use the "BSOD Delay" dropdown to set the crash delay to 5, 12, 20, or 30 seconds. You can also toggle the XP warning bell sound on or off.'
+      },
+      {
+        question: 'Does the Windows XP crash simulation work on Mac or Linux?',
+        answer: 'Yes, it works on any device with a modern web browser — Windows PCs, Macs, Linux machines, Chromebooks, tablets, and smartphones. The entire simulation runs in the browser using standard web technologies.'
+      },
+      {
+        question: 'What makes this different from a real Windows XP crash?',
+        answer: 'This is a purely visual recreation using HTML, CSS, and JavaScript. It simulates the look and feel of a Windows XP desktop and crash sequence but makes no actual system changes. No files are modified, no software is installed, and no operating system settings are altered. It is completely harmless and reversible by pressing Escape.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Es seguro el simulador de crash de Windows XP?',
+        answer: 'Sí, es completamente seguro. El simulador de crash de Windows XP se ejecuta enteramente en su navegador usando HTML, CSS y JavaScript. No instala software, modifica archivos del sistema ni realiza cambios en su sistema operativo.'
+      },
+      {
+        question: '¿Cómo inicio la simulación de crash de Windows XP?',
+        answer: 'Haga clic en el botón "Fullscreen Prank" o presione la tecla "F" en su teclado. La simulación se inicia en modo de pantalla completa. Por defecto, al hacer clic en el escritorio aparecen ventanas de error de explorer.exe en cascada. Después de la demora configurada (5-30 segundos), la pantalla transiciona al BSOD clásico de Windows XP.'
+      },
+      {
+        question: '¿Cómo salgo de la broma de crash de Windows XP?',
+        answer: 'Presione la tecla Escape (Esc) en su teclado. Esto sale del modo de pantalla completa y reinicia automáticamente la simulación. Todos los diálogos de error desaparecen y el escritorio vuelve a su estado inicial.'
+      },
+      {
+        question: '¿Puedo personalizar la configuración del crash?',
+        answer: 'Sí. Use el menú desplegable "On Start" para elegir entre el modo Cascade (diálogos de error progresivos antes del BSOD) o el modo Instant BSOD. Use "BSOD Delay" para establecer la demora en 5, 12, 20 o 30 segundos. También puede activar o desactivar el sonido de advertencia de XP.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O simulador de crash do Windows XP é seguro?',
+        answer: 'Sim, é completamente seguro. O simulador de crash do Windows XP funciona inteiramente no seu navegador usando HTML, CSS e JavaScript. Não instala software, modifica arquivos do sistema nem altera o sistema operacional.'
+      },
+      {
+        question: 'Como iniciar a simulação de crash do Windows XP?',
+        answer: 'Clique no botão "Fullscreen Prank" ou pressione a tecla "F" no teclado. A simulação inicia em modo tela cheia. Clicar na área de trabalho gera janelas de erro do explorer.exe em cascata. Após o atraso configurado (5-30 segundos), a tela faz a transição para o BSOD clássico do Windows XP.'
+      },
+      {
+        question: 'Como sair da pegadinha de crash do Windows XP?',
+        answer: 'Pressione a tecla Escape (Esc) no teclado. Isso sai do modo tela cheia e reinicia automaticamente a simulação. Todos os diálogos de erro desaparecem e a área de trabalho volta ao estado inicial.'
+      },
+      {
+        question: 'Posso personalizar as configurações do crash?',
+        answer: 'Sim. Use o menu "On Start" para escolher entre o modo Cascade (diálogos de erro progressivos antes do BSOD) ou o modo Instant BSOD. Use "BSOD Delay" para definir o atraso em 5, 12, 20 ou 30 segundos. Você também pode ativar ou desativar o som de aviso do XP.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Le simulateur de plantage Windows XP est-il sûr ?',
+        answer: 'Oui, il est totalement sûr. Le simulateur de plantage Windows XP fonctionne entièrement dans votre navigateur en utilisant HTML, CSS et JavaScript. Il n\'installe aucun logiciel, ne modifie aucun fichier système et n\'apporte aucune modification à votre système d\'exploitation.'
+      },
+      {
+        question: 'Comment démarrer la simulation de plantage Windows XP ?',
+        answer: 'Cliquez sur le bouton "Fullscreen Prank" ou appuyez sur la touche "F" de votre clavier. La simulation se lance en plein écran. Cliquer sur le bureau génère des fenêtres d\'erreur explorer.exe en cascade. Après le délai configuré (5-30 secondes), l\'écran passe au BSOD classique de Windows XP.'
+      },
+      {
+        question: 'Comment quitter la farce de plantage Windows XP ?',
+        answer: 'Appuyez sur la touche Échap (Esc) de votre clavier. Cela quitte le mode plein écran et réinitialise automatiquement la simulation. Toutes les boîtes de dialogue d\'erreur disparaissent et le bureau revient à son état initial.'
+      },
+      {
+        question: 'Puis-je personnaliser les paramètres du plantage ?',
+        answer: 'Oui. Utilisez le menu "On Start" pour choisir entre le mode Cascade (boîtes de dialogue d\'erreur progressives avant le BSOD) ou le mode Instant BSOD. Utilisez "BSOD Delay" pour définir le délai à 5, 12, 20 ou 30 secondes. Vous pouvez également activer ou désactiver le son d\'avertissement XP.'
+      }
+    ],
+    de: [
+      {
+        question: 'Ist der Windows XP Absturzsimulator sicher?',
+        answer: 'Ja, er ist völlig sicher. Der Windows XP Absturzsimulator läuft vollständig in Ihrem Browser mit HTML, CSS und JavaScript. Er installiert keine Software, ändert keine Systemdateien und nimmt keine Änderungen an Ihrem Betriebssystem vor.'
+      },
+      {
+        question: 'Wie starte ich die Windows XP Absturzsimulation?',
+        answer: 'Klicken Sie auf den "Fullscreen Prank"-Button oder drücken Sie die "F"-Taste auf Ihrer Tastatur. Die Simulation startet im Vollbildmodus. Durch Klicken auf den Desktop erscheinen kaskadierende Explorer.exe-Fehlerfenster. Nach der eingestellten Verzögerung (5-30 Sekunden) erfolgt der Übergang zum klassischen Windows XP BSOD.'
+      },
+      {
+        question: 'Wie beende ich den Windows XP Absturz-Streich?',
+        answer: 'Drücken Sie die Escape-Taste (Esc) auf Ihrer Tastatur. Dies beendet den Vollbildmodus und setzt die Simulation automatisch zurück. Alle Fehlerdialoge verschwinden und der Desktop kehrt in seinen Ausgangszustand zurück.'
+      },
+      {
+        question: 'Kann ich die Absturzeinstellungen anpassen?',
+        answer: 'Ja. Verwenden Sie das "On Start"-Menü, um zwischen Cascade-Modus (fortschreitende Fehlerdialoge vor dem BSOD) oder Instant BSOD-Modus zu wählen. Mit "BSOD Delay" stellen Sie die Verzögerung auf 5, 12, 20 oder 30 Sekunden ein. Sie können auch den XP-Warnton ein- oder ausschalten.'
+      }
+    ],
+    hi: [
+      {
+        question: 'क्या विंडोज एक्सपी क्रैश सिम्युलेटर सुरक्षित है?',
+        answer: 'हाँ, यह पूरी तरह से सुरक्षित है। विंडोज एक्सपी क्रैश सिम्युलेटर HTML, CSS और JavaScript का उपयोग करके पूरी तरह से आपके ब्राउज़र में चलता है। यह कोई सॉफ़्टवेयर इंस्टॉल नहीं करता, सिस्टम फ़ाइलों में बदलाव नहीं करता, या आपके ऑपरेटिंग सिस्टम में कोई बदलाव नहीं करता।'
+      },
+      {
+        question: 'मैं विंडोज एक्सपी क्रैश सिमुलेशन कैसे शुरू करूँ?',
+        answer: '"Fullscreen Prank" बटन पर क्लिक करें या अपने कीबोर्ड पर "F" कुंजी दबाएँ। सिमुलेशन फुलस्क्रीन मोड में शुरू होता है। डेस्कटॉप पर क्लिक करने से कैस्केडिंग explorer.exe त्रुटि विंडो दिखाई देती हैं। निर्धारित देरी (5-30 सेकंड) के बाद, स्क्रीन क्लासिक विंडोज एक्सपी BSOD में बदल जाती है।'
+      },
+      {
+        question: 'मैं विंडोज एक्सपी क्रैश प्रैंक से कैसे बाहर निकलूँ?',
+        answer: 'अपने कीबोर्ड पर Escape (Esc) कुंजी दबाएँ। यह फुलस्क्रीन मोड से बाहर निकलता है और स्वचालित रूप से सिमुलेशन को रीसेट करता है। सभी त्रुटि डायलॉग गायब हो जाते हैं और डेस्कटॉप अपनी प्रारंभिक स्थिति में वापस आ जाता है।'
+      },
+      {
+        question: 'क्या मैं क्रैश सेटिंग्स को कस्टमाइज़ कर सकता हूँ?',
+        answer: 'हाँ। "On Start" ड्रॉपडाउन का उपयोग करके कैस्केड मोड (BSOD से पहले प्रगतिशील त्रुटि डायलॉग) या इंस्टेंट BSOD मोड चुनें। "BSOD Delay" का उपयोग करके 5, 12, 20 या 30 सेकंड की देरी सेट करें। आप XP चेतावनी घंटी ध्वनि को चालू या बंद भी कर सकते हैं।'
+      }
+    ],
+    ja: [
+      {
+        question: 'Windows XPクラッシュシミュレーターは安全ですか？',
+        answer: 'はい、完全に安全です。Windows XPクラッシュシミュレーターはHTML、CSS、JavaScriptを使用してブラウザ内で完全に動作します。ソフトウェアをインストールしたり、システムファイルを変更したり、オペレーティングシステムに変更を加えたりすることはありません。'
+      },
+      {
+        question: 'Windows XPクラッシュシミュレーションを開始するには？',
+        answer: '「Fullscreen Prank」ボタンをクリックするか、キーボードの「F」キーを押します。シミュレーションが全画面モードで起動します。デスクトップをクリックすると、explorer.exeエラーウィンドウがカスケード表示されます。設定された遅延（5〜30秒）後、画面はクラシックなWindows XP BSODに移行します。'
+      },
+      {
+        question: 'Windows XPクラッシュのいたずらを終了するには？',
+        answer: 'キーボードのEscape（Esc）キーを押します。全画面モードが終了し、シミュレーションが自動的にリセットされます。すべてのエラーダイアログが消え、デスクトップは初期状態に戻ります。'
+      },
+      {
+        question: 'クラッシュ設定をカスタマイズできますか？',
+        answer: 'はい。「On Start」ドロップダウンでカスケードモード（BSOD前の段階的なエラーダイアログ）またはインスタントBSODモードを選択できます。「BSOD Delay」で5、12、20、30秒の遅延を設定できます。XP警告音のオン/オフも切り替えられます。'
+      }
+    ]
+  },
+  'radar-screen': {
+    en: [
+      {
+        question: 'What is the Radar Screen simulator?',
+        answer: 'The Radar Screen is a free, browser-based radar simulation that displays a realistic animated radar display with a rotating sweep beam, concentric range rings, compass headings, procedural terrain coastline, and simulated bogey targets. It is designed for entertainment, presentations, streaming backgrounds, room decoration, and creative staging — not as an actual radar instrument.'
+      },
+      {
+        question: 'Is the Radar Screen simulator safe?',
+        answer: 'Yes, it is completely safe. The radar simulation runs entirely in your browser using HTML, CSS, JavaScript, and Canvas. It does not install any software, modify system files, access personal data, or make any changes to your operating system. It is a purely visual browser-based simulation.'
+      },
+      {
+        question: 'Is the Radar Screen simulator really free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The radar screen is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'Does the radar simulator require downloading?',
+        answer: 'No. The radar screen simulator runs directly in your browser. There is nothing to download, install, or configure. Just open the page and the radar animation starts immediately. Works on any device with a modern browser.'
+      },
+      {
+        question: 'Can I control the radar sweep speed?',
+        answer: 'Yes. Open the settings panel (gear icon) and use the Sweep Speed slider to adjust the rotation speed from 4 to 30 RPM. A slower speed creates a more realistic, calm radar display. A faster speed creates a more intense, action-oriented feel.'
+      },
+      {
+        question: 'Can I mute the sonar ping sound?',
+        answer: 'Yes. Open the settings panel and use the Sonar Ping Sound Volume slider to adjust the volume, or click the Mute button to disable sonar audio entirely. The radar continues to animate visually even when audio is muted. You can also press the S key to toggle sonar audio.'
+      },
+      {
+        question: 'Does it work on mobile devices?',
+        answer: 'Yes, the radar screen simulator works on any device with a modern web browser — Windows PCs, Macs, Linux machines, Chromebooks, tablets, smartphones, and Smart TVs. The simulation adapts to different screen sizes and touch input.'
+      },
+      {
+        question: 'Can I use the radar screen in presentations and videos?',
+        answer: 'Yes, the radar screen makes an excellent presentation background, livestream backdrop, YouTube video background, or video conference visual. Enter fullscreen mode by pressing F or clicking the fullscreen button for the most immersive display. Three color themes let you match the radar aesthetic to your content style.'
+      },
+      {
+        question: 'What do the different radar color themes do?',
+        answer: 'The radar offers three color themes. Military Green recreates the classic green phosphor radar display. Oceanic Blue gives a modern naval sonar aesthetic. Red Alert creates a high-tension tactical look. Switch between them in the settings panel under Styling Frequency Theme.'
+      },
+      {
+        question: 'How does the radar target system work?',
+        answer: 'The radar randomly generates bogey targets that move toward the center. Friendly targets appear as green dots. Hostile targets appear as red dots with tracking boxes and trigger an Impact Intrusion Warning when entering the critical center corridor. Click a hostile bogey to intercept it — a yellow crosshair marks intercepted targets.'
+      },
+      {
+        question: 'Can I use the radar screen on a Smart TV?',
+        answer: 'Yes. The radar screen works on Smart TVs with web browsers. Open the URL in the TV browser, enter fullscreen mode, and the animated radar display fills the screen. Great as a decorative ambient display for themed parties and room decoration.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Qué es el simulador de pantalla de radar?',
+        answer: 'El Radar Screen es una simulación de radar gratuita basada en navegador que muestra una pantalla de radar animada realista con un haz de barrido giratorio, anillos de alcance concéntricos, rumbos de brújula, costa de terreno procedural y objetivos simulados. Está diseñado para entretenimiento, presentaciones, fondos de streaming, decoración de habitaciones y montajes creativos.'
+      },
+      {
+        question: '¿Es seguro el simulador de radar?',
+        answer: 'Sí, es completamente seguro. La simulación de radar se ejecuta completamente en su navegador usando HTML, CSS, JavaScript y Canvas. No instala software, modifica archivos del sistema ni accede a datos personales.'
+      },
+      {
+        question: '¿El simulador de radar es realmente gratuito?',
+        answer: 'Sí, es completamente gratuito. Sin cuenta, sin registro, sin tarjeta de crédito y sin cargos ocultos. Es una herramienta gratuita disponible para todos.'
+      },
+      {
+        question: '¿Requiere descarga el simulador de radar?',
+        answer: 'No. El simulador de radar se ejecuta directamente en su navegador. No hay nada que descargar, instalar o configurar. Solo abra la página y la animación comienza inmediatamente.'
+      },
+      {
+        question: '¿Puedo controlar la velocidad del barrido del radar?',
+        answer: 'Sí. Abra el panel de configuración y use el control deslizante de velocidad de barrido para ajustar la velocidad de rotación de 4 a 30 RPM.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O que é o simulador de tela de radar?',
+        answer: 'O Radar Screen é uma simulação de radar gratuita baseada em navegador que exibe uma tela de radar animada realista com feixe de varredura giratório, anéis de alcance concêntricos, marcas de bússola, costa de terreno procedural e alvos simulados. Projetado para entretenimento, apresentações, fundos de streaming e decoração.'
+      },
+      {
+        question: 'O simulador de radar é seguro?',
+        answer: 'Sim, é completamente seguro. A simulação de radar funciona inteiramente no seu navegador usando HTML, CSS, JavaScript e Canvas. Não instala software nem modifica arquivos do sistema.'
+      },
+      {
+        question: 'O simulador de radar é realmente grátis?',
+        answer: 'Sim, é completamente grátis. Sem conta, sem registro, sem cartão de crédito e sem taxas ocultas. É uma ferramenta gratuita disponível para todos.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Qu\'est-ce que le simulateur d\'écran radar ?',
+        answer: 'Le Radar Screen est une simulation radar gratuite basée sur navigateur qui affiche un affichage radar animé réaliste avec un faisceau de balayage rotatif, des anneaux de portée concentriques, des relèvements de boussole, un littoral de terrain procédural et des cibles simulées.'
+      },
+      {
+        question: 'Le simulateur radar est-il sûr ?',
+        answer: 'Oui, il est totalement sûr. La simulation radar fonctionne entièrement dans votre navigateur en utilisant HTML, CSS, JavaScript et Canvas. Elle n\'installe aucun logiciel et ne modifie aucun fichier système.'
+      },
+      {
+        question: 'Le simulateur radar est-il vraiment gratuit ?',
+        answer: 'Oui, il est complètement gratuit. Sans compte, sans inscription, sans carte de crédit et sans frais cachés. C\'est un outil gratuit accessible à tous.'
+      }
+    ],
+    de: [
+      {
+        question: 'Was ist der Radar-Bildschirm-Simulator?',
+        answer: 'Der Radar Screen ist eine kostenlose, browserbasierte Radarsimulation, die eine realistische animierte Radar-Anzeige mit rotierendem Sweep-Strahl, konzentrischen Reichweitenringen, Kompasspeilungen, prozeduraler Küstenlinie und simulierten Bogey-Zielen darstellt.'
+      },
+      {
+        question: 'Ist der Radar-Simulator sicher?',
+        answer: 'Ja, er ist völlig sicher. Die Radarsimulation läuft vollständig in Ihrem Browser mit HTML, CSS, JavaScript und Canvas. Sie installiert keine Software und ändert keine Systemdateien.'
+      },
+      {
+        question: 'Ist der Radar-Simulator wirklich kostenlos?',
+        answer: 'Ja, er ist völlig kostenlos. Kein Konto, keine Registrierung, keine Kreditkarte und keine versteckten Gebühren. Es ist ein kostenloses Tool, das allen zur Verfügung steht.'
+      }
+    ],
+    hi: [
+      {
+        question: 'रडार स्क्रीन सिम्युलेटर क्या है?',
+        answer: 'रडार स्क्रीन एक मुफ्त, ब्राउज़र-आधारित रडार सिमुलेशन है जो घूमने वाली स्वीप बीम, संकेंद्रित रेंज रिंग, कम्पास हेडिंग, प्रोसीजरल टेरेन कोस्टलाइन और सिम्युलेटेड बोगी टार्गेट के साथ एक यथार्थवादी एनिमेटेड रडार डिस्प्ले प्रदर्शित करता है।'
+      },
+      {
+        question: 'क्या रडार सिम्युलेटर सुरक्षित है?',
+        answer: 'हाँ, यह पूरी तरह से सुरक्षित है। रडार सिमुलेशन HTML, CSS, JavaScript और Canvas का उपयोग करके पूरी तरह से आपके ब्राउज़र में चलता है। यह कोई सॉफ़्टवेयर इंस्टॉल नहीं करता या सिस्टम फ़ाइलों को संशोधित नहीं करता।'
+      }
+    ],
+    ja: [
+      {
+        question: 'レーダー画面シミュレーターとは何ですか？',
+        answer: 'レーダー画面は、回転するスイープビーム、同心円状のレンジリング、コンパス方位、手続き型地形海岸線、シミュレートされたブギーターゲットを備えたリアルなアニメーションレーダーディスプレイを表示する無料のブラウザベースレーダーシミュレーションです。'
+      },
+      {
+        question: 'レーダーシミュレーターは安全ですか？',
+        answer: 'はい、完全に安全です。レーダーシミュレーションはHTML、CSS、JavaScript、Canvasを使用してブラウザ内で完全に動作します。ソフトウェアをインストールしたり、システムファイルを変更したりすることはありません。'
+      }
+    ]
+  },
+  'white-noise-screen': {
+    en: [
+      {
+        question: 'What is the White Noise Screen simulator?',
+        answer: 'The White Noise Screen is a free, browser-based TV static simulator that generates realistic analog television noise (snow), CRT scanline effects, and VHS glitch visuals directly in your browser. It is designed for entertainment, film production, streaming backgrounds, and creative staging — not as an actual television diagnostic tool.'
+      },
+      {
+        question: 'Is the White Noise Screen safe?',
+        answer: 'Yes, it is completely safe. The white noise simulation runs entirely in your browser using HTML, CSS, JavaScript, and Canvas. It does not install any software, modify system files, access personal data, or make any changes to your operating system.'
+      },
+      {
+        question: 'Is the White Noise Screen really free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The white noise screen is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'Does the white noise simulator require downloading?',
+        answer: 'No. The white noise screen runs directly in your browser. There is nothing to download, install, or configure. Just open the page and the static animation starts immediately.'
+      },
+      {
+        question: 'What static styles are available?',
+        answer: 'Three static styles are included. Analog mode generates classic gray television snow. Color mode creates rainbow static with full-spectrum noise. VHS mode adds drifting horizontal bands, noise streak lines, and analog sync sway that mimics damaged VHS cassette playback.'
+      },
+      {
+        question: 'What are CRT scanlines?',
+        answer: 'CRT scanlines simulate the horizontal lines visible on old cathode-ray tube televisions. The effect uses a repeating overlay pattern across the display and can be toggled on or off via the CRT Scanlines checkbox in settings.'
+      },
+      {
+        question: 'Does the white noise screen include sound?',
+        answer: 'Yes, the simulator includes three audio noise modes. Static mode generates a pulsing sound with a gentle breathing effect like a detuned analog TV. White noise mode produces a flat, consistent hiss. Pink noise mode creates a deeper, warmer sound. Audio can also be set to Off.'
+      },
+      {
+        question: 'Can I enable a No Signal screen?',
+        answer: 'Yes. In the settings panel, check the NO SIGNAL Logo checkbox to display a retro-style AV-1 NO SIGNAL TV indicator badge in the top-left corner of the screen.'
+      },
+      {
+        question: 'Can I use the white noise screen for videos?',
+        answer: 'Absolutely. The white noise simulation works as a fullscreen background for YouTube videos, Twitch streams, TikTok content, film production, and screen recordings. The three static styles and CRT effects are ideal for retro intros, horror scenes, and cinematic transitions.'
+      },
+      {
+        question: 'Does the white noise screen work offline?',
+        answer: 'After the initial page load, the white noise simulation runs entirely client-side using Canvas, JavaScript, and the Web Audio API. Once the page is cached, the static animation and audio continue without an active internet connection.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Qué es el simulador de pantalla de ruido blanco?',
+        answer: 'El White Noise Screen es un simulador de estática de TV gratuito basado en navegador que genera ruido de televisión analógico realista, efectos de líneas CRT y efectos visuales VHS directamente en su navegador.'
+      },
+      {
+        question: '¿Es segura la pantalla de ruido blanco?',
+        answer: 'Sí, es completamente segura. La simulación de ruido blanco se ejecuta completamente en su navegador usando HTML, CSS, JavaScript y Canvas. No instala software ni modifica archivos del sistema.'
+      },
+      {
+        question: '¿La pantalla de ruido blanco es realmente gratuita?',
+        answer: 'Sí, es completamente gratuita. Sin cuenta, sin registro, sin tarjeta de crédito y sin cargos ocultos.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O que é o simulador de tela de ruído branco?',
+        answer: 'O White Noise Screen é um simulador de estática de TV gratuito baseado em navegador que gera ruído de televisão analógico realista, efeitos de linhas CRT e efeitos visuais VHS diretamente no seu navegador.'
+      },
+      {
+        question: 'A tela de ruído branco é segura?',
+        answer: 'Sim, é completamente segura. A simulação de ruído branco funciona inteiramente no seu navegador usando HTML, CSS, JavaScript e Canvas. Não instala software nem modifica arquivos do sistema.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Qu\'est-ce que le simulateur d\'écran bruit blanc ?',
+        answer: 'Le White Noise Screen est un simulateur de neige TV gratuit basé sur navigateur qui génère un bruit de télévision analogique réaliste, des effets de lignes CRT et des effets visuels VHS directement dans votre navigateur.'
+      },
+      {
+        question: 'L\'écran bruit blanc est-il sûr ?',
+        answer: 'Oui, il est totalement sûr. La simulation de bruit blanc fonctionne entièrement dans votre navigateur en utilisant HTML, CSS, JavaScript et Canvas. Elle n\'installe aucun logiciel et ne modifie aucun fichier système.'
+      }
+    ],
+    de: [
+      {
+        question: 'Was ist der Weißes-Rauschen-Bildschirm-Simulator?',
+        answer: 'Der White Noise Screen ist ein kostenloser, browserbasierter TV-Rauschen-Simulator, der realistisches analoges Fernsehflimmern, CRT-Zeileneffekte und VHS-Glitcheffekte direkt in Ihrem Browser erzeugt.'
+      },
+      {
+        question: 'Ist der Weißes-Rauschen-Bildschirm sicher?',
+        answer: 'Ja, er ist völlig sicher. Die Weißes-Rauschen-Simulation läuft vollständig in Ihrem Browser mit HTML, CSS, JavaScript und Canvas. Sie installiert keine Software und ändert keine Systemdateien.'
+      }
+    ],
+    hi: [
+      {
+        question: 'व्हाइट नॉइज़ स्क्रीन सिम्युलेटर क्या है?',
+        answer: 'व्हाइट नॉइज़ स्क्रीन एक मुफ्त, ब्राउज़र-आधारित टीवी स्टैटिक सिम्युलेटर है जो सीधे आपके ब्राउज़र में यथार्थवादी एनालॉग टेलीविज़न नॉइज़, CRT स्कैनलाइन प्रभाव और VHS ग्लिच विज़ुअल उत्पन्न करता है।'
+      },
+      {
+        question: 'क्या व्हाइट नॉइज़ स्क्रीन सुरक्षित है?',
+        answer: 'हाँ, यह पूरी तरह से सुरक्षित है। व्हाइट नॉइज़ सिमुलेशन HTML, CSS, JavaScript और Canvas का उपयोग करके पूरी तरह से आपके ब्राउज़र में चलता है।'
+      }
+    ],
+    ja: [
+      {
+        question: 'ホワイトノイズ画面シミュレーターとは何ですか？',
+        answer: 'ホワイトノイズ画面は、ブラウザベースの無料テレビノイズシミュレーターで、リアルなアナログテレビノイズ、CRTスキャンライン効果、VHSグリッチ映像をブラウザ上で直接生成します。'
+      },
+      {
+        question: 'ホワイトノイズ画面は安全ですか？',
+        answer: 'はい、完全に安全です。ホワイトノイズシミュレーションはHTML、CSS、JavaScript、Canvasを使用してブラウザ内で完全に動作します。ソフトウェアをインストールしたり、システムファイルを変更したりすることはありません。'
+      }
+    ]
   }
 };
 
@@ -6700,6 +7094,195 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           '<strong>偽のブルースクリーンいたずら</strong>は、歴史的なコンピュータいたずらの最も象徴的なものの一つです。私たちの<strong>BSODシミュレーター</strong>は、現代のWindows 10および11のクラッシュ画面を驚くほど詳細に再現するフォトリアリスティックな<strong>ブルースクリーンオブデス</strong>を生成します。',
           '一般的な検索フレーズには、<strong>偽のブルースクリーン</strong>、<strong>ブルースクリーンいたずら</strong>、<strong>偽BSOD</strong>、<strong>ブルースクリーンシミュレーター</strong>、<strong>偽のWindowsクラッシュ</strong>などがあります。',
           '最も説得力のある体験のために、ターゲットに画面を見せる前に全画面モードに切り替えてください。設定パネルを使用して、期間と開始パーセンテージを設定できます。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'windows-xp-crash') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Windows XP Crash Prank – Classic BSOD Simulator Guide & Use Cases',
+        paragraphs: [
+          'The <strong>Windows XP crash prank</strong> brings back the most nostalgic crash experience in computing history. Our <strong>Windows XP crash simulator</strong> recreates the full XP desktop environment — complete with the classic Bliss wallpaper, explorer.exe error cascading windows, and the legendary blue screen of death that defined an era. Unlike generic BSOD tools, this simulator builds the complete crash narrative: start with a functional-looking XP desktop, watch error dialogs multiply as you click around, and culminate in the iconic dark-blue <strong>Windows XP BSOD</strong> with its chkdsk-style memory dump counter and text-mode error codes.',
+          'Users search for many related terms for this experience. Common search phrases include <strong>Windows XP crash simulator</strong>, <strong>fake Windows XP crash</strong>, <strong>XP BSOD prank</strong>, <strong>Windows XP blue screen</strong>, <strong>fake XP desktop crash</strong>, <strong>Windows XP error prank</strong>, <strong>explorer.exe fake error</strong>, <strong>retro BSOD prank</strong>, <strong>Windows XP prank online</strong>, and <strong>classic Windows crash</strong>. Our simulator delivers the complete XP crash journey — no download, no installation, no account required. It works instantly in any modern browser across desktop, laptop, tablet, and phone.',
+          'For the most convincing XP prank experience, configure the settings before launching. Use the "On Start" dropdown to choose Cascade mode (error windows escalate progressively before the BSOD for dramatic effect) or Instant BSOD mode (immediate transition for a faster prank). Set the "BSOD Delay" to 5, 12, 20, or 30 seconds to control the pacing. Toggle the warning bell sound on for added authenticity — the classic Windows XP error chime adds nostalgic realism. Once configured, click "Fullscreen Prank" or press F and the simulation takes over.',
+          'The <strong>XP crash simulator</strong> is perfect for retro tech pranks, nostalgia trips for millennials who grew up with Windows XP, YouTube and TikTok content recreating "the good old days" of Windows crashes, office pranks targeting colleagues who remember the XP era, livestream entertainment, tech nostalgia podcasts and videos, and educational demonstrations showing how far Windows crash handling has evolved. The tool runs entirely in the browser — no software installs, no system changes, completely reversible by pressing Escape.'
+        ]
+      },
+      es: {
+        heading: 'Broma de Crash de Windows XP – Guía del Simulador BSOD Clásico y Casos de Uso',
+        paragraphs: [
+          'La <strong>broma de crash de Windows XP</strong> revive la experiencia de crash más nostálgica en la historia de la informática. Nuestro <strong>simulador de crash de Windows XP</strong> recrea el entorno completo del escritorio XP con el fondo Bliss, ventanas de error de explorer.exe en cascada y la legendaria pantalla azul de la muerte.',
+          'Los términos de búsqueda comunes incluyen <strong>simulador de crash Windows XP</strong>, <strong>falso crash Windows XP</strong>, <strong>BSOD XP broma</strong>, <strong>pantalla azul Windows XP</strong> y <strong>broma de Windows XP falsa</strong>. Ofrecemos todo en una página — sin descarga ni instalación.',
+          'Para la experiencia más convincente, configure los ajustes antes de iniciar. Use "On Start" para elegir Cascade o Instant BSOD. Ajuste el retardo del BSOD a 5, 12, 20 o 30 segundos. Active el sonido de advertencia para mayor autenticidad.'
+        ]
+      },
+      pt: {
+        heading: 'Pegadinha de Crash do Windows XP – Guia do Simulador BSOD Clássico e Casos de Uso',
+        paragraphs: [
+          'A <strong>pegadinha de crash do Windows XP</strong> traz de volta a experiência de crash mais nostálgica da história da computação. Nosso <strong>simulador de crash do Windows XP</strong> recria o ambiente completo da área de trabalho do XP com o papel de parede Bliss, janelas de erro do explorer.exe em cascata e a lendária tela azul da morte.',
+          'Termos de busca comuns incluem <strong>simulador de crash Windows XP</strong>, <strong>falso crash Windows XP</strong>, <strong>BSOD XP pegadinha</strong>, <strong>tela azul Windows XP</strong> e <strong>pegadinha Windows XP</strong>. Tudo em uma página — sem download ou instalação.',
+          'Para maior realismo, configure antes de iniciar. Use "On Start" para Cascade ou Instant BSOD. Ajuste o atraso do BSOD para 5, 12, 20 ou 30 segundos. Ative o som de aviso para mais autenticidade.'
+        ]
+      },
+      fr: {
+        heading: 'Farce de Plantage Windows XP – Guide du Simulateur BSOD Classique et Cas d\'Utilisation',
+        paragraphs: [
+          'La <strong>farce de plantage Windows XP</strong> ravive l\'expérience de plantage la plus nostalgique de l\'histoire informatique. Notre <strong>simulateur de plantage Windows XP</strong> recrée l\'environnement complet du bureau XP avec le fond d\'écran Bliss, les fenêtres d\'erreur explorer.exe en cascade et le légendaire écran bleu de la mort.',
+          'Les termes de recherche courants incluent <strong>simulateur de plantage Windows XP</strong>, <strong>faux plantage Windows XP</strong>, <strong>farce BSOD XP</strong>, <strong>écran bleu Windows XP</strong> et <strong>farce Windows XP</strong>. Le tout sur une seule page — sans téléchargement ni installation.',
+          'Pour l\'expérience la plus convaincante, configurez les paramètres avant de lancer. Utilisez "On Start" pour Cascade ou Instant BSOD. Réglez le délai BSOD à 5, 12, 20 ou 30 secondes. Activez le son d\'avertissement pour plus d\'authenticité.'
+        ]
+      },
+      de: {
+        heading: 'Windows XP Absturz-Streich – Leitfaden für den klassischen BSOD-Simulator und Anwendungsfälle',
+        paragraphs: [
+          'Der <strong>Windows XP Absturz-Streich</strong> bringt die nostagischste Absturzerfahrung der Computergeschichte zurück. Unser <strong>Windows XP Absturzsimulator</strong> erschafft die vollständige XP-Desktop-Umgebung mit dem klassischen Bliss-Hintergrundbild, kaskadierenden Explorer.exe-Fehlermeldungen und dem legendären blauen Bildschirm des Todes.',
+          'Häufige Suchbegriffe sind <strong>Windows XP Absturzsimulator</strong>, <strong>falscher Windows XP Absturz</strong>, <strong>XP BSOD Streich</strong>, <strong>blauer Bildschirm Windows XP</strong> und <strong>Windows XP Streich</strong>. Alles auf einer Seite — kein Download, keine Installation.',
+          'Konfigurieren Sie die Einstellungen vor dem Start für die überzeugendste Erfahrung. Verwenden Sie "On Start" für Cascade oder Instant BSOD. Stellen Sie die BSOD-Verzögerung auf 5, 12, 20 oder 30 Sekunden ein. Schalten Sie den Warnton für zusätzliche Authentizität ein.'
+        ]
+      },
+      hi: {
+        heading: 'विंडोज एक्सपी क्रैश प्रैंक – क्लासिक BSOD सिम्युलेटर गाइड और उपयोग के मामले',
+        paragraphs: [
+          '<strong>विंडोज एक्सपी क्रैश प्रैंक</strong> कंप्यूटिंग इतिहास के सबसे नॉस्टैल्जिक क्रैश अनुभव को वापस लाता है। हमारा <strong>विंडोज एक्सपी क्रैश सिम्युलेटर</strong> क्लासिक ब्लिस वॉलपेपर, कैस्केडिंग explorer.exe त्रुटि विंडो और प्रतिष्ठित ब्लू स्क्रीन ऑफ डेथ के साथ पूर्ण XP डेस्कटॉप वातावरण को फिर से बनाता है।',
+          'सामान्य खोज वाक्यांशों में <strong>विंडोज एक्सपी क्रैश सिम्युलेटर</strong>, <strong>फर्जी विंडोज एक्सपी क्रैश</strong>, <strong>XP BSOD प्रैंक</strong>, <strong>विंडोज एक्सपी ब्लू स्क्रीन</strong> और <strong>विंडोज एक्सपी प्रैंक</strong> शामिल हैं।',
+          'सबसे विश्वसनीय अनुभव के लिए, शुरू करने से पहले सेटिंग्स कॉन्फ़िगर करें। "On Start" का उपयोग करके Cascade या Instant BSOD चुनें। BSOD देरी को 5, 12, 20 या 30 सेकंड पर सेट करें। अधिक प्रामाणिकता के लिए चेतावनी घंटी ध्वनि चालू करें।'
+        ]
+      },
+      ja: {
+        heading: 'Windows XPクラッシュいたずら – クラシックBSODシミュレーターガイドと使用例',
+        paragraphs: [
+          '<strong>Windows XPクラッシュいたずら</strong>は、コンピューティング史上最もノスタルジックなクラッシュ体験をよみがえらせます。私たちの<strong>Windows XPクラッシュシミュレーター</strong>は、クラシックなBlissの壁紙、explorer.exeのエラーカスケードウィンドウ、伝説的なブルースクリーンオブデスを備えた完全なXPデスクトップ環境を再現します。',
+          '一般的な検索フレーズには、<strong>Windows XPクラッシュシミュレーター</strong>、<strong>偽のWindows XPクラッシュ</strong>、<strong>XP BSODいたずら</strong>、<strong>Windows XPブルースクリーン</strong>、<strong>Windows XPいたずら</strong>などがあります。',
+          '最も説得力のある体験のために、開始前に設定を構成してください。「On Start」でCascadeまたはInstant BSODを選択します。BSOD遅延を5、12、20、30秒に設定します。信頼性を高めるために警告音をオンにします。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'radar-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Radar Screen Simulator – Fullscreen Tactical Display Guide & Use Cases',
+        paragraphs: [
+          'The <strong>radar screen simulator</strong> is an interactive fullscreen radar display that recreates the look and feel of real radar and sonar systems — complete with a rotating sweep beam, concentric range rings, compass headings, procedural terrain coastline, and simulated bogey targets. Unlike static radar images or pre-recorded radar video loops, this is a live, interactive <strong>radar simulation</strong> that responds to your input. Click to intercept hostile bogeys, adjust sweep speed in real time, switch between three tactical color themes, and watch the HUD update with live coordinates when geolocation is enabled.',
+          'Users search for many related terms when looking for this type of display tool. Common search phrases include <strong>radar screen online</strong>, <strong>radar screen simulator</strong>, <strong>radar display</strong>, <strong>radar animation</strong>, <strong>radar screen fullscreen</strong>, <strong>military radar screen</strong>, <strong>green radar screen</strong>, <strong>sonar screen</strong>, <strong>tactical radar</strong>, <strong>radar scanner</strong>, <strong>radar sweep animation</strong>, <strong>radar visualization</strong>, <strong>free radar screen simulator</strong>, <strong>fullscreen radar display online</strong>, <strong>interactive radar screen</strong>, <strong>browser radar simulator</strong>, and <strong>online sonar display</strong>. Our simulator delivers all of these in a single page — no download, no installation, no account required. It works instantly in any modern browser on desktop, laptop, tablet, phone, and Smart TV.',
+          'For the most immersive radar experience, enter fullscreen mode by pressing F or clicking the fullscreen button. The fullscreen effect hides all browser UI for a truly authentic tactical display. Configure the settings before or during the simulation: adjust sweep speed from 4 to 30 RPM using the slider, set sonar ping volume or mute audio completely, choose your target intrusion density to control how many bogeys appear on screen, and switch between Military Green, Oceanic Blue, or Red Alert frequency themes. Enable Dynamic Geolocator Nodes to display your actual coordinates on the HUD. The radar runs continuously with real-time animated sweep and audio feedback — pause with the Space key whenever needed.',
+          'The <strong>radar screen</strong> is ideal for presentation and livestream backgrounds, YouTube and TikTok video production, sci-fi and cyberpunk room decoration, escape room and theatrical staging, gaming room and hacker setup ambience, classroom STEM demonstrations, party and event displays, and film production backgrounds. Because the tool runs entirely in the browser with Canvas-based rendering and Web Audio API, it works offline after the initial page load and leaves zero trace on the device.'
+        ]
+      },
+      es: {
+        heading: 'Simulador de Pantalla de Radar – Guía de Pantalla Táctica a Pantalla Completa y Casos de Uso',
+        paragraphs: [
+          'El <strong>simulador de pantalla de radar</strong> es una pantalla de radar interactiva a pantalla completa que recrea el aspecto y la sensación de los sistemas de radar y sónar reales, con un haz de barrido giratorio, anillos de alcance concéntricos, marcas de brújula, costa de terreno procedural y objetivos simulados. A diferencia de las imágenes de radar estáticas, esta es una <strong>simulación de radar</strong> en vivo e interactiva que responde a sus acciones.',
+          'Los términos de búsqueda comunes incluyen <strong>pantalla de radar online</strong>, <strong>simulador de pantalla de radar</strong>, <strong>pantalla de radar militar</strong>, <strong>pantalla de radar verde</strong>, <strong>pantalla de sónar</strong> y <strong>visualización de radar</strong>. Nuestro simulador ofrece todo en una página — sin descarga, sin instalación, sin necesidad de cuenta.',
+          'Para la experiencia más inmersiva, entre en modo de pantalla completa presionando F. Configure la velocidad de barrido, el volumen del sónar y el tema de color en el panel de configuración antes o durante la simulación.'
+        ]
+      },
+      pt: {
+        heading: 'Simulador de Tela de Radar – Guia de Exibição Tática em Tela Cheia e Casos de Uso',
+        paragraphs: [
+          'O <strong>simulador de tela de radar</strong> é uma tela de radar interativa em tela cheia que recria a aparência e a sensação de sistemas reais de radar e sonar, com feixe de varredura giratório, anéis de alcance concêntricos, marcas de bússola, costa de terreno procedural e alvos simulados. Esta é uma <strong>simulação de radar</strong> ao vivo e interativa.',
+          'Termos de busca comuns incluem <strong>tela de radar online</strong>, <strong>simulador de tela de radar</strong>, <strong>tela de radar militar</strong>, <strong>tela de radar verde</strong>, <strong>tela de sonar</strong> e <strong>visualização de radar</strong>. Tudo em uma página — sem download ou instalação.',
+          'Para a experiência mais imersiva, entre em modo tela cheia pressionando F. Ajuste a velocidade de varredura, volume do sonar e tema de cor no painel de configurações.'
+        ]
+      },
+      fr: {
+        heading: 'Simulateur d\'Écran Radar – Guide d\'Affichage Tactique Plein Écran et Cas d\'Utilisation',
+        paragraphs: [
+          'Le <strong>simulateur d\'écran radar</strong> est un affichage radar interactif plein écran qui recrée l\'aspect et la sensation des systèmes radar et sonar réels, avec un faisceau de balayage rotatif, des anneaux de portée concentriques, des relèvements de boussole, un littoral de terrain procédural et des cibles simulées. Il s\'agit d\'une <strong>simulation radar</strong> interactive en direct.',
+          'Les termes de recherche courants incluent <strong>écran radar en ligne</strong>, <strong>simulateur d\'écran radar</strong>, <strong>écran radar militaire</strong>, <strong>écran radar vert</strong>, <strong>écran sonar</strong> et <strong>visualisation radar</strong>. Le tout sur une seule page — sans téléchargement ni installation.',
+          'Pour l\'expérience la plus immersive, passez en plein écran en appuyant sur F. Ajustez la vitesse de balayage, le volume sonar et le thème de couleur dans le panneau des paramètres.'
+        ]
+      },
+      de: {
+        heading: 'Radar-Bildschirm-Simulator – Leitfaden für taktische Vollbildanzeige und Anwendungsfälle',
+        paragraphs: [
+          'Der <strong>Radar-Bildschirm-Simulator</strong> ist eine interaktive Vollbild-Radar-Anzeige, die das Aussehen und Gefühl echter Radar- und Sonarsysteme nachbildet — mit rotierendem Sweep-Strahl, konzentrischen Reichweitenringen, Kompasspeilungen, prozeduraler Küstenlinie und simulierten Bogey-Zielen. Es handelt sich um eine Live-<strong>Radar-Simulation</strong>, die auf Ihre Eingaben reagiert.',
+          'Häufige Suchbegriffe sind <strong>Radar-Bildschirm online</strong>, <strong>Radar-Simulator</strong>, <strong>militärischer Radar-Bildschirm</strong>, <strong>grüner Radar-Bildschirm</strong>, <strong>Sonar-Bildschirm</strong> und <strong>Radar-Visualisierung</strong>. Alles auf einer Seite — kein Download, keine Installation.',
+          'Für das immersivste Erlebnis wechseln Sie durch Drücken von F in den Vollbildmodus. Passen Sie Sweep-Geschwindigkeit, Sonar-Lautstärke und Farbthema im Einstellungsbereich an.'
+        ]
+      },
+      hi: {
+        heading: 'रडार स्क्रीन सिम्युलेटर – फुलस्क्रीन सामरिक डिस्प्ले गाइड और उपयोग के मामले',
+        paragraphs: [
+          '<strong>रडार स्क्रीन सिम्युलेटर</strong> एक इंटरैक्टिव फुलस्क्रीन रडार डिस्प्ले है जो घूमने वाली स्वीप बीम, संकेंद्रित रेंज रिंग, कम्पास हेडिंग, प्रोसीजरल टेरेन कोस्टलाइन और सिम्युलेटेड बोगी टार्गेट के साथ वास्तविक रडार और सोनार सिस्टम के रूप और अनुभव को फिर से बनाता है। यह एक लाइव, इंटरैक्टिव <strong>रडार सिमुलेशन</strong> है।',
+          'सामान्य खोज वाक्यांशों में <strong>रडार स्क्रीन ऑनलाइन</strong>, <strong>रडार स्क्रीन सिम्युलेटर</strong>, <strong>सैन्य रडार स्क्रीन</strong>, <strong>हरी रडार स्क्रीन</strong>, <strong>सोनार स्क्रीन</strong> और <strong>रडार विज़ुअलाइज़ेशन</strong> शामिल हैं। हमारा सिम्युलेटर एक ही पेज पर सब कुछ प्रदान करता है — बिना डाउनलोड या इंस्टॉलेशन के।',
+          'सबसे इमर्सिव अनुभव के लिए, F दबाकर फुलस्क्रीन मोड में जाएँ। सेटिंग्स पैनल में स्वीप स्पीड, सोनार वॉल्यूम और रंग थीम को एडजस्ट करें।'
+        ]
+      },
+      ja: {
+        heading: 'レーダー画面シミュレーター – 全画面戦術ディスプレイガイドと使用例',
+        paragraphs: [
+          '<strong>レーダー画面シミュレーター</strong>は、回転するスイープビーム、同心円状のレンジリング、コンパス方位、手続き型地形海岸線、シミュレートされたブギーターゲットを備え、実際のレーダーおよびソナーシステムの外観と雰囲気を再現するインタラクティブな全画面レーダーディスプレイです。これはライブのインタラクティブな<strong>レーダーシミュレーション</strong>です。',
+          '一般的な検索フレーズには、<strong>レーダー画面 オンライン</strong>、<strong>レーダー画面シミュレーター</strong>、<strong>ミリタリーレーダー画面</strong>、<strong>緑のレーダー画面</strong>、<strong>ソナー画面</strong>、<strong>レーダー表示</strong>などがあります。すべて1ページで提供 — ダウンロードもインストールも不要。',
+          '最も没入感のある体験のために、Fキーを押して全画面モードに切り替えてください。設定パネルでスイープ速度、ソナー音量、カラーテーマを調整できます。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'white-noise-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'White Noise Screen (TV Static) – Fullscreen Analog Television Simulator Guide & Use Cases',
+        paragraphs: [
+          'The <strong>white noise screen</strong> (also called <strong>TV static</strong> or <strong>television snow</strong>) recreates the iconic look and sound of an analog television with no signal. Our <strong>white noise simulator</strong> generates authentic <strong>analog TV static</strong> directly in your browser using Canvas-based rendering — no video files, no pre-recorded loops, no downloads. It generates real-time <strong>analog noise</strong> with three distinct static styles, CRT scanline overlays, VHS glitch drift effects, and Web Audio API-generated static audio for complete retro television authenticity.',
+          'Users search for many related terms when looking for this type of visual effect. Common search phrases include <strong>white noise screen online</strong>, <strong>white noise static</strong>, <strong>TV static screen</strong>, <strong>analog TV static</strong>, <strong>fullscreen white noise</strong>, <strong>TV noise screen</strong>, <strong>white noise simulator</strong>, <strong>CRT static</strong>, <strong>no signal screen</strong>, <strong>TV snow</strong>, <strong>static effect</strong>, <strong>television noise</strong>, <strong>TV static animation</strong>, <strong>CRT simulation</strong>, <strong>free white noise screen online</strong>, <strong>fullscreen TV static generator</strong>, <strong>analog television simulator</strong>, <strong>browser white noise display</strong>, <strong>animated TV snow</strong>, <strong>CRT white noise effect</strong>, and <strong>no signal TV simulator</strong>. Our simulator delivers all of these in a single page — no download, no installation, no account required. It works instantly in any modern browser on desktop, laptop, tablet, phone, and Smart TV.',
+          'For the most authentic retro TV experience, enter fullscreen mode by pressing F or clicking the fullscreen button. Audio static starts automatically in fullscreen mode for complete immersion. Configure the experience using the settings panel: choose between Analog (classic gray snow), Color (rainbow spectrum static), or VHS (glitchy drift with noise bands) styles. Toggle the CRT Scanlines overlay for that authentic cathode-ray tube look. Enable the "NO SIGNAL" badge for a retro television indicator in the corner. Adjust the Static Speed slider to control how fast the noise pattern updates. Select your audio mode — Static (pulsing detuned TV sound), White (flat hiss), Pink (deep ambient rumble), or Off — and set the volume to your preference. The audio runs through a low-pass filter and gain stage for realistic television speaker tone.',
+          'The <strong>white noise screen</strong> is ideal for retro TV and VHS aesthetic scenes, film and video production backgrounds, YouTube and streaming intermission screens, horror and Halloween themed displays, cinematic transitions and title sequences, escape room and theatre stage props, photography and creative backdrops, gaming room and ambience decoration, presentation and event visual effects, and music video and content creation props. The tool runs entirely in the browser with Canvas rendering and Web Audio API — it works offline after the initial page load and leaves zero trace on the device. It also respects reduced motion preferences for accessibility.'
+        ]
+      },
+      es: {
+        heading: 'Pantalla de Ruido Blanco (Estática de TV) – Guía del Simulador de Televisión Analógica a Pantalla Completa y Casos de Uso',
+        paragraphs: [
+          'La <strong>pantalla de ruido blanco</strong> (también llamada <strong>estática de TV</strong> o <strong>nieve de televisión</strong>) recrea el aspecto y sonido icónicos de un televisor analógico sin señal. Nuestro <strong>simulador de ruido blanco</strong> genera <strong>estática de TV analógica</strong> auténtica directamente en su navegador.',
+          'Los términos de búsqueda comunes incluyen <strong>pantalla de ruido blanco online</strong>, <strong>estática de TV</strong>, <strong>simulador de TV analógica</strong>, <strong>pantalla de nieve TV</strong>, <strong>efecto CRT</strong> y <strong>pantalla sin señal</strong>. Ofrecemos todo en una página — sin descarga, sin instalación.',
+          'Para la experiencia más auténtica, entre en modo de pantalla completa presionando F. Elija entre los estilos Analógico, Color o VHS en el panel de configuración. Active las líneas CRT o el indicador SIN SEÑAL para mayor realismo retro.'
+        ]
+      },
+      pt: {
+        heading: 'Tela de Ruído Branco (Estática de TV) – Guia do Simulador de TV Analógica em Tela Cheia e Casos de Uso',
+        paragraphs: [
+          'A <strong>tela de ruído branco</strong> (também chamada de <strong>estática de TV</strong> ou <strong>neve de televisão</strong>) recria a aparência e o som icônicos de uma televisão analógica sem sinal. Nosso <strong>simulador de ruído branco</strong> gera <strong>estática de TV analógica</strong> autêntica diretamente no seu navegador.',
+          'Termos de busca comuns incluem <strong>tela de ruído branco online</strong>, <strong>estática de TV</strong>, <strong>simulador de TV analógica</strong>, <strong>tela de neve TV</strong> e <strong>efeito CRT</strong>. Tudo em uma página — sem download ou instalação.',
+          'Para a experiência mais autêntica, entre em modo tela cheia pressionando F. Escolha entre os estilos Analógico, Colorido ou VHS no painel de configurações.'
+        ]
+      },
+      fr: {
+        heading: 'Écran Bruit Blanc (Neige TV) – Guide du Simulateur de Télévision Analogique Plein Écran et Cas d\'Utilisation',
+        paragraphs: [
+          'L\'<strong>écran bruit blanc</strong> (également appelé <strong>neige TV</strong> ou <strong>statique télévision</strong>) recrée l\'aspect et le son emblématiques d\'un téléviseur analogique sans signal. Notre <strong>simulateur de bruit blanc</strong> génère de la <strong>statique TV analogique</strong> authentique directement dans votre navigateur.',
+          'Les termes de recherche courants incluent <strong>écran bruit blanc en ligne</strong>, <strong>neige TV</strong>, <strong>simulateur de télévision analogique</strong>, <strong>statique télévision</strong> et <strong>effet CRT</strong>. Le tout sur une seule page — sans téléchargement ni installation.',
+          'Pour l\'expérience la plus authentique, passez en plein écran en appuyant sur F. Choisissez entre les styles Analogique, Couleur ou VHS dans le panneau des paramètres.'
+        ]
+      },
+      de: {
+        heading: 'Weißes-Rauschen-Bildschirm (TV-Rauschen) – Leitfaden für den analogen Vollbild-TV-Simulator und Anwendungsfälle',
+        paragraphs: [
+          'Der <strong>Weißes-Rauschen-Bildschirm</strong> (auch <strong>TV-Rauschen</strong> oder <strong>Fernsehschnee</strong> genannt) erzeugt das ikonische Aussehen und Geräusch eines analogen Fernsehers ohne Signal. Unser <strong>Weißes-Rauschen-Simulator</strong> erzeugt authentisches <strong>analoges TV-Rauschen</strong> direkt in Ihrem Browser.',
+          'Häufige Suchbegriffe sind <strong>Weißes-Rauschen-Bildschirm online</strong>, <strong>TV-Rauschen</strong>, <strong>Analog-TV-Simulator</strong>, <strong>Fernsehschnee</strong> und <strong>CRT-Effekt</strong>. Alles auf einer Seite — kein Download, keine Installation.',
+          'Für das authentischste Erlebnis wechseln Sie durch Drücken von F in den Vollbildmodus. Wählen Sie zwischen den Stilen Analog, Farbe oder VHS im Einstellungsbereich.'
+        ]
+      },
+      hi: {
+        heading: 'व्हाइट नॉइज़ स्क्रीन (टीवी स्टैटिक) – फुलस्क्रीन एनालॉग टेलीविज़न सिम्युलेटर गाइड और उपयोग के मामले',
+        paragraphs: [
+          '<strong>व्हाइट नॉइज़ स्क्रीन</strong> (जिसे <strong>टीवी स्टैटिक</strong> या <strong>टेलीविज़न स्नो</strong> भी कहा जाता है) बिना सिग्नल के एनालॉग टेलीविज़न के प्रतिष्ठित रूप और ध्वनि को फिर से बनाता है। हमारा <strong>व्हाइट नॉइज़ सिम्युलेटर</strong> सीधे आपके ब्राउज़र में प्रामाणिक <strong>एनालॉग टीवी स्टैटिक</strong> उत्पन्न करता है।',
+          'सामान्य खोज वाक्यांशों में <strong>व्हाइट नॉइज़ स्क्रीन ऑनलाइन</strong>, <strong>टीवी स्टैटिक</strong>, <strong>एनालॉग टेलीविज़न सिम्युलेटर</strong>, <strong>टेलीविज़न स्नो</strong> और <strong>CRT प्रभाव</strong> शामिल हैं। हमारा सिम्युलेटर एक ही पेज पर सब कुछ प्रदान करता है — बिना डाउनलोड के।',
+          'सबसे प्रामाणिक अनुभव के लिए, F दबाकर फुलस्क्रीन मोड में जाएँ। सेटिंग्स पैनल में एनालॉग, कलर या VHS शैलियों में से चुनें।'
+        ]
+      },
+      ja: {
+        heading: 'ホワイトノイズ画面（TVノイズ） – 全画面アナログテレビシミュレーターガイドと使用例',
+        paragraphs: [
+          '<strong>ホワイトノイズ画面</strong>（<strong>TVノイズ</strong>または<strong>テレビスノー</strong>とも呼ばれます）は、信号のないアナログテレビの象徴的な外観と音を再現します。私たちの<strong>ホワイトノイズシミュレーター</strong>は、ブラウザ上で直接本物の<strong>アナログTVノイズ</strong>を生成します。',
+          '一般的な検索フレーズには、<strong>ホワイトノイズ画面 オンライン</strong>、<strong>TVノイズ</strong>、<strong>アナログテレビシミュレーター</strong>、<strong>テレビスノー</strong>、<strong>CRT効果</strong>などがあります。すべて1ページで提供 — ダウンロード不要。',
+          '最も本格的な体験のために、Fキーを押して全画面モードに切り替えてください。設定パネルでアナログ、カラー、VHSのスタイルから選択できます。'
         ]
       }
     };
