@@ -12,7 +12,7 @@ const { tool, locale } = Astro.props;
 const useCases = tool.useCases.join(', ');
 const controls = tool.controls.join(', ');
 const name = toolName(locale, tool);
-const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen' || tool.id === 'blue-screen-prank' || tool.id === 'windows-xp-crash' || tool.id === 'radar-screen' || tool.id === 'white-noise-screen' || tool.id === 'fake-virus-screen' || tool.id === 'windows-update' || tool.id === 'ubuntu-screen' || tool.id === 'macos-screen') ? getBlogKeywordsContent(locale, tool.id) : null;
+const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen' || tool.id === 'blue-screen-prank' || tool.id === 'windows-xp-crash' || tool.id === 'radar-screen' || tool.id === 'white-noise-screen' || tool.id === 'fake-virus-screen' || tool.id === 'windows-update' || tool.id === 'ubuntu-screen' || tool.id === 'macos-screen' || tool.id === 'android-update') ? getBlogKeywordsContent(locale, tool.id) : null;
 ---
 
 <article class="site-shell rich-article max-w-3xl py-16">
@@ -201,6 +201,38 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         access personal files, or download anything to your device. The simulation resets instantly when you press <kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd>, leaving no trace.
         For the best cross-platform demos, combine this with the <a href="/windows-update/">Windows Update screen</a> and
         <a href="/ubuntu-screen/">Ubuntu screen simulator</a> for a complete operating system comparison presentation.
+      </p>
+    </>
+  ) : tool.kind === 'fake' && tool.id === 'android-update' ? (
+    <>
+      <h2>Android update simulator setup and mobile UI demo tips.</h2>
+      <p>
+        When using the <strong>Android update simulator</strong> for a mobile UI demonstration, video production, or classroom presentation, fullscreen mode is
+        essential for the most convincing experience. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> or click the
+        fullscreen button to hide all browser UI and let the authentic Android-style update screen fill the entire display. The cursor auto-hides
+        after 2 seconds of inactivity in fullscreen mode for a clean mobile presentation look.
+      </p>
+      <p>
+        The simulator starts automatically with a realistic Android system update screen featuring the Android robot logo,
+        "Installing system update" heading, and a progress bar. Open the settings panel (gear icon) to configure the update duration
+        — choose from 1 minute, 2 minutes, 5 minutes (default), 10 minutes, 15 minutes, 30 minutes, or 1 hour. Adjust the
+        <strong>starting position</strong> from 0% (fresh start) to 90% (nearly complete) to stage specific moments in the update
+        cycle without waiting. The non-linear progress curve mimics real Android update behaviour with realistic speed variations.
+      </p>
+      <p>
+        To trigger a convincing restart sequence, click the <strong>Restart</strong> button. Phase 1 shows "Restarting... Your device will restart shortly"
+        with animated boot dots. Phase 2 shows "Starting Android..." with additional boot dots — simulating a complete device reboot cycle.
+        This two-phase animation is perfect for demonstrating how Android devices behave during a system update restart, and it adds
+        production value to any video or stream. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> at any time
+        to exit fullscreen and instantly end the simulation.
+      </p>
+      <p>
+        The <strong>Android update simulator</strong> simulates a convincing mobile system update event, not an actual system modification. It generates
+        CSS animations and visual effects entirely in the browser — it does not install software, modify system settings, access personal files,
+        or download anything to your device. The simulation resets instantly when you press <kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd>, leaving no trace.
+        For the best cross-platform mobile demos, combine this with our <a href="/windows-update/">Windows Update screen</a>,
+        <a href="/ubuntu-screen/">Ubuntu screen simulator</a>, and <a href="/macos-screen/">macOS update simulator</a> for a complete
+        operating system comparison presentation spanning desktop and mobile platforms.
       </p>
     </>
   ) : tool.kind === 'prank' && tool.id === 'white-noise-screen' ? (
