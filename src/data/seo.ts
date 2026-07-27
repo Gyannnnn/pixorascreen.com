@@ -201,6 +201,24 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'उबंटू स्क्रीन सिम्युलेटर ऑनलाइन - मुफ्त फर्जी उबंटू अपडेट और बूट स्क्रीन',
     ja: 'Ubuntu画面シミュレーター オンライン - 無料偽Ubuntuアップデート＆ブート画面',
   },
+  'macos-screen': {
+    en: 'macOS Update Simulator Online - Free Fake macOS Update & Installation Screen',
+    es: 'Simulador de Actualización de macOS Online - Pantalla de Instalación de macOS Falsa Gratis',
+    pt: 'Simulador de Atualização do macOS Online - Tela de Instalação do macOS Falsa Grátis',
+    fr: 'Simulateur de Mise à Jour macOS en Ligne - Fausse Écran d\'Installation macOS Gratuit',
+    de: 'macOS-Update-Simulator Online - Kostenloser Gefälschter macOS-Installationsbildschirm',
+    hi: 'macOS अपडेट सिम्युलेटर ऑनलाइन - मुफ्त फर्जी macOS अपडेट और इंस्टॉलेशन स्क्रीन',
+    ja: 'macOSアップデートシミュレーター オンライン - 無料偽macOSアップデート＆インストール画面',
+  },
+  'android-update': {
+    en: 'Android Update Simulator Online - Free Fake Android System Update & Installation Screen',
+    es: 'Simulador de Actualización de Android Online - Pantalla de Instalación de Android Falsa Gratis',
+    pt: 'Simulador de Atualização do Android Online - Tela de Instalação do Android Falsa Grátis',
+    fr: 'Simulateur de Mise à Jour Android en Ligne - Fausse Écran d\'Installation Android Gratuit',
+    de: 'Android-Update-Simulator Online - Kostenloser Gefälschter Android-Installationsbildschirm',
+    hi: 'Android अपडेट सिम्युलेटर ऑनलाइन - मुफ्त फर्जी Android अपडेट और इंस्टॉलेशन स्क्रीन',
+    ja: 'Androidアップデートシミュレーター オンライン - 無料偽Androidアップデート＆インストール画面',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -374,6 +392,24 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen realistischen gefälschten Ubuntu-Update-Bildschirm-Simulator mit authentischer Boot-Animation, Fortschrittsbalken, Neustartzyklus und Ubuntu-Orange-Terminal-Ästhetik. Kostenloses Online-Streich-Tool für Linux-Demos, Video-Requisiten und Schulungen. Vollbild, Tastenkürzel und einstellbare Helligkeit. Kein Download, keine Installation, kein Risiko.',
     hi: 'किसी भी स्क्रीन को प्रामाणिक बूट एनिमेशन, प्रोग्रेस बार, रीबूट चक्र और उबंटू ऑरेंज टर्मिनल एस्थेटिक के साथ एक यथार्थवादी फर्जी उबंटू अपडेट स्क्रीन सिम्युलेटर में बदलें। लिनक्स डेमो, वीडियो प्रॉप्स और कक्षा प्रशिक्षण के लिए मुफ्त ऑनलाइन प्रैंक टूल। फुलस्क्रीन, कीबोर्ड शॉर्टकट और एडजस्टेबल ब्राइटनेस। बिना डाउनलोड, बिना इंस्टॉलेशन, बिना जोखिम।',
     ja: '本物そっくりのブートアニメーション、進捗バー、再起動サイクル、Ubuntuオレンジのターミナル美学を備えたリアルな偽Ubuntuアップデート画面シミュレーターにどんな画面でも変身。Linuxデモ、ビデオ小道具、教室トレーニング用の無料オンラインいたずらツール。全画面、キーボードショートカット、明るさ調整可能。ダウンロード不要、インストール不要、リスクなし。',
+  },
+  'macos-screen': {
+    en: 'Turn any screen into a realistic fake macOS update screen simulator with authentic macOS Sequoia styling, 5 update scenarios, 4 operational modes, and 3 themes including Dark Mode. Free online tool for Apple UI demos, video production, classroom training, and harmless pranks. Fullscreen, keyboard shortcuts, auto-restart animation, and synthesized sounds. No download, no install, no risk.',
+    es: 'Convierte cualquier pantalla en un realista simulador de pantalla de actualización macOS falsa con estilo auténtico de macOS Sequoia, 5 escenarios de actualización, 4 modos operativos y 3 temas incluido el Modo Oscuro. Herramienta online gratis para demos de UI de Apple, producción de video, entrenamiento educativo y bromas inofensivas. Pantalla completa, atajos de teclado, animación de reinicio automático y sonidos sintetizados. Sin descarga, sin instalación, sin riesgo.',
+    pt: 'Transforme qualquer tela em um realista simulador de tela de atualização macOS falsa com estilo autêntico do macOS Sequoia, 5 cenários de atualização, 4 modos operacionais e 3 temas incluindo o Modo Escuro. Ferramenta online grátis para demonstrações de UI da Apple, produção de vídeo, treinamento educacional e pegadinhas inofensivas. Tela cheia, atalhos de teclado, animação de reinicialização automática e sons sintetizados. Sem download, sem instalação, sem risco.',
+    fr: 'Transformez n\'importe quel écran en un réaliste simulateur de fausse écran de mise à jour macOS avec style authentique macOS Sequoia, 5 scénarios de mise à jour, 4 modes opérationnels et 3 thèmes dont le Mode Sombre. Outil en ligne gratuit pour démos UI Apple, production vidéo, formation éducative et farces inoffensives. Plein écran, raccourcis clavier, animation de redémarrage automatique et sons synthétisés. Sans téléchargement, sans installation, sans risque.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen realistischen gefälschten macOS-Update-Bildschirm-Simulator mit authentischem macOS-Sequoia-Design, 5 Update-Szenarien, 4 Betriebsmodi und 3 Themes inklusive Dunkelmodus. Kostenloses Online-Tool für Apple-UI-Demos, Videoproduktion, Schulungen und harmlose Streiche. Vollbild, Tastenkürzel, automatische Neustart-Animation und synthetisierte Sounds. Kein Download, keine Installation, kein Risiko.',
+    hi: 'किसी भी स्क्रीन को प्रामाणिक macOS Sequoia स्टाइलिंग, 5 अपडेट परिदृश्य, 4 ऑपरेशनल मोड और डार्क मोड सहित 3 थीम के साथ एक यथार्थवादी फर्जी macOS अपडेट स्क्रीन सिम्युलेटर में बदलें। Apple UI डेमो, वीडियो निर्माण, कक्षा प्रशिक्षण और हानिरहित प्रैंक के लिए मुफ्त ऑनलाइन टूल। फुलस्क्रीन, कीबोर्ड शॉर्टकट, ऑटो-रिस्टार्ट एनिमेशन और सिंथेसाइज़्ड ध्वनियाँ। बिना डाउनलोड, बिना इंस्टॉलेशन, बिना जोखिम।',
+    ja: '本物そっくりのmacOS Sequoiaスタイル、5つのアップデートシナリオ、4つの操作モード、ダークモードを含む3つのテーマを備えたリアルな偽macOSアップデート画面シミュレーターにどんな画面でも変身。Apple UIデモ、動画制作、教室トレーニング、無害ないたずらに最適な無料オンラインツール。全画面、キーボードショートカット、自動再起動アニメーション、合成サウンド。ダウンロード不要、インストール不要、リスクなし。',
+  },
+  'android-update': {
+    en: 'Turn any screen into a realistic fake Android system update simulator with authentic Android robot branding, progress animation, restart cycle, and configurable update duration. Free online tool for mobile UI demos, video production, classroom training, and harmless pranks. Fullscreen, keyboard shortcuts, and adjustable start percentage. No download, no install, no risk.',
+    es: 'Convierte cualquier pantalla en un realista simulador de actualización de sistema Android falsa con auténtico robot Android, animación de progreso, ciclo de reinicio y duración configurable. Herramienta online gratis para demos de UI móvil, producción de video, entrenamiento educativo y bromas inofensivas. Pantalla completa, atajos de teclado y porcentaje de inicio ajustable. Sin descarga, sin instalación, sin riesgo.',
+    pt: 'Transforme qualquer tela em um realista simulador de atualização de sistema Android falsa com autêntico robô Android, animação de progresso, ciclo de reinicialização e duração configurável. Ferramenta online grátis para demonstrações de UI móvel, produção de vídeo, treinamento educacional e pegadinhas inofensivas. Tela cheia, atalhos de teclado e porcentagem inicial ajustável. Sem download, sem instalação, sem risco.',
+    fr: 'Transformez n\'importe quel écran en un réaliste simulateur de mise à jour système Android faux avec authentique robot Android, animation de progression, cycle de redémarrage et durée configurable. Outil en ligne gratuit pour démos UI mobile, production vidéo, formation éducative et farces inoffensives. Plein écran, raccourcis clavier et pourcentage de départ ajustable. Sans téléchargement, sans installation, sans risque.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen realistischen gefälschten Android-Systemupdate-Simulator mit authentischem Android-Roboter, Fortschrittsanimation, Neustartzyklus und konfigurierbarer Dauer. Kostenloses Online-Tool für Mobile-UI-Demos, Videoproduktion, Schulungen und harmlose Streiche. Vollbild, Tastenkürzel und einstellbarer Startprozentsatz. Kein Download, keine Installation, kein Risiko.',
+    hi: 'किसी भी स्क्रीन को प्रामाणिक Android रोबोट ब्रांडिंग, प्रोग्रेस एनिमेशन, रिस्टार्ट चक्र और कॉन्फ़िगरेबल अपडेट अवधि के साथ एक यथार्थवादी फर्जी Android सिस्टम अपडेट सिम्युलेटर में बदलें। मोबाइल UI डेमो, वीडियो निर्माण, कक्षा प्रशिक्षण और हानिरहित प्रैंक के लिए मुफ्त ऑनलाइन टूल। फुलस्क्रीन, कीबोर्ड शॉर्टकट और एडजस्टेबल स्टार्ट परसेंटेज। बिना डाउनलोड, बिना इंस्टॉलेशन, बिना जोखिम।',
+    ja: '本物そっくりのAndroidロボットブランディング、進捗アニメーション、再起動サイクル、設定可能な更新時間を備えたリアルな偽Androidシステムアップデートシミュレーターにどんな画面でも変身。モバイルUIデモ、動画制作、教室トレーニング、無害ないたずらに最適な無料オンラインツール。全画面、キーボードショートカット、開始位置調整可能。ダウンロード不要、インストール不要、リスクなし。',
   },
 };
 
@@ -783,6 +819,88 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
           '@type': 'HowToStep',
           name: 'Interact with the Simulation',
           text: 'The simulation runs continuously with realistic progress behaviour. The boot animation displays authentic Ubuntu loading screens. In fullscreen mode, press F again to toggle. Use the timer and progress controls from the settings panel to manage the simulation duration.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Exit the Simulation Safely',
+          text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation ends immediately — all animations stop and the page returns to normal. No system changes, no installed software, zero trace left on the device.'
+        }
+      ]
+    });
+  }
+
+  if (tool.id === 'macos-screen') {
+    baseSchemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to Use the macOS Update Simulator for Apple Demos & Pranks',
+      description: 'A step-by-step guide to using the online fake macOS update screen tool to simulate realistic macOS update and installation screens with 5 scenarios, 4 modes, and 3 themes for harmless pranks, Apple UI demonstrations, and video production.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Open the macOS Update Simulator',
+          text: 'Load the macos-screen page on any device with a modern browser — desktop, laptop, tablet, phone, or Smart TV.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Choose a Scenario',
+          text: 'Open the settings panel (gear icon) and select an update scenario from the dropdown. Choose from 5 scenarios: macOS Sequoia 15.5 major update with 7 phases, macOS Security Response 7.2 with 6 phases, App Store Update with 5 phases, BridgeOS Firmware Update with 6 phases, or macOS Sequoia 16.0 Beta with 7 phases. Each scenario has a unique title, phase sequence, and visual style.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Select an Operational Mode',
+          text: 'Choose from 4 modes: Realistic mode uses a non-linear progress curve with randomized speed and stick points at common percentages (10, 18, 30, 42, 55, 68, 78, 85, 92, 96, 98) plus random pauses; Timer mode completes in a set duration (5, 10, 15, 30, or 60 minutes); Manual mode gives you full drag control over the progress slider; Infinite mode cycles near completion with periodic resets.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Configure Appearance',
+          text: 'Choose from 3 visual themes: macOS Dark (dark mode with modern Apple aesthetics), macOS Light (classic light appearance), or Space Gray (premium dark gray finish). Toggle Auto Restart to enable a two-phase restart animation when progress completes — Phase 1 shows "Restarting... Please don\'t turn off your Mac" and Phase 2 shows "Starting up..." with boot dots. Toggle Sound to enable synthesized Apple-style chimes.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Launch Fullscreen Mode',
+          text: 'Click the Fullscreen button or press the "F" key on your keyboard. The macOS update simulation fills the entire display, hiding all browser chrome for maximum realism. The cursor auto-hides after 2 seconds of inactivity for a clean presentation look.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Exit the Simulation Safely',
+          text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation ends immediately — all animations stop, sounds silence, and the page returns to normal. No system changes, no installed software, zero trace left on the device.'
+        }
+      ]
+    });
+  }
+
+  if (tool.id === 'android-update') {
+    baseSchemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to Use the Android Update Simulator for Mobile Demos & Pranks',
+      description: 'A step-by-step guide to using the online fake Android system update screen tool to simulate realistic Android update progress animations and restart sequences for harmless pranks, mobile UI demonstrations, and video production.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Open the Android Update Simulator',
+          text: 'Load the android-update page on any device with a modern browser — desktop, laptop, tablet, phone, or Smart TV.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Configure the Update Duration',
+          text: 'Open the settings panel (gear icon) and choose an update duration from the dropdown: 1 minute for a quick demo, 2 minutes, 5 minutes (default), 10 minutes, 15 minutes, 30 minutes, or 1 hour for extended displays. The progress bar advances linearly based on the selected duration.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Set the Starting Position',
+          text: 'Use the "Start time" slider in settings to choose where the progress begins — from 0% (fresh start) up to 90% (nearly complete). This is useful for staging specific moments in the update animation for videos or demonstrations.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Trigger a Restart Sequence',
+          text: 'Click the "Restart" button in the settings panel at any time to simulate the device rebooting. The restart shows a two-phase animation: first "Restarting... Your device will restart shortly" with animated boot dots, then "Starting Android..." to complete the reboot cycle.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Launch Fullscreen Mode',
+          text: 'Click the Fullscreen button or press the "F" key on your keyboard. The Android update simulation fills the entire display, hiding all browser chrome for maximum realism. The cursor auto-hides after 2 seconds of inactivity for a clean presentation look.'
         },
         {
           '@type': 'HowToStep',
