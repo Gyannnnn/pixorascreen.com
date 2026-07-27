@@ -12,7 +12,7 @@ const { tool, locale } = Astro.props;
 const useCases = tool.useCases.join(', ');
 const controls = tool.controls.join(', ');
 const name = toolName(locale, tool);
-const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen' || tool.id === 'blue-screen-prank' || tool.id === 'windows-xp-crash' || tool.id === 'radar-screen' || tool.id === 'white-noise-screen') ? getBlogKeywordsContent(locale, tool.id) : null;
+const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen' || tool.id === 'blue-screen-prank' || tool.id === 'windows-xp-crash' || tool.id === 'radar-screen' || tool.id === 'white-noise-screen' || tool.id === 'fake-virus-screen' || tool.id === 'windows-update') ? getBlogKeywordsContent(locale, tool.id) : null;
 ---
 
 <article class="site-shell rich-article max-w-3xl py-16">
@@ -102,6 +102,41 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         the radar is used as a quiet ambient background. For presentations, we recommend keeping the ping volume moderate so it complements without
         overpowering your voice. The radar animation continues even when paused or muted, making it a versatile and reliable visual tool for any
         setting — from gaming room decoration to professional livestream environments.
+      </p>
+    </>
+  ) : tool.kind === 'prank' && tool.id === 'fake-virus-screen' ? (
+    <>
+      <h2>Fake virus screen setup and prank performance tips.</h2>
+      <p>
+        When using the <strong>fake virus screen simulator</strong> for a prank, video production, or theatrical effect, fullscreen mode is
+        essential for the most convincing experience. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> or click the
+        fullscreen button to hide all browser UI and let the fake security alert fill the entire display. The alarm sounds start automatically
+        in fullscreen mode for complete immersion — each alert style has a unique synthesized audio signature created with the Web Audio API.
+      </p>
+      <p>
+        Choose from 4 alert styles using the settings panel (gear icon) or keyboard shortcuts. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">1</kbd> for the Google Chrome malware warning ("Deceptive site ahead") — a realistic red warning page that mimics Chrome's safe browsing alert. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">2</kbd> for Microsoft Defender SmartScreen — a convincing site-blocked page with shield icon and expandable details. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">3</kbd> for the Windows Security antivirus dashboard — a full antivirus UI with fake scan progress, threat card, and a toast notification. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">4</kbd> for the WannaCry ransomware screen — a dramatic ransom note with countdown timers and bitcoin address input. Each style includes interactive elements that respond to clicks.
+      </p>
+      <p>
+        The <strong>fake virus screen</strong> simulates a convincing system alert, not an actual system event. It generates CSS animations, browser-level alerts, and synthesized audio entirely in the browser — it does not install software, modify system settings, access personal files, or download anything to your device. The simulation resets instantly when you press <kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd>, leaving no trace. For the most effective pranks, stage the device in fullscreen before your audience sees the screen, mute unexpected device sounds that could break the illusion, and consider which alert style best matches your scenario — the Chrome warning works well for browser-focused setups, the Defender page mimics corporate security, the antivirus dashboard looks like an actual infection scan, and the ransomware screen creates the most dramatic reaction. Use responsibly for friendly jokes, video content, educational demonstrations, and theatrical productions.
+      </p>
+    </>
+  ) : tool.kind === 'fake' && tool.id === 'windows-update' ? (
+    <>
+      <h2>Fake Windows Update screen setup and prank tips.</h2>
+      <p>
+        When using the <strong>fake Windows Update screen simulator</strong> for a prank, video production, or theatrical effect, fullscreen mode is
+        essential for the most convincing experience. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> or click the
+        fullscreen button to hide all browser UI and let the fake update screen fill the entire display. The simulation continues running
+        smoothly in fullscreen mode with all animated elements active for maximum realism.
+      </p>
+      <p>
+        Choose from 4 simulation modes using the settings panel (gear icon) or keyboard shortcuts. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">1</kbd> for Spinning Dots mode — the classic "Getting Windows ready" animation with circling dots and a "Don't turn off your computer" message. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">2</kbd> for Update Progress mode — a percentage progress bar with "Working on updates" text that simulates an active system update. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">3</kbd> for Blue Screen mode — a convincing Windows blue screen of death with sad face, error code, and "Collecting error info" progress bar. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">4</kbd> for Recovery mode — an "Automatic Repair" or "Preparing Automatic Repair" screen that looks like a system trying to diagnose itself after a failed boot.
+      </p>
+      <p>
+        Adjust the speed slider in the settings panel to control how fast the animations play — slow for extended pranks and background effects, medium for a natural update feel, or fast for quick demos. Toggle "Show percentage" to display or hide the numerical progress. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> to pause and resume the animation at any time, creating the illusion of a stuck update. Each mode responds to these controls independently, giving you precise control over the simulation.
+      </p>
+      <p>
+        The <strong>fake Windows Update screen</strong> simulates a convincing system event, not an actual system modification. It generates CSS animations and visual effects entirely in the browser — it does not install software, modify system settings, access personal files, or download anything to your device. The simulation resets instantly when you press <kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd>, leaving no trace. For the most effective results at a prank, choose Blue Screen mode for maximum shock value, Spinning Dots for a believable update-in-progress scenario, or Recovery mode to suggest a system failure. Match the mode to your context for the most convincing effect.
       </p>
     </>
   ) : tool.kind === 'prank' && tool.id === 'white-noise-screen' ? (
