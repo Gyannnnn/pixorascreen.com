@@ -610,6 +610,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'white-noise-screen': { es: 'Pantalla de Ruido Blanco', pt: 'Tela de Ruído Branco', fr: 'Écran Bruit Blanc', de: 'Weißes-Rauschen-Bildschirm', hi: 'व्हाइट नॉइज़ स्क्रीन', ja: 'ホワイトノイズ画面' },
   'fake-virus-screen': { es: 'Pantalla de Virus Falsa', pt: 'Tela de Vírus Falsa', fr: 'Fausse Écran de Virus', de: 'Gefälschter Virus-Bildschirm', hi: 'फर्जी वायरस स्क्रीन', ja: '偽ウイルス画面' },
   'windows-update': { es: 'Pantalla de Actualización de Windows Falsa', pt: 'Tela de Atualização do Windows Falsa', fr: 'Fausse Écran de Mise à Jour Windows', de: 'Gefälschter Windows-Update-Bildschirm', hi: 'फर्जी विंडोज अपडेट स्क्रीन', ja: '偽Windowsアップデート画面' },
+  'ubuntu-screen': { es: 'Actualización de Ubuntu', pt: 'Atualização do Ubuntu', fr: 'Mise à Jour Ubuntu', de: 'Ubuntu-Update', hi: 'उबंटू अपडेट', ja: 'Ubuntuアップデート' },
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
@@ -768,6 +769,14 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     de: 'Ein realistischer gefälschter Windows-Update-Bildschirm-Simulator mit 4 Modi — drehende Punkte, Fortschrittsbalken, blauer Bildschirm und Wiederherstellung. Kostenloses Online-Streich-Tool für inszenierte Demos, Lehrvideos und Bildschirmeffekte.',
     hi: '4 मोड — स्पिनिंग डॉट्स, प्रोग्रेस बार, ब्लू स्क्रीन और रिकवरी — के साथ एक यथार्थवादी फर्जी विंडोज अपडेट स्क्रीन सिम्युलेटर। मंचित डेमो, शैक्षिक वीडियो और स्क्रीन इफ़ेक्ट के लिए मुफ्त ऑनलाइन प्रैंक टूल।',
     ja: '4つのモード — 回転ドット、進捗バー、青画面、回復 — を備えたリアルな偽Windowsアップデート画面シミュレーター。演出デモ、教育ビデオ、画面効果用の無料オンラインいたずらツール。',
+  },
+  'ubuntu-screen': {
+    es: 'Un simulador realista de pantalla de actualización de Ubuntu falsa con animación de arranque auténtica, barra de progreso no lineal, ciclo de reinicio y estética de terminal Ubuntu con colores naranja y morado realistas. Herramienta online gratis para demos de Linux, producción de videos, entrenamiento educativo y bromas inofensivas.',
+    pt: 'Um simulador realista de tela de atualização do Ubuntu falsa com animação de boot autêntica, progressão não linear, ciclo de reinicialização e estética de terminal Ubuntu com laranja e roxo realistas. Ferramenta online grátis para demonstrações Linux, produção de vídeo, treinamento educacional e pegadinhas inofensivas.',
+    fr: 'Un simulateur réaliste de fausse écran de mise à jour Ubuntu avec animation de démarrage authentique, progression non linéaire, cycle de redémarrage et esthétique de terminal Ubuntu aux couleurs orange et violet réalistes. Outil en ligne gratuit pour démos Linux, production vidéo, formation éducative et farces inoffensives.',
+    de: 'Ein realistischer gefälschter Ubuntu-Update-Bildschirm-Simulator mit authentischer Boot-Animation, nicht-linearer Fortschrittsanzeige, Neustartzyklus und Ubuntu-Terminal-Ästhetik in realistischen Orange-und-Lila-Farben. Kostenloses Online-Tool für Linux-Demos, Videoproduktion, Schulungen und harmlose Streiche.',
+    hi: 'प्रामाणिक बूट एनिमेशन, नॉन-लीनियर प्रोग्रेस, रीबूट चक्र और यथार्थवादी नारंगी-और-बैंगनी रंगों में उबंटू टर्मिनल एस्थेटिक के साथ एक यथार्थवादी फर्जी उबंटू अपडेट स्क्रीन सिम्युलेटर। लिनक्स डेमो, वीडियो निर्माण, शैक्षिक प्रशिक्षण और हानिरहित प्रैंक के लिए मुफ्त ऑनलाइन टूल।',
+    ja: '本格的なブートアニメーション、非線形進行、再起動サイクル、リアルなオレンジとパープルのUbuntuターミナル美学を備えたリアルな偽Ubuntuアップデート画面シミュレーター。Linuxデモ、動画制作、教育トレーニング、無害ないたずらに最適な無料オンラインツール。',
   },
 };
 
@@ -6054,6 +6063,178 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
         answer: '4つのモードがあります：回転ドットモードは「Windowsを準備しています」アニメーションを表示；進捗モードは進捗バーを表示；青画面モードはWindowsブルースクリーンを模倣；回復モードは「自動修復」画面を表示します。'
       }
     ]
+  },
+  'ubuntu-screen': {
+    en: [
+      {
+        question: 'Is the Ubuntu screen simulator safe?',
+        answer: 'Yes, it is completely safe. The Ubuntu screen simulator is a browser-only visual simulation using HTML, CSS, and JavaScript. It does not install any software, modify system files, access personal data, or make any changes to your operating system. No malware, no downloads, no risk.'
+      },
+      {
+        question: 'Does the Ubuntu screen simulator actually install Ubuntu?',
+        answer: 'No. This is a purely visual browser-based simulation. It displays an animated fake Ubuntu boot screen and update progress animation entirely within your browser. Nothing is downloaded, installed, or executed on your device. Your system is never modified.'
+      },
+      {
+        question: 'How do I exit the Ubuntu screen fullscreen?',
+        answer: 'Press the Escape (Esc) key on your keyboard to exit fullscreen mode instantly. This stops all animations and returns the page to its normal state. No trace of the simulation remains on your device.'
+      },
+      {
+        question: 'What does the Ubuntu screen simulator show?',
+        answer: 'The simulator shows a realistic Ubuntu update installation screen with an authentic boot animation featuring the Ubuntu logo, a non-linear progress bar that mimics real update behaviour with realistic speed variations, random pauses, and stick points at common percentages, plus a reboot cycle animation.'
+      },
+      {
+        question: 'Does the Ubuntu screen simulator work on mobile?',
+        answer: 'Yes, it works on any device with a modern web browser — Windows, Mac, Linux, Chromebook, tablets, and smartphones. The simulation adapts to different screen sizes and supports touch input. Fullscreen mode works on supported mobile browsers.'
+      },
+      {
+        question: 'Can I use the Ubuntu screen simulator in a video or stream?',
+        answer: 'Yes, the Ubuntu screen simulator is perfect for YouTube videos, TikTok content, Twitch streams, and video production. Use it as a Linux demo visual, intermission screen, or background effect. The fullscreen mode hides browser UI for clean recording. It also works as a browser source in OBS Studio and streaming software.'
+      },
+      {
+        question: 'Can I use this for teaching Linux?',
+        answer: 'Yes, the Ubuntu screen simulator is excellent for Linux classroom presentations, university lectures, computer science demonstrations, and training sessions. It helps illustrate what Ubuntu boot and update screens look like without needing to run a virtual machine or install Ubuntu on a real system.'
+      },
+      {
+        question: 'What keyboard shortcuts are available?',
+        answer: 'In fullscreen mode: press F to toggle fullscreen, and press Esc to exit fullscreen and end the simulation. The cursor auto-hides after 2 seconds of inactivity in fullscreen mode for a clean presentation look.'
+      },
+      {
+        question: 'Is the Ubuntu screen simulator free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The Ubuntu screen simulator is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'Can I use it for OBS or streaming?',
+        answer: 'Yes. Open the page in a browser window, use it as a browser source in OBS Studio, Streamlabs, or any streaming software with browser capture. The fullscreen mode hides browser chrome for a clean capture. The simulation runs smoothly without performance issues.'
+      },
+      {
+        question: 'Does the Ubuntu screen simulator collect data?',
+        answer: 'No. The Ubuntu screen simulator collects no data. Everything runs locally in your browser. There are no analytics, no tracking scripts, no cookies, and no data sent to any server after the initial page load.'
+      },
+      {
+        question: 'Can I use the Ubuntu screen simulator for an escape room or theatre?',
+        answer: 'Yes, the Ubuntu screen simulator works great as an escape room prop, theatre production visual, technology event display, or trade show installation. The realistic Ubuntu boot and update screens provide authentic Linux-themed visuals for any creative project.'
+      },
+      {
+        question: 'Does the simulation have realistic progress behaviour?',
+        answer: 'Yes. The progress simulation uses a non-linear curve that starts slow, accelerates in the middle, and decelerates near completion — just like real Ubuntu updates. It also includes random speed spurts (0.5-5% jumps), stick points at common percentages (5, 14, 28, 40, 55, 65, 76, 84, 92, 97), and random pauses to create a completely authentic feel.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Es seguro el simulador de pantalla Ubuntu?',
+        answer: 'Sí, es completamente seguro. El simulador de pantalla Ubuntu es una simulación visual basada en el navegador que utiliza HTML, CSS y JavaScript. No instala software, no modifica archivos del sistema, no accede a datos personales y no realiza cambios en su sistema operativo.'
+      },
+      {
+        question: '¿El simulador de pantalla Ubuntu realmente instala Ubuntu?',
+        answer: 'No. Esta es una simulación puramente visual basada en el navegador. Muestra una animación falsa de pantalla de arranque y progreso de actualización de Ubuntu completamente dentro de su navegador. No se descarga, instala ni ejecuta nada en su dispositivo.'
+      },
+      {
+        question: '¿Cómo salgo del modo de pantalla completa del simulador Ubuntu?',
+        answer: 'Presione la tecla Escape (Esc) en su teclado para salir del modo de pantalla completa al instante. Esto detiene todas las animaciones y devuelve la página a su estado normal.'
+      },
+      {
+        question: '¿Qué muestra el simulador de pantalla Ubuntu?',
+        answer: 'El simulador muestra una pantalla realista de instalación de actualización de Ubuntu con una animación de arranque auténtica con el logotipo de Ubuntu, una barra de progreso no lineal que imita el comportamiento real de las actualizaciones, y un ciclo de reinicio animado.'
+      },
+      {
+        question: '¿Es gratuito el simulador de pantalla Ubuntu?',
+        answer: 'Sí, es completamente gratuito. Sin cuenta, sin registro, sin tarjeta de crédito y sin cargos ocultos. Disponible para todos sin límites de uso.'
+      },
+      {
+        question: '¿Puedo usarlo para enseñar Linux?',
+        answer: 'Sí, el simulador de pantalla Ubuntu es excelente para presentaciones en clase de Linux, conferencias universitarias y sesiones de entrenamiento. Ayuda a ilustrar cómo se ven las pantallas de arranque y actualización de Ubuntu sin necesidad de ejecutar una máquina virtual.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O simulador de tela Ubuntu é seguro?',
+        answer: 'Sim, é completamente seguro. O simulador de tela Ubuntu é uma simulação visual baseada no navegador usando HTML, CSS e JavaScript. Não instala software, não modifica arquivos do sistema, não acessa dados pessoais e não faz alterações no seu sistema operacional.'
+      },
+      {
+        question: 'O simulador de tela Ubuntu realmente instala o Ubuntu?',
+        answer: 'Não. Esta é uma simulação puramente visual baseada no navegador. Exibe uma animação falsa de tela de boot e progresso de atualização do Ubuntu inteiramente dentro do seu navegador.'
+      },
+      {
+        question: 'Como saio do modo tela cheia do simulador Ubuntu?',
+        answer: 'Pressione a tecla Escape (Esc) no seu teclado para sair do modo tela cheia instantaneamente. Isso para todas as animações e retorna a página ao seu estado normal.'
+      },
+      {
+        question: 'O que o simulador de tela Ubuntu mostra?',
+        answer: 'O simulador mostra uma tela realista de instalação de atualização do Ubuntu com animação de boot autêntica, barra de progresso não linear que imita o comportamento real de atualizações, e um ciclo de reinicialização animado.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Le simulateur d\'écran Ubuntu est-il sûr ?',
+        answer: 'Oui, il est totalement sûr. Le simulateur d\'écran Ubuntu est une simulation visuelle basée sur le navigateur utilisant HTML, CSS et JavaScript. Il n\'installe aucun logiciel, ne modifie aucun fichier système et n\'accède à aucune donnée personnelle.'
+      },
+      {
+        question: 'Le simulateur d\'écran Ubuntu installe-t-il réellement Ubuntu ?',
+        answer: 'Non. Il s\'agit d\'une simulation purement visuelle basée sur le navigateur. Elle affiche une fausse animation d\'écran de démarrage et de progression de mise à jour Ubuntu entièrement dans votre navigateur.'
+      },
+      {
+        question: 'Comment quitter le mode plein écran du simulateur Ubuntu ?',
+        answer: 'Appuyez sur la touche Échap (Esc) de votre clavier pour quitter instantanément le mode plein écran. Cela arrête toutes les animations et ramène la page à son état normal.'
+      },
+      {
+        question: 'Que montre le simulateur d\'écran Ubuntu ?',
+        answer: 'Le simulateur affiche un écran réaliste d\'installation de mise à jour Ubuntu avec une animation de démarrage authentique, une barre de progression non linéaire imitant le comportement réel des mises à jour, et un cycle de redémarrage animé.'
+      }
+    ],
+    de: [
+      {
+        question: 'Ist der Ubuntu-Bildschirm-Simulator sicher?',
+        answer: 'Ja, er ist völlig sicher. Der Ubuntu-Bildschirm-Simulator ist eine reine Browser-Visualisierung mit HTML, CSS und JavaScript. Er installiert keine Software, ändert keine Systemdateien und greift nicht auf persönliche Daten zu.'
+      },
+      {
+        question: 'Installiert der Ubuntu-Bildschirm-Simulator tatsächlich Ubuntu?',
+        answer: 'Nein. Dies ist eine rein visuelle browserbasierte Simulation. Sie zeigt eine animierte gefälschte Ubuntu-Boot- und Update-Fortschrittsanzeige vollständig in Ihrem Browser an.'
+      },
+      {
+        question: 'Wie verlasse ich den Vollbildmodus des Ubuntu-Simulators?',
+        answer: 'Drücken Sie die Escape-Taste (Esc) auf Ihrer Tastatur, um den Vollbildmodus sofort zu verlassen. Alle Animationen werden gestoppt und die Seite kehrt in ihren Normalzustand zurück.'
+      },
+      {
+        question: 'Was zeigt der Ubuntu-Bildschirm-Simulator?',
+        answer: 'Der Simulator zeigt einen realistischen Ubuntu-Update-Installationsbildschirm mit authentischer Boot-Animation, nicht-linearer Fortschrittsanzeige und einem animierten Neustartzyklus.'
+      }
+    ],
+    hi: [
+      {
+        question: 'क्या उबंटू स्क्रीन सिम्युलेटर सुरक्षित है?',
+        answer: 'हाँ, यह पूरी तरह से सुरक्षित है। उबंटू स्क्रीन सिम्युलेटर HTML, CSS और JavaScript का उपयोग करके एक ब्राउज़र-आधारित दृश्य सिमुलेशन है। यह कोई सॉफ़्टवेयर इंस्टॉल नहीं करता, सिस्टम फ़ाइलों को संशोधित नहीं करता, और व्यक्तिगत डेटा तक पहुँच नहीं बनाता।'
+      },
+      {
+        question: 'क्या उबंटू स्क्रीन सिम्युलेटर वास्तव में उबंटू इंस्टॉल करता है?',
+        answer: 'नहीं। यह पूरी तरह से ब्राउज़र-आधारित दृश्य सिमुलेशन है। यह पूरी तरह से आपके ब्राउज़र के भीतर एक एनिमेटेड फर्जी उबंटू बूट स्क्रीन और अपडेट प्रोग्रेस प्रदर्शित करता है।'
+      },
+      {
+        question: 'मैं उबंटू स्क्रीन फुलस्क्रीन से कैसे बाहर निकलूं?',
+        answer: 'अपने कीबोर्ड पर Escape (Esc) कुंजी दबाएं। यह सभी एनिमेशन रोक देता है और पेज को सामान्य स्थिति में लौटा देता है।'
+      },
+      {
+        question: 'उबंटू स्क्रीन सिम्युलेटर क्या दिखाता है?',
+        answer: 'सिम्युलेटर उबंटू लोगो के साथ एक प्रामाणिक बूट एनिमेशन, यथार्थवादी गति भिन्नताओं के साथ एक नॉन-लीनियर प्रोग्रेस बार, और एक रीबूट चक्र एनिमेशन के साथ एक यथार्थवादी उबंटू अपडेट इंस्टॉलेशन स्क्रीन दिखाता है।'
+      }
+    ],
+    ja: [
+      {
+        question: 'Ubuntu画面シミュレーターは安全ですか？',
+        answer: 'はい、完全に安全です。Ubuntu画面シミュレーターはHTML、CSS、JavaScriptを使用したブラウザのみの視覚的シミュレーションです。ソフトウェアのインストール、システムファイルの変更、個人データへのアクセスは一切行いません。'
+      },
+      {
+        question: 'Ubuntu画面シミュレーターは実際にUbuntuをインストールしますか？',
+        answer: 'いいえ。これは純粋にブラウザベースの視覚的シミュレーションです。偽のUbuntuブート画面と更新進捗アニメーションをブラウザ内で表示するだけです。'
+      },
+      {
+        question: 'Ubuntu画面シミュレーターの全画面を終了するには？',
+        answer: 'キーボードのEscape（Esc）キーを押すと、すぐに全画面モードを終了できます。すべてのアニメーションが停止し、ページは通常の状態に戻ります。'
+      },
+      {
+        question: 'Ubuntu画面シミュレーターは何を表示しますか？',
+        answer: 'Ubuntuロゴを使用した本格的なブートアニメーション、実際のアップデート動作を模倣した非線形進捗バー、および再起動サイクルアニメーションを備えた、リアルなUbuntuアップデートインストール画面を表示します。'
+      }
+    ]
   }
 };
 
@@ -7907,6 +8088,69 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           '<strong>偽Windowsアップデート画面</strong>（<strong>Windowsアップデートいたずらシミュレーター</strong>または<strong>偽アップデート進捗画面</strong>とも呼ばれます）は、無害なエンターテイメントのために説得力のある偽のWindowsアップデート画面を作成するブラウザベースの視覚シミュレーションです。',
           '一般的な検索フレーズには、<strong>偽Windowsアップデート画面</strong>、<strong>Windowsアップデートいたずら</strong>、<strong>偽アップデート画面</strong>、<strong>Windowsアップデートシミュレーター</strong>などがあります。1ページで4つのリアルなモード。',
           '最も説得力のある効果を得るには、Fキーを押して全画面モードに切り替えてください。1〜4のキーでモードを切り替え。速度を調整。Rキーで一時停止/再開。Escapeキーですぐに終了できます。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'ubuntu-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Ubuntu Screen Simulator – Free Online Ubuntu Update & Boot Screen Guide',
+        paragraphs: [
+          'The <strong>Ubuntu screen simulator</strong> (also called a <strong>fake Ubuntu update screen</strong> or <strong>Ubuntu boot simulator</strong>) is a browser-based visual simulation that creates a convincing fake Ubuntu update installation screen with authentic boot animation, non-linear progress bar, and reboot cycle — for harmless entertainment, Linux demonstrations, and video production. Our <strong>Ubuntu simulator</strong> renders a realistic Ubuntu-style update screen directly in your browser — no downloads, no installations, no risk. It is designed for Linux demos, educational training, video content creation, and creative staging.',
+          'Users search for many related terms when looking for this type of simulation tool. Common search phrases include <strong>Ubuntu screen simulator</strong>, <strong>fake Ubuntu update</strong>, <strong>Ubuntu boot screen online</strong>, <strong>Linux simulator online</strong>, <strong>Ubuntu desktop simulator</strong>, <strong>fake Linux desktop</strong>, <strong>Ubuntu update prank</strong>, <strong>Ubuntu terminal simulator</strong>, <strong>Linux prank screen</strong>, <strong>fake Ubuntu installation</strong>, <strong>Ubuntu loading screen</strong>, <strong>Ubuntu progress bar</strong>, <strong>fullscreen Ubuntu simulator</strong>, <strong>Ubuntu presentation screen</strong>, <strong>fake Linux update</strong>, <strong>Ubuntu OBS background</strong>, <strong>Ubuntu video prop</strong>, <strong>Linux classroom demo</strong>, <strong>Ubuntu boot animation</strong>, and <strong>fake system update screen</strong>. Our simulator delivers authentic Ubuntu-style visuals in a single page — no download, no installation, no account required. It works instantly in any modern browser on desktop, laptop, tablet, phone, and Smart TV.',
+          'For the most convincing effect, enter fullscreen mode by pressing F or clicking the fullscreen button. The fullscreen mode hides all browser chrome for maximum realism, and the cursor auto-hides after 2 seconds of inactivity for a clean presentation look. The simulation starts automatically with an authentic Ubuntu boot screen featuring the Ubuntu logo, a non-linear progress bar that mimics real update behaviour with realistic speed variations, and a reboot cycle animation. Adjust brightness through the settings panel to match your ambient environment for the most realistic display.',
+          'The <strong>Ubuntu screen simulator</strong> is ideal for Linux demonstrations and training, YouTube and TikTok video production, streaming and OBS intermission screens, classroom and university Linux lectures, technology event displays and trade shows, theatre stage productions and escape rooms, developer environment backgrounds, and screen recording backdrops. The tool runs entirely in the browser with CSS animations — it leaves zero trace on the device and is completely safe. It does not install software, modify system settings, or access personal files. Everything runs locally in your browser after the initial page load.'
+        ]
+      },
+      es: {
+        heading: 'Simulador de Pantalla Ubuntu – Guía de Pantalla de Actualización y Arranque Ubuntu Online Gratis',
+        paragraphs: [
+          'El <strong>simulador de pantalla Ubuntu</strong> (también llamado <strong>pantalla de actualización Ubuntu falsa</strong> o <strong>simulador de arranque Ubuntu</strong>) es una simulación visual basada en el navegador que crea una pantalla de instalación de actualización Ubuntu falsa convincente.',
+          'Los términos de búsqueda comunes incluyen <strong>simulador de pantalla Ubuntu</strong>, <strong>actualización Ubuntu falsa</strong>, <strong>pantalla de arranque Ubuntu online</strong>, <strong>simulador de Linux online</strong> y <strong>escritorio Ubuntu simulado</strong>. Nuestro simulador ofrece auténticos visuales estilo Ubuntu.',
+          'Para el efecto más convincente, entre en modo de pantalla completa presionando F. El cursor se oculta automáticamente después de 2 segundos. El simulador comienza automáticamente con una animación de arranque Ubuntu auténtica. Ajuste el brillo según su entorno.'
+        ]
+      },
+      pt: {
+        heading: 'Simulador de Tela Ubuntu – Guia de Tela de Atualização e Boot Ubuntu Online Grátis',
+        paragraphs: [
+          'O <strong>simulador de tela Ubuntu</strong> (também chamado de <strong>tela de atualização Ubuntu falsa</strong> ou <strong>simulador de boot Ubuntu</strong>) é uma simulação visual baseada no navegador que cria uma tela de instalação de atualização Ubuntu falsa convincente.',
+          'Termos de busca comuns incluem <strong>simulador de tela Ubuntu</strong>, <strong>atualização Ubuntu falsa</strong>, <strong>tela de boot Ubuntu online</strong> e <strong>simulador Linux online</strong>. Visuais autênticos estilo Ubuntu em uma única página.',
+          'Para o efeito mais convincente, entre em modo tela cheia pressionando F. O cursor se oculta automaticamente. O simulador inicia automaticamente. Ajuste o brilho conforme necessário.'
+        ]
+      },
+      fr: {
+        heading: 'Simulateur d\'Écran Ubuntu – Guide de l\'Écran de Mise à Jour et Démarrage Ubuntu en Ligne Gratuit',
+        paragraphs: [
+          'Le <strong>simulateur d\'écran Ubuntu</strong> (également appelé <strong>fausse écran de mise à jour Ubuntu</strong> ou <strong>simulateur de démarrage Ubuntu</strong>) est une simulation visuelle basée sur le navigateur qui crée une fausse écran d\'installation de mise à jour Ubuntu convaincante.',
+          'Les termes de recherche courants incluent <strong>simulateur d\'écran Ubuntu</strong>, <strong>fausse mise à jour Ubuntu</strong>, <strong>écran de démarrage Ubuntu en ligne</strong> et <strong>simulateur Linux en ligne</strong>. Visuels authentiques style Ubuntu.',
+          'Pour l\'effet le plus convaincant, passez en plein écran en appuyant sur F. Le curseur se cache automatiquement. Le simulateur démarre automatiquement.'
+        ]
+      },
+      de: {
+        heading: 'Ubuntu-Bildschirm-Simulator – Leitfaden für den kostenlosen Online-Ubuntu-Update- und Boot-Bildschirm',
+        paragraphs: [
+          'Der <strong>Ubuntu-Bildschirm-Simulator</strong> (auch <strong>gefälschter Ubuntu-Update-Bildschirm</strong> oder <strong>Ubuntu-Boot-Simulator</strong> genannt) ist eine browserbasierte visuelle Simulation, die einen überzeugenden gefälschten Ubuntu-Update-Installationsbildschirm erstellt.',
+          'Häufige Suchbegriffe sind <strong>Ubuntu-Bildschirm-Simulator</strong>, <strong>gefälschtes Ubuntu-Update</strong>, <strong>Ubuntu-Boot-Bildschirm online</strong> und <strong>Linux-Simulator online</strong>. Authentische Ubuntu-ähnliche Optik.',
+          'Für den überzeugendsten Effekt wechseln Sie durch Drücken von F in den Vollbildmodus. Der Mauszeiger wird automatisch ausgeblendet. Der Simulator startet automatisch.'
+        ]
+      },
+      hi: {
+        heading: 'उबंटू स्क्रीन सिम्युलेटर – मुफ्त ऑनलाइन उबंटू अपडेट और बूट स्क्रीन गाइड',
+        paragraphs: [
+          '<strong>उबंटू स्क्रीन सिम्युलेटर</strong> (जिसे <strong>फर्जी उबंटू अपडेट स्क्रीन</strong> या <strong>उबंटू बूट सिम्युलेटर</strong> भी कहा जाता है) एक ब्राउज़र-आधारित दृश्य सिमुलेशन है जो हानिरहित मनोरंजन के लिए एक विश्वसनीय फर्जी उबंटू अपडेट इंस्टॉलेशन स्क्रीन बनाता है।',
+          'सामान्य खोज वाक्यांशों में <strong>उबंटू स्क्रीन सिम्युलेटर</strong>, <strong>फर्जी उबंटू अपडेट</strong>, <strong>उबंटू बूट स्क्रीन ऑनलाइन</strong> और <strong>लिनक्स सिम्युलेटर ऑनलाइन</strong> शामिल हैं। एक ही पेज पर प्रामाणिक उबंटू-शैली विज़ुअल।',
+          'सबसे विश्वसनीय प्रभाव के लिए, F दबाकर फुलस्क्रीन मोड में जाएँ। कर्सर स्वचालित रूप से छिप जाता है। सिम्युलेटर स्वचालित रूप से शुरू होता है।'
+        ]
+      },
+      ja: {
+        heading: 'Ubuntu画面シミュレーター – 無料オンラインUbuntuアップデート＆ブート画面ガイド',
+        paragraphs: [
+          '<strong>Ubuntu画面シミュレーター</strong>（<strong>偽Ubuntuアップデート画面</strong>または<strong>Ubuntuブートシミュレーター</strong>とも呼ばれます）は、無害なエンターテイメントのために説得力のある偽のUbuntuアップデートインストール画面を作成するブラウザベースの視覚シミュレーションです。',
+          '一般的な検索フレーズには、<strong>Ubuntu画面シミュレーター</strong>、<strong>偽Ubuntuアップデート</strong>、<strong>Ubuntuブート画面 オンライン</strong>、<strong>Linuxシミュレーター オンライン</strong>などがあります。1ページで本格的なUbuntuスタイルのビジュアル。',
+          '最も説得力のある効果を得るには、Fキーを押して全画面モードに切り替えてください。カーソルは自動的に非表示になります。シミュレーターは自動的に起動します。'
         ]
       }
     };

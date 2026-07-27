@@ -192,6 +192,15 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'फर्जी विंडोज अपडेट स्क्रीन - मुफ्त ऑनलाइन विंडोज अपडेट सिम्युलेटर और प्रैंक',
     ja: '偽Windowsアップデート画面 - 無料オンラインWindowsアップデートシミュレーター＆いたずら',
   },
+  'ubuntu-screen': {
+    en: 'Ubuntu Screen Simulator Online - Free Fake Ubuntu Update & Boot Screen',
+    es: 'Simulador de Pantalla Ubuntu Online - Pantalla de Actualización Ubuntu Falsa Gratis',
+    pt: 'Simulador de Tela Ubuntu Online - Tela de Atualização Ubuntu Falsa Grátis',
+    fr: 'Simulateur d\'Écran Ubuntu en Ligne - Fausse Écran de Mise à Jour Ubuntu Gratuit',
+    de: 'Ubuntu-Bildschirm-Simulator Online - Kostenloser Gefälschter Ubuntu-Update-Bildschirm',
+    hi: 'उबंटू स्क्रीन सिम्युलेटर ऑनलाइन - मुफ्त फर्जी उबंटू अपडेट और बूट स्क्रीन',
+    ja: 'Ubuntu画面シミュレーター オンライン - 無料偽Ubuntuアップデート＆ブート画面',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -354,8 +363,17 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     pt: 'Transforme qualquer tela em um realista simulador de atualização do Windows falso com 4 modos: pontos giratórios, progresso de atualização, tela azul e recuperação. Ferramenta de pegadinha online grátis com tela cheia, atalhos de teclado e sons autênticos de atualização do Windows. Sem download, sem instalação, sem risco.',
     fr: 'Transformez n\'importe quel écran en un réaliste simulateur de mise à jour Windows faux avec 4 modes — points tournants, progression de mise à jour, écran bleu et récupération. Outil de farce en ligne gratuit avec mode plein écran, raccourcis clavier et sons authentiques de mise à jour Windows. Sans téléchargement, sans installation, sans risque.',
     de: 'Verwandeln Sie jeden Bildschirm in einen realistischen gefälschten Windows-Update-Simulator mit 4 Modi — drehende Punkte, Update-Fortschritt, blauer Bildschirm und Wiederherstellung. Kostenloses Online-Streich-Tool mit Vollbildmodus, Tastenkürzeln und authentischen Windows-Update-Sounds. Kein Download, keine Installation, kein Risiko.',
-    hi: 'किसी भी स्क्रीन को 4 मोड — स्पिनिंग डॉट्स, अपडेट प्रोग्रेस, ब्लू स्क्रीन और रिकवरी — के साथ एक यथार्थवादी फर्जी विंडोज अपडेट सिम्युलेटर में बदलें। फुलस्क्रीन मोड, कीबोर्ड शॉर्टकट और प्रामाणिक विंडोज अपडेट ध्वनियों के साथ मुफ्त ऑनलाइन प्रैंक टूल। बिना डाउनलोड, बिना इंस्टॉलेशन, बिना जोखिम।',
+    hi: 'किसी भी स्क्रीन को 4 मोड — स्पिनिंग डॉट्स, अपडेट प्रोग्रेस, ब्लू स्क्रीन और रिकवरी — के साथ एक यथार्थवादी फर्जी विंडोज अपडेट सिम्युलेटर में बदलें। फुलस्क्रीम मोड, कीबोर्ड शॉर्टकट और प्रामाणिक विंडोज अपडेट ध्वनियों के साथ मुफ्त ऑनलाइन प्रैंक टूल। बिना डाउनलोड, बिना इंस्टॉलेशन, बिना जोखिम।',
     ja: 'あらゆる画面を4つのモード — 回転ドット、更新進捗、青画面、回復 — を備えたリアルな偽Windowsアップデートシミュレーターに変身。全画面モード、キーボードショートカット、本物そっくりのWindowsアップデート音声付き無料オンラインいたずらツール。ダウンロード不要、インストール不要、リスクなし。',
+  },
+  'ubuntu-screen': {
+    en: 'Turn any screen into a realistic fake Ubuntu update screen simulator with authentic boot animation, progress bar, reboot cycle, and Ubuntu orange terminal aesthetic. Free online prank tool for Linux demos, video props, and classroom training. Fullscreen, keyboard shortcuts, and adjustable brightness. No download, no install, no risk.',
+    es: 'Convierte cualquier pantalla en un realista simulador de pantalla de actualización Ubuntu falsa con animación de arranque auténtica, barra de progreso, ciclo de reinicio y estética de terminal naranja Ubuntu. Herramienta de broma online gratis para demos de Linux, accesorios de video y entrenamiento en clase. Pantalla completa, atajos de teclado y brillo ajustable. Sin descarga, sin instalación, sin riesgo.',
+    pt: 'Transforme qualquer tela em um realista simulador de tela de atualização Ubuntu falsa com animação de boot autêntica, barra de progresso, ciclo de reinicialização e estética de terminal laranja Ubuntu. Ferramenta de pegadinha online grátis para demonstrações Linux, adereços de vídeo e treinamento em sala de aula. Tela cheia, atalhos de teclado e brilho ajustável. Sem download, sem instalação, sem risco.',
+    fr: 'Transformez n\'importe quel écran en un réaliste simulateur de fausse écran de mise à jour Ubuntu avec animation de démarrage authentique, barre de progression, cycle de redémarrage et esthétique de terminal orange Ubuntu. Outil de farce en ligne gratuit pour démos Linux, accessoires vidéo et formation en classe. Plein écran, raccourcis clavier et luminosité réglable. Sans téléchargement, sans installation, sans risque.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen realistischen gefälschten Ubuntu-Update-Bildschirm-Simulator mit authentischer Boot-Animation, Fortschrittsbalken, Neustartzyklus und Ubuntu-Orange-Terminal-Ästhetik. Kostenloses Online-Streich-Tool für Linux-Demos, Video-Requisiten und Schulungen. Vollbild, Tastenkürzel und einstellbare Helligkeit. Kein Download, keine Installation, kein Risiko.',
+    hi: 'किसी भी स्क्रीन को प्रामाणिक बूट एनिमेशन, प्रोग्रेस बार, रीबूट चक्र और उबंटू ऑरेंज टर्मिनल एस्थेटिक के साथ एक यथार्थवादी फर्जी उबंटू अपडेट स्क्रीन सिम्युलेटर में बदलें। लिनक्स डेमो, वीडियो प्रॉप्स और कक्षा प्रशिक्षण के लिए मुफ्त ऑनलाइन प्रैंक टूल। फुलस्क्रीन, कीबोर्ड शॉर्टकट और एडजस्टेबल ब्राइटनेस। बिना डाउनलोड, बिना इंस्टॉलेशन, बिना जोखिम।',
+    ja: '本物そっくりのブートアニメーション、進捗バー、再起動サイクル、Ubuntuオレンジのターミナル美学を備えたリアルな偽Ubuntuアップデート画面シミュレーターにどんな画面でも変身。Linuxデモ、ビデオ小道具、教室トレーニング用の無料オンラインいたずらツール。全画面、キーボードショートカット、明るさ調整可能。ダウンロード不要、インストール不要、リスクなし。',
   },
 };
 
@@ -724,6 +742,47 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
           '@type': 'HowToStep',
           name: 'Launch Fullscreen Mode',
           text: 'Click the Fullscreen button or press the "F" key on your keyboard. The selected Windows Update simulation fills the entire display, hiding all browser chrome for maximum realism. The simulation continues running in fullscreen mode with all animated elements active.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Exit the Simulation Safely',
+          text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation ends immediately — all animations stop and the page returns to normal. No system changes, no installed software, zero trace left on the device.'
+        }
+      ]
+    });
+  }
+
+  if (tool.id === 'ubuntu-screen') {
+    baseSchemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to Use the Ubuntu Screen Simulator for Linux Demos & Pranks',
+      description: 'A step-by-step guide to using the online fake Ubuntu update screen tool to simulate realistic Ubuntu boot screens, update progress animations, and reboot cycles for harmless pranks, Linux demonstrations, and video production.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Open the Ubuntu Screen Simulator',
+          text: 'Load the ubuntu-screen page on any device with a modern browser — desktop, laptop, tablet, phone, or Smart TV.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Watch the Boot Simulation',
+          text: 'The simulator starts automatically with a realistic Ubuntu boot screen showing the loading logo and progress indicators. The animation follows a non-linear progress curve that mimics real Ubuntu update behaviour — starting slow, speeding up in the middle, and slowing near completion, with realistic random pauses and stick points at common percentages.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Configure Visual Settings',
+          text: 'Open the settings panel (gear icon) to adjust brightness to match your ambient environment. The Ubuntu terminal aesthetic uses authentic Ubuntu brand colors — dark purple background (#300a24) and Ubuntu orange accent (#e95420) — with the Ubuntu font family for genuine appearance.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Launch Fullscreen Mode',
+          text: 'Click the Fullscreen button or press the "F" key on your keyboard. The Ubuntu simulation fills the entire display, hiding all browser chrome for maximum realism. The cursor auto-hides after 2 seconds of inactivity for a clean presentation look.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Interact with the Simulation',
+          text: 'The simulation runs continuously with realistic progress behaviour. The boot animation displays authentic Ubuntu loading screens. In fullscreen mode, press F again to toggle. Use the timer and progress controls from the settings panel to manage the simulation duration.'
         },
         {
           '@type': 'HowToStep',
