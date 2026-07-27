@@ -183,6 +183,15 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'फर्जी वायरस स्क्रीन ऑनलाइन - मुफ्त वायरस चेतावनी सिम्युलेटर और प्रैंक',
     ja: '偽ウイルス画面 オンライン - 無料ウイルス警告シミュレーター＆いたずら',
   },
+  'windows-update': {
+    en: 'Fake Windows Update Screen - Free Online Windows Update Simulator & Prank',
+    es: 'Pantalla de Actualización de Windows Falsa - Simulador de Actualización de Windows Online Gratis',
+    pt: 'Tela de Atualização do Windows Falsa - Simulador de Atualização do Windows Online Grátis',
+    fr: 'Fausse Écran de Mise à Jour Windows - Simulateur de Mise à Jour Windows en Ligne Gratuit',
+    de: 'Gefälschter Windows-Update-Bildschirm - Kostenloser Windows-Update-Simulator Online',
+    hi: 'फर्जी विंडोज अपडेट स्क्रीन - मुफ्त ऑनलाइन विंडोज अपडेट सिम्युलेटर और प्रैंक',
+    ja: '偽Windowsアップデート画面 - 無料オンラインWindowsアップデートシミュレーター＆いたずら',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -338,6 +347,15 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen überzeugenden gefälschten Viruswarnungs-Simulator mit 4 Alarmstilen — Chrome-Malware-Warnung, Microsoft Defender SmartScreen, Windows-Sicherheitsdashboard und WannaCry-Ransomware. Kostenloses Online-Streich-Tool mit Vollbildmodus, synthetisierten Alarmtönen und Tastenkürzeln. Kein Download, keine Installation, kein Risiko.',
     hi: 'किसी भी स्क्रीन को 4 अलर्ट शैलियों — क्रोम मैलवेयर चेतावनी, माइक्रोसॉफ्ट डिफ़ेंडर स्मार्टस्क्रीन, विंडोज सिक्योरिटी एंटीवायरस डैशबोर्ड और वानाक्राई रैनसमवेयर — के साथ एक विश्वसनीय फर्जी वायरस चेतावनी सिम्युलेटर में बदलें। फुलस्क्रीन मोड, सिंथेसाइज़्ड अलर्ट ध्वनियाँ और कीबोर्ड शॉर्टकट के साथ मुफ्त ऑनलाइन प्रैंक टूल। बिना डाउनलोड, बिना इंस्टॉलेशन, बिना जोखिम।',
     ja: 'あらゆる画面を説得力のある偽ウイルス警告シミュレーターに変身。4つのアラートスタイル — Chromeマルウェア警告、Microsoft Defender SmartScreen、Windowsセキュリティアンチウイルスダッシュボード、WannaCryランサムウェア。全画面モード、合成警告音、キーボードショートカットを備えた無料オンラインいたずらツール。ダウンロード不要、インストール不要、リスクなし。',
+  },
+  'windows-update': {
+    en: 'Turn any screen into a realistic fake Windows Update simulator with 4 update modes — spinning dots, update progress, blue screen, and recovery. Free online prank tool with fullscreen mode, keyboard shortcuts, and authentic Windows update sounds. No download, no install, no risk.',
+    es: 'Convierte cualquier pantalla en un realista simulador de actualización de Windows falso con 4 modos: puntos giratorios, progreso de actualización, pantalla azul y recuperación. Herramienta de broma online gratis con pantalla completa, atajos de teclado y sonidos auténticos de actualización de Windows. Sin descarga, sin instalación, sin riesgo.',
+    pt: 'Transforme qualquer tela em um realista simulador de atualização do Windows falso com 4 modos: pontos giratórios, progresso de atualização, tela azul e recuperação. Ferramenta de pegadinha online grátis com tela cheia, atalhos de teclado e sons autênticos de atualização do Windows. Sem download, sem instalação, sem risco.',
+    fr: 'Transformez n\'importe quel écran en un réaliste simulateur de mise à jour Windows faux avec 4 modes — points tournants, progression de mise à jour, écran bleu et récupération. Outil de farce en ligne gratuit avec mode plein écran, raccourcis clavier et sons authentiques de mise à jour Windows. Sans téléchargement, sans installation, sans risque.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen realistischen gefälschten Windows-Update-Simulator mit 4 Modi — drehende Punkte, Update-Fortschritt, blauer Bildschirm und Wiederherstellung. Kostenloses Online-Streich-Tool mit Vollbildmodus, Tastenkürzeln und authentischen Windows-Update-Sounds. Kein Download, keine Installation, kein Risiko.',
+    hi: 'किसी भी स्क्रीन को 4 मोड — स्पिनिंग डॉट्स, अपडेट प्रोग्रेस, ब्लू स्क्रीन और रिकवरी — के साथ एक यथार्थवादी फर्जी विंडोज अपडेट सिम्युलेटर में बदलें। फुलस्क्रीन मोड, कीबोर्ड शॉर्टकट और प्रामाणिक विंडोज अपडेट ध्वनियों के साथ मुफ्त ऑनलाइन प्रैंक टूल। बिना डाउनलोड, बिना इंस्टॉलेशन, बिना जोखिम।',
+    ja: 'あらゆる画面を4つのモード — 回転ドット、更新進捗、青画面、回復 — を備えたリアルな偽Windowsアップデートシミュレーターに変身。全画面モード、キーボードショートカット、本物そっくりのWindowsアップデート音声付き無料オンラインいたずらツール。ダウンロード不要、インストール不要、リスクなし。',
   },
 };
 
@@ -670,6 +688,47 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
           '@type': 'HowToStep',
           name: 'Exit the Simulation Safely',
           text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation ends immediately — all animations stop, sounds silence, and the page returns to normal. No system changes, no installed software, zero trace left on the device.'
+        }
+      ]
+    });
+  }
+
+  if (tool.id === 'windows-update') {
+    baseSchemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to Use the Fake Windows Update Screen Simulator for Pranks & Screen Effects',
+      description: 'A step-by-step guide to using the online fake Windows Update screen tool to simulate convincing update screens, spinning dots, update progress bars, blue screen of death, and recovery mode for harmless pranks, video production, and screen effects.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Open the Fake Windows Update Simulator',
+          text: 'Load the windows-update page on any device with a modern browser — desktop, laptop, tablet, phone, or Smart TV.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Select a Simulation Mode',
+          text: 'Open the settings panel (gear icon) and choose from 4 modes: Spinning Dots mode shows the classic Windows update loading animation with the "Getting Windows ready" message; Update Progress mode displays a % progress bar with "Working on updates" text; Blue Screen mode simulates a Windows blue screen of death with a sad face and error message; Recovery mode shows "Automatic Repair" or "Preparing Automatic Repair" screen. You can also use keyboard shortcuts 1-4 to switch modes in fullscreen.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Control the Simulation Speed',
+          text: 'Adjust the speed slider in settings to control how fast the animation plays. Slow speed is ideal for extended pranks and background effects. Medium speed creates a natural update feel. Fast speed works for quick demos. Press R to toggle pause and resume the current animation.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Configure Visual Settings',
+          text: 'Toggle the "Show percentage" option to display or hide the numerical progress percentage on screen. Enable or disable keyboard shortcuts via the settings toggle. Adjust brightness to match your ambient environment. Each setting takes effect immediately.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Launch Fullscreen Mode',
+          text: 'Click the Fullscreen button or press the "F" key on your keyboard. The selected Windows Update simulation fills the entire display, hiding all browser chrome for maximum realism. The simulation continues running in fullscreen mode with all animated elements active.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Exit the Simulation Safely',
+          text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation ends immediately — all animations stop and the page returns to normal. No system changes, no installed software, zero trace left on the device.'
         }
       ]
     });
