@@ -12,7 +12,7 @@ const { tool, locale } = Astro.props;
 const useCases = tool.useCases.join(', ');
 const controls = tool.controls.join(', ');
 const name = toolName(locale, tool);
-const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen' || tool.id === 'blue-screen-prank' || tool.id === 'windows-xp-crash' || tool.id === 'radar-screen' || tool.id === 'white-noise-screen' || tool.id === 'fake-virus-screen' || tool.id === 'windows-update' || tool.id === 'ubuntu-screen') ? getBlogKeywordsContent(locale, tool.id) : null;
+const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen' || tool.id === 'blue-screen-prank' || tool.id === 'windows-xp-crash' || tool.id === 'radar-screen' || tool.id === 'white-noise-screen' || tool.id === 'fake-virus-screen' || tool.id === 'windows-update' || tool.id === 'ubuntu-screen' || tool.id === 'macos-screen') ? getBlogKeywordsContent(locale, tool.id) : null;
 ---
 
 <article class="site-shell rich-article max-w-3xl py-16">
@@ -168,6 +168,39 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         most effective demos, combine the Ubuntu simulator with our <a href="/fake-virus-screen/">fake virus screen</a> for a full
         system-prank scenario, or use the <a href="/windows-update/">Windows Update screen</a> alongside it for cross-platform comparison
         demonstrations.
+      </p>
+    </>
+  ) : tool.kind === 'fake' && tool.id === 'macos-screen' ? (
+    <>
+      <h2>macOS update simulator setup and Apple demo tips.</h2>
+      <p>
+        When using the <strong>macOS update simulator</strong> for an Apple UI demonstration, video production, or classroom presentation, fullscreen mode is
+        essential for the most convincing experience. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> or click the
+        fullscreen button to hide all browser UI and let the authentic Apple-style update screen fill the entire display. The cursor auto-hides
+        after 2 seconds of inactivity in fullscreen mode for a clean presentation look.
+      </p>
+      <p>
+        The simulator starts automatically with a realistic macOS update screen featuring the Apple logo, update title (e.g. "macOS Sequoia 15.5"),
+        status text ("Preparing...", "Downloading...", "Installing..."), and a progress bar. Choose from 5 update scenarios in the settings panel
+        (gear icon): <strong>macOS Sequoia 15.5</strong> (7 phases: Preparing, Downloading, Verifying, Installing, Optimizing, Cleaning Up, Finishing),
+        <strong>Security Response 7.2</strong> (6 phases), <strong>App Store Update</strong> (5 phases), <strong>BridgeOS Firmware Update</strong>
+        (6 phases), or <strong>macOS Sequoia 16.0 Beta</strong> (7 phases). Each scenario has unique phase sequences and visual styling for a
+        genuinely different look and feel.
+      </p>
+      <p>
+        The progress simulation offers 4 operational modes. <strong>Realistic</strong> mode uses a non-linear curve with randomized speed variations,
+        stick points at common percentages (10, 18, 30, 42, 55, 68, 78, 85, 92, 96, 98), and random pauses — just like a real macOS update.
+        <strong>Timer</strong> mode completes linearly over a set duration (5, 10, 15, 30, or 60 minutes). <strong>Manual</strong> mode gives you
+        full drag control. <strong>Infinite</strong> mode cycles near completion with periodic resets. Switch between 3 visual themes — macOS Dark,
+        macOS Light, or Space Gray — and toggle Auto Restart for a two-phase restart animation or Sound for synthesized Apple-style chimes. The ETA
+        display dynamically recalculates based on recent speed history for added realism.
+      </p>
+      <p>
+        The <strong>macOS update simulator</strong> simulates a convincing system update event, not an actual system modification. It generates CSS
+        animations, phase transitions, and Web Audio API sounds entirely in the browser — it does not install software, modify system settings,
+        access personal files, or download anything to your device. The simulation resets instantly when you press <kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd>, leaving no trace.
+        For the best cross-platform demos, combine this with the <a href="/windows-update/">Windows Update screen</a> and
+        <a href="/ubuntu-screen/">Ubuntu screen simulator</a> for a complete operating system comparison presentation.
       </p>
     </>
   ) : tool.kind === 'prank' && tool.id === 'white-noise-screen' ? (

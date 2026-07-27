@@ -778,6 +778,14 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     hi: 'प्रामाणिक बूट एनिमेशन, नॉन-लीनियर प्रोग्रेस, रीबूट चक्र और यथार्थवादी नारंगी-और-बैंगनी रंगों में उबंटू टर्मिनल एस्थेटिक के साथ एक यथार्थवादी फर्जी उबंटू अपडेट स्क्रीन सिम्युलेटर। लिनक्स डेमो, वीडियो निर्माण, शैक्षिक प्रशिक्षण और हानिरहित प्रैंक के लिए मुफ्त ऑनलाइन टूल।',
     ja: '本格的なブートアニメーション、非線形進行、再起動サイクル、リアルなオレンジとパープルのUbuntuターミナル美学を備えたリアルな偽Ubuntuアップデート画面シミュレーター。Linuxデモ、動画制作、教育トレーニング、無害ないたずらに最適な無料オンラインツール。',
   },
+  'macos-screen': {
+    es: 'Un simulador realista de pantalla de actualización de macOS falsa con 5 escenarios (macOS Sequoia, Respuesta de Seguridad, App Store, Firmware, Beta), 4 modos operativos (Realista, Temporizador, Manual, Infinito) y 3 temas incluido el Modo Oscuro. Auténticos visuales estilo Apple con animación de reinicio automático y sonidos sintetizados. Herramienta online gratis para demos de UI de Apple, producción de video y bromas inofensivas.',
+    pt: 'Um simulador realista de tela de atualização do macOS falsa com 5 cenários (macOS Sequoia, Resposta de Segurança, App Store, Firmware, Beta), 4 modos operacionais (Realista, Temporizador, Manual, Infinito) e 3 temas incluindo o Modo Escuro. Visuais autênticos estilo Apple com animação de reinicialização automática e sons sintetizados. Ferramenta online grátis para demonstrações de UI da Apple, produção de vídeo e pegadinhas inofensivas.',
+    fr: 'Un simulateur réaliste de fausse écran de mise à jour macOS avec 5 scénarios (macOS Sequoia, Réponse de Sécurité, App Store, Firmware, Bêta), 4 modes opérationnels (Réaliste, Minuteur, Manuel, Infini) et 3 thèmes dont le Mode Sombre. Visuels authentiques style Apple avec animation de redémarrage automatique et sons synthétisés. Outil en ligne gratuit pour démos UI Apple, production vidéo et farces inoffensives.',
+    de: 'Ein realistischer gefälschter macOS-Update-Bildschirm-Simulator mit 5 Szenarien (macOS Sequoia, Sicherheitsantwort, App Store, Firmware, Beta), 4 Betriebsmodi (Realistisch, Timer, Manuell, Unendlich) und 3 Themes inklusive Dunkelmodus. Authentische Apple-ähnliche Optik mit automatischer Neustart-Animation und synthetisierten Sounds. Kostenloses Online-Tool für Apple-UI-Demos, Videoproduktion und harmlose Streiche.',
+    hi: '5 परिदृश्यों (macOS Sequoia, सुरक्षा प्रतिक्रिया, App Store, फ़र्मवेयर, बीटा), 4 ऑपरेशनल मोड (यथार्थवादी, टाइमर, मैनुअल, इनफ़िनिट) और डार्क मोड सहित 3 थीम के साथ एक यथार्थवादी फर्जी macOS अपडेट स्क्रीन सिम्युलेटर। ऑटो-रिस्टार्ट एनिमेशन और सिंथेसाइज़्ड ध्वनियों के साथ प्रामाणिक Apple-शैली विज़ुअल। Apple UI डेमो, वीडियो निर्माण और हानिरहित प्रैंक के लिए मुफ्त ऑनलाइन टूल।',
+    ja: '5つのシナリオ（macOS Sequoia、セキュリティレスポンス、App Store、ファームウェア、ベータ）、4つの操作モード（リアル、タイマー、手動、無限）、ダークモードを含む3つのテーマを備えたリアルな偽macOSアップデート画面シミュレーター。Appleスタイルの本格的なビジュアル、自動再起動アニメーション、合成サウンド付き。Apple UIデモ、動画制作、無害ないたずらに最適な無料オンラインツール。',
+  },
 };
 
 export function t(locale: Locale, key: string, params?: Record<string, string>): string {
@@ -6235,6 +6243,182 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
         answer: 'Ubuntuロゴを使用した本格的なブートアニメーション、実際のアップデート動作を模倣した非線形進捗バー、および再起動サイクルアニメーションを備えた、リアルなUbuntuアップデートインストール画面を表示します。'
       }
     ]
+  },
+  'macos-screen': {
+    en: [
+      {
+        question: 'Is the macOS update simulator safe?',
+        answer: 'Yes, it is completely safe. The macOS update simulator is a browser-only visual simulation using HTML, CSS, and JavaScript. It does not install any software, modify system files, access personal data, or make any changes to your operating system. No malware, no downloads, no risk.'
+      },
+      {
+        question: 'Does the macOS update simulator actually update my Mac?',
+        answer: 'No. This is a purely visual browser-based simulation. It displays animated fake macOS update screens — with realistic progress bars, phase transitions, and restart animations — entirely within your browser. Nothing is downloaded, installed, or executed on your device. Your system is never modified.'
+      },
+      {
+        question: 'How do I exit the macOS update fullscreen?',
+        answer: 'Press the Escape (Esc) key on your keyboard to exit fullscreen mode instantly. This stops all animations and returns the page to its normal state. No trace of the simulation remains on your device.'
+      },
+      {
+        question: 'What update scenarios are included?',
+        answer: 'The simulator includes 5 scenarios: a macOS Sequoia 15.5 major update with 7 phases (Preparing, Downloading, Verifying, Installing, Optimizing, Cleaning Up, Finishing), a macOS Security Response 7.2 with 6 phases, an App Store Update with 5 phases, a BridgeOS Firmware Update with 6 phases, and a macOS Sequoia 16.0 Beta update with 7 phases. Each scenario has unique titles, phase names, and visual styling.'
+      },
+      {
+        question: 'What operational modes are available?',
+        answer: 'The simulator has 4 modes: Realistic mode uses a non-linear progress curve with randomized speed variations, stick points at common percentages, and random pauses — mimicking real macOS update behaviour. Timer mode completes progress linearly within a set duration (5, 10, 15, 30, or 60 minutes). Manual mode gives you full control with a drag-to-set progress slider. Infinite mode cycles near completion with periodic resets to 0%.'
+      },
+      {
+        question: 'Does the macOS update simulator work on mobile?',
+        answer: 'Yes, it works on any device with a modern web browser — Windows, Mac, Linux, Chromebook, tablets, and smartphones. The simulation adapts to different screen sizes and supports touch input. Fullscreen mode works on supported mobile browsers.'
+      },
+      {
+        question: 'Can I use the macOS update simulator in a video or stream?',
+        answer: 'Yes, the macOS update simulator is perfect for YouTube videos, TikTok content, Twitch streams, and video production. Use it as an Apple UI demo visual, intermission screen, or background effect. The fullscreen mode hides browser UI for clean recording. It works as a browser source in OBS Studio and streaming software with no performance issues.'
+      },
+      {
+        question: 'Can I use this for teaching macOS or Apple software?',
+        answer: 'Yes, the macOS update simulator is excellent for classroom presentations, university lectures, macOS training sessions, and software demonstrations. It helps illustrate what macOS update and installation screens look like without needing to run a real macOS update or install system software.'
+      },
+      {
+        question: 'What keyboard shortcuts are available?',
+        answer: 'In fullscreen mode: press F to toggle fullscreen, press Space to pause and resume the simulation, and press Esc to exit fullscreen and end the simulation. The cursor auto-hides after 2 seconds of inactivity in fullscreen mode for a clean presentation look.'
+      },
+      {
+        question: 'Is the macOS update simulator free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The macOS update simulator is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'What themes are available?',
+        answer: 'Three visual themes are available: macOS Dark mode with modern dark Apple aesthetics featuring a dark background and light text, macOS Light mode with a classic light appearance, and Space Gray mode with a premium dark gray finish. Switch between themes at any time from the settings panel.'
+      },
+      {
+        question: 'Does the simulator have sound?',
+        answer: 'Yes, the simulator uses the Web Audio API to generate synthesized Apple-style chimes. Three sound types are available: a notification chime when progress completes a phase, restart chimes during the auto-restart sequence, and boot chimes during the "Starting up..." phase. Toggle sound on and off from the settings panel.'
+      },
+      {
+        question: 'Can I use the macOS update simulator for an escape room or theatre?',
+        answer: 'Yes, the macOS update simulator works great as an escape room prop, theatre production visual, technology event display, or trade show installation. The 5 scenarios and 3 themes provide variety for different scenes. The realistic Apple-style visuals create authentic technology-themed environments.'
+      },
+      {
+        question: 'Does the simulator show an estimated time remaining?',
+        answer: 'Yes, the realistic mode calculates and displays an estimated time remaining based on speed history. The ETA updates dynamically as the simulation progresses and includes randomized "Estimating time remaining..." messages for authenticity, just like a real macOS update.'
+      },
+      {
+        question: 'What is the auto-restart feature?',
+        answer: 'The auto-restart feature triggers a two-phase restart animation when the progress reaches 100%. Phase 1 shows "Restarting... Please don\'t turn off your Mac" with a fading Apple logo. Phase 2 shows "Starting up..." with animated boot dots and a progress bar. This creates a convincing complete update lifecycle.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Es seguro el simulador de actualización de macOS?',
+        answer: 'Sí, es completamente seguro. El simulador de actualización de macOS es una simulación visual basada en el navegador que utiliza HTML, CSS y JavaScript. No instala software, no modifica archivos del sistema, no accede a datos personales y no realiza cambios en su sistema operativo.'
+      },
+      {
+        question: '¿El simulador de actualización de macOS realmente actualiza mi Mac?',
+        answer: 'No. Esta es una simulación puramente visual basada en el navegador. Muestra pantallas falsas animadas de actualización de macOS completamente dentro de su navegador. No se descarga, instala ni ejecuta nada en su dispositivo.'
+      },
+      {
+        question: '¿Cómo salgo del modo de pantalla completa de la simulación macOS?',
+        answer: 'Presione la tecla Escape (Esc) en su teclado para salir del modo de pantalla completa al instante. Esto detiene todas las animaciones y devuelve la página a su estado normal.'
+      },
+      {
+        question: '¿Qué escenarios de actualización están incluidos?',
+        answer: 'El simulador incluye 5 escenarios: macOS Sequoia 15.5 con 7 fases, Respuesta de Seguridad 7.2 con 6 fases, Actualización de App Store con 5 fases, Actualización de Firmware BridgeOS con 6 fases, y macOS Sequoia 16.0 Beta con 7 fases.'
+      },
+      {
+        question: '¿Es gratuito el simulador de actualización de macOS?',
+        answer: 'Sí, es completamente gratuito. Sin cuenta, sin registro, sin tarjeta de crédito y sin cargos ocultos. Disponible para todos sin límites de uso.'
+      }
+    ],
+    pt: [
+      {
+        question: 'O simulador de atualização do macOS é seguro?',
+        answer: 'Sim, é completamente seguro. O simulador de atualização do macOS é uma simulação visual baseada no navegador usando HTML, CSS e JavaScript. Não instala software, não modifica arquivos do sistema, não acessa dados pessoais e não faz alterações no seu sistema operacional.'
+      },
+      {
+        question: 'O simulador de atualização do macOS realmente atualiza meu Mac?',
+        answer: 'Não. Esta é uma simulação puramente visual baseada no navegador. Exibe telas de atualização do macOS falsas animadas inteiramente dentro do seu navegador.'
+      },
+      {
+        question: 'Como saio do modo tela cheia da simulação macOS?',
+        answer: 'Pressione a tecla Escape (Esc) no seu teclado para sair do modo tela cheia instantaneamente. Isso para todas as animações e retorna a página ao seu estado normal.'
+      },
+      {
+        question: 'Quais cenários de atualização estão incluídos?',
+        answer: 'O simulador inclui 5 cenários: macOS Sequoia 15.5 com 7 fases, Resposta de Segurança 7.2 com 6 fases, Atualização da App Store com 5 fases, Atualização de Firmware BridgeOS com 6 fases e macOS Sequoia 16.0 Beta com 7 fases.'
+      }
+    ],
+    fr: [
+      {
+        question: 'Le simulateur de mise à jour macOS est-il sûr ?',
+        answer: 'Oui, il est totalement sûr. Le simulateur de mise à jour macOS est une simulation visuelle basée sur le navigateur utilisant HTML, CSS et JavaScript. Il n\'installe aucun logiciel, ne modifie aucun fichier système et n\'accède à aucune donnée personnelle.'
+      },
+      {
+        question: 'Le simulateur de mise à jour macOS met-il réellement à jour mon Mac ?',
+        answer: 'Non. Il s\'agit d\'une simulation purement visuelle basée sur le navigateur. Elle affiche de fausses écrans de mise à jour macOS animées entièrement dans votre navigateur.'
+      },
+      {
+        question: 'Comment quitter le mode plein écran de la simulation macOS ?',
+        answer: 'Appuyez sur la touche Échap (Esc) de votre clavier pour quitter instantanément le mode plein écran. Cela arrête toutes les animations et ramène la page à son état normal.'
+      },
+      {
+        question: 'Quels scénarios de mise à jour sont inclus ?',
+        answer: 'Le simulateur comprend 5 scénarios : macOS Sequoia 15.5 avec 7 phases, Réponse de Sécurité 7.2 avec 6 phases, Mise à jour App Store avec 5 phases, Mise à jour Firmware BridgeOS avec 6 phases et macOS Sequoia 16.0 Beta avec 7 phases.'
+      }
+    ],
+    de: [
+      {
+        question: 'Ist der macOS-Update-Simulator sicher?',
+        answer: 'Ja, er ist völlig sicher. Der macOS-Update-Simulator ist eine reine Browser-Visualisierung mit HTML, CSS und JavaScript. Er installiert keine Software, ändert keine Systemdateien und greift nicht auf persönliche Daten zu.'
+      },
+      {
+        question: 'Führt der macOS-Update-Simulator tatsächlich ein Update auf meinem Mac durch?',
+        answer: 'Nein. Dies ist eine rein visuelle browserbasierte Simulation. Sie zeigt animierte gefälschte macOS-Update-Bildschirme vollständig in Ihrem Browser an.'
+      },
+      {
+        question: 'Wie verlasse ich den Vollbildmodus der macOS-Simulation?',
+        answer: 'Drücken Sie die Escape-Taste (Esc) auf Ihrer Tastatur, um den Vollbildmodus sofort zu verlassen. Alle Animationen werden gestoppt und die Seite kehrt in ihren Normalzustand zurück.'
+      },
+      {
+        question: 'Welche Update-Szenarien sind enthalten?',
+        answer: 'Der Simulator umfasst 5 Szenarien: macOS Sequoia 15.5 mit 7 Phasen, Sicherheitsantwort 7.2 mit 6 Phasen, App Store-Update mit 5 Phasen, BridgeOS-Firmware-Update mit 6 Phasen und macOS Sequoia 16.0 Beta mit 7 Phasen.'
+      }
+    ],
+    hi: [
+      {
+        question: 'क्या macOS अपडेट सिम्युलेटर सुरक्षित है?',
+        answer: 'हाँ, यह पूरी तरह से सुरक्षित है। macOS अपडेट सिम्युलेटर HTML, CSS और JavaScript का उपयोग करके एक ब्राउज़र-आधारित दृश्य सिमुलेशन है। यह कोई सॉफ़्टवेयर इंस्टॉल नहीं करता, सिस्टम फ़ाइलों को संशोधित नहीं करता, और व्यक्तिगत डेटा तक पहुँच नहीं बनाता।'
+      },
+      {
+        question: 'क्या macOS अपडेट सिम्युलेटर वास्तव में मेरे Mac को अपडेट करता है?',
+        answer: 'नहीं। यह पूरी तरह से ब्राउज़र-आधारित दृश्य सिमुलेशन है। यह पूरी तरह से आपके ब्राउज़र के भीतर एनिमेटेड फर्जी macOS अपडेट स्क्रीन प्रदर्शित करता है।'
+      },
+      {
+        question: 'मैं macOS सिमुलेशन फुलस्क्रीन से कैसे बाहर निकलूं?',
+        answer: 'अपने कीबोर्ड पर Escape (Esc) कुंजी दबाएं। यह सभी एनिमेशन रोक देता है और पेज को सामान्य स्थिति में लौटा देता है।'
+      },
+      {
+        question: 'कौन से अपडेट परिदृश्य शामिल हैं?',
+        answer: 'सिम्युलेटर में 5 परिदृश्य शामिल हैं: macOS Sequoia 15.5 (7 चरण), सुरक्षा प्रतिक्रिया 7.2 (6 चरण), App Store अपडेट (5 चरण), BridgeOS फ़र्मवेयर अपडेट (6 चरण), और macOS Sequoia 16.0 बीटा (7 चरण)।'
+      }
+    ],
+    ja: [
+      {
+        question: 'macOSアップデートシミュレーターは安全ですか？',
+        answer: 'はい、完全に安全です。macOSアップデートシミュレーターはHTML、CSS、JavaScriptを使用したブラウザのみの視覚的シミュレーションです。ソフトウェアのインストール、システムファイルの変更、個人データへのアクセスは一切行いません。'
+      },
+      {
+        question: 'macOSアップデートシミュレーターは実際にMacをアップデートしますか？',
+        answer: 'いいえ。これは純粋にブラウザベースの視覚的シミュレーションです。偽のmacOSアップデート画面をブラウザ内で表示するだけです。'
+      },
+      {
+        question: 'macOSシミュレーションの全画面を終了するには？',
+        answer: 'キーボードのEscape（Esc）キーを押すと、すぐに全画面モードを終了できます。すべてのアニメーションが停止し、ページは通常の状態に戻ります。'
+      },
+      {
+        question: 'どのようなアップデートシナリオがありますか？',
+        answer: '5つのシナリオがあります：macOS Sequoia 15.5（7フェーズ）、セキュリティレスポンス7.2（6フェーズ）、App Storeアップデート（5フェーズ）、BridgeOSファームウェアアップデート（6フェーズ）、macOS Sequoia 16.0ベータ（7フェーズ）。'
+      }
+    ]
   }
 };
 
@@ -8151,6 +8335,69 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           '<strong>Ubuntu画面シミュレーター</strong>（<strong>偽Ubuntuアップデート画面</strong>または<strong>Ubuntuブートシミュレーター</strong>とも呼ばれます）は、無害なエンターテイメントのために説得力のある偽のUbuntuアップデートインストール画面を作成するブラウザベースの視覚シミュレーションです。',
           '一般的な検索フレーズには、<strong>Ubuntu画面シミュレーター</strong>、<strong>偽Ubuntuアップデート</strong>、<strong>Ubuntuブート画面 オンライン</strong>、<strong>Linuxシミュレーター オンライン</strong>などがあります。1ページで本格的なUbuntuスタイルのビジュアル。',
           '最も説得力のある効果を得るには、Fキーを押して全画面モードに切り替えてください。カーソルは自動的に非表示になります。シミュレーターは自動的に起動します。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'macos-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'macOS Update Simulator – Free Online macOS Update & Installation Screen Guide',
+        paragraphs: [
+          'The <strong>macOS update simulator</strong> (also called a <strong>fake macOS update screen</strong> or <strong>macOS installation simulator</strong>) is a browser-based visual simulation that creates convincing fake macOS update and installation screens with 5 scenarios, 4 operational modes, and 3 visual themes — for harmless entertainment, Apple UI demonstrations, and video production. Our <strong>macOS simulator</strong> renders realistic Apple-style update screens directly in your browser — no downloads, no installations, no risk. It is designed for Apple UI demos, educational training, video content creation, and creative staging.',
+          'Users search for many related terms when looking for this type of simulation tool. Common search phrases include <strong>macOS update simulator</strong>, <strong>fake macOS update</strong>, <strong>macOS screen online</strong>, <strong>Mac update simulator</strong>, <strong>fake Mac update</strong>, <strong>macOS installation screen</strong>, <strong>Apple update simulator</strong>, <strong>fake Apple update</strong>, <strong>macOS Sequoia simulator</strong>, <strong>macOS loading screen</strong>, <strong>Mac desktop simulator</strong>, <strong>fake macOS desktop</strong>, <strong>macOS progress bar</strong>, <strong>fullscreen macOS simulator</strong>, <strong>macOS presentation screen</strong>, <strong>fake Mac installation</strong>, <strong>macOS OBS background</strong>, <strong>macOS video prop</strong>, <strong>Apple classroom demo</strong>, <strong>macOS dark mode simulator</strong>, and <strong>fake system update screen</strong>. Our simulator delivers 5 scenarios, 4 modes, and 3 themes in a single page — no download, no installation, no account required. It works instantly in any modern browser on desktop, laptop, tablet, phone, and Smart TV.',
+          'For the most convincing effect, enter fullscreen mode by pressing F or clicking the fullscreen button. The fullscreen mode hides all browser chrome for maximum realism, and the cursor auto-hides after 2 seconds of inactivity for a clean presentation look. Use the settings panel (gear icon) to choose from 5 update scenarios — macOS Sequoia 15.5, Security Response 7.2, App Store Update, BridgeOS Firmware Update, or macOS Sequoia 16.0 Beta — each with unique phase names and visual styling. Select one of 4 operational modes: Realistic for authentic non-linear progress with stick points and random pauses, Timer for duration-based completion, Manual for full drag control, or Infinite for continuous cycling. Choose from 3 themes: macOS Dark, macOS Light, or Space Gray. Toggle Auto Restart and Sound for a complete update lifecycle experience with synthesized Apple-style chimes.',
+          'The <strong>macOS update simulator</strong> is ideal for Apple UI demonstrations and mockups, YouTube and TikTok video production, streaming and OBS intermission screens, classroom and university macOS training, client presentations and software demos, theatre stage productions and escape rooms, technology event displays and trade shows, and screen recording backdrops. The tool runs entirely in the browser with CSS animations and the Web Audio API for sounds — it leaves zero trace on the device and is completely safe. It does not install software, modify system settings, or access personal files. Everything runs locally in your browser after the initial page load.'
+        ]
+      },
+      es: {
+        heading: 'Simulador de Actualización de macOS – Guía de Pantalla de Instalación y Actualización de macOS Online Gratis',
+        paragraphs: [
+          'El <strong>simulador de actualización de macOS</strong> (también llamado <strong>pantalla de actualización de macOS falsa</strong> o <strong>simulador de instalación de macOS</strong>) es una simulación visual basada en el navegador que crea pantallas de actualización e instalación de macOS falsas convincentes.',
+          'Los términos de búsqueda comunes incluyen <strong>simulador de actualización de macOS</strong>, <strong>actualización falsa de macOS</strong>, <strong>pantalla de macOS online</strong> y <strong>simulador de actualización de Mac</strong>. 5 escenarios, 4 modos y 3 temas en una sola página.',
+          'Para el efecto más convincente, entre en modo de pantalla completa presionando F. Use el panel de configuración para elegir entre 5 escenarios, 4 modos y 3 temas. Presione Escape para salir al instante.'
+        ]
+      },
+      pt: {
+        heading: 'Simulador de Atualização do macOS – Guia de Tela de Instalação e Atualização do macOS Online Grátis',
+        paragraphs: [
+          'O <strong>simulador de atualização do macOS</strong> (também chamado de <strong>tela de atualização do macOS falsa</strong> ou <strong>simulador de instalação do macOS</strong>) é uma simulação visual baseada no navegador que cria telas de atualização e instalação do macOS falsas convincentes.',
+          'Termos de busca comuns incluem <strong>simulador de atualização do macOS</strong>, <strong>atualização falsa do macOS</strong> e <strong>tela do macOS online</strong>. 5 cenários, 4 modos e 3 temas em uma única página.',
+          'Para o efeito mais convincente, entre em modo tela cheia pressionando F. Use o painel de configurações para escolher entre 5 cenários, 4 modos e 3 temas. Pressione Escape para sair instantaneamente.'
+        ]
+      },
+      fr: {
+        heading: 'Simulateur de Mise à Jour macOS – Guide de l\'Écran d\'Installation et de Mise à Jour macOS en Ligne Gratuit',
+        paragraphs: [
+          'Le <strong>simulateur de mise à jour macOS</strong> (également appelé <strong>fausse écran de mise à jour macOS</strong> ou <strong>simulateur d\'installation macOS</strong>) est une simulation visuelle basée sur le navigateur qui crée de fausses écrans de mise à jour et d\'installation macOS convaincantes.',
+          'Les termes de recherche courants incluent <strong>simulateur de mise à jour macOS</strong>, <strong>fausse mise à jour macOS</strong> et <strong>écran macOS en ligne</strong>. 5 scénarios, 4 modes et 3 thèmes en une seule page.',
+          'Pour l\'effet le plus convaincant, passez en plein écran en appuyant sur F. Utilisez le panneau des paramètres pour choisir parmi 5 scénarios, 4 modes et 3 thèmes. Appuyez sur Échap pour quitter instantanément.'
+        ]
+      },
+      de: {
+        heading: 'macOS-Update-Simulator – Leitfaden für den kostenlosen Online-macOS-Installations- und Update-Bildschirm',
+        paragraphs: [
+          'Der <strong>macOS-Update-Simulator</strong> (auch <strong>gefälschter macOS-Update-Bildschirm</strong> oder <strong>macOS-Installationssimulator</strong> genannt) ist eine browserbasierte visuelle Simulation, die überzeugende gefälschte macOS-Update- und Installationsbildschirme erstellt.',
+          'Häufige Suchbegriffe sind <strong>macOS-Update-Simulator</strong>, <strong>gefälschtes macOS-Update</strong> und <strong>macOS-Bildschirm online</strong>. 5 Szenarien, 4 Modi und 3 Themes auf einer einzigen Seite.',
+          'Für den überzeugendsten Effekt wechseln Sie durch Drücken von F in den Vollbildmodus. Verwenden Sie das Bedienfeld, um aus 5 Szenarien, 4 Modi und 3 Themes zu wählen. Drücken Sie Escape zum sofortigen Beenden.'
+        ]
+      },
+      hi: {
+        heading: 'macOS अपडेट सिम्युलेटर – मुफ्त ऑनलाइन macOS इंस्टॉलेशन और अपडेट स्क्रीन गाइड',
+        paragraphs: [
+          '<strong>macOS अपडेट सिम्युलेटर</strong> (जिसे <strong>फर्जी macOS अपडेट स्क्रीन</strong> या <strong>macOS इंस्टॉलेशन सिम्युलेटर</strong> भी कहा जाता है) एक ब्राउज़र-आधारित दृश्य सिमुलेशन है जो हानिरहित मनोरंजन के लिए विश्वसनीय फर्जी macOS अपडेट स्क्रीन बनाता है।',
+          'सामान्य खोज वाक्यांशों में <strong>macOS अपडेट सिम्युलेटर</strong>, <strong>फर्जी macOS अपडेट</strong> और <strong>macOS स्क्रीन ऑनलाइन</strong> शामिल हैं। एक ही पेज पर 5 परिदृश्य, 4 मोड और 3 थीम।',
+          'सबसे विश्वसनीय प्रभाव के लिए, F दबाकर फुलस्क्रीन मोड में जाएँ। सेटिंग्स पैनल से 5 परिदृश्य, 4 मोड और 3 थीम चुनें। तुरंत बाहर निकलने के लिए Escape दबाएं।'
+        ]
+      },
+      ja: {
+        heading: 'macOSアップデートシミュレーター – 無料オンラインmacOSインストール＆アップデート画面ガイド',
+        paragraphs: [
+          '<strong>macOSアップデートシミュレーター</strong>（<strong>偽macOSアップデート画面</strong>または<strong>macOSインストールシミュレーター</strong>とも呼ばれます）は、無害なエンターテイメントのために説得力のある偽のmacOSアップデート画面を作成するブラウザベースの視覚シミュレーションです。',
+          '一般的な検索フレーズには、<strong>macOSアップデートシミュレーター</strong>、<strong>偽macOSアップデート</strong>、<strong>macOS画面 オンライン</strong>などがあります。1ページで5つのシナリオ、4つのモード、3つのテーマ。',
+          '最も説得力のある効果を得るには、Fキーを押して全画面モードに切り替えてください。設定パネルから5つのシナリオ、4つのモード、3つのテーマを選択。Escapeキーですぐに終了できます。'
         ]
       }
     };
