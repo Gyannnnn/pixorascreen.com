@@ -12,7 +12,7 @@ const { tool, locale } = Astro.props;
 const useCases = tool.useCases.join(', ');
 const controls = tool.controls.join(', ');
 const name = toolName(locale, tool);
-const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen' || tool.id === 'blue-screen-prank' || tool.id === 'windows-xp-crash' || tool.id === 'radar-screen' || tool.id === 'white-noise-screen' || tool.id === 'fake-virus-screen' || tool.id === 'windows-update') ? getBlogKeywordsContent(locale, tool.id) : null;
+const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'red-screen' || tool.id === 'orange-screen' || tool.id === 'yellow-screen' || tool.id === 'purple-screen' || tool.id === 'pink-screen' || tool.id === 'cyan-screen' || tool.id === 'brown-screen' || tool.id === 'grey-screen' || tool.id === 'custom-color-screen' || tool.id === 'gradient-screen' || tool.id === 'rgb-screen' || tool.id === 'hex-screen' || tool.id === 'fireplace-screen' || tool.id === 'aquarium-screen' || tool.id === 'matrix-screen' || tool.id === 'snow-screen' || tool.id === 'ambient-screen' || tool.id === 'rain-screen' || tool.id === 'clock-screen' || tool.id === 'broken-screen' || tool.id === 'blue-screen-prank' || tool.id === 'windows-xp-crash' || tool.id === 'radar-screen' || tool.id === 'white-noise-screen' || tool.id === 'fake-virus-screen' || tool.id === 'windows-update' || tool.id === 'ubuntu-screen') ? getBlogKeywordsContent(locale, tool.id) : null;
 ---
 
 <article class="site-shell rich-article max-w-3xl py-16">
@@ -137,6 +137,37 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
       </p>
       <p>
         The <strong>fake Windows Update screen</strong> simulates a convincing system event, not an actual system modification. It generates CSS animations and visual effects entirely in the browser — it does not install software, modify system settings, access personal files, or download anything to your device. The simulation resets instantly when you press <kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd>, leaving no trace. For the most effective results at a prank, choose Blue Screen mode for maximum shock value, Spinning Dots for a believable update-in-progress scenario, or Recovery mode to suggest a system failure. Match the mode to your context for the most convincing effect.
+      </p>
+    </>
+  ) : tool.kind === 'fake' && tool.id === 'ubuntu-screen' ? (
+    <>
+      <h2>Ubuntu screen simulator setup and Linux demo tips.</h2>
+      <p>
+        When using the <strong>Ubuntu screen simulator</strong> for a Linux demonstration, video production, or classroom presentation, fullscreen mode is
+        essential for the most convincing experience. Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> or click the
+        fullscreen button to hide all browser UI and let the authentic Ubuntu-style update screen fill the entire display. The cursor auto-hides
+        after 2 seconds of inactivity in fullscreen mode for a clean presentation look.
+      </p>
+      <p>
+        The simulator starts automatically with a realistic Ubuntu boot screen featuring the Ubuntu logo and loading indicators. The progress
+        simulation uses a non-linear curve that mimics genuine Ubuntu update behaviour — starting very slow, accelerating through the middle
+        phases, then decelerating near completion. Random speed spurts of 0.5&ndash;5% jumps add authenticity, and the simulation pauses at
+        common percentage points (5, 14, 28, 40, 55, 65, 76, 84, 92, 97) for 2&ndash;6 seconds at a time, just like real system updates do.
+        A reboot cycle animation is built in, providing a complete update lifecycle visual.
+      </p>
+      <p>
+        The visual design uses authentic Ubuntu brand colours — a dark purple background (<code class="rounded border border-hairline px-1 py-0.5 font-mono text-sm">#300a24</code>) and Ubuntu orange accent
+        (<code class="rounded border border-hairline px-1 py-0.5 font-mono text-sm">#e95420</code>) — with the Ubuntu font family loaded for genuine appearance. Use the settings panel (gear icon) to adjust
+        brightness and manage a timer, giving you full control over how the simulation appears. The Ubuntu terminal aesthetic makes this
+        simulator ideal for any Linux-themed project, from classroom OS demonstrations to technology trade show displays.
+      </p>
+      <p>
+        The <strong>Ubuntu screen simulator</strong> simulates a convincing system update event, not an actual system modification. It generates CSS
+        animations and visual effects entirely in the browser — it does not install software, modify system settings, access personal files,
+        or download anything to your device. The simulation resets instantly when you press <kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd>, leaving no trace. For the
+        most effective demos, combine the Ubuntu simulator with our <a href="/fake-virus-screen/">fake virus screen</a> for a full
+        system-prank scenario, or use the <a href="/windows-update/">Windows Update screen</a> alongside it for cross-platform comparison
+        demonstrations.
       </p>
     </>
   ) : tool.kind === 'prank' && tool.id === 'white-noise-screen' ? (
