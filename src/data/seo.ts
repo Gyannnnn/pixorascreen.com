@@ -174,6 +174,15 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'व्हाइट नॉइज़ स्क्रीन ऑनलाइन - CRT स्कैनलाइन और ऑडियो नॉइज़ के साथ मुफ्त टीवी स्टैटिक सिम्युलेटर',
     ja: 'ホワイトノイズ画面 オンライン - CRTスキャンライン＆オーディオノイズ付き無料テレビ静止画シミュレーター',
   },
+  'fake-virus-screen': {
+    en: 'Fake Virus Screen - Free Online Virus Warning Simulator & Prank',
+    es: 'Pantalla de Virus Falsa Online - Simulador de Aviso de Virus y Broma Gratis',
+    pt: 'Tela de Vírus Falsa Online - Simulador de Aviso de Vírus e Pegadinha Grátis',
+    fr: 'Fausse Écran de Virus en Ligne - Simulateur d\'Alerte de Virus et Farce Gratuit',
+    de: 'Gefälschter Virus-Bildschirm Online - Kostenloser Virenwarnungs-Simulator & Streich',
+    hi: 'फर्जी वायरस स्क्रीन ऑनलाइन - मुफ्त वायरस चेतावनी सिम्युलेटर और प्रैंक',
+    ja: '偽ウイルス画面 オンライン - 無料ウイルス警告シミュレーター＆いたずら',
+  },
 };
 
 const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
@@ -320,6 +329,15 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     de: 'Verwandeln Sie jeden Bildschirm in einen kostenlosen Online-Weißes-Rauschen-Simulator mit authentischem Analograuschen, 3 Statik-Stilen, CRT-Zeilen, VHS-Glitch und Audiostatik. Vollbild-Retro-TV-Effekt für Desktop, Laptop, Monitor und TV — kein Download nötig.',
     hi: 'किसी भी स्क्रीन को प्रामाणिक एनालॉग नॉइज़, 3 स्टैटिक स्टाइल, CRT स्कैनलाइन, VHS ग्लिच और ऑडियो स्टैटिक के साथ मुफ्त ऑनलाइन व्हाइट नॉइज़ स्क्रीन सिम्युलेटर में बदलें। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रेट्रो टीवी इफ़ेक्ट — बिना डाउनलोड के।',
     ja: '本物そっくりのアナログノイズ、3種類のスタティックスタイル、CRTスキャンライン、VHSグリッチ、オーディオノイズを備えた無料のオンラインホワイトノイズ画面シミュレーターにどんな画面でも変身。デスクトップ、ノートPC、モニター、TV向け全画面レトロTV効果。ダウンロード不要。',
+  },
+  'fake-virus-screen': {
+    en: 'Turn any screen into a convincing fake virus warning simulator with 4 alert styles — Chrome malware warning, Microsoft Defender SmartScreen, Windows Security antivirus dashboard, and WannaCry ransomware. Free online prank tool with fullscreen mode, synthesized alert sounds, and keyboard shortcuts. No download, no install, no risk.',
+    es: 'Convierte cualquier pantalla en un convincente simulador de advertencia de virus falso con 4 estilos de alerta: advertencia de malware de Chrome, Microsoft Defender SmartScreen, panel de seguridad de Windows y ransomware WannaCry. Herramienta de broma online gratis con modo de pantalla completa, sonidos de alerta sintetizados y atajos de teclado. Sin descarga, sin instalación, sin riesgo.',
+    pt: 'Transforme qualquer tela em um simulador de aviso de vírus falso convincente com 4 estilos de alerta — aviso de malware do Chrome, Microsoft Defender SmartScreen, painel de segurança do Windows e ransomware WannaCry. Ferramenta de pegadinha online grátis com modo tela cheia, sons de alerta sintetizados e atalhos de teclado. Sem download, sem instalação, sem risco.',
+    fr: 'Transformez n\'importe quel écran en un simulateur d\'avertissement de virus faux convaincant avec 4 styles d\'alerte — avertissement de malware Chrome, Microsoft Defender SmartScreen, tableau de bord de sécurité Windows et ransomware WannaCry. Outil de farce en ligne gratuit avec mode plein écran, sons d\'alerte synthétisés et raccourcis clavier. Sans téléchargement, sans installation, sans risque.',
+    de: 'Verwandeln Sie jeden Bildschirm in einen überzeugenden gefälschten Viruswarnungs-Simulator mit 4 Alarmstilen — Chrome-Malware-Warnung, Microsoft Defender SmartScreen, Windows-Sicherheitsdashboard und WannaCry-Ransomware. Kostenloses Online-Streich-Tool mit Vollbildmodus, synthetisierten Alarmtönen und Tastenkürzeln. Kein Download, keine Installation, kein Risiko.',
+    hi: 'किसी भी स्क्रीन को 4 अलर्ट शैलियों — क्रोम मैलवेयर चेतावनी, माइक्रोसॉफ्ट डिफ़ेंडर स्मार्टस्क्रीन, विंडोज सिक्योरिटी एंटीवायरस डैशबोर्ड और वानाक्राई रैनसमवेयर — के साथ एक विश्वसनीय फर्जी वायरस चेतावनी सिम्युलेटर में बदलें। फुलस्क्रीन मोड, सिंथेसाइज़्ड अलर्ट ध्वनियाँ और कीबोर्ड शॉर्टकट के साथ मुफ्त ऑनलाइन प्रैंक टूल। बिना डाउनलोड, बिना इंस्टॉलेशन, बिना जोखिम।',
+    ja: 'あらゆる画面を説得力のある偽ウイルス警告シミュレーターに変身。4つのアラートスタイル — Chromeマルウェア警告、Microsoft Defender SmartScreen、Windowsセキュリティアンチウイルスダッシュボード、WannaCryランサムウェア。全画面モード、合成警告音、キーボードショートカットを備えた無料オンラインいたずらツール。ダウンロード不要、インストール不要、リスクなし。',
   },
 };
 
@@ -611,6 +629,47 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
           '@type': 'HowToStep',
           name: 'Reset and Exit Safely',
           text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation resets automatically — all error dialogs disappear, the BSOD hides, and the desktop returns to its initial state. No system changes, no installed software, zero trace left on the device.'
+        }
+      ]
+    });
+  }
+
+  if (tool.id === 'fake-virus-screen') {
+    baseSchemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to Use the Fake Virus Screen Simulator for Pranks & Video Production',
+      description: 'A step-by-step guide to using the online fake virus screen tool to simulate convincing fake security alerts, antivirus dashboards, and ransomware screens for harmless pranks, video content, and cybersecurity demonstrations.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Open the Fake Virus Screen Simulator',
+          text: 'Load the fake-virus-screen page on any device with a modern browser — desktop, laptop, tablet, phone, or Smart TV.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Choose an Alert Style',
+          text: 'Open the settings panel (gear icon) and select from the 4 alert styles: Google Chrome malware warning, Microsoft Defender SmartScreen, Windows Security antivirus dashboard, or WannaCry ransomware screen. You can also use keyboard shortcuts 1-4 to switch styles in fullscreen mode.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Configure Sound Effects',
+          text: 'Toggle the sound checkbox in settings to enable or disable synthesized alert audio. Each alert style has a unique sound: continuous siren for Chrome/SmartScreen, notification chimes for Defender, and high-pitch beeps for WannaCry. Press S to toggle sound on and off in fullscreen.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Launch Fullscreen Mode',
+          text: 'Click the Fullscreen button or press the "F" key on your keyboard. The screen fills with the selected fake security alert, hiding all browser chrome for maximum realism. Alarm sounds start automatically in fullscreen mode.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Interact with the Simulation',
+          text: 'Each alert style has interactive elements. Click "Details" or "Learn more" on the Chrome warning to expand information panels. Click "More information" or "Proceed" on the SmartScreen page. The Defender dashboard shows a fake scan progress that gets stuck at 95% with a fake threat alert. The WannaCry screen displays countdown timers and a bitcoin address input with copy functionality.'
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Exit the Simulation Safely',
+          text: 'Press the Escape (Esc) key to exit fullscreen mode instantly. The simulation ends immediately — all animations stop, sounds silence, and the page returns to normal. No system changes, no installed software, zero trace left on the device.'
         }
       ]
     });

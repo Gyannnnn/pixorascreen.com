@@ -608,6 +608,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'blue-screen-prank': { es: 'Broma de Pantalla Azul', pt: 'Pegadinha de Tela Azul', fr: 'Blague d\'Écran Bleu', de: 'Blauer-Bildschirm-Streich', hi: 'ब्लू स्क्रीन प्रैंक', ja: '青い画面のいたずら' },
   'windows-xp-crash': { es: 'Crash de Windows XP', pt: 'Crash do Windows XP', fr: 'Plantage Windows XP', de: 'Windows XP Absturz', hi: 'विंडोज एक्सपी क्रैश', ja: 'Windows XPクラッシュ' },
   'white-noise-screen': { es: 'Pantalla de Ruido Blanco', pt: 'Tela de Ruído Branco', fr: 'Écran Bruit Blanc', de: 'Weißes-Rauschen-Bildschirm', hi: 'व्हाइट नॉइज़ स्क्रीन', ja: 'ホワイトノイズ画面' },
+  'fake-virus-screen': { es: 'Pantalla de Virus Falsa', pt: 'Tela de Vírus Falsa', fr: 'Fausse Écran de Virus', de: 'Gefälschter Virus-Bildschirm', hi: 'फर्जी वायरस स्क्रीन', ja: '偽ウイルス画面' },
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
@@ -750,6 +751,14 @@ const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
     de: 'Ein kostenloser Online-Weißes-Rauschen-Simulator (TV-Rauschen) mit authentischem Analograuschen, CRT-Zeilen, VHS-Effekten und Audiostatik. Vollbild-Retro-TV-Effekt für Desktop, Laptop, Monitor und TV — kein Download nötig.',
     hi: 'प्रामाणिक एनालॉग नॉइज़, CRT स्कैनलाइन, VHS इफ़ेक्ट और ऑडियो स्टैटिक के साथ मुफ्त ऑनलाइन व्हाइट नॉइज़ स्क्रीन (टीवी स्टैटिक) सिम्युलेटर। डेस्कटॉप, लैपटॉप, मॉनिटर और टीवी के लिए फुलस्क्रीन रेट्रो टीवी इफ़ेक्ट — बिना डाउनलोड के।',
     ja: '本物そっくりのアナログノイズ、CRTスキャンライン、VHSエフェクト、オーディオノイズを備えた無料のオンラインホワイトノイズ画面（テレビノイズ）シミュレーター。デスクトップ、ノートPC、モニター、TV向け全画面レトロTV効果。ダウンロード不要。',
+  },
+  'fake-virus-screen': {
+    es: 'Un simulador de pantalla de virus falso inofensivo con 4 estilos de alerta realistas: advertencia de malware de Chrome, Microsoft Defender SmartScreen, panel de antivirus de Windows Security y ransomware WannaCry. Herramienta de broma online gratis para efectos teatrales en el navegador, producción de videos y demostraciones educativas.',
+    pt: 'Um simulador de tela de vírus falsa inofensivo com 4 estilos de alerta realistas — aviso de malware do Chrome, Microsoft Defender SmartScreen, painel antivírus do Windows Security e ransomware WannaCry. Ferramenta de pegadinha online grátis para efeitos teatrais no navegador, produção de vídeos e demonstrações educativas.',
+    fr: 'Un simulateur d\'écran de virus faux inoffensif avec 4 styles d\'alerte réalistes — avertissement de malware Chrome, Microsoft Defender SmartScreen, tableau de bord antivirus Windows Security et ransomware WannaCry. Outil de farce en ligne gratuit pour effets théâtraux dans le navigateur, production vidéo et démonstrations éducatives.',
+    de: 'Ein harmloser gefälschter Virusbildschirm-Simulator mit 4 realistischen Alarmstilen — Chrome-Malware-Warnung, Microsoft Defender SmartScreen, Windows Security Antivirus-Dashboard und WannaCry-Ransomware. Kostenloses Online-Streich-Tool für theatralische Browser-Effekte, Videoproduktion und Bildungsdemonstrationen.',
+    hi: '4 यथार्थवादी अलर्ट शैलियों — क्रोम मैलवेयर चेतावनी, माइक्रोसॉफ्ट डिफ़ेंडर स्मार्टस्क्रीन, विंडोज सिक्योरिटी एंटीवायरस डैशबोर्ड और वानाक्राई रैनसमवेयर — के साथ एक हानिरहित फर्जी वायरस स्क्रीन सिम्युलेटर। ब्राउज़र थिएट्रिकल इफ़ेक्ट, वीडियो निर्माण और शैक्षिक प्रदर्शनों के लिए मुफ्त ऑनलाइन प्रैंक टूल।',
+    ja: '4つのリアルなアラートスタイル — Chromeマルウェア警告、Microsoft Defender SmartScreen、Windowsセキュリティアンチウイルスダッシュボード、WannaCryランサムウェア — を備えた無害な偽ウイルス画面シミュレーター。ブラウザの劇的効果、動画制作、教育デモ用の無料オンラインいたずらツール。',
   },
 };
 
@@ -5556,6 +5565,318 @@ export const localizedFaqs: Record<string, Partial<Record<Locale, { question: st
         answer: 'はい、完全に安全です。ホワイトノイズシミュレーションはHTML、CSS、JavaScript、Canvasを使用してブラウザ内で完全に動作します。ソフトウェアをインストールしたり、システムファイルを変更したりすることはありません。'
       }
     ]
+  },
+  'fake-virus-screen': {
+    en: [
+      {
+        question: 'Is the fake virus screen safe?',
+        answer: 'Yes, it is completely safe. The fake virus screen is a browser-only visual simulation using HTML, CSS, and JavaScript. It does not install any software, modify system files, access personal data, or make any changes to your operating system. No malware, no downloads, no risk.'
+      },
+      {
+        question: 'Does the fake virus screen install malware?',
+        answer: 'No. This is a purely visual browser-based simulation. It displays animated fake security alerts, antivirus dashboards, and ransomware screens entirely within your browser. Nothing is downloaded, installed, or executed on your device.'
+      },
+      {
+        question: 'How do I exit the fake virus screen fullscreen?',
+        answer: 'Press the Escape (Esc) key on your keyboard to exit fullscreen mode instantly. This stops all animations, sounds, and returns the page to its normal state. No trace of the simulation remains on your device.'
+      },
+      {
+        question: 'What alert styles are included?',
+        answer: 'The simulator includes 4 alert styles: a Google Chrome malware warning (Deceptive site ahead), a Microsoft Defender SmartScreen blocked site page, a Windows Security antivirus dashboard with fake scan progress, and a WannaCry ransomware screen with countdown timers.'
+      },
+      {
+        question: 'Does the fake virus screen work on mobile?',
+        answer: 'Yes, it works on any device with a modern web browser — Windows, Mac, Linux, Chromebook, tablets, and smartphones. The simulation adapts to different screen sizes and supports touch input for interactive elements.'
+      },
+      {
+        question: 'Can I use the fake virus screen in a video or stream?',
+        answer: 'Yes, the fake virus screen is perfect for YouTube videos, TikTok content, Twitch streams, and video production. Use it as a prank visual, reaction content setup, or intermission screen. The fullscreen mode hides browser UI for clean recording.'
+      },
+      {
+        question: 'Does the simulator make sound?',
+        answer: 'Yes, each alert style has a unique synthesized sound effect created using the Web Audio API. The Chrome and SmartScreen styles play a continuous siren, Defender plays notification chimes, and WannaCry plays high-pitch alert beeps. You can toggle sound on and off by pressing the S key or using the settings panel.'
+      },
+      {
+        question: 'Can I customise the fake virus simulation?',
+        answer: 'Yes. Open the settings panel (gear icon) to switch between the 4 alert styles using the template dropdown. Toggle sound on or off. The keyboard shortcuts let you switch styles quickly: press 1 for Chrome, 2 for SmartScreen, 3 for Defender, or 4 for WannaCry.'
+      },
+      {
+        question: 'What keyboard shortcuts are available?',
+        answer: 'In fullscreen mode: press F to enter fullscreen, press 1-4 to switch alert styles (1=Chrome, 2=SmartScreen, 3=Defender, 4=WannaCry), press S to toggle sound on and off, and press Esc to exit fullscreen and end the simulation.'
+      },
+      {
+        question: 'Is the fake virus screen free?',
+        answer: 'Yes, it is completely free. No account, no registration, no credit card, and no hidden fees. The fake virus screen is a free online tool available to everyone with no usage limits.'
+      },
+      {
+        question: 'Can I use this for cybersecurity training?',
+        answer: 'Yes, the fake virus screen is an excellent tool for cybersecurity awareness demonstrations, classroom presentations, and training sessions. It helps illustrate what fake virus warnings and ransomware screens look like without any actual risk.'
+      },
+      {
+        question: 'Does it work in OBS or streaming software?',
+        answer: 'Yes. Open the page in a browser window, use it as a browser source in OBS Studio, Streamlabs, or any streaming software with browser capture. The fullscreen mode hides browser chrome for a clean capture. The simulation runs smoothly without performance issues.'
+      },
+      {
+        question: 'Does the fake virus screen collect data?',
+        answer: 'No. The fake virus screen collects no data. Everything runs locally in your browser. There are no analytics, no tracking scripts, no cookies, and no data sent to any server after the initial page load.'
+      },
+      {
+        question: 'Can I use the fake virus screen for an escape room?',
+        answer: 'Yes, the fake virus screen (especially the WannaCry ransomware template) works great as an escape room prop, haunted house effect, theatre production visual, or Halloween decoration. The fullscreen mode and sound effects add to the immersive experience.'
+      }
+    ],
+    es: [
+      {
+        question: '¿Es segura la pantalla de virus falsa?',
+        answer: 'Sí, es completamente segura. La pantalla de virus falsa es una simulación visual que solo funciona en el navegador usando HTML, CSS y JavaScript. No instala ningún software, no modifica archivos del sistema, no accede a datos personales y no realiza cambios en su sistema operativo. Sin malware, sin descargas, sin riesgo.'
+      },
+      {
+        question: '¿La pantalla de virus falsa instala malware?',
+        answer: 'No. Esta es una simulación puramente visual basada en el navegador. Muestra alertas de seguridad falsas animadas, paneles antivirus y pantallas de ransomware completamente dentro de su navegador. No se descarga, instala ni ejecuta nada en su dispositivo.'
+      },
+      {
+        question: '¿Cómo salgo del modo de pantalla completa de la pantalla de virus falsa?',
+        answer: 'Presione la tecla Escape (Esc) en su teclado para salir del modo de pantalla completa al instante. Esto detiene todas las animaciones y sonidos y devuelve la página a su estado normal. No queda ningún rastro de la simulación en su dispositivo.'
+      },
+      {
+        question: '¿Qué estilos de alerta están incluidos?',
+        answer: 'El simulador incluye 4 estilos de alerta: una advertencia de malware de Google Chrome (sitio engañoso), una página de sitio bloqueado de Microsoft Defender SmartScreen, un panel antivirus de Windows Security con progreso de escaneo falso y una pantalla de ransomware WannaCry con temporizadores de cuenta regresiva.'
+      },
+      {
+        question: '¿La pantalla de virus falsa funciona en móviles?',
+        answer: 'Sí, funciona en cualquier dispositivo con un navegador web moderno: Windows, Mac, Linux, Chromebook, tabletas y teléfonos inteligentes. La simulación se adapta a diferentes tamaños de pantalla.'
+      },
+      {
+        question: '¿Puedo usar la pantalla de virus falsa en un video o transmisión?',
+        answer: 'Sí, es perfecta para videos de YouTube, contenido de TikTok, transmisiones de Twitch y producción de video. El modo de pantalla completa oculta la interfaz del navegador para una grabación limpia.'
+      },
+      {
+        question: '¿El simulador hace sonido?',
+        answer: 'Sí, cada estilo de alerta tiene un efecto de sonido sintetizado único creado con la API de audio web. Puede activar y desactivar el sonido presionando la tecla S o usando el panel de configuración.'
+      },
+      {
+        question: '¿Puedo personalizar la simulación de virus falsa?',
+        answer: 'Sí. Abra el panel de configuración para cambiar entre los 4 estilos de alerta. Use los atajos de teclado: presione 1 para Chrome, 2 para SmartScreen, 3 para Defender o 4 para WannaCry.'
+      },
+      {
+        question: '¿La pantalla de virus falsa es gratuita?',
+        answer: 'Sí, es completamente gratuita. Sin cuenta, sin registro, sin tarjeta de crédito y sin tarifas ocultas.'
+      },
+      {
+        question: '¿Puedo usar esto para capacitación en ciberseguridad?',
+        answer: 'Sí, la pantalla de virus falsa es una excelente herramienta para demostraciones de concienciación sobre ciberseguridad, presentaciones en el aula y sesiones de capacitación.'
+      },
+      {
+        question: '¿La pantalla de virus falsa recopila datos?',
+        answer: 'No. La pantalla de virus falsa no recopila datos. Todo se ejecuta localmente en su navegador. No hay análisis, scripts de seguimiento, cookies ni datos enviados a ningún servidor.'
+      }
+    ],
+    pt: [
+      {
+        question: 'A tela de vírus falsa é segura?',
+        answer: 'Sim, é completamente segura. A tela de vírus falsa é uma simulação visual apenas no navegador usando HTML, CSS e JavaScript. Não instala software, não modifica arquivos do sistema, não acessa dados pessoais e não faz alterações no seu sistema operacional. Sem malware, sem downloads, sem risco.'
+      },
+      {
+        question: 'A tela de vírus falsa instala malware?',
+        answer: 'Não. Esta é uma simulação puramente visual baseada em navegador. Ela exibe alertas de segurança falsos animados, painéis antivírus e telas de ransomware inteiramente dentro do seu navegador. Nada é baixado, instalado ou executado no seu dispositivo.'
+      },
+      {
+        question: 'Como saio do modo tela cheia da tela de vírus falsa?',
+        answer: 'Pressione a tecla Escape (Esc) no seu teclado para sair do modo tela cheia instantaneamente. Isso interrompe todas as animações e sons e retorna a página ao estado normal.'
+      },
+      {
+        question: 'Quais estilos de alerta estão incluídos?',
+        answer: 'O simulador inclui 4 estilos de alerta: um aviso de malware do Google Chrome (site enganoso), uma página de site bloqueado do Microsoft Defender SmartScreen, um painel antivírus do Windows Security com progresso de varredura falso e uma tela de ransomware WannaCry com temporizadores regressivos.'
+      },
+      {
+        question: 'A tela de vírus falsa funciona em dispositivos móveis?',
+        answer: 'Sim, funciona em qualquer dispositivo com um navegador web moderno — Windows, Mac, Linux, Chromebook, tablets e smartphones.'
+      },
+      {
+        question: 'Posso usar a tela de vírus falsa em um vídeo ou transmissão?',
+        answer: 'Sim, é perfeita para vídeos do YouTube, conteúdo TikTok, transmissões ao vivo e produção de vídeo. O modo tela cheia oculta a interface do navegador para uma gravação limpa.'
+      },
+      {
+        question: 'O simulador faz som?',
+        answer: 'Sim, cada estilo de alerta tem um efeito sonoro sintetizado único criado com a Web Audio API. Você pode ativar e desativar o som pressionando a tecla S.'
+      },
+      {
+        question: 'Posso personalizar a simulação de vírus falsa?',
+        answer: 'Sim. Abra o painel de configurações para alternar entre os 4 estilos de alerta. Use os atalhos de teclado: pressione 1 para Chrome, 2 para SmartScreen, 3 para Defender ou 4 para WannaCry.'
+      },
+      {
+        question: 'A tela de vírus falsa é gratuita?',
+        answer: 'Sim, é completamente gratuita. Sem conta, sem registro, sem cartão de crédito e sem taxas ocultas.'
+      },
+      {
+        question: 'Posso usar isso para treinamento de segurança cibernética?',
+        answer: 'Sim, a tela de vírus falsa é uma excelente ferramenta para demonstrações de conscientização sobre segurança cibernética e sessões de treinamento.'
+      },
+      {
+        question: 'A tela de vírus falsa coleta dados?',
+        answer: 'Não. A tela de vírus falsa não coleta dados. Tudo é executado localmente no seu navegador. Não há análises, scripts de rastreamento, cookies ou dados enviados a qualquer servidor.'
+      }
+    ],
+    fr: [
+      {
+        question: 'La fausse écran de virus est-elle sûre ?',
+        answer: 'Oui, elle est totalement sûre. La fausse écran de virus est une simulation visuelle uniquement dans le navigateur utilisant HTML, CSS et JavaScript. Elle n\'installe aucun logiciel, ne modifie aucun fichier système et n\'accède à aucune donnée personnelle.'
+      },
+      {
+        question: 'La fausse écran de virus installe-t-elle un malware ?',
+        answer: 'Non. Il s\'agit d\'une simulation purement visuelle basée sur le navigateur. Rien n\'est téléchargé, installé ou exécuté sur votre appareil.'
+      },
+      {
+        question: 'Comment quitter le mode plein écran de la fausse écran de virus ?',
+        answer: 'Appuyez sur la touche Échap (Esc) de votre clavier pour quitter le mode plein écran instantanément. Cela arrête toutes les animations et tous les sons.'
+      },
+      {
+        question: 'Quels styles d\'alerte sont inclus ?',
+        answer: 'Le simulateur inclut 4 styles d\'alerte : un avertissement de malware Google Chrome, une page de site bloqué Microsoft Defender SmartScreen, un tableau de bord antivirus Windows Security et un écran de ransomware WannaCry.'
+      },
+      {
+        question: 'La fausse écran de virus fonctionne-t-elle sur mobile ?',
+        answer: 'Oui, elle fonctionne sur tout appareil doté d\'un navigateur web moderne — Windows, Mac, Linux, Chromebook, tablettes et smartphones.'
+      },
+      {
+        question: 'La simulation produit-elle du son ?',
+        answer: 'Oui, chaque style d\'alerte a un effet sonore synthétisé unique créé avec l\'API Web Audio. Vous pouvez activer/désactiver le son avec la touche S.'
+      },
+      {
+        question: 'Puis-je personnaliser la simulation de faux virus ?',
+        answer: 'Oui. Ouvrez le panneau des paramètres pour changer de style d\'alerte ou utilisez les touches 1 à 4 pour changer rapidement.'
+      },
+      {
+        question: 'La fausse écran de virus est-elle gratuite ?',
+        answer: 'Oui, elle est entièrement gratuite. Sans compte, sans inscription et sans frais cachés.'
+      },
+      {
+        question: 'Puis-je l\'utiliser pour la formation en cybersécurité ?',
+        answer: 'Oui, elle est excellente pour les démonstrations de sensibilisation à la cybersécurité et les présentations en classe.'
+      },
+      {
+        question: 'La fausse écran de virus collecte-t-elle des données ?',
+        answer: 'Non, elle ne collecte aucune donnée. Tout fonctionne localement dans votre navigateur.'
+      }
+    ],
+    de: [
+      {
+        question: 'Ist der gefälschte Virus-Bildschirm sicher?',
+        answer: 'Ja, er ist völlig sicher. Der gefälschte Virus-Bildschirm ist eine reine Browser-Visual-Simulation mit HTML, CSS und JavaScript. Es installiert keine Software, ändert keine Systemdateien und greift nicht auf persönliche Daten zu.'
+      },
+      {
+        question: 'Installiert der gefälschte Virus-Bildschirm Malware?',
+        answer: 'Nein. Es handelt sich um eine rein visuelle, browserbasierte Simulation. Es wird nichts auf Ihrem Gerät heruntergeladen, installiert oder ausgeführt.'
+      },
+      {
+        question: 'Wie verlasse ich den Vollbildmodus des gefälschten Virus-Bildschirms?',
+        answer: 'Drücken Sie die Escape-Taste (Esc) auf Ihrer Tastatur, um den Vollbildmodus sofort zu verlassen. Alle Animationen und Töne werden gestoppt.'
+      },
+      {
+        question: 'Welche Alarmstile sind enthalten?',
+        answer: 'Der Simulator enthält 4 Alarmstile: eine Google Chrome-Malware-Warnung, eine Microsoft Defender SmartScreen-Seite, ein Windows Security Antivirus-Dashboard und einen WannaCry-Ransomware-Bildschirm.'
+      },
+      {
+        question: 'Funktioniert der gefälschte Virus-Bildschirm auf Mobilgeräten?',
+        answer: 'Ja, er funktioniert auf jedem Gerät mit einem modernen Webbrowser — Windows, Mac, Linux, Chromebook, Tablets und Smartphones.'
+      },
+      {
+        question: 'Erzeugt der Simulator Ton?',
+        answer: 'Ja, jeder Alarmstil hat einen einzigartigen synthetisierten Soundeffekt, der mit der Web Audio API erstellt wurde. Sie können den Ton mit der Taste S ein- und ausschalten.'
+      },
+      {
+        question: 'Kann ich die gefälschte Virus-Simulation anpassen?',
+        answer: 'Ja. Öffnen Sie das Einstellungsfeld, um zwischen den 4 Alarmstilen zu wechseln, oder verwenden Sie die Tasten 1 bis 4 für schnelle Änderungen.'
+      },
+      {
+        question: 'Ist der gefälschte Virus-Bildschirm kostenlos?',
+        answer: 'Ja, er ist völlig kostenlos. Kein Konto, keine Registrierung und keine versteckten Gebühren.'
+      },
+      {
+        question: 'Kann ich dies für Cybersicherheitsschulungen verwenden?',
+        answer: 'Ja, er ist ein ausgezeichnetes Werkzeug für Cybersicherheits-Demonstrationen und Schulungssitzungen.'
+      },
+      {
+        question: 'Sammelt der gefälschte Virus-Bildschirm Daten?',
+        answer: 'Nein, er sammelt keine Daten. Alles läuft lokal in Ihrem Browser. Keine Analysen, Tracking-Skripte oder Cookies.'
+      }
+    ],
+    hi: [
+      {
+        question: 'क्या फर्जी वायरस स्क्रीन सुरक्षित है?',
+        answer: 'हाँ, यह पूरी तरह से सुरक्षित है। फर्जी वायरस स्क्रीन HTML, CSS और JavaScript का उपयोग करके केवल ब्राउज़र में चलने वाला एक दृश्य सिमुलेशन है। यह कोई सॉफ्टवेयर इंस्टॉल नहीं करता, सिस्टम फ़ाइलों को संशोधित नहीं करता, व्यक्तिगत डेटा तक नहीं पहुँचता और आपके ऑपरेटिंग सिस्टम में कोई बदलाव नहीं करता।'
+      },
+      {
+        question: 'क्या फर्जी वायरस स्क्रीन मैलवेयर इंस्टॉल करती है?',
+        answer: 'नहीं। यह पूरी तरह से ब्राउज़र-आधारित दृश्य सिमुलेशन है। आपके डिवाइस पर कुछ भी डाउनलोड, इंस्टॉल या एक्सीक्यूट नहीं किया जाता है।'
+      },
+      {
+        question: 'मैं फर्जी वायरस स्क्रीन फुलस्क्रीन से कैसे बाहर निकलूं?',
+        answer: 'अपने कीबोर्ड पर Escape (Esc) कुंजी दबाएं। यह सभी एनिमेशन और ध्वनियों को रोक देता है और पेज को सामान्य स्थिति में लौटा देता है।'
+      },
+      {
+        question: 'कौन से अलर्ट स्टाइल शामिल हैं?',
+        answer: 'सिम्युलेटर में 4 अलर्ट शैलियाँ शामिल हैं: एक Google Chrome मैलवेयर चेतावनी, Microsoft Defender SmartScreen पेज, Windows Security एंटीवायरस डैशबोर्ड और WannaCry रैनसमवेयर स्क्रीन।'
+      },
+      {
+        question: 'क्या फर्जी वायरस स्क्रीन मोबाइल पर काम करती है?',
+        answer: 'हाँ, यह किसी भी आधुनिक वेब ब्राउज़र वाले डिवाइस पर काम करती है — विंडोज, मैक, लिनक्स, क्रोमबुक, टैबलेट और स्मार्टफोन।'
+      },
+      {
+        question: 'क्या सिम्युलेटर ध्वनि उत्पन्न करता है?',
+        answer: 'हाँ, प्रत्येक अलर्ट शैली में Web Audio API से बना एक अनूठा सिंथेसाइज़्ड ध्वनि प्रभाव है। आप S कुंजी दबाकर ध्वनि को चालू या बंद कर सकते हैं।'
+      },
+      {
+        question: 'क्या फर्जी वायरस स्क्रीन मुफ्त है?',
+        answer: 'हाँ, यह पूरी तरह से मुफ्त है। कोई खाता, पंजीकरण या छिपी हुई फीस नहीं।'
+      },
+      {
+        question: 'क्या मैं इसका उपयोग साइबर सुरक्षा प्रशिक्षण के लिए कर सकता हूँ?',
+        answer: 'हाँ, फर्जी वायरस स्क्रीन साइबर सुरक्षा जागरूकता प्रदर्शनों और प्रशिक्षण सत्रों के लिए एक उत्कृष्ट उपकरण है।'
+      },
+      {
+        question: 'क्या फर्जी वायरस स्क्रीन डेटा एकत्र करती है?',
+        answer: 'नहीं, यह कोई डेटा एकत्र नहीं करती। सब कुछ आपके ब्राउज़र में स्थानीय रूप से चलता है।'
+      }
+    ],
+    ja: [
+      {
+        question: '偽ウイルス画面は安全ですか？',
+        answer: 'はい、完全に安全です。偽ウイルス画面はHTML、CSS、JavaScriptを使用したブラウザのみの視覚シミュレーションです。ソフトウェアをインストールしたり、システムファイルを変更したり、個人データにアクセスしたりすることはありません。'
+      },
+      {
+        question: '偽ウイルス画面はマルウェアをインストールしますか？',
+        answer: 'いいえ。これは純粋にブラウザベースの視覚シミュレーションです。お使いのデバイスにダウンロード、インストール、実行されるものは何もありません。'
+      },
+      {
+        question: '偽ウイルス画面の全画面を終了するにはどうすればよいですか？',
+        answer: 'キーボードのEscape（Esc）キーを押すと、すぐに全画面モードを終了できます。すべてのアニメーションとサウンドが停止します。'
+      },
+      {
+        question: 'どのようなアラートスタイルがありますか？',
+        answer: 'シミュレーターには4つのアラートスタイルがあります：Google Chromeのマルウェア警告、Microsoft Defender SmartScreen、Windows Securityアンチウイルスダッシュボード、WannaCryランサムウェア画面。'
+      },
+      {
+        question: '偽ウイルス画面はモバイルで動作しますか？',
+        answer: 'はい、モダンなウェブブラウザを搭載したあらゆるデバイスで動作します — Windows、Mac、Linux、Chromebook、タブレット、スマートフォン。'
+      },
+      {
+        question: 'シミュレーターは音を出しますか？',
+        answer: 'はい、各アラートスタイルにはWeb Audio APIで作成された独自の合成サウンドエフェクトがあります。Sキーを押すとサウンドのオン/オフを切り替えられます。'
+      },
+      {
+        question: '偽ウイルス画面は無料ですか？',
+        answer: 'はい、完全に無料です。アカウントも登録も隠れた料金もありません。'
+      },
+      {
+        question: 'サイバーセキュリティトレーニングに使用できますか？',
+        answer: 'はい、偽ウイルス画面はサイバーセキュリティ意識向上のデモやトレーニングセッションに最適なツールです。'
+      },
+      {
+        question: '偽ウイルス画面はデータを収集しますか？',
+        answer: 'いいえ、データは収集しません。すべてブラウザ内でローカルに動作します。分析、トラッキングスクリプト、Cookieは一切ありません。'
+      }
+    ]
   }
 };
 
@@ -7283,6 +7604,69 @@ export function getBlogKeywordsContent(locale: Locale, toolId: string = 'white-s
           '<strong>ホワイトノイズ画面</strong>（<strong>TVノイズ</strong>または<strong>テレビスノー</strong>とも呼ばれます）は、信号のないアナログテレビの象徴的な外観と音を再現します。私たちの<strong>ホワイトノイズシミュレーター</strong>は、ブラウザ上で直接本物の<strong>アナログTVノイズ</strong>を生成します。',
           '一般的な検索フレーズには、<strong>ホワイトノイズ画面 オンライン</strong>、<strong>TVノイズ</strong>、<strong>アナログテレビシミュレーター</strong>、<strong>テレビスノー</strong>、<strong>CRT効果</strong>などがあります。すべて1ページで提供 — ダウンロード不要。',
           '最も本格的な体験のために、Fキーを押して全画面モードに切り替えてください。設定パネルでアナログ、カラー、VHSのスタイルから選択できます。'
+        ]
+      }
+    };
+    return content[locale] ?? content.en;
+  }
+
+  if (toolId === 'fake-virus-screen') {
+    const content: Record<Locale, { heading: string; paragraphs: string[] }> = {
+      en: {
+        heading: 'Fake Virus Screen – Free Online Virus Warning Simulator Guide & Prank Ideas',
+        paragraphs: [
+          'The <strong>fake virus screen</strong> (also called a <strong>virus prank simulator</strong> or <strong>fake malware warning</strong>) is a browser-based visual simulation that creates convincing fake security alerts, antivirus dashboards, and ransomware screens for harmless entertainment. Our <strong>fake virus simulator</strong> generates 4 realistic alert styles directly in your browser — no downloads, no installations, no risk. It is designed for pranks, theatrical effects, video production, cybersecurity awareness demonstrations, and creative staging.',
+          'Users search for many related terms when looking for this type of prank tool. Common search phrases include <strong>fake virus screen</strong>, <strong>virus prank website</strong>, <strong>fake malware prank</strong>, <strong>fake antivirus online</strong>, <strong>fake ransomware screen</strong>, <strong>fake popup prank</strong>, <strong>hacker prank website</strong>, <strong>fake virus warning</strong>, <strong>fake security alert</strong>, <strong>prank website</strong>, <strong>fake PC virus</strong>, <strong>fake infection screen</strong>, <strong>browser virus prank</strong>, <strong>Windows virus prank</strong>, <strong>fullscreen fake virus</strong>, <strong>computer virus prank</strong>, <strong>fake hacker screen</strong>, and <strong>scare prank</strong>. Our simulator delivers all of these alert styles in a single page — no download, no installation, no account required. It works instantly in any modern browser on desktop, laptop, tablet, phone, and Smart TV.',
+          'For the most convincing effect, enter fullscreen mode by pressing F or clicking the fullscreen button. Use the keyboard shortcuts to switch between alert styles: press 1 for the Google Chrome malware warning, 2 for Microsoft Defender SmartScreen, 3 for the Windows Security antivirus dashboard with fake scan progress, or 4 for the WannaCry ransomware screen with countdown timers. Press S to toggle the synthesized alert sounds on and off. Press Escape at any time to exit fullscreen and end the simulation instantly — no trace left behind.',
+          'The <strong>fake virus screen</strong> is ideal for friendly pranks and office jokes, YouTube and TikTok prank videos, streaming and gaming intermissions, cybersecurity awareness demonstrations, classroom and training presentations, theatre stage productions and escape rooms, Halloween and party effects, and video production. The tool runs entirely in the browser with CSS animations and Web Audio API — it leaves zero trace on the device and is completely safe. It does not install software, modify system settings, or access personal files.'
+        ]
+      },
+      es: {
+        heading: 'Pantalla de Virus Falsa – Guía del Simulador de Aviso de Virus Online Gratis e Ideas de Bromas',
+        paragraphs: [
+          'La <strong>pantalla de virus falsa</strong> (también llamada <strong>simulador de broma de virus</strong> o <strong>aviso de malware falso</strong>) es una simulación visual basada en el navegador que crea alertas de seguridad falsas convincentes, paneles antivirus y pantallas de ransomware para entretenimiento inofensivo.',
+          'Los usuarios buscan muchos términos relacionados como <strong>pantalla de virus falsa online</strong>, <strong>broma de virus para PC</strong>, <strong>simulador de malware falso</strong>, <strong>alerta de virus falsa</strong>, y <strong>broma de ransomware</strong>. Nuestro simulador ofrece 4 estilos de alerta realistas en una sola página.',
+          'Para el efecto más convincente, entre en modo de pantalla completa presionando F. Use los atajos de teclado 1-4 para cambiar entre estilos y S para controlar el sonido. Presione Escape para salir al instante.'
+        ]
+      },
+      pt: {
+        heading: 'Tela de Vírus Falsa – Guia do Simulador de Aviso de Vírus Online Grátis e Ideias de Pegadinhas',
+        paragraphs: [
+          'A <strong>tela de vírus falsa</strong> (também chamada de <strong>simulador de pegadinha de vírus</strong> ou <strong>aviso de malware falso</strong>) é uma simulação visual baseada no navegador que cria alertas de segurança falsos convincentes.',
+          'Termos de busca comuns incluem <strong>tela de vírus falsa online</strong>, <strong>pegadinha de vírus para PC</strong>, <strong>simulador de malware falso</strong> e <strong>alerta de vírus falso</strong>. 4 estilos de alerta realistas em uma única página.',
+          'Para o efeito mais convincente, entre em modo tela cheia pressionando F. Use os atalhos 1-4 para alternar estilos e S para controlar o som. Pressione Escape para sair instantaneamente.'
+        ]
+      },
+      fr: {
+        heading: 'Fausse Écran de Virus – Guide du Simulateur d\'Alerte de Virus en Ligne Gratuit et Idées de Farces',
+        paragraphs: [
+          'La <strong>fausse écran de virus</strong> (également appelée <strong>simulateur de farce virale</strong> ou <strong>fausse alerte malware</strong>) est une simulation visuelle basée sur le navigateur qui crée de fausses alertes de sécurité convaincantes.',
+          'Les termes de recherche courants incluent <strong>fausse écran de virus en ligne</strong>, <strong>farce de virus pour PC</strong>, <strong>simulateur de malware faux</strong> et <strong>fausse alerte de virus</strong>. 4 styles d\'alerte réalistes en une seule page.',
+          'Pour l\'effet le plus convaincant, passez en plein écran en appuyant sur F. Utilisez les touches 1 à 4 pour changer de style et S pour contrôler le son. Appuyez sur Échap pour quitter instantanément.'
+        ]
+      },
+      de: {
+        heading: 'Gefälschter Virus-Bildschirm – Leitfaden für den kostenlosen Online-Viruswarnsimulator und Streichideen',
+        paragraphs: [
+          'Der <strong>gefälschte Virus-Bildschirm</strong> (auch <strong>Virus-Streich-Simulator</strong> oder <strong>gefälschte Malware-Warnung</strong> genannt) ist eine browserbasierte visuelle Simulation, die überzeugende gefälschte Sicherheitswarnungen erstellt.',
+          'Häufige Suchbegriffe sind <strong>gefälschter Virus-Bildschirm online</strong>, <strong>Virus-Streich für PC</strong>, <strong>gefälschter Malware-Simulator</strong> und <strong>gefälschte Viruswarnung</strong>. 4 realistische Alarmstile auf einer einzigen Seite.',
+          'Für den überzeugendsten Effekt wechseln Sie durch Drücken von F in den Vollbildmodus. Verwenden Sie die Tasten 1-4, um die Stile zu wechseln, und S, um den Ton zu steuern. Drücken Sie Escape zum sofortigen Beenden.'
+        ]
+      },
+      hi: {
+        heading: 'फर्जी वायरस स्क्रीन – मुफ्त ऑनलाइन वायरस चेतावनी सिम्युलेटर गाइड और प्रैंक आइडियाज',
+        paragraphs: [
+          '<strong>फर्जी वायरस स्क्रीन</strong> (जिसे <strong>वायरस प्रैंक सिम्युलेटर</strong> या <strong>फर्जी मैलवेयर चेतावनी</strong> भी कहा जाता है) एक ब्राउज़र-आधारित दृश्य सिमुलेशन है जो हानिरहित मनोरंजन के लिए विश्वसनीय फर्जी सुरक्षा अलर्ट बनाता है।',
+          'सामान्य खोज वाक्यांशों में <strong>फर्जी वायरस स्क्रीन ऑनलाइन</strong>, <strong>वायरस प्रैंक</strong>, <strong>फर्जी मैलवेयर प्रैंक</strong> और <strong>फर्जी वायरस चेतावनी</strong> शामिल हैं। एक ही पेज पर 4 यथार्थवादी अलर्ट शैलियाँ।',
+          'सबसे विश्वसनीय प्रभाव के लिए, F दबाकर फुलस्क्रीन मोड में जाएँ। शैलियाँ बदलने के लिए 1-4 और ध्वनि नियंत्रित करने के लिए S का उपयोग करें। तुरंत बाहर निकलने के लिए Escape दबाएं।'
+        ]
+      },
+      ja: {
+        heading: '偽ウイルス画面 – 無料オンラインウイルス警告シミュレーターガイドといたずらアイデア',
+        paragraphs: [
+          '<strong>偽ウイルス画面</strong>（<strong>ウイルスいたずらシミュレーター</strong>または<strong>偽マルウェア警告</strong>とも呼ばれます）は、無害なエンターテイメントのために説得力のある偽のセキュリティ警告を作成するブラウザベースの視覚シミュレーションです。',
+          '一般的な検索フレーズには、<strong>偽ウイルス画面 オンライン</strong>、<strong>ウイルスいたずら</strong>、<strong>偽マルウェアいたずら</strong>、<strong>偽ウイルス警告</strong>などがあります。1ページで4つのリアルなアラートスタイル。',
+          '最も説得力のある効果を得るには、Fキーを押して全画面モードに切り替えてください。1〜4のキーでスタイルを切り替え、Sキーでサウンドを制御します。Escapeキーですぐに終了できます。'
         ]
       }
     };
