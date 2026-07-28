@@ -1,6 +1,6 @@
 {
-  "name": "Pixora Screen",
-  "short_name": "Pixora",
+  "name": "PixoraScreen",
+  "short_name": "PixoraScreen",
   "description": "Premium Fullscreen Utilities",
   "start_url": "/",
   "display": "standalone",

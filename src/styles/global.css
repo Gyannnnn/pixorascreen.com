@@ -116,3 +116,34 @@ body {
 [data-screen-tool].is-fullscreen [data-fullscreen-hint] {
   opacity: 1;
 }
+
+/* PixoraScreen brand logo */
+.nav-logo-icon {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, var(--color-violet-brand), var(--color-link));
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+a:hover > .nav-logo-icon {
+  transform: scale(1.08);
+}
+
+.nav-logo-text {
+  font-size: 0.9375rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.nav-logo-text em {
+  font-style: italic;
+  font-weight: 700;
+}
