@@ -15,6 +15,7 @@ const { config, class: className } = Astro.props;
       src={config.src}
       alt={config.alt ?? ''}
       width={config.width}
+      height={config.height}
       class={className}
       aria-hidden={config.alt ? undefined : 'true'}
     />
