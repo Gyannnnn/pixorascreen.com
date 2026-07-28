@@ -29,7 +29,7 @@ const { tool, locale, isCard = false } = Astro.props;
         <rect x="2" y="52" width="46" height="46" rx="6" fill="currentColor"/>
         <rect x="52" y="52" width="46" height="46" rx="6" fill="currentColor"/>
       </svg>
-      <h1 class="wu-heading" id="wuHeading">Working on updates</h1>
+      <p class="wu-heading" id="wuHeading" role="heading" aria-level="2">Working on updates</p>
       <p class="wu-subtitle" id="wuSubtitle">Please keep your computer on.</p>
       <div class="wu-progress-area" id="wuProgressArea">
         <svg class="wu-ring" viewBox="0 0 120 120" aria-hidden="true">
@@ -154,7 +154,7 @@ const { tool, locale, isCard = false } = Astro.props;
 
 <style is:global>
   .windows-update-wrapper {
-    --wu-bg: #0078d7;
+    --wu-bg: #0070cc;
     --wu-fg: #ffffff;
   }
   .windows-update-wrapper[data-theme="dark"] {
@@ -460,7 +460,6 @@ const { tool, locale, isCard = false } = Astro.props;
   .wu-subtitle {
     font-size: 0.9375rem;
     font-weight: 400;
-    opacity: 0.8;
     margin: 0.35rem 0 0 0;
     line-height: 1.4;
   }
@@ -509,15 +508,12 @@ const { tool, locale, isCard = false } = Astro.props;
   .wu-note {
     font-size: 0.8125rem;
     font-weight: 400;
-    opacity: 0.55;
     margin: 0.5rem 0 0 0;
     line-height: 1.4;
-    transition: opacity 0.3s ease;
   }
   .wu-status {
     font-size: 0.9375rem;
     font-weight: 400;
-    opacity: 0.75;
     margin: 0.75rem 0 0 0;
     min-height: 1.4em;
     transition: opacity 0.35s ease;

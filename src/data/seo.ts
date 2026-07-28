@@ -2,10 +2,10 @@ import { defaultLocale, localeOrder, locales, type Locale } from './locales';
 import { tools, type Tool } from './tools';
 import { toolName, toolSummary, toolFaqs } from './translations';
 
-export const siteName = 'Free Online Screen';
-export const siteUrl = 'https://freeonlinescreen.com';
+export const siteName = 'PixoraScreen';
+export const siteUrl = 'https://pixorascreen.com';
 export const defaultDescription =
-  'Free Online Screen is a premium collection of fullscreen color screens, display tests, screen savers, prank screens, and fake update screens.';
+  'PixoraScreen is a premium collection of fullscreen color screens, display tests, screen savers, prank screens, and fake update screens.';
 
 export function toolPath(tool: Tool, locale: Locale = defaultLocale) {
   const slug = locale === defaultLocale ? tool.slug : tool.localizedSlugs[locale as Exclude<Locale, 'en'>] ?? tool.slug;

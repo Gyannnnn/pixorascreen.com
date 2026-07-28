@@ -2,6 +2,7 @@ export type BootLogoImageConfig = {
   type: 'image';
   src: string;
   width: number;
+  height?: number;
   alt?: string;
 };
 

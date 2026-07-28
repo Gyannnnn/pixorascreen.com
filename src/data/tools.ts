@@ -111,7 +111,7 @@ const effectFaqs = (name: string) => [
   },
   {
     question: 'Does the page require an account?',
-    answer: 'No. Free Online Screen is designed as a free, fast, static-first utility with no account requirement.',
+    answer: 'No. PixoraScreen is designed as a free, fast, static-first utility with no account requirement.',
   },
 ];
 

@@ -26,6 +26,7 @@ const categoryIds = Object.keys(categories) as ToolCategoryId[];
       <!-- <a class="rounded-full border border-hairline bg-canvas px-5 py-3 text-sm font-medium text-ink hover:bg-canvas-soft" href="/dead-pixel-test/">{t(locale, 'hero.run_test')}</a> -->
     </div>
   </div>
+  <h2 class="sr-only">{t(locale, 'hero.browse')}</h2>
   <div class="mt-14 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
     {popularTools.slice(0, 4).map((tool) => <ToolCard tool={tool} locale={locale} />)}
   </div>

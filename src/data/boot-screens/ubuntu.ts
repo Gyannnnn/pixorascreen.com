@@ -6,6 +6,7 @@ export const ubuntuBootScreen: BootScreenConfig = {
     type: 'image',
     src: '/assets/logos/ubuntu.logo.png',
     width: 265,
+    height: 82,
     alt: 'Ubuntu',
   },
   loader: {

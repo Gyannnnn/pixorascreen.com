@@ -24,15 +24,42 @@ const { title, description, canonicalPath, alternates, jsonLd, lang = 'en', loca
 <!doctype html>
 <html lang={lang}>
   <head>
-    <SeoHead title={title} description={description} canonicalPath={canonicalPath} alternates={alternates} />
-    {jsonLd && <JsonLd data={jsonLd} />}
-    <script>
-      const saved = window.localStorage.getItem('freescreen-theme');
-      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    </script>
-  </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-8TNJFPWG7N"
+  ></script>
+
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-8TNJFPWG7N');
+  </script>
+
+  <SeoHead
+    title={title}
+    description={description}
+    canonicalPath={canonicalPath}
+    alternates={alternates}
+  />
+
+  {jsonLd && <JsonLd data={jsonLd} />}
+
+  <script is:inline>
+    const saved = window.localStorage.getItem('freescreen-theme');
+    if (
+      saved === 'dark' ||
+      (!saved &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+</head>
   <body>
     <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-canvas" href="#main">
       Skip to content
