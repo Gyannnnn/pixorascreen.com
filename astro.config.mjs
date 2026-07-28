@@ -8,7 +8,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://freeonlinescreen.com',
+  site: 'https://pixorascreen.com',
   integrations: [sitemap(), react()],
 
   vite: {

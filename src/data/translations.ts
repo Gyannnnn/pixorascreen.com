@@ -2,7 +2,7 @@ import type { Locale } from './locales';
 
 const site: Record<Locale, Record<string, string>> = {
   en: {
-    'site.title': 'Free Online Screen',
+    'site.title': 'PixoraScreen',
     'site.tagline': 'Premium Fullscreen Utilities',
     'hero.eyebrow': 'FREE FULLSCREEN UTILITIES',
     'hero.heading': 'The fastest way to turn any display into a useful screen.',
