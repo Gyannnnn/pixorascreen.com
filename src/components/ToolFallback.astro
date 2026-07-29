@@ -1,0 +1,52 @@
+---
+import type { Tool } from '../data/tools';
+import { toolName } from '../data/translations';
+import type { Locale } from '../data/locales';
+
+type Props = {
+  tool: Tool;
+  locale?: Locale;
+  minHeight?: string;
+};
+
+const { tool, locale = 'en', minHeight = 'min-h-[420px]' } = Astro.props;
+const name = toolName(locale, tool);
+const bgStyle = tool.color ? `background: ${tool.color};` : 'background: linear-gradient(135deg, #0f172a, #1e293b);';
+---
+
+<div
+  class={`relative flex w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-hairline bg-canvas shadow-soft ${minHeight}`}
+  style={bgStyle}
+  aria-label={`Loading ${name}`}
+>
+  <!-- Vignette & Subtle ambient mesh overlay -->
+  <div class="pointer-events-none absolute inset-0 bg-radial-[circle_at_center,_transparent_30%,_rgba(0,0,0,0.6)_100%]"></div>
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/40 animate-pulse"></div>
+
+  <!-- Content Pill -->
+  <div class="relative z-10 flex flex-col items-center gap-3 rounded-2xl border border-white/15 bg-black/40 px-6 py-5 shadow-2xl backdrop-blur-md transition-all">
+    <!-- Spinner with glowing ring -->
+    <div class="relative grid size-10 place-items-center">
+      <div class="absolute inset-0 rounded-full border-2 border-white/10"></div>
+      <div class="absolute inset-0 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin"></div>
+      <div class="size-2 rounded-full bg-cyan-300 shadow-[0_0_8px_#38bdf8]"></div>
+    </div>
+
+    <!-- Tool Name & Loading text -->
+    <div class="text-center">
+      <p class="text-sm font-semibold text-white tracking-wide">{name}</p>
+      <p class="text-xs text-white/70 mt-0.5 font-mono animate-pulse">Preparing ambient experience...</p>
+    </div>
+  </div>
+
+  <!-- Bottom Control Bar Placeholder Skeleton (matches actual tool controls layout) -->
+  <div class="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between border-t border-white/10 bg-black/30 px-4 py-3 backdrop-blur-sm">
+    <div class="flex items-center gap-2">
+      <div class="h-6 w-16 rounded-md bg-white/10 animate-pulse"></div>
+      <div class="h-6 w-20 rounded-md bg-white/10 animate-pulse"></div>
+    </div>
+    <div class="flex items-center gap-2">
+      <div class="h-8 w-24 rounded-lg bg-cyan-500/20 border border-cyan-500/30 animate-pulse"></div>
+    </div>
+  </div>
+</div>

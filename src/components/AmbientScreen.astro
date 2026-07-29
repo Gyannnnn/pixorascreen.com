@@ -2,8 +2,8 @@
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import ReactAmbientScreen from './AmbientScreen.tsx';
-import fs from 'fs';
-import path from 'path';
+import { getToolAssets } from '../utils/assets';
+import ToolFallback from './ToolFallback.astro';
 
 type Props = {
   tool: Tool;
@@ -11,22 +11,7 @@ type Props = {
 };
 
 const { tool, locale } = Astro.props;
-
-// Dynamically read audio files from public/assets/ambient-screen/bgm
-const bgmDir = path.join(process.cwd(), 'public/assets/ambient-screen/bgm');
-let ambientAudioFiles: string[] = [];
-try {
-  if (fs.existsSync(bgmDir)) {
-    ambientAudioFiles = fs.readdirSync(bgmDir)
-      .filter(file => {
-        const ext = path.extname(file).toLowerCase();
-        return ['.mp3', '.ogg', '.wav', '.m4a'].includes(ext);
-      })
-      .map(file => `/assets/ambient-screen/bgm/${file}`);
-  }
-} catch (err) {
-  console.error("Failed to read ambient bgm directory:", err);
-}
+const { audioFiles: ambientAudioFiles } = getToolAssets('ambient-screen');
 ---
 
 <ReactAmbientScreen 
@@ -34,7 +19,9 @@ try {
   locale={locale} 
   ambientAudioFiles={ambientAudioFiles}
   client:only="react" 
-/>
+>
+  <ToolFallback slot="fallback" tool={tool} locale={locale} />
+</ReactAmbientScreen>
 
 <style>
   /* Ambient Fade-in animations for overlay modules */

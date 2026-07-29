@@ -3,6 +3,7 @@ import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import ReactSnowScreen from './SnowScreen.tsx';
 import { getToolAssets } from '../utils/assets';
+import ToolFallback from './ToolFallback.astro';
 
 type Props = { tool: Tool; locale: Locale };
 const { tool, locale } = Astro.props;
@@ -16,7 +17,9 @@ const { backgrounds, audioFiles } = getToolAssets('snow-screen');
   backgrounds={backgrounds} 
   audioFiles={audioFiles} 
   client:only="react" 
-/>
+>
+  <ToolFallback slot="fallback" tool={tool} locale={locale} />
+</ReactSnowScreen>
 
 <style>
   /* Responsive custom vignette overlay */

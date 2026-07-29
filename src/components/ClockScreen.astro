@@ -2,6 +2,7 @@
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import ReactClockScreen from './ClockScreen.tsx';
+import ToolFallback from './ToolFallback.astro';
 
 type Props = {
   tool: Tool;
@@ -15,7 +16,9 @@ const { tool, locale } = Astro.props;
   tool={tool} 
   locale={locale} 
   client:only="react" 
-/>
+>
+  <ToolFallback slot="fallback" tool={tool} locale={locale} />
+</ReactClockScreen>
 
 <style>
   /* 3D Perspective and backface visibility support */

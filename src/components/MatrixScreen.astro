@@ -2,27 +2,13 @@
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import ReactMatrixScreen from './MatrixScreen.tsx';
-import fs from 'fs';
-import path from 'path';
+import { getToolAssets } from '../utils/assets';
+import ToolFallback from './ToolFallback.astro';
 
 type Props = { tool: Tool; locale: Locale };
 const { tool, locale } = Astro.props;
 
-// Dynamically read audio files from public/assets/rain-screen/bgm so we can reuse relaxing rain sounds
-const bgmDir = path.join(process.cwd(), 'public/assets/rain-screen/bgm');
-let audioFiles: string[] = [];
-try {
-  if (fs.existsSync(bgmDir)) {
-    audioFiles = fs.readdirSync(bgmDir)
-      .filter(file => {
-        const ext = path.extname(file).toLowerCase();
-        return ['.mp3', '.ogg', '.wav', '.m4a'].includes(ext);
-      })
-      .map(file => `/assets/rain-screen/bgm/${file}`);
-  }
-} catch (err) {
-  console.error("Failed to read rain bgm directory for Matrix screen:", err);
-}
+const { audioFiles } = getToolAssets('rain-screen');
 ---
 
 <ReactMatrixScreen 
@@ -30,7 +16,9 @@ try {
   locale={locale} 
   audioFiles={audioFiles} 
   client:only="react" 
-/>
+>
+  <ToolFallback slot="fallback" tool={tool} locale={locale} />
+</ReactMatrixScreen>
 
 <style>
   /* Dual Range Slider Thumb CSS overrides */
