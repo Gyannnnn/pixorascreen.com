@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Snowfall from 'react-snowfall';
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
+import { getToolAssets } from '../utils/assets';
 
 interface SnowScreenProps {
   tool: Tool;
@@ -124,19 +125,23 @@ const AESTHETIC_COLORS = [
   { name: 'Warm Charcoal', value: '#94a3b8' },
 ];
 
-export default function SnowScreen({ tool, locale, backgrounds = [], audioFiles = [], isCard = false }: SnowScreenProps) {
+export default function SnowScreen({ tool, locale, backgrounds: propBg = [], audioFiles: propAudio = [], isCard = false }: SnowScreenProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Custom Images State
   const [snowflakeImages, setSnowflakeImages] = useState<HTMLImageElement[]>([]);
 
   // Discovered Background Scenes & Audio Tracks
+  const discovered = getToolAssets('snow-screen');
+  const backgrounds = propBg.length > 0 ? propBg : discovered.backgrounds;
+  const audioFiles = propAudio.length > 0 ? propAudio : discovered.audioFiles;
+
   const bgList = backgrounds.length > 0 ? backgrounds : ['/assets/snow-screen/backgrounds/bg.jpg'];
   const bgmList = audioFiles;
 
   // Selected background & sound options
   const [selectedBg, setSelectedBg] = useState<string>(bgList[0]);
-  const [selectedBgm, setSelectedBgm] = useState<string>('none');
+  const [selectedBgm, setSelectedBgm] = useState<string>(bgmList.length > 0 ? bgmList[0] : 'none');
   const [bgmPlaying, setBgmPlaying] = useState<boolean>(false);
   const [bgmVolume, setBgmVolume] = useState<number>(0.5);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -264,15 +269,21 @@ export default function SnowScreen({ tool, locale, backgrounds = [], audioFiles 
 
   // Audio playback and loop setup
   useEffect(() => {
-    if (selectedBgm !== 'none') {
-      const currentSource = audioRef.current ? audioRef.current.src : '';
-      const targetSource = window.location.origin + selectedBgm;
+    if (selectedBgm !== 'none' && selectedBgm) {
+      let resolvedUrl: string;
+      try {
+        resolvedUrl = new URL(encodeURI(selectedBgm), window.location.origin).href;
+      } catch {
+        resolvedUrl = selectedBgm;
+      }
 
-      if (!audioRef.current || currentSource !== targetSource) {
+      const currentSource = audioRef.current ? audioRef.current.src : '';
+
+      if (!audioRef.current || currentSource !== resolvedUrl) {
         if (audioRef.current) {
           audioRef.current.pause();
         }
-        const audio = new Audio(selectedBgm);
+        const audio = new Audio(resolvedUrl);
         audio.loop = true;
         audio.volume = bgmVolume;
         audioRef.current = audio;

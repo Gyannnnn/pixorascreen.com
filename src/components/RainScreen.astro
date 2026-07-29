@@ -2,43 +2,12 @@
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import ReactRainScreen from './RainScreen.tsx';
-import fs from 'fs';
-import path from 'path';
+import { getToolAssets } from '../utils/assets';
 
 type Props = { tool: Tool; locale: Locale };
 const { tool, locale } = Astro.props;
 
-// Dynamically read background image files from public/assets/rain-screen/backgrounds
-const bgDir = path.join(process.cwd(), 'public/assets/rain-screen/backgrounds');
-let backgrounds: string[] = [];
-try {
-  if (fs.existsSync(bgDir)) {
-    backgrounds = fs.readdirSync(bgDir)
-      .filter(file => {
-        const ext = path.extname(file).toLowerCase();
-        return ['.png', '.jpg', '.jpeg', '.webp', '.svg'].includes(ext);
-      })
-      .map(file => `/assets/rain-screen/backgrounds/${file}`);
-  }
-} catch (err) {
-  console.error("Failed to read rain backgrounds directory:", err);
-}
-
-// Dynamically read audio files from public/assets/rain-screen/bgm
-const bgmDir = path.join(process.cwd(), 'public/assets/rain-screen/bgm');
-let audioFiles: string[] = [];
-try {
-  if (fs.existsSync(bgmDir)) {
-    audioFiles = fs.readdirSync(bgmDir)
-      .filter(file => {
-        const ext = path.extname(file).toLowerCase();
-        return ['.mp3', '.ogg', '.wav', '.m4a'].includes(ext);
-      })
-      .map(file => `/assets/rain-screen/bgm/${file}`);
-  }
-} catch (err) {
-  console.error("Failed to read rain bgm directory:", err);
-}
+const { backgrounds, audioFiles } = getToolAssets('rain-screen');
 ---
 
 <ReactRainScreen 
