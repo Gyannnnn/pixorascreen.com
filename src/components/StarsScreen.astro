@@ -4,8 +4,11 @@ export const prerender = false;
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import ReactStarsScreen from './StarsScreen.tsx';
+import ToolFallback from './ToolFallback.astro';
 
 const { tool, locale } = Astro.props;
 ---
 
-<ReactStarsScreen tool={tool} locale={locale} client:only="react" />
+<ReactStarsScreen tool={tool} locale={locale} client:only="react">
+  <ToolFallback slot="fallback" tool={tool} locale={locale} />
+</ReactStarsScreen>

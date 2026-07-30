@@ -298,7 +298,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
 
   // Native Custom Soundscapes engine
   useEffect(() => {
-    if (!aquariumAudioFiles) return;
+    if (isCard || !aquariumAudioFiles) return;
 
     aquariumAudioFiles.forEach((file) => {
       if (!customAudioInstancesRef.current[file]) {
@@ -322,7 +322,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
       }
     });
 
-  }, [aquariumAudioFiles, activeCustomAudios, customAudiosVolume]);
+  }, [aquariumAudioFiles, activeCustomAudios, customAudiosVolume, isCard]);
 
   // Cleanup music elements on unmount
   useEffect(() => {

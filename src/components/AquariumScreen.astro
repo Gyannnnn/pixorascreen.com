@@ -2,8 +2,8 @@
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import ReactAquariumScreen from './AquariumScreen.tsx';
-import fs from 'fs';
-import path from 'path';
+import { getToolAssets } from '../utils/assets';
+import ToolFallback from './ToolFallback.astro';
 
 type Props = {
   tool: Tool;
@@ -11,22 +11,7 @@ type Props = {
 };
 
 const { tool, locale } = Astro.props;
-
-// Dynamically scan for uploaded audio assets
-const bgmDir = path.join(process.cwd(), 'public/assets/aquarium-screen/bgm');
-let aquariumAudioFiles: string[] = [];
-try {
-  if (fs.existsSync(bgmDir)) {
-    aquariumAudioFiles = fs.readdirSync(bgmDir)
-      .filter(file => {
-        const ext = path.extname(file).toLowerCase();
-        return ['.mp3', '.ogg', '.wav', '.m4a'].includes(ext);
-      })
-      .map(file => `/assets/aquarium-screen/bgm/${file}`);
-  }
-} catch (err) {
-  console.error("Failed to read aquarium bgm directory:", err);
-}
+const { audioFiles: aquariumAudioFiles } = getToolAssets('aquarium-screen');
 ---
 
 <ReactAquariumScreen 
@@ -34,7 +19,9 @@ try {
   locale={locale} 
   aquariumAudioFiles={aquariumAudioFiles}
   client:only="react" 
-/>
+>
+  <ToolFallback slot="fallback" tool={tool} locale={locale} />
+</ReactAquariumScreen>
 
 <style>
   /* Custom scrollbars inside settings controls drawer */

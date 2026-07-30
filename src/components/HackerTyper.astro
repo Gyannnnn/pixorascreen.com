@@ -1167,9 +1167,15 @@ func main() {
         e.preventDefault();
         goFS();
       } else {
-        // Standard typing inside preview container
-        typeCharacters(speed);
-        playKeyAudio();
+        var matches = document.querySelectorAll(":hover");
+        var isHovered = false;
+        for (var i = 0; i < matches.length; i++) {
+          if (matches[i] === root) { isHovered = true; break; }
+        }
+        if (isHovered) {
+          typeCharacters(speed);
+          playKeyAudio();
+        }
       }
     });
 

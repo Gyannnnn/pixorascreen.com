@@ -25,6 +25,7 @@ import GalaxyScreen from '../components/GalaxyScreen.astro';
 // import StarsScreen from '../components/StarsScreen';
 import AmbientScreen from '../components/AmbientScreen.astro';
 import AquariumScreen from '../components/AquariumScreen.astro';
+import ShareTool from '../components/ShareTool.astro';
 import { localeOrder, locales, type Locale } from '../data/locales';
 import { getRelatedTools, tools, type Tool } from '../data/tools';
 import { t, toolName, toolSummary, toolFaqs } from '../data/translations';
@@ -143,6 +144,8 @@ const props = Astro.props as PageProps;
         )}
       </div>
     </section>
+
+    <ShareTool tool={props.tool} locale={props.locale} />
 
     <section class="border-y border-hairline bg-canvas">
       <div class="site-shell grid gap-6 py-12 md:grid-cols-3">

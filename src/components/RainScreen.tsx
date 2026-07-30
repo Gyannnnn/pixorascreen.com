@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
+import { getToolAssets } from '../utils/assets';
 
 interface RainScreenProps {
   tool: Tool;
@@ -267,7 +268,30 @@ class GlassDroplet {
   }
 }
 
-export default function RainScreen({ tool, locale, backgrounds = [], audioFiles = [], isCard = false }: RainScreenProps) {
+const formatAudioName = (fileUrl: string) => {
+  try {
+    const fileName = decodeURIComponent(fileUrl.split('/').pop() || '');
+    const baseName = fileName.replace(/\.[^/.]+$/, '');
+    const cleaned = baseName
+      .replace(/^([a-z0-9]+-)+/i, '')
+      .replace(/[-_]/g, ' ')
+      .replace(/\(\d+\)/g, '')
+      .trim();
+    if (cleaned.length > 2) {
+      return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+    }
+    return baseName || 'Soundtrack';
+  } catch {
+    return 'Soundtrack';
+  }
+};
+
+export default function RainScreen({ tool, locale, backgrounds: propBg = [], audioFiles: propAudio = [], isCard = false }: RainScreenProps) {
+  // Dynamically discover assets if props are empty or not passed
+  const discovered = getToolAssets('rain-screen');
+  const backgrounds = propBg.length > 0 ? propBg : discovered.backgrounds;
+  const audioFiles = propAudio.length > 0 ? propAudio : discovered.audioFiles;
+
   // Custom states
   const [panelOpen, setPanelOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -281,12 +305,12 @@ export default function RainScreen({ tool, locale, backgrounds = [], audioFiles 
   const [splashesEnabled, setSplashesEnabled] = useState(true);
   const [color, setColor] = useState(AESTHETIC_RAIN_COLORS[0].value);
   const bgList = backgrounds.length > 0 ? backgrounds : ['/assets/rain-screen/backgrounds/bg.png'];
-  const [selectedBg, setSelectedBg] = useState(bgList[0]);
+  const [selectedBg, setSelectedBg] = useState<string>(bgList[0]);
 
-  // Sound States
-  const [selectedBgm, setSelectedBgm] = useState('none');
-  const [bgmPlaying, setBgmPlaying] = useState(false);
-  const [bgmVolume, setBgmVolume] = useState(0.5);
+  // Sound States - Default to first audio file if available
+  const [selectedBgm, setSelectedBgm] = useState<string>(audioFiles.length > 0 ? audioFiles[0] : 'none');
+  const [bgmPlaying, setBgmPlaying] = useState<boolean>(false);
+  const [bgmVolume, setBgmVolume] = useState<number>(0.5);
 
   // Thunder / Lightning States
   const [thunderEnabled, setThunderEnabled] = useState(false);
@@ -318,7 +342,7 @@ export default function RainScreen({ tool, locale, backgrounds = [], audioFiles 
     setSplashesEnabled(true);
     setColor(AESTHETIC_RAIN_COLORS[0].value);
     setSelectedBg(bgList[0]);
-    setSelectedBgm('none');
+    setSelectedBgm(audioFiles.length > 0 ? audioFiles[0] : 'none');
     setBgmVolume(0.5);
     setBgmPlaying(false);
     setThunderEnabled(false);
@@ -354,33 +378,41 @@ export default function RainScreen({ tool, locale, backgrounds = [], audioFiles 
     return () => window.removeEventListener('keydown', handleKeys);
   }, [selectedBgm, backgrounds, audioFiles]);
 
-  // Audio Engine control
+  // Robust Audio Engine control
   useEffect(() => {
-    if (selectedBgm === 'none') {
+    if (isCard) return;
+    if (selectedBgm === 'none' || !selectedBgm) {
       if (audioRef.current) {
         audioRef.current.pause();
       }
       return;
     }
 
+    let resolvedUrl: string;
+    try {
+      resolvedUrl = new URL(encodeURI(selectedBgm), window.location.origin).href;
+    } catch {
+      resolvedUrl = selectedBgm;
+    }
+
     if (!audioRef.current) {
-      audioRef.current = new Audio(selectedBgm);
+      audioRef.current = new Audio(resolvedUrl);
       audioRef.current.loop = true;
-    } else if (audioRef.current.src !== window.location.origin + selectedBgm) {
+    } else if (audioRef.current.src !== resolvedUrl) {
       audioRef.current.pause();
-      audioRef.current.src = selectedBgm;
-      if (bgmPlaying) {
-        audioRef.current.play().catch(err => console.log('Autoplay blocked:', err));
-      }
+      audioRef.current.src = resolvedUrl;
+      audioRef.current.load();
     }
 
     audioRef.current.volume = bgmVolume;
 
     if (bgmPlaying) {
-      audioRef.current.play().catch(err => {
-        console.log('Audio playback gesture block:', err);
-        setBgmPlaying(false);
-      });
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.log('Audio playback gesture deferred:', err);
+        });
+      }
     } else {
       audioRef.current.pause();
     }
@@ -390,7 +422,7 @@ export default function RainScreen({ tool, locale, backgrounds = [], audioFiles 
         audioRef.current.pause();
       }
     };
-  }, [selectedBgm, bgmPlaying, bgmVolume]);
+  }, [selectedBgm, bgmPlaying, bgmVolume, isCard]);
 
   // Mouse activity timer HUD overlay toggles
   const handleMouseMove = () => {
@@ -658,7 +690,7 @@ export default function RainScreen({ tool, locale, backgrounds = [], audioFiles 
       <div 
         className="absolute inset-0 bg-cover bg-center transition-all duration-700 pointer-events-none"
         style={{
-          backgroundImage: selectedBg ? `url(${selectedBg})` : 'none',
+          backgroundImage: selectedBg ? `url("${encodeURI(selectedBg)}")` : 'none',
           filter: rainType === 'glass' ? 'blur(1.5px) brightness(0.85)' : 'brightness(0.92)'
         }}
       />
@@ -962,9 +994,12 @@ export default function RainScreen({ tool, locale, backgrounds = [], audioFiles 
                     <select
                       value={selectedBgm}
                       onChange={(e) => {
-                        setSelectedBgm(e.target.value);
-                        if (e.target.value !== 'none') {
+                        const val = e.target.value;
+                        setSelectedBgm(val);
+                        if (val !== 'none') {
                           setBgmPlaying(true);
+                        } else {
+                          setBgmPlaying(false);
                         }
                       }}
                       className="bg-neutral-900 border border-white/10 text-xs text-white rounded-lg p-2 outline-none focus:border-sky-400 cursor-pointer"
@@ -972,7 +1007,7 @@ export default function RainScreen({ tool, locale, backgrounds = [], audioFiles 
                       <option value="none">Mute / No Sound</option>
                       {audioFiles.map((bgm, idx) => (
                         <option key={bgm} value={bgm}>
-                          Background Sound {idx + 1}
+                          🎵 {formatAudioName(bgm)}
                         </option>
                       ))}
                     </select>
@@ -1004,7 +1039,7 @@ export default function RainScreen({ tool, locale, backgrounds = [], audioFiles 
           <div className="border-t border-white/5 pt-3 mt-1 flex flex-col gap-2">
             <span className="text-[11px] font-semibold text-neutral-350 uppercase tracking-wider">Select Background Scene</span>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-1">
-              {backgrounds.map((bg, idx) => (
+              {bgList.map((bg, idx) => (
                 <button
                   key={bg}
                   onClick={() => setSelectedBg(bg)}
@@ -1016,7 +1051,7 @@ export default function RainScreen({ tool, locale, backgrounds = [], audioFiles 
                 >
                   <div 
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-                    style={{ backgroundImage: `url(${bg})` }}
+                    style={{ backgroundImage: `url("${encodeURI(bg)}")` }}
                   />
                   {selectedBg === bg && (
                     <div className="absolute top-1.5 right-1.5 h-4 w-4 rounded-full bg-sky-500 flex items-center justify-center border border-white/20 shadow-md">

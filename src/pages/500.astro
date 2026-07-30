@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ToolCard from '../components/ToolCard.astro';
+import { popularTools } from '../data/tools';
+import { type Locale } from '../data/locales';
+
+const locale: Locale = 'en';
+---
+
+<BaseLayout
+  title="Unexpected Server Error (500) • PixoraScreen"
+  description="An unexpected error occurred while processing your request. Please try refreshing or return home."
+  canonicalPath="/500/"
+  lang="en"
+  locale={locale}
+>
+  <section class="site-shell py-16 md:py-24">
+    <div class="relative overflow-hidden rounded-3xl border border-hairline bg-canvas p-8 md:p-14 shadow-soft">
+      {/* Decorative background ambient glows */}
+      <div class="pointer-events-none absolute -right-24 -top-24 size-96 rounded-full bg-amber-brand/10 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-24 -left-24 size-96 rounded-full bg-pink-brand/10 blur-3xl"></div>
+
+      <div class="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas-soft px-3.5 py-1.5 text-xs font-mono text-muted">
+            <span class="size-2 rounded-full bg-amber-brand animate-ping"></span>
+            ERROR 500 • UNEXPECTED SYSTEM ERROR
+          </div>
+          
+          <h1 class="mt-5 text-4xl font-semibold leading-[0.95] text-balance text-ink md:text-6xl">
+            Signal interrupted.
+          </h1>
+          
+          <p class="mt-5 text-lg leading-8 text-body max-w-xl">
+            An unexpected error occurred on our server while loading this display page. Please try refreshing or head back to safety.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <button
+              onclick="window.location.reload()"
+              class="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-canvas transition-all hover:bg-body hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+            >
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Refresh Page
+            </button>
+            
+            <a
+              class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas px-6 py-3.5 text-sm font-medium text-ink transition-all hover:bg-canvas-soft hover:scale-[1.02] active:scale-[0.98]"
+              href="/"
+            >
+              Return to Home
+            </a>
+          </div>
+        </div>
+
+        {/* Visual 500 Diagnostics Card */}
+        <div class="relative flex aspect-video w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-hairline bg-canvas-soft-2 p-6 text-center select-none shadow-inner">
+          <div class="absolute inset-0 bg-[radial-gradient(#ebebeb_1px,transparent_1px)] [background-size:16px_16px] opacity-30 dark:bg-[radial-gradient(#2a2a2a_1px,transparent_1px)]"></div>
+          
+          {/* Animated warning pulse */}
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-amber-brand/10 via-transparent to-transparent opacity-80"></div>
+          
+          <div class="relative z-10 flex flex-col items-center">
+            <span class="font-mono text-7xl md:text-8xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-brand via-pink-brand to-violet-brand drop-shadow-sm">
+              500
+            </span>
+            <div class="mt-3 flex items-center gap-2 font-mono text-xs text-muted">
+              <span class="inline-block size-2 rounded-full bg-amber-500"></span>
+              <span>SYSTEM DIAGNOSTIC REQUIRED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular tools Section -->
+  <section class="border-t border-hairline bg-canvas py-16">
+    <div class="site-shell">
+      <div class="max-w-xl">
+        <p class="font-mono text-xs text-muted">TRY ANOTHER SCREEN</p>
+        <h2 class="mt-3 text-3xl font-semibold text-balance text-ink">Popular Fullscreen Utilities</h2>
+        <p class="mt-2 text-sm leading-6 text-body">
+          Jump to one of our verified screen tools while system diagnostics are restored:
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {popularTools.slice(0, 4).map((tool) => (
+          <ToolCard tool={tool} locale={locale} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -63,55 +63,91 @@ const { tool, locale, isCard = false } = Astro.props;
   <div class="fp-settings" id="fpSettings">
     <div class="fp-settings-inner">
       <div class="fp-settings-header">
-        <span>Fireplace Settings</span>
+        <span>Fireplace Controls</span>
         <button class="fp-btn fp-close-btn" id="fpCloseSettings" type="button" aria-label="Close">✕</button>
       </div>
 
-      <div class="fp-setting-row">
-        <label for="fpSoundToggle">🔊 Enable Sound</label>
-        <input type="checkbox" id="fpSoundToggle" class="fp-checkbox" />
+      <!-- 1. Sleep Timer (TOP of drawer with pill chips) -->
+      <div class="fp-section">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div class="fp-section-title">⏱️ Sleep Timer</div>
+          <span class="fp-val-badge" id="fpTimerBadge" style="display:none; font-variant-numeric: tabular-nums;">--:--</span>
+        </div>
+        <div class="fp-chip-group" id="fpTimerGroup">
+          <button type="button" class="fp-chip active" data-value="0">Off</button>
+          <button type="button" class="fp-chip" data-value="15">15 min</button>
+          <button type="button" class="fp-chip" data-value="30">30 min</button>
+          <button type="button" class="fp-chip" data-value="60">60 min</button>
+          <button type="button" class="fp-chip" data-value="90">90 min</button>
+        </div>
       </div>
 
-      <div class="fp-setting-row">
-        <label for="fpVolSettings">🔈 Volume</label>
-        <input type="range" id="fpVolSettings" min="0" max="100" value="70" class="fp-slider" />
+      <!-- 2. Flame Color Theme Chips (No dropdown clipping!) -->
+      <div class="fp-section">
+        <div class="fp-section-title">🔥 Flame Color Theme</div>
+        <div class="fp-chip-group" id="fpStyleGroup">
+          <button type="button" class="fp-chip fp-chip-color active" data-value="classic">
+            <span class="fp-dot" style="background:#ff7700"></span> Classic
+          </button>
+          <button type="button" class="fp-chip fp-chip-color" data-value="amber">
+            <span class="fp-dot" style="background:#f59e0b"></span> Amber
+          </button>
+          <button type="button" class="fp-chip fp-chip-color" data-value="blue">
+            <span class="fp-dot" style="background:#3b82f6"></span> Blue
+          </button>
+          <button type="button" class="fp-chip fp-chip-color" data-value="purple">
+            <span class="fp-dot" style="background:#a855f7"></span> Violet
+          </button>
+          <button type="button" class="fp-chip fp-chip-color" data-value="green">
+            <span class="fp-dot" style="background:#22c55e"></span> Emerald
+          </button>
+        </div>
       </div>
 
-      <div class="fp-setting-row">
-        <label for="fpStyle">Flame Color</label>
-        <select id="fpStyle">
-          <option value="classic">Classic Orange</option>
-          <option value="blue">Blue Mystic</option>
-          <option value="green">Emerald Wood</option>
-          <option value="purple">Violet Phantom</option>
-        </select>
+      <!-- 3. Sliders & Audio Toggles (Spacious Grid) -->
+      <div class="fp-grid">
+        <div class="fp-grid-col">
+          <div class="fp-setting-row">
+            <label for="fpSoundToggle">🔊 Audio Sound</label>
+            <input type="checkbox" id="fpSoundToggle" class="fp-checkbox" />
+          </div>
+
+          <div class="fp-setting-row">
+            <div class="fp-row-label-wrap">
+              <label for="fpVolSettings">🔈 Volume</label>
+              <span class="fp-val-badge" id="fpVolBadge">70%</span>
+            </div>
+            <input type="range" id="fpVolSettings" min="0" max="100" value="70" class="fp-slider" />
+          </div>
+
+          <div class="fp-setting-row">
+            <div class="fp-row-label-wrap">
+              <label for="fpCrackle">🪵 Fire Crackle</label>
+              <span class="fp-val-badge" id="fpCrackleBadge">70%</span>
+            </div>
+            <input type="range" id="fpCrackle" min="0" max="100" value="70" class="fp-slider" />
+          </div>
+        </div>
+
+        <div class="fp-grid-col">
+          <div class="fp-setting-row">
+            <div class="fp-row-label-wrap">
+              <label for="fpFlameSize">🔥 Flame Height</label>
+              <span class="fp-val-badge" id="fpFlameSizeBadge">100%</span>
+            </div>
+            <input type="range" id="fpFlameSize" min="60" max="160" value="110" class="fp-slider" />
+          </div>
+
+          <div class="fp-setting-row">
+            <div class="fp-row-label-wrap">
+              <label for="fpBloomStrength">✨ Glow Intensity</label>
+              <span class="fp-val-badge" id="fpBloomBadge">40%</span>
+            </div>
+            <input type="range" id="fpBloomStrength" min="5" max="35" value="15" class="fp-slider" />
+          </div>
+        </div>
       </div>
 
-      <div class="fp-setting-row">
-        <label for="fpFlameSize">Flame Size</label>
-        <input type="range" id="fpFlameSize" min="60" max="160" value="110" class="fp-slider" />
-      </div>
-
-      <div class="fp-setting-row">
-        <label for="fpCrackle">Fire Crackle</label>
-        <input type="range" id="fpCrackle" min="0" max="100" value="70" class="fp-slider" />
-      </div>
-
-      <div class="fp-setting-row">
-        <label for="fpRain">Rain</label>
-        <input type="range" id="fpRain" min="0" max="100" value="0" class="fp-slider" />
-      </div>
-
-      <div class="fp-setting-row">
-        <label for="fpTimer">Sleep Timer</label>
-        <select id="fpTimer">
-          <option value="0">Off</option>
-          <option value="15">15 min</option>
-          <option value="30">30 min</option>
-          <option value="60">60 min</option>
-          <option value="90">90 min</option>
-        </select>
-      </div>
     </div>
   </div>
 </div>
@@ -256,50 +292,138 @@ const { tool, locale, isCard = false } = Astro.props;
     bottom: 0; left: 0; right: 0;
     z-index: 25;
     transform: translateY(100%);
-    transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
-    background: rgba(12,8,6,0.97);
-    border-top: 1px solid rgba(255,100,20,0.15);
-    backdrop-filter: blur(20px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(12,8,6,0.96);
+    border-top: 1px solid rgba(255,110,20,0.2);
+    backdrop-filter: blur(24px);
+    box-shadow: 0 -12px 40px rgba(0,0,0,0.85);
   }
   .fp-settings.open { transform: translateY(0); }
 
   .fp-settings-inner {
-    padding: 18px 20px 22px;
+    padding: 16px 22px 22px;
     display: flex; flex-direction: column; gap: 14px;
-    max-height: 300px;
+    max-height: 380px;
     overflow-y: auto;
   }
   .fp-settings-header {
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 12px; font-weight: 600;
+    font-size: 13px; font-weight: 700;
     color: rgba(255,160,80,0.95);
     letter-spacing: 0.8px; text-transform: uppercase;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  .fp-setting-row {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    font-size: 12px; color: rgba(255,255,255,0.7);
+
+  .fp-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
-  .fp-setting-row label { flex-shrink: 0; min-width: 110px; }
-  .fp-setting-row select {
+  .fp-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* Chip Groups for Sleep Timer & Flame Color Theme */
+  .fp-chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .fp-chip {
     background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: #fff; border-radius: 6px; padding: 5px 10px; font-size: 12px; outline: none; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
   }
-  .fp-setting-row select:hover { border-color: rgba(255,100,20,0.45); }
+  .fp-chip:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,100,20,0.4);
+    color: #fff;
+  }
+  .fp-chip.active {
+    background: rgba(255,100,20,0.22);
+    border-color: #ff6020;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 0 12px rgba(255,90,20,0.35);
+  }
+
+  .fp-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 6px currentColor;
+  }
+
+  /* 2-Column Responsive Grid */
+  .fp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px;
+    margin-top: 4px;
+  }
+  @media (max-width: 580px) {
+    .fp-grid { grid-template-columns: 1fr; }
+  }
+
+  .fp-grid-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .fp-setting-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+  }
+  .fp-setting-row:has(.fp-checkbox) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .fp-row-label-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .fp-val-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: #ff7030;
+    background: rgba(255,110,30,0.12);
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
 
   .fp-slider {
-    flex: 1;
+    width: 100%;
     -webkit-appearance: none; appearance: none;
-    height: 3px; border-radius: 2px;
+    height: 4px; border-radius: 2px;
     background: rgba(255,255,255,0.12); outline: none; cursor: pointer;
   }
   .fp-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 13px; height: 13px; border-radius: 50%;
+    width: 14px; height: 14px; border-radius: 50%;
     background: #ff6020;
-    box-shadow: 0 0 8px rgba(255,90,20,0.6); cursor: pointer;
+    box-shadow: 0 0 8px rgba(255,90,20,0.7); cursor: pointer;
     transition: transform 0.1s;
   }
   .fp-slider::-webkit-slider-thumb:hover { transform: scale(1.25); }
@@ -348,8 +472,12 @@ const { tool, locale, isCard = false } = Astro.props;
     right: 16px;
     z-index: 30;
     display: none;
+    transition: opacity 0.2s ease;
   }
   .fp-wrap.is-fullscreen .fp-fs-gear { display: flex; }
+  .fp-wrap:has(.fp-settings.open) .fp-fs-gear {
+    display: none !important;
+  }
   .fp-fs-gear .fp-btn {
     width: 32px;
     height: 32px;

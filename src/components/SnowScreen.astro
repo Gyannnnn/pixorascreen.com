@@ -2,43 +2,13 @@
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import ReactSnowScreen from './SnowScreen.tsx';
-import fs from 'fs';
-import path from 'path';
+import { getToolAssets } from '../utils/assets';
+import ToolFallback from './ToolFallback.astro';
 
 type Props = { tool: Tool; locale: Locale };
 const { tool, locale } = Astro.props;
 
-// Dynamically read background image files from public/assets/snow-screen/backgrounds
-const bgDir = path.join(process.cwd(), 'public/assets/snow-screen/backgrounds');
-let backgrounds: string[] = [];
-try {
-  if (fs.existsSync(bgDir)) {
-    backgrounds = fs.readdirSync(bgDir)
-      .filter(file => {
-        const ext = path.extname(file).toLowerCase();
-        return ['.png', '.jpg', '.jpeg', '.webp', '.svg'].includes(ext);
-      })
-      .map(file => `/assets/snow-screen/backgrounds/${file}`);
-  }
-} catch (err) {
-  console.error("Failed to read backgrounds directory:", err);
-}
-
-// Dynamically read audio files from public/assets/snow-screen/bgm
-const bgmDir = path.join(process.cwd(), 'public/assets/snow-screen/bgm');
-let audioFiles: string[] = [];
-try {
-  if (fs.existsSync(bgmDir)) {
-    audioFiles = fs.readdirSync(bgmDir)
-      .filter(file => {
-        const ext = path.extname(file).toLowerCase();
-        return ['.mp3', '.ogg', '.wav', '.m4a'].includes(ext);
-      })
-      .map(file => `/assets/snow-screen/bgm/${file}`);
-  }
-} catch (err) {
-  console.error("Failed to read bgm directory:", err);
-}
+const { backgrounds, audioFiles } = getToolAssets('snow-screen');
 ---
 
 <ReactSnowScreen 
@@ -47,7 +17,9 @@ try {
   backgrounds={backgrounds} 
   audioFiles={audioFiles} 
   client:only="react" 
-/>
+>
+  <ToolFallback slot="fallback" tool={tool} locale={locale} />
+</ReactSnowScreen>
 
 <style>
   /* Responsive custom vignette overlay */

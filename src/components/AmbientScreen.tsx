@@ -452,6 +452,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
 
   // 3. Audio mixer handles
   useEffect(() => {
+    if (isCard) return;
     // 🎵 Lofi track creation
     if (!audioLofiRef.current) {
       const audio = new Audio('/assets/snow-screen/bgm/bg.mp3');
@@ -465,9 +466,10 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
     } else {
       audioLofiRef.current.pause();
     }
-  }, [isLofiOn, volLofi]);
+  }, [isLofiOn, volLofi, isCard]);
 
   useEffect(() => {
+    if (isCard) return;
     // 🌧️ Rain track creation
     if (!audioRainRef.current) {
       const audio = new Audio('/assets/rain-screen/bgm/dragon-studio-gentle-rain-07-437321.mp3');
@@ -481,9 +483,10 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
     } else {
       audioRainRef.current.pause();
     }
-  }, [isRainOn, volRain]);
+  }, [isRainOn, volRain, isCard]);
 
   useEffect(() => {
+    if (isCard) return;
     // 🔥 Crackling Fireplace track creation
     if (!audioFireRef.current) {
       const audio = new Audio('/assets/fire-screen/fire-screen.mp3');
@@ -497,11 +500,11 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
     } else {
       audioFireRef.current.pause();
     }
-  }, [isFireOn, volFire]);
+  }, [isFireOn, volFire, isCard]);
 
   // Sync custom background ambient audios
   useEffect(() => {
-    if (!ambientAudioFiles) return;
+    if (isCard || !ambientAudioFiles) return;
 
     ambientAudioFiles.forEach((file) => {
       if (!customAudioInstancesRef.current[file]) {
@@ -524,7 +527,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
         audio.pause();
       }
     });
-  }, [ambientAudioFiles, activeCustomAudios, customAudiosVolume]);
+  }, [ambientAudioFiles, activeCustomAudios, customAudiosVolume, isCard]);
 
   // Cleanup audios
   useEffect(() => {
