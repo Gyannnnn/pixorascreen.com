@@ -220,7 +220,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
   const [is24Hour, setIs24Hour] = useState(true);
   const [showSeconds, setShowSeconds] = useState(!isCard);
   const [soundMode, setSoundMode] = useState<'mute' | 'flip'>('flip');
-  const [themeId, setThemeId] = useState('retro');
+  const [themeId, setThemeId] = useState('minimalist');
   const [customLabel, setCustomLabel] = useState('');
   
   // Timer Mode State
@@ -361,11 +361,8 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
         const mStr = String(mins).padStart(2, '0');
         const sStr = String(secs).padStart(2, '0');
 
-        // Let hoursTens be empty if it's 12-hour format and first digit is 0
-        const hTens = (!is24Hour && hStr[0] === '0') ? ' ' : hStr[0];
-
         setTimeDigits({
-          h1: hTens,
+          h1: hStr[0],
           h2: hStr[1],
           m1: mStr[0],
           m2: mStr[1],
@@ -524,7 +521,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
     setIs24Hour(true);
     setShowSeconds(true);
     setSoundMode('flip');
-    setThemeId('retro');
+    setThemeId('minimalist');
     setCustomLabel('');
     setIsTimerMode(false);
     setTimerPresetMin(25);
@@ -534,7 +531,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
   };
 
   const currentTheme = isCard 
-    ? (THEMES.find((t) => t.id === 'retro') || THEMES[0])
+    ? (THEMES.find((t) => t.id === 'minimalist') || THEMES[0])
     : (THEMES.find((t) => t.id === themeId) || THEMES[0]);
   const activeTimerMinutes = Math.floor(timerSecondsLeft / 60);
   const activeTimerSeconds = timerSecondsLeft % 60;
