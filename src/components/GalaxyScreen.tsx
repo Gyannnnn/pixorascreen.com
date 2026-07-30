@@ -158,6 +158,7 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
 
   // Audio Engine Lifecycle
   useEffect(() => {
+    if (isCard) return;
     if (selectedBgm === 'none') {
       audioRef.current?.pause();
       return;
@@ -179,7 +180,7 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
     }
 
     return () => audioRef.current?.pause();
-  }, [selectedBgm, bgmPlaying, bgmVolume]);
+  }, [selectedBgm, bgmPlaying, bgmVolume, isCard]);
 
   // Cursor HUD Hide logic
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {

@@ -338,11 +338,12 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
 
   // Sync sound choices and state
   useEffect(() => {
+    if (isCard) return;
     stopSynthDrone();
     if (audioPlaying && soundType !== 'none') {
       startSynthDrone(soundType);
     }
-  }, [soundType, audioPlaying]);
+  }, [soundType, audioPlaying, isCard]);
 
   // Sync volumes
   useEffect(() => {

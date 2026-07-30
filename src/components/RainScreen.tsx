@@ -378,25 +378,9 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
     return () => window.removeEventListener('keydown', handleKeys);
   }, [selectedBgm, backgrounds, audioFiles]);
 
-  // Enable audio playback on first user gesture if blocked
-  useEffect(() => {
-    const handleUserGesture = () => {
-      if (selectedBgm !== 'none' && !bgmPlaying) {
-        setBgmPlaying(true);
-      }
-    };
-
-    window.addEventListener('click', handleUserGesture, { once: true });
-    window.addEventListener('keydown', handleUserGesture, { once: true });
-
-    return () => {
-      window.removeEventListener('click', handleUserGesture);
-      window.removeEventListener('keydown', handleUserGesture);
-    };
-  }, [selectedBgm]);
-
   // Robust Audio Engine control
   useEffect(() => {
+    if (isCard) return;
     if (selectedBgm === 'none' || !selectedBgm) {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -438,7 +422,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
         audioRef.current.pause();
       }
     };
-  }, [selectedBgm, bgmPlaying, bgmVolume]);
+  }, [selectedBgm, bgmPlaying, bgmVolume, isCard]);
 
   // Mouse activity timer HUD overlay toggles
   const handleMouseMove = () => {

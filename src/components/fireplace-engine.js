@@ -1,639 +1,1192 @@
+import * as THREE from 'three';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+
 (function () {
   'use strict';
-  var wrap = document.getElementById('fpWrap'), canvas = document.getElementById('fpCanvas'), ctx = canvas.getContext('2d');
-  var isCardMode = wrap && wrap.getAttribute('data-is-card') === 'true';
-  var fireEl = document.getElementById('fpFire'), fireStage = document.getElementById('fpFireStage');
-  var hud = document.getElementById('fpHud'), soundBtn = document.getElementById('fpSoundBtn'), soundIcon = document.getElementById('fpSoundIcon');
-  var volSlider = document.getElementById('fpVol'), settingsBtn = document.getElementById('fpSettingsBtn'), settingsPanel = document.getElementById('fpSettings');
-  var closeSettings = document.getElementById('fpCloseSettings'), fsBtn = document.getElementById('fpFsBtn'), styleSelect = document.getElementById('fpStyle');
-  var flameSizeSlider = document.getElementById('fpFlameSize'), crackleSlider = document.getElementById('fpCrackle');
-  var rainSlider = document.getElementById('fpRain'), timerSelect = document.getElementById('fpTimer');
-  var soundToggle = document.getElementById('fpSoundToggle'), volSettings = document.getElementById('fpVolSettings');
-  var fsGearBtn = document.getElementById('fpFsGearBtn');
 
+  var wrap = document.getElementById('fpWrap');
+  var canvas = document.getElementById('fpCanvas');
+  if (!wrap || !canvas) return;
+
+  var isCardMode = wrap.getAttribute('data-is-card') === 'true';
+
+  // UI Element References
+  var hud = document.getElementById('fpHud');
+  var soundBtn = document.getElementById('fpSoundBtn');
+  var soundIcon = document.getElementById('fpSoundIcon');
+  var volSlider = document.getElementById('fpVol');
+  var settingsBtn = document.getElementById('fpSettingsBtn');
+  var settingsPanel = document.getElementById('fpSettings');
+  var closeSettings = document.getElementById('fpCloseSettings');
+  var fsBtn = document.getElementById('fpFsBtn');
+  var flameSizeSlider = document.getElementById('fpFlameSize');
+  var bloomSlider = document.getElementById('fpBloomStrength');
+  var crackleSlider = document.getElementById('fpCrackle');
+  var soundToggle = document.getElementById('fpSoundToggle');
+  var volSettings = document.getElementById('fpVolSettings');
+  var fsGearBtn = document.getElementById('fpFsGearBtn');
+  var fsGear = document.getElementById('fpFsGear');
+
+  // Groups and Badges
+  var timerGroup = document.getElementById('fpTimerGroup');
+  var styleGroup = document.getElementById('fpStyleGroup');
+  var volBadge = document.getElementById('fpVolBadge');
+  var crackleBadge = document.getElementById('fpCrackleBadge');
+  var flameSizeBadge = document.getElementById('fpFlameSizeBadge');
+  var bloomBadge = document.getElementById('fpBloomBadge');
+
+  var currentStyleKey = 'classic';
+
+  // Master Curated Color Palettes (RGB 0..1)
   var PALETTES = {
-    classic: { core: '#fffdd0', c1: '#ff9f00', c2: '#ff3c00', glow: '#ff5a0f', room: 'rgba(255,90,15,0.16)', brick: '#482012', lit: '#ff6c00' },
-    blue:    { core: '#e0f2fe', c1: '#3b82f6', c2: '#1d4ed8', glow: '#2563eb', room: 'rgba(30,100,255,0.14)', brick: '#101b3a', lit: '#3b82f6' },
-    green:   { core: '#f0fdf4', c1: '#22c55e', c2: '#15803d', glow: '#16a34a', room: 'rgba(20,200,60,0.12)', brick: '#0d2414', lit: '#22c55e' },
-    purple:  { core: '#faf5ff', c1: '#a855f7', c2: '#7e22ce', glow: '#9333ea', room: 'rgba(160,30,255,0.14)', brick: '#240a3a', lit: '#a855f7' }
+    classic: {
+      core: [1.0, 0.88, 0.45],    // Bright Warm Golden Core
+      base: [1.0, 0.55, 0.08],   // Fiery Orange Main Body
+      edge: [0.85, 0.20, 0.02],   // Ember Red Edge
+      glowHex: 0xff7700,
+      roomCss: 'rgba(255,119,0,0.18)',
+      litHex: 0xff7700
+    },
+    amber: {
+      core: [1.0, 0.92, 0.55],
+      base: [0.98, 0.68, 0.12],
+      edge: [0.72, 0.28, 0.04],
+      glowHex: 0xf59e0b,
+      roomCss: 'rgba(245,158,11,0.16)',
+      litHex: 0xfbbf24
+    },
+    blue: {
+      core: [0.85, 0.95, 1.0],
+      base: [0.18, 0.62, 1.0],
+      edge: [0.04, 0.16, 0.68],
+      glowHex: 0x3b82f6,
+      roomCss: 'rgba(59,130,246,0.15)',
+      litHex: 0x3b82f6
+    },
+    purple: {
+      core: [0.96, 0.90, 1.0],
+      base: [0.68, 0.28, 0.98],
+      edge: [0.35, 0.05, 0.58],
+      glowHex: 0xa855f7,
+      roomCss: 'rgba(168,85,247,0.15)',
+      litHex: 0xa855f7
+    },
+    green: {
+      core: [0.90, 1.0, 0.92],
+      base: [0.16, 0.82, 0.38],
+      edge: [0.04, 0.38, 0.14],
+      glowHex: 0x22c55e,
+      roomCss: 'rgba(34,197,94,0.14)',
+      litHex: 0x22c55e
+    }
   };
 
-  var S = { volume: 0.70, crackle: 0.70, rain: 0.00, muted: true };
-  var W = 1, H = 1, DPR = 1, TIME = 0;
-  var sizeInitialized = false;
-  var particles = [], embers = [], smoke = [], COALS = [];
+  var S = {
+    volume: 0.70,
+    crackle: 0.70,
+    muted: true,
+    bloomStrength: 0.35,
+    flameScale: 1.0
+  };
 
-  function applyPalette(name) {
-    var p = PALETTES[name] || PALETTES.classic;
-    if (fireEl) {
-      fireEl.style.setProperty('--fp-core', p.core);
-      fireEl.style.setProperty('--fp-c1', p.c1);
-      fireEl.style.setProperty('--fp-c2', p.c2);
-      fireEl.style.setProperty('--fp-glow', p.glow);
+  // Three.js Core Setup
+  var scene, camera, renderer, composer, bloomPass;
+  var flameMaterials = [];
+  var flameEmitters = [];
+  var coalsGroup, logsGroup, grateGroup, heatHazeMesh;
+  var fireLight, ambientLight, hearthLight;
+  var embersMesh, smokeMesh, emberPops = [];
+  var circleTexture = null;
+  var clock = new THREE.Clock();
+
+  // Generate Smooth Radial Circle Texture for WebGL Particles
+  function generateCircleParticleTexture() {
+    var c = document.createElement('canvas');
+    c.width = 64; c.height = 64;
+    var cx = c.getContext('2d');
+
+    var grad = cx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0, 'rgba(255,255,255,1.0)');
+    grad.addColorStop(0.35, 'rgba(255,220,160,0.85)');
+    grad.addColorStop(0.7, 'rgba(255,110,20,0.4)');
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+
+    cx.fillStyle = grad;
+    cx.beginPath();
+    cx.arc(32, 32, 32, 0, Math.PI * 2);
+    cx.fill();
+
+    var tex = new THREE.CanvasTexture(c);
+    return tex;
+  }
+
+  // Shader Source for Volumetric Flame Tendrils
+  var fireVertShader = `
+    varying vec2 vUv;
+
+    void main() {
+      vUv = uv;
+      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+      gl_Position = projectionMatrix * mvPosition;
     }
+  `;
+
+  var fireFragShader = `
+    #define NUM_OCTAVES 5
+
+    uniform vec3 colorCore;
+    uniform vec3 colorBase;
+    uniform vec3 colorEdge;
+    uniform float time;
+    uniform float noiseScale;
+    uniform float speed;
+    uniform float opacity;
+    uniform float phase;
+
+    varying vec2 vUv;
+
+    float rand(vec2 n) {
+      return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
+    }
+
+    float noise(vec2 p) {
+      vec2 ip = floor(p);
+      vec2 u = fract(p);
+      u = u * u * (3.0 - 2.0 * u);
+      return mix(
+        mix(rand(ip), rand(ip + vec2(1.0, 0.0)), u.x),
+        mix(rand(ip + vec2(0.0, 1.0)), rand(ip + vec2(1.0, 1.0)), u.x), u.y
+      );
+    }
+
+    float fbm(vec2 x) {
+      float v = 0.0;
+      float a = 0.5;
+      vec2 shift = vec2(100.0);
+      mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
+      for (int i = 0; i < NUM_OCTAVES; ++i) {
+        v += a * noise(x);
+        x = rot * x * 2.0 + shift;
+        a *= 0.5;
+      }
+      return v;
+    }
+
+    void main() {
+      vec2 uv = vUv;
+
+      vec2 flow = uv * vec2(2.4, 4.8) * noiseScale + vec2(phase, -time * speed);
+      float n1 = fbm(flow);
+      float n2 = fbm(flow + vec2(n1 * 1.2, time * 0.4));
+      float fireNoise = n2;
+
+      // Realistic flame shape: anchored wide at bottom wood logs, tapering sharply into licking tips at top
+      float horizontalDist = abs(uv.x - 0.5) * 2.0;
+      float flameTaper = max(0.02, 1.0 - pow(uv.y, 0.72) * 0.88);
+      float widthMask = max(0.0, 1.0 - pow(horizontalDist / flameTaper, 2.2));
+      float heightMask = pow(1.0 - uv.y, 1.15);
+      float shape = widthMask * heightMask;
+
+      // Robust alpha threshold for sharp organic flames
+      float alpha = smoothstep(0.08, 0.48, fireNoise * shape * 2.5);
+
+      if (alpha < 0.01) {
+        discard;
+      }
+
+      vec3 col;
+      if (alpha > 0.68) {
+        col = mix(colorBase, colorCore, (alpha - 0.68) / 0.32);
+      } else if (alpha > 0.24) {
+        col = mix(colorEdge, colorBase, (alpha - 0.24) / 0.44);
+      } else {
+        col = colorEdge * (alpha / 0.24);
+      }
+
+      float coreHeat = (1.0 - horizontalDist) * pow(1.0 - uv.y, 1.5) * 0.45;
+      col += colorCore * coreHeat;
+
+      gl_FragColor = vec4(col, alpha * opacity);
+    }
+  `;
+
+  // Heat Haze Shader
+  var heatHazeVertShader = `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `;
+
+  var heatHazeFragShader = `
+    uniform float time;
+    varying vec2 vUv;
+
+    float rand(vec2 n) { return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453); }
+    float noise(vec2 p) {
+      vec2 ip = floor(p); vec2 u = fract(p);
+      u = u * u * (3.0 - 2.0 * u);
+      return mix(mix(rand(ip), rand(ip+vec2(1.0,0.0)), u.x), mix(rand(ip+vec2(0.0,1.0)), rand(ip+vec2(1.0,1.0)), u.x), u.y);
+    }
+
+    void main() {
+      vec2 uv = vUv;
+      float n = noise(uv * 10.0 + vec2(0.0, -time * 2.0));
+      float alpha = (1.0 - uv.y) * (1.0 - abs(uv.x - 0.5) * 2.0) * 0.15;
+      gl_FragColor = vec4(1.0, 0.55, 0.15, n * alpha * 0.12);
+    }
+  `;
+
+  // Procedural Textures
+  function generateBrickTexture() {
+    var c = document.createElement('canvas');
+    c.width = 512; c.height = 512;
+    var cx = c.getContext('2d');
+
+    cx.fillStyle = '#0f0806';
+    cx.fillRect(0, 0, 512, 512);
+
+    var bH = 26, bW = 72;
+    for (var r = 0; r < 512 / bH + 1; r++) {
+      var y = r * bH;
+      var offset = (r % 2 === 0) ? 0 : bW / 2;
+      for (var col = -1; col < (512 / bW) + 1; col++) {
+        var x = col * bW + offset;
+        var tone = Math.random();
+
+        var rCol = Math.floor(58 + tone * 42);
+        var gCol = Math.floor(28 + tone * 20);
+        var bCol = Math.floor(18 + tone * 14);
+
+        cx.fillStyle = 'rgb(' + rCol + ',' + gCol + ',' + bCol + ')';
+        cx.fillRect(x + 2, y + 2, bW - 4, bH - 4);
+
+        for (var i = 0; i < 10; i++) {
+          var px = x + 2 + Math.random() * (bW - 4);
+          var py = y + 2 + Math.random() * (bH - 4);
+          cx.fillStyle = Math.random() > 0.5 ? 'rgba(0,0,0,0.32)' : 'rgba(90,40,25,0.2)';
+          cx.fillRect(px, py, 2, 2);
+        }
+      }
+    }
+
+    var sootGrad = cx.createLinearGradient(0, 0, 0, 512);
+    sootGrad.addColorStop(0, 'rgba(4,2,1,0.95)');
+    sootGrad.addColorStop(0.35, 'rgba(8,4,2,0.82)');
+    sootGrad.addColorStop(0.72, 'rgba(14,7,4,0.22)');
+    sootGrad.addColorStop(1, 'rgba(8,4,2,0.3)');
+    cx.fillStyle = sootGrad;
+    cx.fillRect(0, 0, 512, 512);
+
+    var tex = new THREE.CanvasTexture(c);
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.wrapT = THREE.RepeatWrapping;
+    return tex;
+  }
+
+  function generateLogTexture() {
+    var c = document.createElement('canvas');
+    c.width = 512; c.height = 256;
+    var cx = c.getContext('2d');
+
+    cx.fillStyle = '#24140b';
+    cx.fillRect(0, 0, 512, 256);
+
+    for (var i = 0; i < 256; i += 3) {
+      var d = Math.random() * 48;
+      cx.fillStyle = 'rgb(' + Math.floor(36 + d) + ',' + Math.floor(20 + d / 2) + ',' + Math.floor(14 + d / 3) + ')';
+      cx.fillRect(0, i, 512, 1.8 + Math.random() * 1.5);
+    }
+
+    for (var a = 0; a < 80; a++) {
+      var ax = Math.random() * 512;
+      var ay = Math.random() * 256;
+      cx.fillStyle = 'rgba(180,175,170,0.25)';
+      cx.fillRect(ax, ay, 3, 2);
+    }
+
+    var burnt = cx.createLinearGradient(100, 0, 412, 0);
+    burnt.addColorStop(0, 'rgba(10,4,2,0.5)');
+    burnt.addColorStop(0.2, 'rgba(12,5,3,0.85)');
+    burnt.addColorStop(0.5, '#050201');
+    burnt.addColorStop(0.8, 'rgba(12,5,3,0.85)');
+    burnt.addColorStop(1, 'rgba(10,4,2,0.5)');
+    cx.fillStyle = burnt;
+    cx.fillRect(0, 0, 512, 256);
+
+    cx.strokeStyle = '#ff6600';
+    cx.lineWidth = 2.8;
+    cx.shadowColor = '#ff3300';
+    cx.shadowBlur = 8;
+    for (var k = 0; k < 10; k++) {
+      var lx = 140 + Math.random() * 220;
+      var ly = 15 + Math.random() * 220;
+      cx.beginPath();
+      cx.moveTo(lx, ly);
+      cx.lineTo(lx + 40 + Math.random() * 45, ly + (Math.random() - 0.5) * 16);
+      cx.stroke();
+    }
+
+    var tex = new THREE.CanvasTexture(c);
+    return tex;
+  }
+
+  function generateLogEndTexture() {
+    var c = document.createElement('canvas');
+    c.width = 256; c.height = 256;
+    var cx = c.getContext('2d');
+
+    cx.fillStyle = '#1a0e08';
+    cx.fillRect(0, 0, 256, 256);
+
+    cx.strokeStyle = '#522e1b';
+    cx.lineWidth = 2;
+    for (var r = 10; r < 120; r += 11) {
+      cx.beginPath();
+      cx.arc(128, 128, r, 0, Math.PI * 2);
+      cx.stroke();
+    }
+
+    var core = cx.createRadialGradient(128, 128, 0, 128, 128, 62);
+    core.addColorStop(0, '#060301');
+    core.addColorStop(0.7, 'rgba(16,8,4,0.85)');
+    core.addColorStop(1, 'rgba(0,0,0,0)');
+    cx.fillStyle = core;
+    cx.fillRect(0, 0, 256, 256);
+
+    var tex = new THREE.CanvasTexture(c);
+    return tex;
+  }
+
+  function createIrregularLogGeometry(radius, length) {
+    var geo = new THREE.CylinderGeometry(radius, radius * 1.06, length, 24, 10);
+    var pos = geo.attributes.position;
+    for (var i = 0; i < pos.count; i++) {
+      var x = pos.getX(i);
+      var y = pos.getY(i);
+      var z = pos.getZ(i);
+
+      if (Math.abs(y) < length * 0.44) {
+        var n = Math.sin(y * 7.5) * 0.014 + Math.cos(x * 10.0) * 0.012;
+        pos.setX(i, x + n);
+        pos.setZ(i, z + n * 0.85);
+      }
+    }
+    geo.computeVertexNormals();
+    return geo;
+  }
+
+  // Setup Three.js Engine
+  function initThree() {
+    var rect = wrap.getBoundingClientRect();
+    var w = rect.width || window.innerWidth;
+    var h = rect.height || 480;
+
+    circleTexture = generateCircleParticleTexture();
+
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x050302);
+    scene.fog = new THREE.FogExp2(0x050302, 0.075);
+
+    // Perfectly positioned camera framing the hearth
+    camera = new THREE.PerspectiveCamera(38, w / h, 0.1, 100);
+    camera.position.set(0, 0.0, 2.7);
+    camera.lookAt(0, -0.12, 0);
+
+    renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      antialias: true,
+      powerPreference: 'high-performance',
+      alpha: false
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(w, h);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+
+    var renderPass = new RenderPass(scene, camera);
+    bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(w, h),
+      S.bloomStrength,
+      0.5,
+      0.55
+    );
+
+    composer = new EffectComposer(renderer);
+    composer.addPass(renderPass);
+    composer.addPass(bloomPass);
+
+    ambientLight = new THREE.AmbientLight(0x44281c, 0.7);
+    scene.add(ambientLight);
+
+    hearthLight = new THREE.PointLight(0xff7700, 2.0, 6, 2.0);
+    hearthLight.position.set(0, -0.55, 0.35);
+    scene.add(hearthLight);
+
+    fireLight = new THREE.PointLight(0xff8800, 2.8, 8, 1.5);
+    fireLight.position.set(0, -0.16, 0.1);
+    scene.add(fireLight);
+
+    buildFireplaceStructure();
+    buildIronGrate();
+    buildCoalsAndLogs();
+    buildMultiFlameEmitters();
+    buildHeatHaze();
+    buildEmberParticles();
+    buildSmokeParticles();
+
+    updatePalette();
+
+    // Pre-compile WebGL scene synchronously so shaders are compiled before frame 0
+    if (renderer && scene && camera) {
+      renderer.compile(scene, camera);
+    }
+  }
+
+  // Construct Masonry Hearth
+  function buildFireplaceStructure() {
+    var brickTex = generateBrickTexture();
+    brickTex.repeat.set(2, 2);
+
+    var brickMat = new THREE.MeshStandardMaterial({
+      map: brickTex,
+      roughness: 0.86,
+      metalness: 0.04
+    });
+
+    // Back Firebox Wall
+    var backWallGeo = new THREE.PlaneGeometry(4.2, 3.2);
+    var backWall = new THREE.Mesh(backWallGeo, brickMat);
+    backWall.position.set(0, 0.2, -1.1);
+    scene.add(backWall);
+
+    // Left Angled Wall
+    var leftWallGeo = new THREE.PlaneGeometry(1.8, 3.2);
+    var leftWall = new THREE.Mesh(leftWallGeo, brickMat);
+    leftWall.position.set(-1.65, 0.2, -0.55);
+    leftWall.rotation.y = Math.PI * 0.26;
+    scene.add(leftWall);
+
+    // Right Angled Wall
+    var rightWall = new THREE.Mesh(leftWallGeo, brickMat);
+    rightWall.position.set(1.65, 0.2, -0.55);
+    rightWall.rotation.y = -Math.PI * 0.26;
+    scene.add(rightWall);
+
+    // Stone Hearth Floor Slab
+    var floorGeo = new THREE.PlaneGeometry(5.2, 3.8);
+    var floorMat = new THREE.MeshStandardMaterial({
+      color: 0x140c08,
+      roughness: 0.92,
+      metalness: 0.04
+    });
+    var floor = new THREE.Mesh(floorGeo, floorMat);
+    floor.position.set(0, -0.82, 0.1);
+    floor.rotation.x = -Math.PI * 0.5;
+    scene.add(floor);
+
+    // Dark Wooden Mantle Beam
+    var mantleGeo = new THREE.BoxGeometry(4.0, 0.16, 0.4);
+    var mantleMat = new THREE.MeshStandardMaterial({
+      color: 0x241208,
+      roughness: 0.68,
+      metalness: 0.1
+    });
+    var mantle = new THREE.Mesh(mantleGeo, mantleMat);
+    mantle.position.set(0, 1.48, -0.2);
+    scene.add(mantle);
+  }
+
+  // Build 3D Cast Iron Grate
+  function buildIronGrate() {
+    grateGroup = new THREE.Group();
+    var ironMat = new THREE.MeshStandardMaterial({
+      color: 0x141414,
+      roughness: 0.55,
+      metalness: 0.8
+    });
+
+    for (var i = -4; i <= 4; i++) {
+      var barGeo = new THREE.BoxGeometry(0.04, 0.04, 0.6);
+      var bar = new THREE.Mesh(barGeo, ironMat);
+      bar.position.set(i * 0.14, -0.64, 0.0);
+      grateGroup.add(bar);
+    }
+
+    var legGeo = new THREE.BoxGeometry(1.3, 0.05, 0.05);
+    var leg1 = new THREE.Mesh(legGeo, ironMat);
+    leg1.position.set(0, -0.64, 0.24);
+    grateGroup.add(leg1);
+
+    var leg2 = new THREE.Mesh(legGeo, ironMat);
+    leg2.position.set(0, -0.64, -0.24);
+    grateGroup.add(leg2);
+
+    scene.add(grateGroup);
+  }
+
+  // Build Wood Logs & Glowing Coals
+  function buildCoalsAndLogs() {
+    coalsGroup = new THREE.Group();
+    logsGroup = new THREE.Group();
+
+    var coalGeo = new THREE.SphereGeometry(0.04, 8, 8);
+    for (var i = 0; i < 110; i++) {
+      var angle = Math.random() * Math.PI * 2;
+      var rad = Math.random() * 0.82;
+      var coalMat = new THREE.MeshStandardMaterial({
+        color: 0x0c0503,
+        emissive: 0xff3300,
+        emissiveIntensity: 0.6 + Math.random() * 0.7,
+        roughness: 0.95
+      });
+      var coal = new THREE.Mesh(coalGeo, coalMat);
+      coal.position.set(
+        Math.cos(angle) * rad,
+        -0.72 + (Math.random() - 0.5) * 0.04,
+        -0.05 + Math.sin(angle) * rad * 0.4
+      );
+      coal.scale.set(1 + Math.random() * 1.4, 0.5 + Math.random() * 0.4, 1 + Math.random() * 1.4);
+      coalsGroup.add(coal);
+    }
+    scene.add(coalsGroup);
+
+    var logBarkTex = generateLogTexture();
+    var logEndTex = generateLogEndTexture();
+
+    var logBarkMat = new THREE.MeshStandardMaterial({ map: logBarkTex, roughness: 0.82, metalness: 0.05 });
+    var logEndMat = new THREE.MeshStandardMaterial({ map: logEndTex, roughness: 0.78 });
+    var logMaterials = [logBarkMat, logEndMat, logEndMat];
+
+    var logGeo1 = createIrregularLogGeometry(0.12, 1.35);
+    var log1 = new THREE.Mesh(logGeo1, logMaterials);
+    log1.position.set(0.0, -0.54, -0.22);
+    log1.rotation.z = Math.PI * 0.5;
+    log1.rotation.y = 0.04;
+    logsGroup.add(log1);
+
+    var logGeo2 = createIrregularLogGeometry(0.10, 1.15);
+    var log2 = new THREE.Mesh(logGeo2, logMaterials);
+    log2.position.set(-0.25, -0.52, 0.14);
+    log2.rotation.z = Math.PI * 0.48;
+    log2.rotation.y = 0.18;
+    logsGroup.add(log2);
+
+    var logGeo3 = createIrregularLogGeometry(0.095, 1.1);
+    var log3 = new THREE.Mesh(logGeo3, logMaterials);
+    log3.position.set(0.25, -0.52, 0.12);
+    log3.rotation.z = Math.PI * 0.52;
+    log3.rotation.y = -0.22;
+    logsGroup.add(log3);
+
+    var logGeo4 = createIrregularLogGeometry(0.085, 1.05);
+    var log4 = new THREE.Mesh(logGeo4, logMaterials);
+    log4.position.set(-0.08, -0.40, -0.02);
+    log4.rotation.z = Math.PI * 0.42;
+    log4.rotation.x = 0.22;
+    log4.rotation.y = -0.15;
+    logsGroup.add(log4);
+
+    scene.add(logsGroup);
+  }
+
+  // Build Volumetric Flame Emitters
+  function buildMultiFlameEmitters() {
+    flameMaterials = [];
+    flameEmitters = [];
+
+    var emitterConfigs = [
+      { width: 0.38, height: 0.95, x: 0.0, y: -0.12, z: -0.04, scale: 1.0, speed: 0.60, opacity: 0.95, phase: 0.0 },
+      { width: 0.34, height: 0.90, x: -0.10, y: -0.14, z: -0.06, scale: 1.1, speed: 0.65, opacity: 0.92, phase: 1.4 },
+      { width: 0.32, height: 0.88, x: 0.12, y: -0.14, z: -0.08, scale: 0.95, speed: 0.58, opacity: 0.92, phase: 2.8 },
+
+      { width: 0.26, height: 0.65, x: -0.22, y: -0.25, z: 0.12, scale: 1.25, speed: 0.72, opacity: 0.88, phase: 4.2 },
+      { width: 0.25, height: 0.62, x: 0.20, y: -0.25, z: 0.10, scale: 1.2, speed: 0.68, opacity: 0.88, phase: 5.6 },
+      { width: 0.28, height: 0.70, x: 0.02, y: -0.23, z: 0.08, scale: 1.15, speed: 0.65, opacity: 0.92, phase: 0.8 },
+
+      { width: 0.28, height: 0.78, x: -0.32, y: -0.20, z: -0.10, scale: 1.05, speed: 0.55, opacity: 0.85, phase: 3.5 },
+      { width: 0.27, height: 0.75, x: 0.30, y: -0.20, z: -0.12, scale: 1.0, speed: 0.56, opacity: 0.85, phase: 2.1 },
+
+      { width: 0.48, height: 0.98, x: -0.08, y: -0.08, z: -0.24, scale: 0.85, speed: 0.48, opacity: 0.70, phase: 4.8 },
+      { width: 0.45, height: 0.92, x: 0.08, y: -0.08, z: -0.24, scale: 0.88, speed: 0.50, opacity: 0.70, phase: 1.1 }
+    ];
+
+    var pal = PALETTES.classic;
+
+    emitterConfigs.forEach(function (cfg) {
+      var geo = new THREE.PlaneGeometry(cfg.width, cfg.height, 14, 14);
+      
+      var posAttr = geo.attributes.position;
+      for (var i = 0; i < posAttr.count; i++) {
+        var px = posAttr.getX(i);
+        posAttr.setZ(i, Math.sin((px / cfg.width) * Math.PI) * 0.07);
+      }
+      geo.computeVertexNormals();
+
+      var mat = new THREE.ShaderMaterial({
+        vertexShader: fireVertShader,
+        fragmentShader: fireFragShader,
+        uniforms: {
+          colorCore: { value: new THREE.Color(...pal.core) },
+          colorBase: { value: new THREE.Color(...pal.base) },
+          colorEdge: { value: new THREE.Color(...pal.edge) },
+          time: { value: 0.0 },
+          noiseScale: { value: cfg.scale },
+          speed: { value: cfg.speed },
+          opacity: { value: cfg.opacity },
+          phase: { value: cfg.phase }
+        },
+        transparent: true,
+        depthWrite: false,
+        side: THREE.DoubleSide,
+        blending: THREE.NormalBlending
+      });
+
+      flameMaterials.push(mat);
+
+      var mesh = new THREE.Mesh(geo, mat);
+      mesh.position.set(cfg.x, cfg.y, cfg.z);
+      
+      flameEmitters.push({
+        mesh: mesh,
+        baseWidth: cfg.width,
+        baseHeight: cfg.height,
+        phase: cfg.phase
+      });
+
+      scene.add(mesh);
+    });
+  }
+
+  // Heat Haze Distortion Mesh
+  function buildHeatHaze() {
+    var geo = new THREE.PlaneGeometry(1.6, 1.2);
+    var mat = new THREE.ShaderMaterial({
+      vertexShader: heatHazeVertShader,
+      fragmentShader: heatHazeFragShader,
+      uniforms: { time: { value: 0.0 } },
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending
+    });
+
+    heatHazeMesh = new THREE.Mesh(geo, mat);
+    heatHazeMesh.position.set(0, 0.45, -0.12);
+    scene.add(heatHazeMesh);
+  }
+
+  // Smooth Circular Spark Particles
+  function buildEmberParticles() {
+    var count = isCardMode ? 45 : 160;
+    var geo = new THREE.BufferGeometry();
+    var positions = new Float32Array(count * 3);
+    var velocities = new Float32Array(count * 3);
+    var lives = new Float32Array(count);
+
+    for (var i = 0; i < count; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 0.85;
+      // Pre-populate embers floating throughout the scene height on load
+      positions[i * 3 + 1] = -0.5 + Math.random() * 1.3;
+      positions[i * 3 + 2] = -0.1 + (Math.random() - 0.5) * 0.45;
+
+      velocities[i * 3] = (Math.random() - 0.5) * 0.28;
+      velocities[i * 3 + 1] = 0.6 + Math.random() * 1.1;
+      velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.28;
+
+      lives[i] = Math.random();
+    }
+
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+    geo.setAttribute('life', new THREE.BufferAttribute(lives, 1));
+
+    var mat = new THREE.PointsMaterial({
+      color: 0xff8811,
+      size: 0.024,
+      map: circleTexture,
+      transparent: true,
+      opacity: 0.9,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+
+    embersMesh = new THREE.Points(geo, mat);
+    scene.add(embersMesh);
+  }
+
+  // Occasional Ember Pops
+  function triggerEmberPop() {
+    if (isCardMode || Math.random() > 0.08) return;
+    var popGeo = new THREE.SphereGeometry(0.018, 8, 8);
+    var popMat = new THREE.MeshStandardMaterial({
+      color: 0xff7700,
+      emissive: 0xff4400,
+      emissiveIntensity: 1.5,
+      roughness: 0.2
+    });
+    var popMesh = new THREE.Mesh(popGeo, popMat);
+    popMesh.position.set((Math.random() - 0.5) * 0.45, -0.45, 0.1);
+    
+    var vx = (Math.random() - 0.5) * 0.8;
+    var vy = 1.1 + Math.random() * 0.8;
+    var vz = (Math.random() - 0.5) * 0.38;
+
+    scene.add(popMesh);
+    emberPops.push({ mesh: popMesh, vx: vx, vy: vy, vz: vz, life: 1.0 });
+  }
+
+  // Faint Translucent Smoke Puffs
+  function buildSmokeParticles() {
+    var count = isCardMode ? 12 : 32;
+    var geo = new THREE.BufferGeometry();
+    var positions = new Float32Array(count * 3);
+    var lives = new Float32Array(count);
+
+    for (var i = 0; i < count; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 0.5;
+      positions[i * 3 + 1] = 0.2 + Math.random() * 0.9;
+      positions[i * 3 + 2] = -0.3 + (Math.random() - 0.5) * 0.3;
+      lives[i] = Math.random();
+    }
+
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('life', new THREE.BufferAttribute(lives, 1));
+
+    var mat = new THREE.PointsMaterial({
+      color: 0x30221a,
+      size: 0.28,
+      map: circleTexture,
+      transparent: true,
+      opacity: 0.16,
+      blending: THREE.NormalBlending,
+      depthWrite: false
+    });
+
+    smokeMesh = new THREE.Points(geo, mat);
+    scene.add(smokeMesh);
+  }
+
+  // Update Palette Colors
+  function updatePalette() {
+    var p = PALETTES[currentStyleKey] || PALETTES.classic;
+
+    flameMaterials.forEach(function (mat) {
+      mat.uniforms.colorCore.value.setRGB(...p.core);
+      mat.uniforms.colorBase.value.setRGB(...p.base);
+      mat.uniforms.colorEdge.value.setRGB(...p.edge);
+    });
+
+    if (fireLight) fireLight.color.setHex(p.litHex);
+    if (hearthLight) hearthLight.color.setHex(p.litHex);
+    if (embersMesh) embersMesh.material.color.setHex(p.litHex);
+
     var roomGlow = document.getElementById('fpRoomGlow');
     if (roomGlow) {
-      roomGlow.style.background = 'radial-gradient(ellipse 70% 45% at 50% 85%,' + p.room + ' 0%, transparent 70%)';
+      roomGlow.style.background = 'radial-gradient(ellipse 75% 50% at 50% 85%,' + p.roomCss + ' 0%, transparent 70%)';
     }
   }
-  applyPalette('classic');
 
-  function resizeCanvas() {
-    if (!wrap || !canvas) return;
-    DPR = Math.min(window.devicePixelRatio || 1, 2);
+  // Resize Handler
+  function onResize() {
+    if (!wrap || !renderer || !camera || !composer) return;
     var rect = wrap.getBoundingClientRect();
-    var newW = rect.width;
-    var newH = rect.height;
-    if (newW > 10 && newH > 10) {
-      W = newW;
-      H = newH;
-      canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
-      ctx.scale(DPR, DPR);
-      initCoals();
-      sizeInitialized = true;
-    }
+    var w = rect.width;
+    var h = rect.height;
+    if (w < 10 || h < 10) return;
+
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(w, h);
+    composer.setSize(w, h);
   }
 
-  function initCoals() {
-    COALS = [];
-    var archW = W * 0.52, archBotY = H * 0.81;
-    for (var i = 0; i < 80; i++) {
-      var angle = Math.random() * Math.PI;
-      var r = Math.random() * (archW * 0.32);
-      COALS.push({
-        x: W * 0.5 + Math.cos(angle) * r,
-        y: archBotY - 4 - Math.sin(angle) * r * 0.28,
-        size: 3 + Math.random() * 5,
-        cFactor: 0.3 + Math.random() * 0.7
+  window.addEventListener('resize', onResize);
+  if (typeof ResizeObserver !== 'undefined' && wrap) {
+    new ResizeObserver(onResize).observe(wrap);
+  }
+
+  // Main Render Loop
+  function animate() {
+    requestAnimationFrame(animate);
+
+    var delta = clock.getDelta();
+    var elapsedTime = clock.getElapsedTime();
+
+    // 1. Camera Framing
+    if (camera) {
+      camera.position.y = Math.sin(elapsedTime * 0.5) * 0.004;
+      camera.position.x = Math.cos(elapsedTime * 0.4) * 0.003;
+      camera.lookAt(0, -0.12, 0);
+    }
+
+    // 2. Update Shader Time & Heat Haze
+    flameMaterials.forEach(function (mat) {
+      mat.uniforms.time.value = elapsedTime;
+    });
+
+    if (heatHazeMesh) {
+      heatHazeMesh.material.uniforms.time.value = elapsedTime;
+    }
+
+    // 3. Animate Flame Emitters Height and Width (with Sleep Extinguish support)
+    var activeScale = isSleepExtinguished ? 0.0 : S.flameScale;
+    flameEmitters.forEach(function (em, idx) {
+      var heightMod = 1.0 + Math.sin(elapsedTime * 3.6 + em.phase) * 0.14 + Math.cos(elapsedTime * 5.8 + idx) * 0.08;
+      var widthMod = 1.0 + Math.cos(elapsedTime * 2.6 + em.phase) * 0.09;
+
+      em.mesh.scale.set(widthMod * activeScale, heightMod * activeScale, activeScale);
+    });
+
+    // 4. Multi-Frequency Firelight Flickering
+    if (fireLight) {
+      var flicker = Math.sin(elapsedTime * 13.0) * 0.25 +
+                    Math.cos(elapsedTime * 21.0) * 0.16 +
+                    (Math.random() - 0.5) * 0.14;
+      var targetIntensity = isSleepExtinguished ? 0.0 : Math.max(2.2, 2.8 + flicker);
+      fireLight.intensity = targetIntensity;
+      fireLight.position.x = Math.sin(elapsedTime * 2.6) * 0.08;
+    }
+
+    if (hearthLight) {
+      hearthLight.intensity = isSleepExtinguished ? 0.0 : (1.6 + Math.sin(elapsedTime * 3.8) * 0.25);
+    }
+
+    // 5. Coals Bed Emissive Warmth Pulsing
+    if (coalsGroup) {
+      coalsGroup.children.forEach(function (coal, idx) {
+        var pulse = Math.sin(elapsedTime * 2.2 + idx) * 0.2 + 0.65;
+        coal.material.emissiveIntensity = pulse;
       });
     }
-  }
 
-  window.addEventListener('resize', resizeCanvas);
-  
-  if (typeof ResizeObserver !== 'undefined' && wrap) {
-    var ro = new ResizeObserver(function () {
-      resizeCanvas();
-    });
-    ro.observe(wrap);
-  }
-  
-  resizeCanvas();
-  setTimeout(resizeCanvas, 100);
+    // 6. Ember Sparks Motion with Sine Wave Horizontal Drift
+    if (embersMesh) {
+      var pos = embersMesh.geometry.attributes.position.array;
+      var vel = embersMesh.geometry.attributes.velocity.array;
+      var lives = embersMesh.geometry.attributes.life.array;
+      var count = lives.length;
 
-  function hexToRgba(hex, alpha) {
-    if (hex.indexOf('rgba') === 0) return hex;
-    var r = parseInt(hex.slice(1,3), 16), g = parseInt(hex.slice(3,5), 16), b = parseInt(hex.slice(5,7), 16);
-    return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
-  }
-
-  function blendColors(c1, c2, ratio) {
-    ratio = Math.max(0, Math.min(1, ratio));
-    var r1 = parseInt(c1.slice(1,3), 16), g1 = parseInt(c1.slice(3,5), 16), b1 = parseInt(c1.slice(5,7), 16);
-    var r2 = parseInt(c2.slice(1,3), 16), g2 = parseInt(c2.slice(3,5), 16), b2 = parseInt(c2.slice(5,7), 16);
-    var r = Math.round(r1 + (r2 - r1) * ratio), g = Math.round(g1 + (g2 - g1) * ratio), b = Math.round(b1 + (b2 - b1) * ratio);
-    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-  }
-
-  function drawTexturedBrick(pts, baseColor, litColor, flameCx, flameCy, fIntensity) {
-    var cx = (pts[0].x+pts[1].x+pts[2].x+pts[3].x)/4, cy = (pts[0].y+pts[1].y+pts[2].y+pts[3].y)/4;
-    var dist = Math.sqrt((cx-flameCx)*(cx-flameCx)+(cy-flameCy)*(cy-flameCy));
-    var light = 1.2 / (1.0 + dist * dist * 0.00005);
-    light = Math.min(1.0, light) * fIntensity;
-    var vFactor = Math.max(0, (cy - (H * 0.28 - 20)) / (H * 0.58));
-    var chimneyLight = light * Math.pow(vFactor, 2.2) * 1.5;
-    var color = blendColors(baseColor, litColor, chimneyLight * 0.65);
-
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.moveTo(pts[0].x, pts[0].y); ctx.lineTo(pts[1].x, pts[1].y);
-    ctx.lineTo(pts[2].x, pts[2].y); ctx.lineTo(pts[3].x, pts[3].y);
-    ctx.closePath(); ctx.fill();
-
-    ctx.strokeStyle = 'rgba(5, 3, 2, 0.45)';
-    ctx.lineWidth = 1; ctx.stroke();
-
-    if (chimneyLight > 0.04) {
-      ctx.strokeStyle = hexToRgba(litColor, chimneyLight * 0.6);
-      ctx.lineWidth = 1.5; ctx.beginPath();
-      ctx.moveTo(pts[3].x, pts[3].y); ctx.lineTo(pts[2].x, pts[2].y);
-      if (cx < flameCx - 10) { ctx.lineTo(pts[1].x, pts[1].y); }
-      else if (cx > flameCx + 10) { ctx.moveTo(pts[0].x, pts[0].y); ctx.lineTo(pts[3].x, pts[3].y); ctx.lineTo(pts[2].x, pts[2].y); }
-      ctx.stroke();
-    }
-  }
-
-  function drawLog3D(x1, y1, x2, y2, radius, palette, capAtStart) {
-    var dx = x2 - x1, dy = y2 - y1, L = Math.sqrt(dx*dx + dy*dy), angle = Math.atan2(dy, dx);
-    ctx.save(); ctx.translate(x1, y1); ctx.rotate(angle);
-    var bodyGr = ctx.createLinearGradient(0, -radius, 0, radius);
-    bodyGr.addColorStop(0, '#552e1d'); bodyGr.addColorStop(0.3, '#32180e'); bodyGr.addColorStop(1, '#0e0503');
-    ctx.fillStyle = bodyGr; ctx.fillRect(0, -radius, L, radius*2);
-
-    ctx.strokeStyle = 'rgba(10,5,2,0.38)'; ctx.lineWidth = 1;
-    for (var ty = -radius * 0.7; ty <= radius * 0.7; ty += radius * 0.35) {
-      if (Math.abs(ty) < 2) continue;
-      ctx.beginPath(); ctx.moveTo(0, ty);
-      ctx.bezierCurveTo(L*0.25, ty+Math.sin(ty)*2, L*0.75, ty-Math.sin(ty)*2, L, ty);
-      ctx.stroke();
-    }
-
-    var burntGr = ctx.createLinearGradient(L * 0.25, 0, L, 0);
-    burntGr.addColorStop(0, 'rgba(0,0,0,0)'); burntGr.addColorStop(0.6, 'rgba(10,6,6,0.85)'); burntGr.addColorStop(1, '#000000');
-    ctx.fillStyle = burntGr; ctx.fillRect(0, -radius, L, radius*2);
-
-    ctx.globalCompositeOperation = 'screen';
-    ctx.strokeStyle = hexToRgba(palette.lit, 0.8 * (0.8 + Math.sin(TIME*0.1)*0.2));
-    ctx.lineWidth = 1.5;
-    for (var j = 0; j < 2; j++) {
-      var cyy = -radius*0.4 + Math.random()*radius*0.8;
-      ctx.beginPath(); ctx.moveTo(L*0.5, cyy);
-      ctx.lineTo(L*0.75, cyy+(Math.random()-0.5)*4); ctx.lineTo(L*0.95, cyy+(Math.random()-0.5)*4);
-      ctx.stroke();
-    }
-    ctx.globalCompositeOperation = 'source-over';
-
-    if (capAtStart) {
-      ctx.fillStyle = '#b57c50'; ctx.beginPath(); ctx.ellipse(0, 0, radius*0.35, radius, 0, 0, Math.PI*2); ctx.fill();
-      ctx.strokeStyle = '#522812'; ctx.lineWidth = 1;
-      for (var rFactor = 0.35; rFactor < 1.0; rFactor += 0.3) {
-        ctx.beginPath(); ctx.ellipse(0, 0, radius*0.35*rFactor, radius*rFactor, 0, 0, Math.PI*2); ctx.stroke();
-      }
-      ctx.strokeStyle = '#1c0e08'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(0, 0, radius*0.35, radius, 0, 0, Math.PI*2); ctx.stroke();
-    }
-    ctx.restore();
-  }
-
-  function getFrontCoord(ratio, isLeft, archCx, archW, archTop, archBotY, yBase) {
-    if (ratio < 0.5) {
-      var t = ratio / 0.5, mt = 1 - t;
-      var startX = isLeft ? (archCx - archW*0.5) : (archCx + archW*0.5);
-      var endX = archCx;
-      var cpX = startX;
-      var cpY = archTop;
-      var x = mt*mt*startX + 2*mt*t*cpX + t*t*endX;
-      var y = mt*mt*yBase + 2*mt*t*cpY + t*t*archTop;
-      return { x: x, y: y };
-    } else {
-      var t = (ratio - 0.5) / 0.5;
-      return { x: isLeft ? (archCx - archW*0.5) : (archCx + archW*0.5), y: yBase + t*(archBotY - yBase) };
-    }
-  }
-
-  function getArchPoint(t, isLeft, archCx, archW, archTop, yBase) {
-    var mt = 1 - t;
-    var startX = isLeft ? (archCx - archW * 0.5) : (archCx + archW * 0.5);
-    var endX = archCx;
-    var x = mt*mt*startX + 2*mt*t*startX + t*t*endX;
-    var y = mt*mt*yBase + 2*mt*t*archTop + t*t*archTop;
-    return { x: x, y: y };
-  }
-
-  function drawScene() {
-    try {
-    if (!canvas || !ctx) { requestAnimationFrame(drawScene); return; }
-    if (!sizeInitialized) {
-      requestAnimationFrame(drawScene);
-      return;
-    }
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.clearRect(0, 0, W, H);
-    var pName = styleSelect ? styleSelect.value : 'classic';
-    var pal = PALETTES[pName] || PALETTES.classic;
-
-    var glowFlicker = 0.85 + Math.sin(TIME * 0.12) * 0.08 + Math.cos(TIME * 0.07) * 0.05;
-
-    // 1. Chimney Outer wall bricks
-    var bH = 18, bW = 44;
-    var flameCx = W * 0.5, flameCy = H * 0.81;
-    for (var r = 0; r < H / bH + 1; r++) {
-      var oy = r * bH, offset = (r % 2 === 0) ? 0 : bW * 0.5;
-      for (var c = -1; c < W / bW + 2; c++) {
-        var ox = c * bW + offset;
-        var cx = ox + bW*0.5, cy = oy + bH*0.5;
-        var dist = Math.sqrt((cx-flameCx)*(cx-flameCx)+(cy-flameCy)*(cy-flameCy));
-        var light = 0.35 / (1.0 + dist * dist * 0.00007) * glowFlicker;
-        var brickColor = blendColors(pal.brick, pal.lit, light * 0.6);
-        ctx.fillStyle = brickColor; ctx.fillRect(ox, oy, bW - 1, bH - 1);
-        ctx.strokeStyle = 'rgba(5, 3, 2, 0.45)'; ctx.lineWidth = 1; ctx.strokeRect(ox, oy, bW - 1, bH - 1);
-      }
-    }
-
-    // 2. Fireplace dimensions
-    var archCx = W * 0.5, archTop = H * 0.28, archW = W * 0.52, archBotY = H * 0.81;
-    var yBase = archTop + (archBotY - archTop) * 0.42;
-
-    var backW = archW * 0.72, backLeft = archCx - backW * 0.5, backRight = archCx + backW * 0.5;
-    var backTop = archTop + 32, backBotY = archBotY - 14;
-
-    function defineArchPath(c) {
-      c.beginPath(); c.moveTo(archCx - archW*0.5, archBotY); c.lineTo(archCx - archW*0.5, yBase);
-      c.quadraticCurveTo(archCx - archW*0.5, archTop, archCx, archTop);
-      c.quadraticCurveTo(archCx + archW*0.5, archTop, archCx + archW*0.5, yBase);
-      c.lineTo(archCx + archW*0.5, archBotY); c.closePath();
-    }
-
-    // 3. Recessed interior
-    ctx.save(); defineArchPath(ctx); ctx.clip();
-    ctx.fillStyle = '#080403'; ctx.fillRect(0, 0, W, H);
-
-    // Inner perspective walls
-    var N_rows = 10;
-    for (var row = 0; row < N_rows; row++) {
-      var r1 = row / N_rows, r2 = (row + 1) / N_rows;
-      var PL1 = getFrontCoord(r1, true, archCx, archW, archTop, archBotY, yBase);
-      var PL2 = getFrontCoord(r2, true, archCx, archW, archTop, archBotY, yBase);
-      var PR1 = getFrontCoord(r1, false, archCx, archW, archTop, archBotY, yBase);
-      var PR2 = getFrontCoord(r2, false, archCx, archW, archTop, archBotY, yBase);
-      var BL1 = { x: backLeft, y: backTop + r1 * (backBotY - backTop) };
-      var BL2 = { x: backLeft, y: backTop + r2 * (backBotY - backTop) };
-      var BR1 = { x: backRight, y: backTop + r1 * (backBotY - backTop) };
-      var BR2 = { x: backRight, y: backTop + r2 * (backBotY - backTop) };
-
-      // Back bricks
-      var colCount = 6, offset = (row % 2 === 0) ? 0 : 0.5 / colCount;
-      for (var col = -1; col < colCount + 1; col++) {
-        var t1 = (col + offset) / colCount, t2 = (col + 1 + offset) / colCount;
-        t1 = Math.max(0, Math.min(1, t1)); t2 = Math.max(0, Math.min(1, t2));
-        if (t1 >= t2) continue;
-        var p1 = { x: BL1.x + t1*(BR1.x-BL1.x), y: BL1.y }, p2 = { x: BL1.x + t2*(BR1.x-BL1.x), y: BR1.y };
-        var p3 = { x: BL2.x + t2*(BR2.x-BL2.x), y: BR2.y }, p4 = { x: BL2.x + t1*(BR2.x-BL2.x), y: BL2.y };
-        drawTexturedBrick([p1, p2, p3, p4], pal.brick, pal.lit, flameCx, flameCy, glowFlicker);
-      }
-
-      // Left inner wall bricks
-      var sCount = 3, sOffset = (row % 2 === 0) ? 0 : 0.5 / sCount;
-      for (var colS = -1; colS < sCount + 1; colS++) {
-        var t1 = (colS + sOffset)/sCount, t2 = (colS + 1 + sOffset)/sCount;
-        t1 = Math.max(0, Math.min(1, t1)); t2 = Math.max(0, Math.min(1, t2));
-        if (t1 >= t2) continue;
-        var p1 = { x: PL1.x + t1*(BL1.x-PL1.x), y: PL1.y + t1*(BL1.y-PL1.y) };
-        var p2 = { x: PL1.x + t2*(BL1.x-PL1.x), y: PL1.y + t2*(BL1.y-PL1.y) };
-        var p3 = { x: PL2.x + t2*(BL2.x-PL2.x), y: PL2.y + t2*(BL2.y-PL2.y) };
-        var p4 = { x: PL2.x + t1*(BL2.x-PL2.x), y: PL2.y + t1*(BL2.y-PL2.y) };
-        drawTexturedBrick([p1, p2, p3, p4], pal.brick, pal.lit, flameCx, flameCy, glowFlicker);
-      }
-
-      // Right inner wall bricks
-      for (var colS = -1; colS < sCount + 1; colS++) {
-        var t1 = (colS + sOffset)/sCount, t2 = (colS + 1 + sOffset)/sCount;
-        t1 = Math.max(0, Math.min(1, t1)); t2 = Math.max(0, Math.min(1, t2));
-        if (t1 >= t2) continue;
-        var p1 = { x: BR1.x + t1*(PR1.x-BR1.x), y: BR1.y + t1*(PR1.y-BR1.y) };
-        var p2 = { x: BR1.x + t2*(PR1.x-BR1.x), y: BR1.y + t2*(PR1.y-BR1.y) };
-        var p3 = { x: BR2.x + t2*(PR2.x-BR2.x), y: BR2.y + t2*(PR2.y-BR2.y) };
-        var p4 = { x: BR2.x + t1*(PR2.x-BR2.x), y: BR2.y + t1*(PR2.y-BR2.y) };
-        drawTexturedBrick([p1, p2, p3, p4], pal.brick, pal.lit, flameCx, flameCy, glowFlicker);
-      }
-    }
-
-    // Floor of inner fireplace
-    ctx.fillStyle = '#0f0c0b';
-    ctx.beginPath(); ctx.moveTo(archCx-archW*0.5, archBotY); ctx.lineTo(backLeft, backBotY);
-    ctx.lineTo(backRight, backBotY); ctx.lineTo(archCx+archW*0.5, archBotY); ctx.closePath(); ctx.fill();
-
-    // Coal bed glow
-    var coalBedGlow = ctx.createRadialGradient(archCx, archBotY - 3, 2, archCx, archBotY - 3, archW*0.35);
-    coalBedGlow.addColorStop(0, hexToRgba(pal.glow, 0.9 * glowFlicker));
-    coalBedGlow.addColorStop(0.5, hexToRgba(pal.glow, 0.4 * glowFlicker));
-    coalBedGlow.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = coalBedGlow; ctx.fillRect(archCx-archW*0.5, backBotY-4, archW, archBotY-backBotY+8);
-
-    // Coals rendering
-    for (var j = 0; j < COALS.length; j++) {
-      var c = COALS[j];
-      ctx.fillStyle = mixCoalColor('#0d0b0a', pal.glow, c.cFactor * glowFlicker);
-      ctx.beginPath(); ctx.arc(c.x, c.y, c.size, 0, Math.PI*2); ctx.fill();
-    }
-
-    function mixCoalColor(base, glow, factor) {
-      if (factor < 0.15) return base;
-      return blendColors(base, glow, factor * 0.7);
-    }
-
-    // Logs stacks
-    var logW = archW * 0.46;
-    // Back log (bottom horizontal)
-    drawLog3D(archCx - logW*0.48, archBotY - 14, archCx + logW*0.48, archBotY - 14, 12, pal, false);
-
-    // Back Flame layer
-    updateAndDrawFlames(true, pal);
-
-    // Front diagonal logs
-    // Left log (cap at outer end)
-    drawLog3D(archCx - logW*0.42, archBotY - 3, archCx + logW*0.14, archBotY - 32, 17, pal, true);
-    // Right log (cap at outer end, crosses front)
-    drawLog3D(archCx + logW*0.38, archBotY - 5, archCx - logW*0.18, archBotY - 27, 15, pal, true);
-
-    // Foreground Flame layer
-    updateAndDrawFlames(false, pal);
-
-    // Particles/embers inside firebox
-    updateAndDrawEmbers(pal);
-
-    ctx.restore(); // end of clipping
-
-    // 4. Stone voussoirs arch trim
-    var stoneW = 18;
-    var numFlatStones = Math.ceil((archBotY - yBase) / 16);
-    ctx.fillStyle = '#201815'; ctx.strokeStyle = 'rgba(5, 3, 2, 0.75)'; ctx.lineWidth = 1;
-    for (var i = 0; i < numFlatStones; i++) {
-      var dy1 = archBotY - i * 16, dy2 = Math.max(yBase, archBotY - (i + 1) * 16);
-      // Left border voussoir
-      ctx.fillRect(archCx - archW*0.5 - stoneW, dy2, stoneW, dy1-dy2); ctx.strokeRect(archCx - archW*0.5 - stoneW, dy2, stoneW, dy1-dy2);
-      ctx.fillStyle = hexToRgba(pal.lit, 0.42 * glowFlicker * (dy2 / archBotY));
-      ctx.fillRect(archCx - archW*0.5 - 2, dy2, 2, dy1-dy2); ctx.fillStyle = '#201815';
-      // Right border voussoir
-      ctx.fillRect(archCx + archW*0.5, dy2, stoneW, dy1-dy2); ctx.strokeRect(archCx + archW*0.5, dy2, stoneW, dy1-dy2);
-      ctx.fillStyle = hexToRgba(pal.lit, 0.42 * glowFlicker * (dy2 / archBotY));
-      ctx.fillRect(archCx + archW*0.5, dy2, 2, dy1-dy2); ctx.fillStyle = '#201815';
-    }
-
-    var curveStones = 7;
-    for (var i = 0; i < curveStones; i++) {
-      var t1 = i / curveStones, t2 = (i+1) / curveStones;
-      // Left curve stones
-      var Pi1 = getArchPoint(t1, true, archCx, archW, archTop, yBase), Pi2 = getArchPoint(t2, true, archCx, archW, archTop, yBase);
-      drawCurveVoussoir(Pi1, Pi2, stoneW, pal.lit, glowFlicker, true);
-      // Right curve stones
-      var Pi3 = getArchPoint(t1, false, archCx, archW, archTop, yBase), Pi4 = getArchPoint(t2, false, archCx, archW, archTop, yBase);
-      drawCurveVoussoir(Pi3, Pi4, stoneW, pal.lit, glowFlicker, false);
-    }
-
-    function drawCurveVoussoir(Pi1, Pi2, w, litColor, glow, isLeft) {
-      var cx = archCx, cy = archTop + (archBotY-archTop)*0.32;
-      var dx1 = Pi1.x-cx, dy1 = Pi1.y-cy, len1 = Math.sqrt(dx1*dx1+dy1*dy1);
-      var dx2 = Pi2.x-cx, dy2 = Pi2.y-cy, len2 = Math.sqrt(dx2*dx2+dy2*dy2);
-      var Po1 = { x: Pi1.x + (dx1/len1)*w, y: Pi1.y + (dy1/len1)*w };
-      var Po2 = { x: Pi2.x + (dx2/len2)*w, y: Pi2.y + (dy2/len2)*w };
-
-      ctx.fillStyle = '#221a17'; ctx.beginPath();
-      ctx.moveTo(Pi1.x, Pi1.y); ctx.lineTo(Po1.x, Po1.y);
-      ctx.lineTo(Po2.x, Po2.y); ctx.lineTo(Pi2.x, Pi2.y); ctx.closePath(); ctx.fill(); ctx.stroke();
-
-      ctx.strokeStyle = hexToRgba(litColor, 0.48 * glow); ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.moveTo(Pi1.x, Pi1.y); ctx.lineTo(Pi2.x, Pi2.y); ctx.stroke();
-      ctx.strokeStyle = 'rgba(5, 3, 2, 0.75)'; ctx.lineWidth = 1;
-    }
-
-    // 5. Wooden Mantle Shelf
-    var mantleY = archTop - 12, mantleW = archW * 1.34;
-    var mantleGr = ctx.createLinearGradient(0, mantleY - 24, 0, mantleY + 8);
-    mantleGr.addColorStop(0, '#4e2817'); mantleGr.addColorStop(1, '#2c1409');
-    ctx.fillStyle = mantleGr; ctx.fillRect(archCx - mantleW*0.5, mantleY - 24, mantleW, 26);
-    // top light edge
-    ctx.fillStyle = 'rgba(255,255,255,0.06)'; ctx.fillRect(archCx - mantleW*0.5, mantleY - 24, mantleW, 2);
-    // bottom fire bounce reflect
-    ctx.fillStyle = hexToRgba(pal.lit, 0.3 * glowFlicker); ctx.fillRect(archCx - mantleW*0.5, mantleY, mantleW, 3);
-    // shadow cast underneath
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.55)'; ctx.fillRect(archCx - mantleW*0.5, mantleY, mantleW, 10);
-
-    // 6. Hearth Slab
-    var slabW = archW * 1.18, slabY = archBotY;
-    var slabGr = ctx.createLinearGradient(0, slabY - 3, 0, slabY + 24);
-    slabGr.addColorStop(0, '#302622'); slabGr.addColorStop(1, '#140f0d');
-    ctx.fillStyle = slabGr; ctx.fillRect(archCx - slabW*0.5, slabY - 2, slabW, 22);
-
-    ctx.fillStyle = 'rgba(255,255,255,0.04)'; ctx.fillRect(archCx - slabW*0.5, slabY - 2, slabW, 1.5);
-    // Center glow reflect
-    var slabReflect = ctx.createRadialGradient(archCx, slabY, 2, archCx, slabY, archW*0.35);
-    slabReflect.addColorStop(0, hexToRgba(pal.glow, 0.28 * glowFlicker));
-    slabReflect.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = slabReflect; ctx.fillRect(archCx - slabW*0.5, slabY - 2, slabW, 16);
-
-    // 7. Smoke animation
-    updateAndDrawSmoke(pal);
-
-    TIME++;
-    } catch (e) { /* keep the loop alive */ }
-    requestAnimationFrame(drawScene);
-  }
-
-  function updateAndDrawFlames(isBackLayer, pal) {
-    if (!flameSizeSlider) return;
-    var sizeSliderVal = parseFloat(flameSizeSlider.value) || 110;
-    var flameScale = sizeSliderVal / 110;
-
-    var genRate = isBackLayer ? (5 + Math.floor(flameScale*3)) : (2 + Math.floor(flameScale*1.5));
-    if (isCardMode) {
-      genRate = Math.max(1, Math.floor(genRate * 0.4));
-    }
-    var archCx = W * 0.5, archBotY = H * 0.81;
-
-    var maxParticles = isCardMode ? 60 : 160;
-    if (particles.length < maxParticles) {
-      for (var i = 0; i < genRate; i++) {
-        var sideOffset = (Math.random() - 0.5) * W * 0.15;
-        var pType = Math.random() < 0.22 ? 'core' : (Math.random() < 0.65 ? 'mid' : 'outer');
-        var pSize = (pType === 'core' ? (15+Math.random()*10) : (pType === 'mid' ? (25+Math.random()*15) : (35+Math.random()*20))) * flameScale;
-
-        particles.push({
-          back: isBackLayer,
-          x: archCx + sideOffset + (Math.random()-0.5)*20,
-          y: archBotY - 10 - Math.abs(sideOffset)*0.2 + (Math.random()-0.5)*6,
-          vx: (Math.random() - 0.5) * 0.7,
-          vy: (-1.8 - Math.random() * 2.2) * flameScale,
-          life: 1.0,
-          decay: (0.007 + Math.random() * 0.007) / flameScale,
-          size: pSize,
-          type: pType
-        });
-      }
-    }
-
-    ctx.globalCompositeOperation = 'screen';
-    var nextParticles = [];
-    for (var i = 0; i < particles.length; i++) {
-      var p = particles[i];
-      if (p.back !== isBackLayer) {
-        nextParticles.push(p);
-        continue;
-      }
-      p.x += p.vx; p.y += p.vy;
-      p.x += Math.sin(TIME * 0.035 + p.y * 0.02) * 0.9 * (1.0 - p.life);
-      p.life -= p.decay;
-
-      if (p.life > 0) {
-        nextParticles.push(p);
-        var sizeNow = p.size * p.life;
-        var alpha = p.life * 0.42;
-        var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, sizeNow);
-
-        if (p.type === 'core') {
-          grad.addColorStop(0, hexToRgba(pal.core, alpha * 1.5));
-          grad.addColorStop(0.35, hexToRgba(pal.c1, alpha));
-          grad.addColorStop(1, 'rgba(0,0,0,0)');
-        } else if (p.type === 'mid') {
-          grad.addColorStop(0, hexToRgba(pal.c1, alpha * 1.2));
-          grad.addColorStop(0.45, hexToRgba(pal.c2, alpha * 0.6));
-          grad.addColorStop(1, 'rgba(0,0,0,0)');
-        } else {
-          grad.addColorStop(0, hexToRgba(pal.c2, alpha * 0.9));
-          grad.addColorStop(0.55, hexToRgba(pal.glow, alpha * 0.35));
-          grad.addColorStop(1, 'rgba(0,0,0,0)');
+      for (var i = 0; i < count; i++) {
+        lives[i] -= delta * 0.4;
+        if (lives[i] <= 0) {
+          lives[i] = 1.0;
+          pos[i * 3] = (Math.random() - 0.5) * 0.85;
+          pos[i * 3 + 1] = -0.5;
+          pos[i * 3 + 2] = -0.1 + (Math.random() - 0.5) * 0.45;
         }
 
-        ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(p.x, p.y, sizeNow, 0, Math.PI*2); ctx.fill();
+        pos[i * 3] += vel[i * 3] * delta + Math.sin(elapsedTime * 3.0 + i) * 0.003;
+        pos[i * 3 + 1] += vel[i * 3 + 1] * delta;
+        pos[i * 3 + 2] += vel[i * 3 + 2] * delta;
+      }
+      embersMesh.geometry.attributes.position.needsUpdate = true;
+      embersMesh.geometry.attributes.life.needsUpdate = true;
+    }
+
+    // 7. Occasional Ember Pops Physics
+    triggerEmberPop();
+    var nextPops = [];
+    for (var k = 0; k < emberPops.length; k++) {
+      var pop = emberPops[k];
+      pop.life -= delta * 0.88;
+      pop.vy -= delta * 0.75;
+      pop.mesh.position.x += pop.vx * delta;
+      pop.mesh.position.y += pop.vy * delta;
+      pop.mesh.position.z += pop.vz * delta;
+
+      if (pop.life > 0 && pop.mesh.position.y > -0.7) {
+        pop.mesh.material.opacity = pop.life;
+        nextPops.push(pop);
+      } else {
+        scene.remove(pop.mesh);
       }
     }
-    particles = nextParticles;
-    ctx.globalCompositeOperation = 'source-over';
-  }
+    emberPops = nextPops;
 
-  function updateAndDrawEmbers(pal) {
-    if (!flameSizeSlider) return;
-    var sizeSliderVal = parseFloat(flameSizeSlider.value) || 110;
-    var flameScale = sizeSliderVal / 110;
-    var archCx = W * 0.5, archBotY = H * 0.81, archW = W * 0.52;
+    // 8. Faint Translucent Smoke Drift
+    if (smokeMesh) {
+      var sPos = smokeMesh.geometry.attributes.position.array;
+      var sLives = smokeMesh.geometry.attributes.life.array;
+      var sCount = sLives.length;
 
-    var maxEmbers = isCardMode ? 30 : 90;
-    var spawnProb = isCardMode ? 0.35 : 0.6;
-    if (embers.length < maxEmbers && Math.random() < spawnProb) {
-      embers.push({
-        x: archCx + (Math.random() - 0.5) * archW * 0.42,
-        y: archBotY - 14,
-        vx: (Math.random() - 0.5) * 1.0,
-        vy: -1.2 - Math.random() * 2.0,
-        decay: 0.007 + Math.random() * 0.008,
-        life: 1.0,
-        size: 1.0 + Math.random() * 2.0,
-        wobble: Math.random() * 10,
-        wSpeed: 0.02 + Math.random() * 0.03
-      });
-    }
-
-    var nextEmbers = [];
-    for (var i = 0; i < embers.length; i++) {
-      var e = embers[i];
-      e.x += e.vx; e.y += e.vy;
-      e.x += Math.sin(TIME * e.wSpeed + e.wobble) * 0.6;
-      e.life -= e.decay;
-
-      if (e.life > 0 && e.y > H * 0.2) {
-        nextEmbers.push(e);
-        ctx.lineWidth = e.size;
-        ctx.strokeStyle = hexToRgba(pal.c1, e.life * 0.85);
-        ctx.beginPath(); ctx.moveTo(e.x, e.y);
-        ctx.lineTo(e.x + e.vx * 1.8, e.y + e.vy * 1.8);
-        ctx.stroke();
+      for (var j = 0; j < sCount; j++) {
+        sLives[j] -= delta * 0.2;
+        if (sLives[j] <= 0) {
+          sLives[j] = 1.0;
+          sPos[j * 3] = (Math.random() - 0.5) * 0.5;
+          sPos[j * 3 + 1] = 0.1;
+          sPos[j * 3 + 2] = -0.3;
+        }
+        sPos[j * 3] += Math.sin(elapsedTime * 1.6 + j) * 0.0018;
+        sPos[j * 3 + 1] += delta * 0.28;
       }
+      smokeMesh.geometry.attributes.position.needsUpdate = true;
+      smokeMesh.geometry.attributes.life.needsUpdate = true;
     }
-    embers = nextEmbers;
+
+    // Render Scene with Bloom
+    if (composer) {
+      bloomPass.strength = S.bloomStrength;
+      composer.render();
+    }
   }
 
-  function updateAndDrawSmoke(pal) {
-    var archCx = W * 0.5, archTop = H * 0.28;
-    if (smoke.length < 25 && Math.random() < 0.12) {
-      smoke.push({
-        x: archCx + (Math.random() - 0.5) * 60,
-        y: archTop + 14,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: -0.7 - Math.random() * 0.8,
-        size: 30 + Math.random() * 20,
-        life: 1.0,
-        decay: 0.007 + Math.random() * 0.006
-      });
-    }
-
-    var nextSmoke = [];
-    var currentStyle = styleSelect ? styleSelect.value : 'classic';
-    for (var i = 0; i < smoke.length; i++) {
-      var s = smoke[i];
-      s.x += s.vx; s.y += s.vy;
-      s.size += 0.22; s.life -= s.decay;
-
-      if (s.life > 0 && s.y > 0) {
-        nextSmoke.push(s);
-        var sizeNow = s.size * s.life;
-        var sGrad = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, sizeNow);
-        var col = currentStyle === 'classic' ? 'rgba(70,60,60,' : 'rgba(60,65,70,';
-        sGrad.addColorStop(0, col + (s.life * 0.08) + ')');
-        sGrad.addColorStop(0.5, col + (s.life * 0.03) + ')');
-        sGrad.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = sGrad; ctx.beginPath(); ctx.arc(s.x, s.y, sizeNow, 0, Math.PI*2); ctx.fill();
-      }
-    }
-    smoke = nextSmoke;
-  }
-
-  // ─── AUDIO ENGINE ──────────────────────────────────────────────────────────
+  // Audio Engine
   var audioEl = null, audioStarted = false;
 
   function startAudio() {
-    if (audioStarted) return;
+    if (isCardMode || audioStarted) return;
     audioEl = new Audio('/assets/fire-screen/fire-screen.mp3');
     audioEl.loop = true;
     audioEl.preload = 'auto';
     audioStarted = true;
     applyVolumes();
-    audioEl.play().catch(function () {});
   }
 
   function applyVolumes() {
     if (!audioEl) return;
     audioEl.volume = S.muted ? 0 : S.volume;
+    if (S.muted) {
+      try { audioEl.pause(); } catch (e) {}
+    } else {
+      audioEl.play().catch(function () {});
+    }
   }
 
-  // UI Syncs
   function syncUIControls() {
-    volSlider.value = Math.round(S.volume * 100);
-    if (volSettings) volSettings.value = Math.round(S.volume * 100);
+    var vPct = Math.round(S.volume * 100);
+    if (volSlider) volSlider.value = vPct;
+    if (volSettings) volSettings.value = vPct;
+    if (volBadge) volBadge.textContent = vPct + '%';
+
     if (soundToggle) soundToggle.checked = !S.muted;
 
-    soundIcon.innerHTML = S.muted
-      ? '<path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>'
-      : '<path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>';
+    if (crackleSlider && crackleBadge) {
+      crackleBadge.textContent = crackleSlider.value + '%';
+    }
+
+    if (flameSizeSlider && flameSizeBadge) {
+      var fsVal = Math.round((parseFloat(flameSizeSlider.value) / 110) * 100);
+      flameSizeBadge.textContent = fsVal + '%';
+    }
+
+    if (bloomSlider && bloomBadge) {
+      var blVal = Math.round((parseFloat(bloomSlider.value) / 35) * 100);
+      bloomBadge.textContent = blVal + '%';
+    }
+
+    if (soundIcon) {
+      soundIcon.innerHTML = S.muted
+        ? '<path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>'
+        : '<path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>';
+    }
   }
 
-  soundBtn.addEventListener('click', function (e) {
-    e.stopPropagation(); S.muted = !S.muted; syncUIControls(); applyVolumes();
-    if (!audioStarted && !S.muted) startAudio();
-  });
+  // Toggle settings open class helper
+  function toggleSettingsPanel() {
+    if (!settingsPanel) return;
+    var isOpen = settingsPanel.classList.toggle('open');
+    if (wrap) wrap.classList.toggle('has-settings-open', isOpen);
+    if (fsGear) fsGear.style.display = isOpen ? 'none' : '';
+  }
 
-  if (soundToggle) {
-    soundToggle.addEventListener('change', function () {
-      S.muted = !this.checked; syncUIControls(); applyVolumes();
+  function closeSettingsPanel() {
+    if (!settingsPanel) return;
+    settingsPanel.classList.remove('open');
+    if (wrap) wrap.classList.remove('has-settings-open');
+    if (fsGear && document.fullscreenElement === wrap) fsGear.style.display = 'flex';
+  }
+
+  // UI Listeners
+  if (soundBtn) {
+    soundBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      S.muted = !S.muted;
+      syncUIControls();
+      applyVolumes();
       if (!audioStarted && !S.muted) startAudio();
     });
   }
 
-  volSlider.addEventListener('input', function () {
-    S.volume = this.value / 100; syncUIControls(); applyVolumes();
-    if (!audioStarted && S.volume > 0.02) startAudio();
-  });
+  if (soundToggle) {
+    soundToggle.addEventListener('change', function () {
+      S.muted = !this.checked;
+      syncUIControls();
+      applyVolumes();
+      if (!audioStarted && !S.muted) startAudio();
+    });
+  }
 
-  if (volSettings) {
-    volSettings.addEventListener('input', function () {
-      S.volume = this.value / 100; syncUIControls(); applyVolumes();
+  if (volSlider) {
+    volSlider.addEventListener('input', function () {
+      S.volume = this.value / 100;
+      syncUIControls();
+      applyVolumes();
       if (!audioStarted && S.volume > 0.02) startAudio();
     });
   }
 
-  if (settingsBtn && settingsPanel) {
-    settingsBtn.addEventListener('click', function (e) { e.stopPropagation(); settingsPanel.classList.toggle('open'); });
-  }
-  if (closeSettings && settingsPanel) {
-    closeSettings.addEventListener('click', function (e) { e.stopPropagation(); settingsPanel.classList.remove('open'); });
-  }
-  if (settingsPanel) {
-    settingsPanel.addEventListener('click', function (e) { e.stopPropagation(); });
-  }
-  wrap.addEventListener('click', function () { if (settingsPanel) settingsPanel.classList.remove('open'); });
-
-  if (styleSelect) {
-    styleSelect.addEventListener('change', function () { applyPalette(this.value); });
+  if (volSettings) {
+    volSettings.addEventListener('input', function () {
+      S.volume = this.value / 100;
+      syncUIControls();
+      applyVolumes();
+      if (!audioStarted && S.volume > 0.02) startAudio();
+    });
   }
 
+  if (crackleSlider) {
+    crackleSlider.addEventListener('input', function () {
+      syncUIControls();
+    });
+  }
 
+  if (flameSizeSlider) {
+    flameSizeSlider.addEventListener('input', function () {
+      wakeFromSleep();
+      S.flameScale = (parseFloat(this.value) || 110) / 110;
+      syncUIControls();
+    });
+  }
+
+  if (bloomSlider) {
+    bloomSlider.addEventListener('input', function () {
+      S.bloomStrength = (parseFloat(this.value) || 15) / 45;
+      syncUIControls();
+    });
+  }
+
+  // 1. Interactive Flame Style Color Chips
+  if (styleGroup) {
+    styleGroup.addEventListener('click', function (e) {
+      var chip = e.target.closest('.fp-chip');
+      if (!chip) return;
+      var styleKey = chip.getAttribute('data-value');
+      if (!styleKey || !PALETTES[styleKey]) return;
+
+      currentStyleKey = styleKey;
+      var allChips = styleGroup.querySelectorAll('.fp-chip');
+      allChips.forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+
+      updatePalette();
+    });
+  }
+
+  // 2. Interactive Sleep Timer Chips with Precise Countdown & Sleep Mode
   var _timerInterval = null;
-  if (timerSelect) {
-    timerSelect.addEventListener('change', function () {
-      if (_timerInterval) { clearInterval(_timerInterval); _timerInterval = null; }
-      var mins = +this.value; if (!mins) return;
-      var ms = mins * 60 * 1000;
-      _timerInterval = setInterval(function () {
-        ms -= 1000;
-        if (ms <= 0) { clearInterval(_timerInterval); _timerInterval = null; S.muted = true; syncUIControls(); applyVolumes(); }
-      }, 1000);
+  var timerEndTime = 0;
+  var timerBadge = document.getElementById('fpTimerBadge');
+  var isSleepExtinguished = false;
+
+  function updateTimerUI() {
+    if (!timerEndTime) {
+      if (timerBadge) timerBadge.style.display = 'none';
+      return;
+    }
+
+    var remainingMs = Math.max(0, timerEndTime - Date.now());
+    if (remainingMs <= 0) {
+      stopSleepTimer();
+      triggerSleepMode();
+      return;
+    }
+
+    var totalSec = Math.ceil(remainingMs / 1000);
+    var mins = Math.floor(totalSec / 60);
+    var secs = totalSec % 60;
+    var text = (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
+
+    if (timerBadge) {
+      timerBadge.textContent = text;
+      timerBadge.style.display = 'inline-block';
+    }
+  }
+
+  function stopSleepTimer() {
+    if (_timerInterval) {
+      clearInterval(_timerInterval);
+      _timerInterval = null;
+    }
+    timerEndTime = 0;
+    if (timerBadge) timerBadge.style.display = 'none';
+
+    if (timerGroup) {
+      var allChips = timerGroup.querySelectorAll('.fp-chip');
+      allChips.forEach(function (c) {
+        if (c.getAttribute('data-value') === '0') c.classList.add('active');
+        else c.classList.remove('active');
+      });
+    }
+  }
+
+  function triggerSleepMode() {
+    S.muted = true;
+    syncUIControls();
+    applyVolumes();
+    isSleepExtinguished = true;
+  }
+
+  function wakeFromSleep() {
+    if (isSleepExtinguished) {
+      isSleepExtinguished = false;
+    }
+  }
+
+  if (timerGroup) {
+    timerGroup.addEventListener('click', function (e) {
+      var chip = e.target.closest('.fp-chip');
+      if (!chip) return;
+      var mins = parseInt(chip.getAttribute('data-value') || '0', 10);
+
+      var allChips = timerGroup.querySelectorAll('.fp-chip');
+      allChips.forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+
+      if (_timerInterval) {
+        clearInterval(_timerInterval);
+        _timerInterval = null;
+      }
+
+      wakeFromSleep();
+
+      if (mins > 0) {
+        timerEndTime = Date.now() + mins * 60 * 1000;
+        updateTimerUI();
+        _timerInterval = setInterval(updateTimerUI, 1000);
+      } else {
+        stopSleepTimer();
+      }
+    });
+  }
+
+  if (settingsBtn) {
+    settingsBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleSettingsPanel();
+    });
+  }
+
+  if (closeSettings) {
+    closeSettings.addEventListener('click', function (e) {
+      e.stopPropagation();
+      closeSettingsPanel();
+    });
+  }
+
+  if (settingsPanel) {
+    settingsPanel.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+  }
+
+  if (wrap) {
+    wrap.addEventListener('click', function () {
+      closeSettingsPanel();
     });
   }
 
@@ -645,10 +1198,10 @@
     });
   }
 
-  if (fsGearBtn && settingsPanel) {
+  if (fsGearBtn) {
     fsGearBtn.addEventListener('click', function (e) {
       e.stopPropagation();
-      settingsPanel.classList.toggle('open');
+      toggleSettingsPanel();
     });
   }
 
@@ -656,31 +1209,51 @@
     var isFS = document.fullscreenElement === wrap;
     wrap.classList.toggle('is-fullscreen', isFS);
     document.documentElement.classList.toggle('fp-fs-active', isFS);
-    if (!isFS && settingsPanel) settingsPanel.classList.remove('open');
-    setTimeout(resizeCanvas, 120);
+    if (!isFS) closeSettingsPanel();
+    setTimeout(onResize, 120);
   });
 
   document.addEventListener('keydown', function (e) {
     var k = e.key.toLowerCase();
     if (document.fullscreenElement !== wrap) {
-      if (k === 'f') { e.preventDefault(); wrap.requestFullscreen().catch(function () {}); }
+      if (k === 'f') {
+        e.preventDefault();
+        wrap.requestFullscreen().catch(function () {});
+      }
       return;
     }
     if (k === 'escape') document.exitFullscreen();
-    else if (k === 'c') { e.preventDefault(); if (settingsPanel) settingsPanel.classList.toggle('open'); }
+    else if (k === 'c') {
+      e.preventDefault();
+      toggleSettingsPanel();
+    }
     else if (k === 'm') soundBtn.click();
-    else if (e.key === 'ArrowUp') { e.preventDefault(); S.volume = Math.min(1, S.volume + 0.05); syncUIControls(); applyVolumes(); }
-    else if (e.key === 'ArrowDown') { e.preventDefault(); S.volume = Math.max(0, S.volume - 0.05); syncUIControls(); applyVolumes(); }
-    else { e.preventDefault(); e.stopPropagation(); }
+    else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      S.volume = Math.min(1, S.volume + 0.05);
+      syncUIControls();
+      applyVolumes();
+    }
+    else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      S.volume = Math.max(0, S.volume - 0.05);
+      syncUIControls();
+      applyVolumes();
+    }
   });
 
-  // initial state: MUTED, controls synced.
+  // Kickoff Engine
+  initThree();
   syncUIControls();
-  requestAnimationFrame(drawScene);
+  if (composer) {
+    composer.render();
+  }
+  animate();
 
-  // Fade HUD in and out as a gentle welcoming cue
   if (hud) {
     hud.classList.add('is-visible');
-    setTimeout(function () { hud.classList.remove('is-visible'); }, 2500);
+    setTimeout(function () {
+      hud.classList.remove('is-visible');
+    }, 2800);
   }
 })();

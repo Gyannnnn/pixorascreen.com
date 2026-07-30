@@ -141,7 +141,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
 
   // Selected background & sound options
   const [selectedBg, setSelectedBg] = useState<string>(bgList[0]);
-  const [selectedBgm, setSelectedBgm] = useState<string>(bgmList.length > 0 ? bgmList[0] : 'none');
+  const [selectedBgm, setSelectedBgm] = useState<string>('none');
   const [bgmPlaying, setBgmPlaying] = useState<boolean>(false);
   const [bgmVolume, setBgmVolume] = useState<number>(0.5);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -269,6 +269,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
 
   // Audio playback and loop setup
   useEffect(() => {
+    if (isCard) return;
     if (selectedBgm !== 'none' && selectedBgm) {
       let resolvedUrl: string;
       try {
@@ -301,7 +302,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
         audioRef.current.pause();
       }
     }
-  }, [selectedBgm, bgmPlaying]);
+  }, [selectedBgm, bgmPlaying, isCard]);
 
   // Sync volume changes
   useEffect(() => {
