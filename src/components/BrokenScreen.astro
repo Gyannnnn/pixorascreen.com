@@ -18,10 +18,10 @@ const images = brokenScreenAssets.map((file) => `/assets/broken-screen/${file}`)
   aria-label="Broken Screen Prank"
 >
   <!-- Screen Preview Area -->
-  <div class="bs-root group relative flex h-[420px] items-center justify-center overflow-hidden rounded-lg bg-black cursor-pointer outline-none" id="bsRoot">
+  <div class="bs-root group relative flex min-h-[504px] w-full items-center justify-center overflow-hidden rounded-lg bg-black cursor-pointer outline-none" id="bsRoot">
     <div class="bs-preview absolute inset-0 flex items-center justify-center bg-black" id="bsPreview">
       {images.length > 0 ? (
-        <img id="bsActiveImg" src={images[0]} alt="Broken screen" class="bs-active-img h-full w-full object-contain pointer-events-none transition-all duration-300" />
+        <img id="bsActiveImg" src={images[0]} alt="Broken screen" class="bs-active-img h-full w-full object-cover pointer-events-none transition-all duration-300" />
       ) : (
         <div class="bs-empty text-white/25 text-xs font-mono p-5 text-center">Add images to public/assets/broken-screen/</div>
       )}
