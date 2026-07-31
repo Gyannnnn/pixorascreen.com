@@ -64,7 +64,7 @@ const initialRgb = (() => {
 
 <section class="rounded-lg border border-hairline bg-canvas shadow-soft" aria-label={`${t(locale, 'site.title')} interactive screen`}>
   <div
-    class="group relative grid min-h-[605px] sm:min-h-[504px] overflow-hidden rounded-md border border-hairline"
+    class="group relative grid min-h-[605px] sm:min-h-[504px] lg:min-h-[400px] overflow-hidden rounded-md border border-hairline"
     style={`background:${initialBackground};`}
     data-screen-tool
     data-tool-id={tool.id}
@@ -182,18 +182,6 @@ const initialRgb = (() => {
               </div>
             </div>
           </div>
-        </div>
-        <div class="flex flex-wrap items-center gap-2 px-3 py-2.5 sm:px-4 md:px-5">
-          <button class="inline-flex h-7 items-center gap-1 rounded-md px-2 sm:px-2.5 text-xs font-medium text-muted hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors" type="button" data-copy-hex>
-            <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            {t(locale, 'screen.copy_hex')}
-          </button>
-          <button class="inline-flex h-7 items-center gap-1 rounded-md px-2 sm:px-2.5 text-xs font-medium text-muted hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors" type="button" data-copy-rgb>
-            <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            {t(locale, 'screen.copy_rgb')}
-          </button>
-          <span aria-live="polite" data-status class="sm:ml-auto text-xs text-muted"></span>
-          <div class="flex flex-wrap gap-1.5 max-w-full" data-favorites aria-label={t(locale, 'screen.favorites')}></div>
         </div>
         {mode === 'rgb' && (
           <div class="flex flex-wrap items-center gap-1.5 border-t border-hairline/60 px-3 py-2.5 sm:px-4 md:px-5 bg-canvas-soft/40">
@@ -427,7 +415,16 @@ const initialRgb = (() => {
       root.style.filter = value > 100 ? `brightness(${value}%)` : '';
     });
 
-    const doFullscreen = () => root.requestFullscreen?.();
+    const doFullscreen = () => {
+      try {
+        const p = root.requestFullscreen?.({ navigationUI: 'hide' } as any);
+        if (p && typeof p.catch === 'function') {
+          p.catch(() => root.requestFullscreen?.());
+        }
+      } catch (_) {
+        root.requestFullscreen?.();
+      }
+    };
     for (const btn of root.querySelectorAll<HTMLElement>('[data-fullscreen], [data-fullscreen-icon]')) {
       btn.addEventListener('click', doFullscreen);
     }

@@ -147,3 +147,14 @@ a:hover > .nav-logo-icon {
   font-style: italic;
   font-weight: 700;
 }
+
+/* Edge-to-edge fullscreen support across mobile cutouts/notches */
+:fullscreen,
+:-webkit-full-screen {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
