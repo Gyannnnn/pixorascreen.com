@@ -64,7 +64,7 @@ const initialRgb = (() => {
 
 <section class="rounded-lg border border-hairline bg-canvas shadow-soft" aria-label={`${t(locale, 'site.title')} interactive screen`}>
   <div
-    class="group relative grid min-h-[420px] overflow-hidden rounded-md border border-hairline"
+    class="group relative grid min-h-[504px] overflow-hidden rounded-md border border-hairline"
     style={`background:${initialBackground};`}
     data-screen-tool
     data-tool-id={tool.id}
@@ -92,120 +92,148 @@ const initialRgb = (() => {
       </svg>
     </button>
 
-    <div class="relative z-10 mt-auto bg-canvas/80 backdrop-blur-sm" data-controls-bar>
+    <div class="relative z-10 mt-auto bg-canvas/85 backdrop-blur-md" data-controls-bar>
       <div class="divide-y divide-hairline/50">
-        <div class="p-4 md:p-5">
-          <div class="grid gap-4 md:grid-cols-[1fr_auto]">
-            <div class="flex items-start gap-4">
-              <div class="flex gap-2" data-swatch-list>
-                {defaultColors.map((col, index) => (
-                  <div class={`relative size-14 shrink-0 overflow-hidden rounded-lg border border-hairline shadow-xs md:size-16 cursor-pointer swatch-item transition-all ${index === 0 ? 'ring-2 ring-ink ring-offset-2 scale-105' : 'hover:scale-105'}`} data-index={index}>
-                    <input class="absolute inset-0 cursor-pointer opacity-0" type="color" value={col} data-color-picker-item autocomplete="off" />
-                    <div class="size-full" data-swatch-item-visual style={`background:${col};`}></div>
-                  </div>
-                ))}
+        <div class="p-3.5 sm:p-4 md:p-5">
+          <div class="grid gap-4 md:grid-cols-2 md:items-start min-w-0">
+            <!-- Left Side: Color Swatches, Inputs (HEX, RGB, HSL), Brightness -->
+            <div class="flex flex-col gap-3 min-w-0">
+              <div class="flex items-center gap-2 sm:gap-2.5 shrink-0" data-swatch-list>
+                {defaultColors.map((col, index) => {
+                  const swatchSize = defaultColors.length === 1
+                    ? 'size-12 sm:size-14 md:size-16'
+                    : defaultColors.length === 2
+                    ? 'size-11 sm:size-13 md:size-14'
+                    : defaultColors.length === 3
+                    ? 'size-10 sm:size-12 md:size-13'
+                    : 'size-9.5 sm:size-11 md:size-12';
+                  return (
+                    <div class={`relative ${swatchSize} shrink-0 overflow-hidden rounded-xl border border-hairline shadow-xs cursor-pointer swatch-item transition-all ${index === 0 ? 'ring-2 ring-ink ring-offset-2 scale-105' : 'hover:scale-105'}`} data-index={index}>
+                      <input class="absolute inset-0 cursor-pointer opacity-0" type="color" value={col} data-color-picker-item autocomplete="off" />
+                      <div class="size-full" data-swatch-item-visual style={`background:${col};`}></div>
+                    </div>
+                  );
+                })}
               </div>
-              <div class="grid min-w-0 flex-1 gap-2">
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
-                  <label class="flex items-center gap-2 text-xs text-muted">
+
+              <div class="grid min-w-0 gap-2">
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                  <label class="flex items-center gap-1.5 text-xs text-muted">
                     HEX
-                    <input class="w-24 rounded-md border border-transparent bg-transparent px-1.5 py-0.5 font-mono text-sm text-ink outline-hidden transition-colors hover:border-hairline focus:border-hairline focus:bg-canvas" name="hex-color" value={defaultColors[0]} data-hex-input aria-label={t(locale, 'screen.hex_value')} autocomplete="off" spellcheck="false" inputmode="text" />
+                    <input class="w-20 sm:w-24 rounded-md border border-hairline/40 bg-canvas/50 px-1.5 py-0.5 font-mono text-xs sm:text-sm text-ink outline-hidden transition-colors hover:border-hairline focus:border-ink focus:bg-canvas" name="hex-color" value={defaultColors[0]} data-hex-input aria-label={t(locale, 'screen.hex_value')} autocomplete="off" spellcheck="false" inputmode="text" />
                   </label>
-                  <label class="flex items-center gap-2 text-xs text-muted">
+                  <label class="flex items-center gap-1.5 text-xs text-muted">
                     RGB
-                    <input class="w-34 rounded-md border border-transparent bg-transparent px-1.5 py-0.5 font-mono text-sm text-ink outline-hidden transition-colors hover:border-hairline focus:border-hairline focus:bg-canvas" name="rgb-color" value={initialRgb} data-rgb-input aria-label={t(locale, 'screen.rgb_value')} autocomplete="off" spellcheck="false" inputmode="numeric" />
+                    <input class="w-28 sm:w-32 rounded-md border border-hairline/40 bg-canvas/50 px-1.5 py-0.5 font-mono text-xs sm:text-sm text-ink outline-hidden transition-colors hover:border-hairline focus:border-ink focus:bg-canvas" name="rgb-color" value={initialRgb} data-rgb-input aria-label={t(locale, 'screen.rgb_value')} autocomplete="off" spellcheck="false" inputmode="numeric" />
                   </label>
-                  <label class="flex items-center gap-2 text-xs text-muted">
+                  <label class="flex items-center gap-1.5 text-xs text-muted">
                     HSL
-                    <input class="w-44 rounded-md border border-transparent bg-transparent px-1.5 py-0.5 font-mono text-sm text-ink outline-hidden transition-colors hover:border-hairline focus:border-hairline focus:bg-canvas md:w-52" name="hsl-color" value={initialHsl} data-hsl-input aria-label={t(locale, 'screen.hsl_value')} autocomplete="off" spellcheck="false" inputmode="text" />
+                    <input class="w-36 sm:w-44 md:w-48 rounded-md border border-hairline/40 bg-canvas/50 px-1.5 py-0.5 font-mono text-xs sm:text-sm text-ink outline-hidden transition-colors hover:border-hairline focus:border-ink focus:bg-canvas" name="hsl-color" value={initialHsl} data-hsl-input aria-label={t(locale, 'screen.hsl_value')} autocomplete="off" spellcheck="false" inputmode="text" />
                   </label>
                 </div>
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 sm:gap-3">
                   <span class="text-xs text-muted whitespace-nowrap">{t(locale, 'screen.brightness')}</span>
-                  <input class="h-5 w-28 accent-ink md:w-36" name="brightness" type="range" min="20" max="120" value="100" data-brightness aria-label={t(locale, 'screen.brightness_label')} autocomplete="off" />
+                  <input class="h-5 w-28 sm:w-36 max-w-[160px] accent-ink cursor-pointer" name="brightness" type="range" min="20" max="120" value="100" data-brightness aria-label={t(locale, 'screen.brightness_label')} autocomplete="off" />
                 </div>
               </div>
             </div>
-            <div class="flex flex-wrap items-start gap-2">
-              <button class="inline-flex h-8 items-center gap-1.5 rounded-lg bg-ink px-3.5 text-xs font-medium text-canvas hover:bg-body focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors" type="button" data-fullscreen>
-                <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                {t(locale, 'screen.fullscreen')}
-              </button>
-              <button class="inline-flex h-8 items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-3 text-xs font-medium text-body hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors" type="button" data-random>
-                <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 3 21 3 21 8"/><line x1="4" x2="21" y1="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" x2="21" y1="15" y2="21"/></svg>
-                {t(locale, 'screen.random')}
-              </button>
-              <button class="inline-flex h-8 items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-3 text-xs font-medium text-body hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors" type="button" data-favorite>
-                <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                {t(locale, 'screen.favorite')}
-              </button>
-              <div class="inline-flex h-8 items-center rounded-lg border border-hairline bg-canvas p-0.5 shadow-xs focus-within:ring-2 focus-within:ring-ink focus-within:ring-offset-2 transition-shadow">
-                <select class="h-full border-0 bg-transparent py-0 pl-2 pr-1 text-xs text-body hover:text-ink focus:ring-0 focus:outline-hidden cursor-pointer font-medium" data-download-orientation aria-label="Select screen orientation for download">
-                  <option value="landscape">{t(locale, 'screen.orientation_landscape')}</option>
-                  <option value="portrait">{t(locale, 'screen.orientation_portrait')}</option>
-                  <option value="square">{t(locale, 'screen.orientation_square')}</option>
-                  <option value="device">{t(locale, 'screen.orientation_device')}</option>
-                </select>
-                <div class="h-4 w-px bg-hairline/80"></div>
-                <button class="inline-flex h-full items-center gap-1.5 rounded-md px-3 text-xs font-medium text-body hover:bg-canvas-soft hover:text-ink transition-colors cursor-pointer" type="button" data-download>
-                  <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                  {t(locale, 'screen.download')}
+
+            <!-- Right Side: Action Buttons, Quick Copies, Favorites (Fills Red Marked Space!) -->
+            <div class="flex flex-col gap-3 min-w-0 md:items-end">
+              <div class="flex flex-wrap items-center gap-2 md:justify-end">
+                <button class="inline-flex h-8 items-center gap-1.5 rounded-lg bg-ink px-3 text-xs font-medium text-canvas hover:bg-body focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors cursor-pointer" type="button" data-fullscreen>
+                  <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                  {t(locale, 'screen.fullscreen')}
                 </button>
+                <button class="inline-flex h-8 items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-2.5 sm:px-3 text-xs font-medium text-body hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors cursor-pointer" type="button" data-random>
+                  <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 3 21 3 21 8"/><line x1="4" x2="21" y1="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" x2="21" y1="15" y2="21"/></svg>
+                  {t(locale, 'screen.random')}
+                </button>
+                <button class="inline-flex h-8 items-center gap-1.5 rounded-lg border border-hairline bg-canvas px-2.5 sm:px-3 text-xs font-medium text-body hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors cursor-pointer" type="button" data-favorite>
+                  <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  {t(locale, 'screen.favorite')}
+                </button>
+                <div class="inline-flex h-8 items-center rounded-lg border border-hairline bg-canvas p-0.5 shadow-xs focus-within:ring-2 focus-within:ring-ink focus-within:ring-offset-2 transition-shadow max-w-full">
+                  <select class="h-full border-0 bg-transparent py-0 pl-1.5 sm:pl-2 pr-1 text-xs text-body hover:text-ink focus:ring-0 focus:outline-hidden cursor-pointer font-medium max-w-[110px] sm:max-w-none" data-download-orientation aria-label="Select screen orientation for download">
+                    <option value="landscape">{t(locale, 'screen.orientation_landscape')}</option>
+                    <option value="portrait">{t(locale, 'screen.orientation_portrait')}</option>
+                    <option value="square">{t(locale, 'screen.orientation_square')}</option>
+                    <option value="device">{t(locale, 'screen.orientation_device')}</option>
+                  </select>
+                  <div class="h-4 w-px bg-hairline/80"></div>
+                  <button class="inline-flex h-full items-center gap-1 sm:gap-1.5 rounded-md px-2 sm:px-3 text-xs font-medium text-body hover:bg-canvas-soft hover:text-ink transition-colors cursor-pointer" type="button" data-download>
+                    <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                    {t(locale, 'screen.download')}
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2 md:justify-end">
+                <button class="inline-flex h-7 items-center gap-1 rounded-md border border-hairline/50 bg-canvas/40 px-2 sm:px-2.5 text-xs font-medium text-muted hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors cursor-pointer" type="button" data-copy-hex>
+                  <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  {t(locale, 'screen.copy_hex')}
+                </button>
+                <button class="inline-flex h-7 items-center gap-1 rounded-md border border-hairline/50 bg-canvas/40 px-2 sm:px-2.5 text-xs font-medium text-muted hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors cursor-pointer" type="button" data-copy-rgb>
+                  <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  {t(locale, 'screen.copy_rgb')}
+                </button>
+                <span aria-live="polite" data-status class="text-xs text-muted"></span>
+                <div class="flex flex-wrap gap-1.5 max-w-full" data-favorites aria-label={t(locale, 'screen.favorites')}></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flex flex-wrap items-center gap-2 px-4 py-3 md:px-5">
-          <button class="inline-flex h-7 items-center gap-1 rounded-md px-2.5 text-xs font-medium text-muted hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors" type="button" data-copy-hex>
+        <div class="flex flex-wrap items-center gap-2 px-3 py-2.5 sm:px-4 md:px-5">
+          <button class="inline-flex h-7 items-center gap-1 rounded-md px-2 sm:px-2.5 text-xs font-medium text-muted hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors" type="button" data-copy-hex>
             <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             {t(locale, 'screen.copy_hex')}
           </button>
-          <button class="inline-flex h-7 items-center gap-1 rounded-md px-2.5 text-xs font-medium text-muted hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors" type="button" data-copy-rgb>
+          <button class="inline-flex h-7 items-center gap-1 rounded-md px-2 sm:px-2.5 text-xs font-medium text-muted hover:bg-canvas-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink transition-colors" type="button" data-copy-rgb>
             <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             {t(locale, 'screen.copy_rgb')}
           </button>
-          <span aria-live="polite" data-status class="ml-auto text-xs text-muted"></span>
-          <div class="flex flex-wrap gap-1.5" data-favorites aria-label={t(locale, 'screen.favorites')}></div>
+          <span aria-live="polite" data-status class="sm:ml-auto text-xs text-muted"></span>
+          <div class="flex flex-wrap gap-1.5 max-w-full" data-favorites aria-label={t(locale, 'screen.favorites')}></div>
         </div>
         {mode === 'rgb' && (
-          <div class="flex flex-wrap items-center gap-1.5 border-t border-hairline/60 px-4 py-2.5 md:px-5 bg-canvas-soft/40">
-            <span class="text-xs font-mono font-medium text-muted mr-1">{t(locale, 'screen.subpixel_tests')}</span>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:border-red-500/50 hover:text-red-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#ff0000" title="Pure Red Subpixel Test (Press R)">
+          <div class="flex flex-wrap items-center gap-1.5 border-t border-hairline/60 px-3 py-2.5 sm:px-4 md:px-5 bg-canvas-soft/40">
+            <span class="text-xs font-mono font-medium text-muted mr-1 shrink-0">{t(locale, 'screen.subpixel_tests')}</span>
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-red-500/50 hover:text-red-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#ff0000" title="Pure Red Subpixel Test (Press R)">
               <span class="size-2.5 rounded-full bg-[#ff0000]"></span> {t(locale, 'screen.pure_red')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:border-green-500/50 hover:text-green-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#00ff00" title="Pure Green Subpixel Test (Press G)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-green-500/50 hover:text-green-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#00ff00" title="Pure Green Subpixel Test (Press G)">
               <span class="size-2.5 rounded-full bg-[#00ff00]"></span> {t(locale, 'screen.pure_green')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:border-blue-500/50 hover:text-blue-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#0000ff" title="Pure Blue Subpixel Test (Press B)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-blue-500/50 hover:text-blue-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#0000ff" title="Pure Blue Subpixel Test (Press B)">
               <span class="size-2.5 rounded-full bg-[#0000ff]"></span> {t(locale, 'screen.pure_blue')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-rgb-preset="#ffffff" title="White Subpixel Test (Press W)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-rgb-preset="#ffffff" title="White Subpixel Test (Press W)">
               <span class="size-2.5 rounded-full bg-white border border-gray-400"></span> {t(locale, 'screen.white')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-rgb-preset="#000000" title="Black Subpixel Test (Press K)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-rgb-preset="#000000" title="Black Subpixel Test (Press K)">
               <span class="size-2.5 rounded-full bg-black border border-gray-600"></span> {t(locale, 'screen.black')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer ml-auto" type="button" data-rgb-split title="Reset to 3-Channel Split View">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer sm:ml-auto" type="button" data-rgb-split title="Reset to 3-Channel Split View">
               <span class="flex size-3 overflow-hidden rounded-full border border-hairline"><span class="w-1/3 bg-red-500"></span><span class="w-1/3 bg-green-500"></span><span class="w-1/3 bg-blue-500"></span></span> {t(locale, 'screen.rgb_split')}
             </button>
           </div>
         )}
         {mode === 'hex' && (
-          <div class="flex flex-wrap items-center gap-1.5 border-t border-hairline/60 px-4 py-2.5 md:px-5 bg-canvas-soft/40">
-            <span class="text-xs font-mono font-medium text-muted mr-1">{t(locale, 'screen.hex_presets')}</span>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#000000" title="OLED Black (#000000)">
+          <div class="flex flex-wrap items-center gap-1.5 border-t border-hairline/60 px-3 py-2.5 sm:px-4 md:px-5 bg-canvas-soft/40">
+            <span class="text-xs font-mono font-medium text-muted mr-1 shrink-0">{t(locale, 'screen.hex_presets')}</span>
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#000000" title="OLED Black (#000000)">
               <span class="size-2.5 rounded-full bg-black border border-gray-600"></span> {t(locale, 'screen.oled_black')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#121212" title="Dark Mode Grey (#121212)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#121212" title="Dark Mode Grey (#121212)">
               <span class="size-2.5 rounded-full bg-[#121212] border border-gray-600"></span> {t(locale, 'screen.dark_mode')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:border-blue-500/50 hover:text-blue-500 transition-colors cursor-pointer" type="button" data-hex-preset="#0070f3" title="Brand Blue (#0070F3)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-blue-500/50 hover:text-blue-500 transition-colors cursor-pointer" type="button" data-hex-preset="#0070f3" title="Brand Blue (#0070F3)">
               <span class="size-2.5 rounded-full bg-[#0070f3]"></span> #0070F3
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#ffffff" title="Pure White (#FFFFFF)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#ffffff" title="Pure White (#FFFFFF)">
               <span class="size-2.5 rounded-full bg-white border border-gray-400"></span> {t(locale, 'screen.white')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer ml-auto" type="button" data-hex-palette-reset title="Reset to 4-Color Palette Split">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer sm:ml-auto" type="button" data-hex-palette-reset title="Reset to 4-Color Palette Split">
               <span class="flex size-3 overflow-hidden rounded-full border border-hairline"><span class="w-1/4 bg-[#171717]"></span><span class="w-1/4 bg-[#7c3aed]"></span><span class="w-1/4 bg-[#ff0080]"></span><span class="w-1/4 bg-[#f9cb28]"></span></span> {t(locale, 'screen.palette_reset')}
             </button>
           </div>

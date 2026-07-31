@@ -90,8 +90,8 @@ const props = Astro.props as PageProps;
         <span class="mx-2">/</span>
         <span>{toolName(props.locale, props.tool)}</span>
       </nav>
-      <div class="mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-        <div>
+      <div class="mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center min-w-0">
+        <div class="min-w-0">
           <p class="font-mono text-xs text-muted">{props.tool.category.toUpperCase()}</p>
           <h1 class="mt-4 text-5xl font-semibold leading-[0.95] text-balance text-ink md:text-6xl">{toolName(props.locale, props.tool)}.</h1>
           <p class="mt-5 text-lg leading-8 text-body">{toolSummary(props.locale, props.tool)}</p>
@@ -99,49 +99,51 @@ const props = Astro.props as PageProps;
             {props.tool.controls.slice(0, 5).map((control) => <span class="rounded-full border border-hairline bg-canvas px-3 py-1 text-xs text-body">{control}</span>)}
           </div>
         </div>
-        {props.tool.slug === 'blue-screen-prank' ? (
-          <BlueScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'broken-screen' ? (
-          <BrokenScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'hacker-typer' ? (
-          <HackerTyper tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'windows-update' ? (
-          <WindowsUpdate tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'macos-screen' ? (
-          <MacOSUpdate tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'ubuntu-screen' ? (
-          <UbuntuScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'android-update' ? (
-          <AndroidUpdate tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'radar-screen' ? (
-          <RadarScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'fake-virus-screen' ? (
-          <FakeVirusScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'white-noise-screen' ? (
-          <WhiteNoiseScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'windows-xp-crash' ? (
-          <WindowsXpCrash tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'fireplace-screen' ? (
-          <FireplaceScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'snow-screen' ? (
-          <SnowScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'rain-screen' ? (
-          <RainScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'matrix-screen' ? (
-          <MatrixScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'stars-screen' ? (
-          <StarsScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'galaxy-screen' ? (
-          <GalaxyScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'clock-screen' ? (
-          <ClockScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'ambient-screen' ? (
-          <AmbientScreen tool={props.tool} locale={props.locale} />
-        ) : props.tool.slug === 'aquarium-screen' ? (
-          <AquariumScreen tool={props.tool} locale={props.locale} />
-        ) : (
-          <ScreenTool tool={props.tool} locale={props.locale} />
-        )}
+        <div class="min-w-0">
+          {props.tool.slug === 'blue-screen-prank' ? (
+            <BlueScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'broken-screen' ? (
+            <BrokenScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'hacker-typer' ? (
+            <HackerTyper tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'windows-update' ? (
+            <WindowsUpdate tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'macos-screen' ? (
+            <MacOSUpdate tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'ubuntu-screen' ? (
+            <UbuntuScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'android-update' ? (
+            <AndroidUpdate tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'radar-screen' ? (
+            <RadarScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'fake-virus-screen' ? (
+            <FakeVirusScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'white-noise-screen' ? (
+            <WhiteNoiseScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'windows-xp-crash' ? (
+            <WindowsXpCrash tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'fireplace-screen' ? (
+            <FireplaceScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'snow-screen' ? (
+            <SnowScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'rain-screen' ? (
+            <RainScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'matrix-screen' ? (
+            <MatrixScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'stars-screen' ? (
+            <StarsScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'galaxy-screen' ? (
+            <GalaxyScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'clock-screen' ? (
+            <ClockScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'ambient-screen' ? (
+            <AmbientScreen tool={props.tool} locale={props.locale} />
+          ) : props.tool.slug === 'aquarium-screen' ? (
+            <AquariumScreen tool={props.tool} locale={props.locale} />
+          ) : (
+            <ScreenTool tool={props.tool} locale={props.locale} />
+          )}
+        </div>
       </div>
     </section>
 
