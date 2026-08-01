@@ -9,6 +9,12 @@
 		"binding": "ASSETS",
 		"not_found_handling": "404-page"
 	},
+	"kv_namespaces": [
+		{
+			"binding": "SESSION",
+			"id": "9a81f2fa847a4ddfa1724b2dbf6a7dca"
+		}
+	],
 	"observability": {
 		"enabled": true
 	}
