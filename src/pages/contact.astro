@@ -31,8 +31,8 @@ import { locales } from '../data/locales';
               Prefer writing a direct email? You can skip the form and reach us directly at:
             </p>
             <p class="mt-2">
-              <a href="mailto:hello@freeonlinescreen.com" class="text-sm font-medium text-ink hover:text-link underline underline-offset-4 transition-colors">
-                hello@freeonlinescreen.com
+              <a href="mailto:hi.gyanaranjanpatra@gmail.com" class="text-sm font-medium text-ink hover:text-link underline underline-offset-4 transition-colors">
+                hi.gyanaranjanpatra@gmail.com
               </a>
             </p>
           </div>
@@ -61,6 +61,10 @@ import { locales } from '../data/locales';
         <div class="relative rounded-xl border border-hairline bg-canvas-soft p-6 md:p-8 shadow-soft">
           <!-- Form State -->
           <div id="form-container">
+            <!-- Error Banner -->
+            <div id="error-container" class="hidden mb-6 rounded-lg bg-red-50 dark:bg-red-950/40 p-4 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-300 text-sm">
+            </div>
+
             <form id="contact-form" class="space-y-6">
               <div class="grid gap-6 sm:grid-cols-2">
                 <div>
@@ -171,17 +175,34 @@ import { locales } from '../data/locales';
 </BaseLayout>
 
 <script>
-  // Dynamic handling of simulated form submit
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form') as HTMLFormElement | null;
     const successContainer = document.getElementById('success-container');
     const formContainer = document.getElementById('form-container');
+    const errorContainer = document.getElementById('error-container');
     const submitButton = document.getElementById('submit-btn') as HTMLButtonElement | null;
     const resetButton = document.getElementById('reset-btn') as HTMLButtonElement | null;
 
     if (form && successContainer && formContainer && submitButton) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        if (errorContainer) {
+          errorContainer.classList.add('hidden');
+          errorContainer.textContent = '';
+        }
+
+        const nameInput = document.getElementById('contact-name') as HTMLInputElement | null;
+        const emailInput = document.getElementById('contact-email') as HTMLInputElement | null;
+        const subjectInput = document.getElementById('contact-subject') as HTMLInputElement | null;
+        const messageInput = document.getElementById('contact-message') as HTMLTextAreaElement | null;
+
+        const payload = {
+          name: nameInput?.value?.trim() || '',
+          email: emailInput?.value?.trim() || '',
+          subject: subjectInput?.value?.trim() || '',
+          message: messageInput?.value?.trim() || '',
+        };
 
         // Toggle Loading State
         const btnText = submitButton.querySelector('.btn-text');
@@ -190,19 +211,29 @@ import { locales } from '../data/locales';
         if (btnSpinner) btnSpinner.classList.remove('hidden');
         submitButton.disabled = true;
 
-        // Disable all form elements
+        // Disable all form elements after extracting values
         const inputs = form.querySelectorAll('input, textarea');
         inputs.forEach((input) => input.setAttribute('disabled', 'true'));
 
-        // Simulate contact submission delay
-        setTimeout(() => {
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok || data.error) {
+            throw new Error(data.error || 'Failed to send email. Please try again.');
+          }
+
           formContainer.style.opacity = '0';
           formContainer.style.transition = 'opacity 0.2s ease-out';
           
           setTimeout(() => {
             formContainer.classList.add('hidden');
             successContainer.classList.remove('hidden');
-            // Clean values for next time
             form.reset();
             inputs.forEach((input) => input.removeAttribute('disabled'));
             if (btnText) btnText.textContent = 'Send Message';
@@ -210,7 +241,16 @@ import { locales } from '../data/locales';
             submitButton.disabled = false;
             formContainer.style.opacity = '';
           }, 200);
-        }, 1200);
+        } catch (err: any) {
+          if (errorContainer) {
+            errorContainer.textContent = err.message || 'An error occurred while sending your message.';
+            errorContainer.classList.remove('hidden');
+          }
+          inputs.forEach((input) => input.removeAttribute('disabled'));
+          if (btnText) btnText.textContent = 'Send Message';
+          if (btnSpinner) btnSpinner.classList.add('hidden');
+          submitButton.disabled = false;
+        }
       });
     }
 
@@ -218,6 +258,10 @@ import { locales } from '../data/locales';
       resetButton.addEventListener('click', () => {
         successContainer.classList.add('hidden');
         formContainer.classList.remove('hidden');
+        if (errorContainer) {
+          errorContainer.classList.add('hidden');
+          errorContainer.textContent = '';
+        }
       });
     }
   });
