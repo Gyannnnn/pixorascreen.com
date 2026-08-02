@@ -321,6 +321,109 @@ export const popularTools = tools.filter((tool) =>
   ['white-screen', 'black-screen', 'red-screen', 'green-screen', 'blue-screen', 'broken-screen', 'windows-update'].includes(tool.id),
 );
 
-export function getRelatedTools(tool: Tool, limit = 6) {
-  return tools.filter((candidate) => candidate.id !== tool.id && candidate.category === tool.category).slice(0, limit);
+// Semantic closeness between categories. Same category is the strongest signal,
+// but tools in other categories (ambience, pranks, fake OS screens) are still related.
+type ActiveCategoryId = Exclude<ToolCategoryId, 'testing'>;
+const categoryAffinity: Record<ActiveCategoryId, Partial<Record<ActiveCategoryId, number>>> = {
+  colors: { colors: 10, savers: 5, pranks: 4, fake: 3 },
+  savers: { savers: 10, colors: 5, pranks: 3, fake: 2 },
+  pranks: { pranks: 10, fake: 7, colors: 4, savers: 3 },
+  fake: { fake: 10, pranks: 7, colors: 3, savers: 2 },
+};
+
+const stopwords = new Set([
+  'a', 'an', 'the', 'and', 'or', 'for', 'with', 'without', 'of', 'to', 'in', 'on', 'as', 'at', 'by', 'from',
+  'your', 'you', 'it', 'is', 'are', 'was', 'this', 'that', 'these', 'those', 'no', 'not', 'any', 'all', 'own',
+  'can', 'could', 'do', 'does', 'has', 'have', 'how', 'what', 'why', 'when', 'where', 'which', 'who', 'its',
+  'our', 'their', 'one', 'two', 'also', 'only', 'just', 'into', 'through', 'over', 'under', 'up', 'down', 'out',
+  'off', 'more', 'most', 'other', 'some', 'such', 'than', 'there', 'they', 'but', 'if', 'so', 'very', 'ever', 'once',
+]);
+
+const singular = (token: string) => (token.length > 3 && token.endsWith('s') ? token.slice(0, -1) : token);
+
+function tokenize(text: string): string[] {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter((token) => token.length > 1 && !stopwords.has(token))
+    .map(singular);
+}
+
+const toolTerms = (tool: Tool) => [tool.name, tool.summary, tool.intent, ...tool.useCases].flatMap(tokenize);
+
+// Term frequency across all tools, used to weight rarer (more distinguishing) keywords higher.
+const termFrequency = new Map<string, number>();
+for (const tool of tools) {
+  for (const term of new Set(toolTerms(tool))) {
+    termFrequency.set(term, (termFrequency.get(term) ?? 0) + 1);
+  }
+}
+const termWeight = (term: string) => Math.log((tools.length + 1) / (1 + (termFrequency.get(term) ?? 0))) + 1;
+
+function toolVector(tool: Tool): Map<string, number> {
+  const vector = new Map<string, number>();
+  const add = (text: string, weight: number) => {
+    for (const term of tokenize(text)) {
+      vector.set(term, (vector.get(term) ?? 0) + weight);
+    }
+  };
+  add(tool.name, 3);
+  add(tool.summary, 1);
+  add(tool.intent, 1.5);
+  for (const useCase of tool.useCases) add(useCase, 1);
+  return vector;
+}
+
+// Cosine similarity of weighted keyword vectors across name, summary, intent, and use cases.
+function keywordSimilarity(a: Tool, b: Tool): number {
+  const va = toolVector(a);
+  const vb = toolVector(b);
+  let dot = 0;
+  let normA = 0;
+  let normB = 0;
+  for (const [term, w] of va) {
+    const weighted = w * termWeight(term);
+    normA += weighted * weighted;
+    const other = vb.get(term);
+    if (other) dot += weighted * other * termWeight(term);
+  }
+  for (const [term, w] of vb) {
+    const weighted = w * termWeight(term);
+    normB += weighted * weighted;
+  }
+  return normA > 0 && normB > 0 ? dot / Math.sqrt(normA * normB) : 0;
+}
+
+const popularToolIds = new Set(popularTools.map((tool) => tool.id));
+
+// Same category is the strongest signal, but tools in other categories (ambience,
+// pranks, fake OS screens) are still related. Popular tools get a small boost
+// because they carry the most user intent and SEO weight.
+function relatednessScore(a: Tool, b: Tool): number {
+  const affinity = (categoryAffinity[a.category as ActiveCategoryId] ?? {})[b.category as ActiveCategoryId] ?? 0;
+  const keywords = keywordSimilarity(a, b) * 6;
+  return affinity + keywords + (popularToolIds.has(b.id) ? 1.5 : 0);
+}
+
+export function getRelatedTools(tool: Tool, limit = 9): Tool[] {
+  const candidates = tools
+    .filter((candidate) => candidate.id !== tool.id)
+    .map((candidate) => ({ tool: candidate, score: relatednessScore(tool, candidate) }))
+    .sort((a, b) => b.score - a.score || a.tool.id.localeCompare(b.tool.id));
+
+  // Cap picks per category so recommendations span categories instead of one big group.
+  const maxPerCategory = Math.max(2, Math.ceil(limit / 3));
+  const perCategory = new Map<ToolCategoryId, number>();
+  const related: Tool[] = [];
+
+  for (const { tool: candidate } of candidates) {
+    if (related.length >= limit) break;
+    const count = perCategory.get(candidate.category) ?? 0;
+    if (count >= maxPerCategory) continue;
+    related.push(candidate);
+    perCategory.set(candidate.category, count + 1);
+  }
+  return related;
 }
