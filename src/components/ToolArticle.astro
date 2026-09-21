@@ -86,6 +86,75 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         For optimal use, set the clock to 24-hour format or toggle seconds off depending on your preference. Switch to Countdown mode and select a Pomodoro interval that matches your workflow. Adjust brightness downward in low-light environments to reduce eye strain and make the clock a comfortable presence rather than a distraction. The retro flip animation is designed to be satisfying without being intrusive, making it suitable for long-running sessions in offices, libraries, study rooms, and home workspaces.
       </p>
     </>
+  ) : tool.kind === 'saver' && tool.id === 'dvd-screensaver' ? (
+    <>
+      <h2>The Bouncing DVD Logo, Explained</h2>
+      <p>
+        For most of the 2000s, if you left a DVD player switched on with no disc playing, this is what you got: a small logo drifting
+        across the screen, ricocheting off the edges, picking a new color every time it landed. It was never meant to be entertainment.
+        It existed to stop a static image burning into the CRT and plasma screens of the era, and the color changes were there to spread
+        the wear around.
+      </p>
+      <p>
+        Somewhere along the way people started watching it on purpose. It turned up in living rooms, hotel lobbies, and waiting areas,
+        and enough of a shared memory built up around it that the logo outlived the format it advertised. DVD players have largely gone;
+        the bouncing logo is still here, kept alive as the thing people actually wanted from it all along, which is something pleasant to
+        stare at while thinking about something else.
+      </p>
+
+      <h2>The Corner-Hit Obsession</h2>
+      <p>
+        There is exactly one event in this animation that anybody cares about: the logo landing perfectly in a corner, hitting both edges
+        on the same frame instead of clipping one and sliding along. It is the reason people leave it running. It is the reason offices
+        have stopped to watch a screen in the corner of the room.
+      </p>
+      <p>
+        A perfect corner is genuinely rare. The logo has to arrive at the exact spot where both bounces coincide, and depending on the
+        starting position and angle it can take a very long time, or never happen at all on a given run. That is the whole appeal: a
+        reward you cannot hurry, on a loop you can safely ignore until it arrives.
+      </p>
+      <p>
+        The path is worth knowing about if you are waiting for one. The logo always travels at forty five degrees, so its route is decided
+        entirely by where it starts and which way it is pointing. Change the speed or the logo size and the geometry changes with it, which
+        is why nudging either can turn a run that never seems to reach a corner into one that does.
+      </p>
+
+      <h2>How to Use</h2>
+      <p>
+        Open the settings panel with the gear icon to change how the loop behaves. <strong>Speed</strong> sets how fast the logo travels,
+        from a slow drift to a brisk bounce. <strong>Logo size</strong> scales it between a small marker and a large centrepiece, which
+        also affects how often it reaches a corner. <strong>Background</strong> is a full color picker: a near-black background makes the
+        color changes pop hardest, while a lighter tone reads better on a room display in daylight.
+      </p>
+      <p>
+        <strong>Reset position</strong> drops the logo somewhere new with a fresh direction, which is the quickest way to change its path
+        if a run has settled into a route you have watched long enough. The page stays silent throughout; nothing here plays audio.
+      </p>
+      <p>
+        Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> for fullscreen,
+        <kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> to pause and resume, and
+        <kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> to reset the position.
+        <kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> leaves fullscreen. In fullscreen the cursor and controls
+        fade out after a few seconds of stillness, so nothing sits on top of the animation.
+      </p>
+
+      <h2>Other Uses</h2>
+      <p>
+        <strong>Streaming backgrounds and intermissions.</strong> It makes a good starting-soon card, break screen, or quiet layer behind a
+        chat box. Capture it as a display or window source in OBS, or point a browser source straight at the page, then match the background
+        color to the rest of your overlay so it sits in the scene rather than on top of it.
+      </p>
+      <p>
+        <strong>Ambient office and store displays.</strong> On a spare monitor, a lobby television, or a shop screen, it gives you motion
+        without content, which is often exactly what is wanted. There is nothing to read, nothing to interrupt a conversation, and no audio
+        unless you turn it on.
+      </p>
+      <p>
+        <strong>A calming loop for focus.</strong> Some people work better with something moving in the periphery. A slow speed and a small
+        logo on a second screen gives you a rhythm to glance at between tasks, with the corner hit as an occasional small event that does
+        not demand anything from you.
+      </p>
+    </>
   ) : tool.kind === 'saver' ? (
     <>
       <h2>Ambient setup and room atmosphere.</h2>

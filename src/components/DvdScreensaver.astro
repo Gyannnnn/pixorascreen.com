@@ -1,0 +1,15 @@
+---
+export const ssr = false;
+export const prerender = false;
+import type { Tool } from '../data/tools';
+import type { Locale } from '../data/locales';
+import ReactDvdScreensaver from './DvdScreensaver.tsx';
+import ToolFallback from './ToolFallback.astro';
+
+type Props = { tool: Tool; locale: Locale };
+const { tool, locale } = Astro.props;
+---
+
+<ReactDvdScreensaver tool={tool} locale={locale} client:only="react">
+  <ToolFallback slot="fallback" tool={tool} locale={locale} />
+</ReactDvdScreensaver>

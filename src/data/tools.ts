@@ -127,6 +127,29 @@ const deadPixelFaqs = () => [
   },
 ];
 
+const dvdFaqs = () => [
+  {
+    question: 'Why do people find the bouncing DVD logo so satisfying to watch?',
+    answer: 'Because it sets up a question with no fixed answer: will it land perfectly in the corner this time? The motion is simple enough to predict a second or two ahead, which keeps you watching, but the corner is rare enough that you never quite stop waiting for it. That mix of predictable rhythm and an unresolved payoff is what makes it easy to leave running in the background.',
+  },
+  {
+    question: "Can I change the logo's color or does it have to cycle randomly?",
+    answer: 'The logo picks a new color on every bounce, the way the original did, and that behaviour is part of the effect people are looking for. What you can change is everything around it: the background color, the logo size, and the speed. Setting a dark background makes the color changes stand out most; a lighter one gives a softer look for a room display.',
+  },
+  {
+    question: 'Does this work as an actual screensaver, or only while the tab is open?',
+    answer: 'It runs in the browser tab, so it is not a system screensaver that takes over when your computer goes idle. In practice that is rarely a problem: open it, press F for fullscreen, and it fills the display exactly like one. Just bear in mind your operating system may still dim the screen or sleep on its own schedule unless you adjust those settings.',
+  },
+  {
+    question: 'Can I use this as a streaming intermission or background?',
+    answer: 'Yes, and it suits that job well. Run it fullscreen and capture it as a window or display source in OBS or similar software, or point a browser source at the page directly. Match the background color to your overlay, size the logo for your canvas, and it works as a starting-soon card, a break screen, or a quiet layer behind a chat box.',
+  },
+  {
+    question: "Will running this drain my laptop's battery if left on for a long time?",
+    answer: 'It uses noticeably less power than video, since it draws a single shape on a canvas rather than decoding frames, but it is still continuous animation and it will use more battery than an idle screen. If you are unplugged, lowering the speed, shrinking the logo, and dimming your display all help, and pressing Space pauses the animation entirely while keeping the page open.',
+  },
+];
+
 const effectFaqs = (name: string) => [
   {
     question: `Is the ${name.toLowerCase()} safe to use?`,
@@ -183,6 +206,7 @@ export const tools: Tool[] = [
   { id: 'snow-screen', name: 'Snow Screen', shortName: 'Snow', slug: 'snow-screen', localizedSlugs: { es: 'pantalla-de-nieve', pt: 'tela-de-neve', fr: 'ecran-de-neige', de: 'schnee-bildschirm', hi: 'snow-screen', ja: 'snow-gamen' }, category: 'savers', kind: 'saver', color: 'linear-gradient(180deg, #eff6ff, #ffffff)', summary: 'An online snow screen with falling snow, photorealistic snowflakes, wind drift, and 20 color presets for desktop, laptop, monitor, and TV — no download needed.', intent: 'immersive winter ambience with customizable snowfall, wind, flake size, photorealistic images, and fullscreen controls for seasonal decor and relaxation', useCases: ['desktop & laptop ambience', 'Christmas & holiday decoration', 'cozy winter room atmosphere', 'study & relaxation background', 'café & office winter displays', 'Smart TV seasonal screensaver', 'livestream backgrounds', 'festive party decoration'], controls: ['fullscreen mode', 'snowflake count & speed', 'wind drift control', '20 color presets', 'photorealistic snowflake images', 'background scenes', 'audio soundtracks', 'snowflake size & rotation', 'reset to defaults'], faqs: effectFaqs('Snow Screen') },
   { id: 'galaxy-screen', name: 'Galaxy Screen', shortName: 'Galaxy', slug: 'galaxy-screen', localizedSlugs: {}, category: 'savers', kind: 'saver', color: 'radial-gradient(circle, #7c3aed, #020617)', summary: 'An interactive online galaxy screen with realistic spiral galaxy simulation, 5 color themes, star density and rotation controls, gravitational lensing black hole effect, and ambient space audio — no download needed.', intent: 'realistic and customizable spiral galaxy animation with interactive gravitational lensing, adjustable 3D parameters, and ambient space soundscapes for immersive fullscreen display', useCases: ['desktop & laptop ambience', 'TV & home theater background', 'relaxation & meditation', 'space-themed room decoration', 'gaming room ambience', 'streaming & video backgrounds', 'classroom astronomy displays', 'digital signage & exhibitions', 'OLED display showcase'], controls: ['fullscreen mode', '5 galaxy color themes', 'star cluster density', 'rotation velocity', 'inclination tilt (3D angle)', 'core glow intensity', 'space lensing black hole toggle', 'space soundscape audio', 'sound volume', 'keyboard shortcuts', 'reset defaults'], faqs: effectFaqs('Galaxy Screen') },
   { id: 'stars-screen', name: 'Stars Screen', shortName: 'Stars', slug: 'stars-screen', localizedSlugs: {}, category: 'savers', kind: 'saver', color: '#020617', summary: 'A quiet star-field screen saver for dark displays, projectors, and ambient backgrounds.', intent: 'minimal starry display that does not overwhelm a room', useCases: ['projector ambience', 'dark desk setup', 'stage background', 'calm screensaver'], controls: ['fullscreen', 'brightness', 'ambient mode', 'timer', 'reduced motion'], faqs: effectFaqs('Stars Screen') },
+  { id: 'dvd-screensaver', name: 'Bouncing DVD Logo Screensaver', shortName: 'DVD Logo', slug: 'dvd-screensaver', localizedSlugs: {}, category: 'savers', kind: 'saver', color: '#0b0b12', summary: 'The classic bouncing DVD logo screensaver online, running fullscreen with adjustable speed, logo size, and background color, and a new logo color on every bounce.', intent: 'the familiar bouncing logo loop, running fullscreen with the corner hit finally kept score of', useCases: ['streaming intermissions and starting-soon screens', 'office and store ambient displays', 'a calm loop to focus or think against', 'nostalgia and second-screen viewing', 'waiting-room and event background'], controls: ['fullscreen', 'speed', 'logo size', 'background color', 'pause and reset'], faqs: dvdFaqs() },
   { id: 'clock-screen', name: 'Clock Screen', shortName: 'Clock', slug: 'clock-screen', localizedSlugs: {}, category: 'savers', kind: 'saver', color: '#111111', summary: 'An online flip clock in fullscreen with retro flip animation, 6 aesthetic themes, Pomodoro focus timer, ambient sound effects, and brightness dimmer — no download needed.', intent: 'aesthetic fullscreen flip clock experience with retro flip-card animation, customizable themes, and integrated Pomodoro timer for focus sessions', useCases: ['desktop & laptop ambience', 'study & focus sessions', 'Pomodoro productivity', 'second monitor clock display', 'classroom & exam timers', 'live streaming & video backgrounds', 'bedside & nightstand clock', 'office & meeting room displays'], controls: ['fullscreen mode', '6 theme presets', '12/24 hour format', 'seconds toggle', 'focus countdown timer', 'Pomodoro presets', 'retro click sound', 'brightness dimmer', 'custom focus label', 'keyboard shortcuts'], faqs: effectFaqs('Clock Screen') },
   { id: 'ambient-screen', name: 'Ambient Screen', shortName: 'Ambient', slug: 'ambient-screen', localizedSlugs: { es: 'pantalla-ambiental', pt: 'tela-ambiente', fr: 'ecran-ambiant', de: 'ambiente-bildschirm', hi: 'ambient-screen', ja: 'ambient-gamen' }, category: 'savers', kind: 'saver', color: 'linear-gradient(135deg, #007cf0, #ff0080, #f9cb28)', summary: 'A free online ambient screen tool to turn your display into an aesthetic animated background with fluid gradients, floating stars, relaxing soundscapes, Pomodoro focus timer, and guided breathing.', intent: 'get a free ambient screen online for desktop, laptop, monitor, or Smart TV to boost focus, practice meditation, or create relaxing background ambience', useCases: ['desktop & laptop focus ambience', 'meditation & mindfulness relaxation', 'Pomodoro productivity sessions', 'Smart TV ambient living room display', 'relaxing bedroom & bedside lighting', 'office & study background atmosphere', 'guided box breathing exercises', 'lofi & rainfall soundscape mixing'], controls: ['6 fluid gradient presets', 'morphing flow speed slider', 'cosmic star particle density', '4-channel soundscape mixer', 'live clock overlay with fonts', 'guided box breathing exercise', 'Pomodoro focus timer', 'fullscreen immersion', 'keyboard shortcuts', 'auto-hide clean interface'], faqs: effectFaqs('Ambient Screen') },
   { id: 'broken-screen', name: 'Broken Screen', shortName: 'Broken', slug: 'broken-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#0b0b0b', summary: 'A harmless broken-screen prank page with a convincing fullscreen cracked-display effect. The best fake broken screen simulator for pranks, jokes, and funny theatrical moments.', intent: 'realistic cracked display simulation for harmless pranks, video scenes, and theatrical staging without any downloads or installations', useCases: ['friendly jokes on friends and family', 'fake broken monitor prank', 'fake broken laptop screen prank', 'fake cracked phone display prank', 'April Fool prank and office jokes', 'video scenes and YouTube prank content', 'TikTok and social media prank videos', 'stage props and theatrical productions', 'gaming stream intermissions', 'classroom demonstrations'], controls: ['fullscreen', 'escape hint', 'brightness', 'share current screen', 'timer'], faqs: effectFaqs('Broken Screen') },
@@ -434,6 +458,18 @@ function relatednessScore(a: Tool, b: Tool): number {
   return affinity + keywords + (popularToolIds.has(b.id) ? 1.5 : 0);
 }
 
+// Editorially pinned relations, keyed by the page being viewed. Relatedness is
+// keyword-driven, so a newer tool can be a genuinely good suggestion on a page yet
+// never win a slot from older siblings that share more vocabulary with each other.
+// Pinned ids are placed first and then count towards the per-category cap like any
+// other pick, so the spread across categories is unchanged.
+const pinnedRelations: Partial<Record<string, string[]>> = {
+  'matrix-screen': ['dvd-screensaver'],
+  'rain-screen': ['dvd-screensaver'],
+  'galaxy-screen': ['dvd-screensaver'],
+  'stars-screen': ['dvd-screensaver'],
+};
+
 export function getRelatedTools(tool: Tool, limit = 9): Tool[] {
   const candidates = tools
     .filter((candidate) => candidate.id !== tool.id)
@@ -444,13 +480,25 @@ export function getRelatedTools(tool: Tool, limit = 9): Tool[] {
   const maxPerCategory = Math.max(2, Math.ceil(limit / 3));
   const perCategory = new Map<ToolCategoryId, number>();
   const related: Tool[] = [];
+  const taken = new Set<string>();
 
+  const take = (candidate: Tool) => {
+    if (taken.has(candidate.id) || candidate.id === tool.id) return;
+    if (related.length >= limit) return;
+    const count = perCategory.get(candidate.category) ?? 0;
+    if (count >= maxPerCategory) return;
+    related.push(candidate);
+    taken.add(candidate.id);
+    perCategory.set(candidate.category, count + 1);
+  };
+
+  for (const id of pinnedRelations[tool.id] ?? []) {
+    const pinned = tools.find((candidate) => candidate.id === id);
+    if (pinned) take(pinned);
+  }
   for (const { tool: candidate } of candidates) {
     if (related.length >= limit) break;
-    const count = perCategory.get(candidate.category) ?? 0;
-    if (count >= maxPerCategory) continue;
-    related.push(candidate);
-    perCategory.set(candidate.category, count + 1);
+    take(candidate);
   }
   return related;
 }

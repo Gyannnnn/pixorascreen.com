@@ -619,6 +619,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'brown-screen': { es: 'Pantalla Marrón', pt: 'Tela Marrom', fr: 'Écran Marron', de: 'Brauner Bildschirm', hi: 'भूरी स्क्रीन', ja: '茶色の画面' },
   'grey-screen': { es: 'Pantalla Gris', pt: 'Tela Cinza', fr: 'Écran Gris', de: 'Grauer Bildschirm', hi: 'स्लेटी स्क्रीन', ja: '灰色の画面' },
   'custom-color-screen': { es: 'Pantalla de Color Personalizado', pt: 'Tela de Cor Personalizada', fr: 'Écran Couleur Personnalisé', de: 'Benutzerdefinierter Farbbildschirm', hi: 'कस्टम कलर स्क्रीन', ja: 'カスタムカラー画面' },
+  'dvd-screensaver': { es: 'Salvapantallas del Logo DVD', pt: 'Protetor de Tela do Logo DVD', fr: 'Écran de Veille Logo DVD', de: 'DVD-Logo Bildschirmschoner', hi: 'DVD लोगो स्क्रीनसेवर', ja: 'DVDロゴ スクリーンセーバー' },
   'dead-pixel-test': { es: 'Test de Píxeles Muertos', pt: 'Teste de Pixels Mortos', fr: 'Test de Pixels Morts', de: 'Pixelfehler-Test', hi: 'डेड पिक्सल टेस्ट', ja: 'ドット抜けテスト' },
   'gradient-screen': { es: 'Pantalla de Degradado', pt: 'Tela de Degradê', fr: 'Écran Dégradé', de: 'Farbverlauf-Bildschirm', hi: 'ग्रेडिएंट स्क्रीन', ja: 'グラデーション画面' },
   'macos-screen': { es: 'Actualización de macOS', pt: 'Atualização do macOS', fr: 'Mise à jour macOS', de: 'macOS-Aktualisierung', hi: 'macOS अपडेट', ja: 'macOSアップデート' },
@@ -644,6 +645,14 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
+  'dvd-screensaver': {
+    es: 'El clásico salvapantallas del logo DVD rebotando a pantalla completa, con velocidad, tamaño y color de fondo ajustables, y un color nuevo en cada rebote.',
+    pt: 'O clássico protetor de tela do logo DVD quicando em tela cheia, com velocidade, tamanho e cor de fundo ajustáveis, e uma cor nova a cada batida.',
+    fr: "Le classique écran de veille du logo DVD qui rebondit en plein écran, avec vitesse, taille et couleur de fond réglables, et une nouvelle couleur à chaque rebond.",
+    de: 'Der klassische springende DVD-Logo-Bildschirmschoner im Vollbild, mit einstellbarer Geschwindigkeit, Größe und Hintergrundfarbe und einer neuen Farbe bei jedem Abprall.',
+    hi: 'क्लासिक बाउंसिंग DVD लोगो स्क्रीनसेवर, फुलस्क्रीन में चलने वाला, जिसमें गति, आकार और पृष्ठभूमि रंग समायोज्य हैं और हर टक्कर पर नया रंग आता है।',
+    ja: '定番のDVDロゴが跳ね回る全画面スクリーンセーバー。速度・サイズ・背景色を調整でき、跳ね返るたびにロゴの色が変わります。',
+  },
   'dead-pixel-test': {
     es: 'Un test guiado de seis colores que recorre negro, blanco, rojo, verde, azul y gris a pantalla completa para revisar cualquier pantalla en busca de píxeles muertos, píxeles atascados y fugas de retroiluminación.',
     pt: 'Um teste guiado de seis cores que percorre preto, branco, vermelho, verde, azul e cinza em tela cheia para verificar qualquer tela em busca de pixels mortos, pixels presos e vazamento de luz.',

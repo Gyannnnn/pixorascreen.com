@@ -15,6 +15,7 @@ import GalaxyScreen from './GalaxyScreen';
 import StarsScreen from './StarsScreen';
 import ClockScreen from './ClockScreen';
 import AmbientScreen from './AmbientScreen';
+import DvdScreensaver from './DvdScreensaver.tsx';
 
 // Import Prank and Fake Screen Components for Live Preview Cards
 import BrokenScreen from './BrokenScreen.astro';
@@ -75,6 +76,7 @@ const altText = `${toolName(locale, tool)} preview`;
           {tool.id === 'stars-screen' && <StarsScreen client:idle tool={tool} locale={locale} isCard={true} />}
           {tool.id === 'clock-screen' && <ClockScreen client:idle tool={tool} locale={locale} isCard={true} />}
           {tool.id === 'ambient-screen' && <AmbientScreen client:idle tool={tool} locale={locale} isCard={true} />}
+          {tool.id === 'dvd-screensaver' && <DvdScreensaver client:idle tool={tool} locale={locale} isCard={true} />}
 
           {/* Prank Screens */}
           {tool.id === 'radar-screen' && <RadarScreen tool={tool} locale={locale} isCard={true} />}
