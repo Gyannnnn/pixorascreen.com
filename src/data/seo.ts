@@ -249,6 +249,9 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
   'dvd-screensaver': {
     en: 'Bouncing DVD Logo Screensaver - Free Fullscreen Online | PixoraScreen',
   },
+  'oled-burn-in-test': {
+    en: 'OLED Burn-In Test - Free Fullscreen Screen Protection Checker | PixoraScreen',
+  },
   'custom-color-screen': {
     en: 'Custom Color Screen - Free Fullscreen Color Picker | PixoraScreen',
   },
@@ -480,6 +483,9 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
   'dvd-screensaver': {
     en: 'Watch the classic bouncing DVD logo screensaver online, free and fullscreen. Customize color, speed, and background — perfect for nostalgia, streams, or a satisfying loop.',
   },
+  'oled-burn-in-test': {
+    en: 'Free OLED burn-in test — check your OLED or AMOLED display for ghosting and image retention using solid colors and moving patterns. Works on phones, TVs, and monitors.',
+  },
   'custom-color-screen': {
     en: 'Pick any custom color and fill your screen fullscreen. Free color picker with HEX, RGB, and HSL input, saved favorites, and calibration-friendly display testing.',
   },
@@ -526,6 +532,9 @@ const customH1: Partial<Record<string, Partial<Record<Locale, string>>>> = {
   'dvd-screensaver': {
     en: 'Bouncing DVD Logo Screensaver',
   },
+  'oled-burn-in-test': {
+    en: 'OLED Burn-In Test: Check for Ghosting & Image Retention',
+  },
   'custom-color-screen': {
     en: 'Custom Color Screen — Fullscreen Color Picker & Display Tester',
   },
@@ -538,6 +547,9 @@ const customH1: Partial<Record<string, Partial<Record<Locale, string>>>> = {
 // place so the visible breadcrumb and the BreadcrumbList JSON-LD always agree —
 // Google discards breadcrumb markup that does not match the rendered trail.
 const customBreadcrumbNames: Partial<Record<string, Partial<Record<Locale, string>>>> = {
+  'oled-burn-in-test': {
+    en: 'OLED Burn-In Test',
+  },
   'dvd-screensaver': {
     en: 'Bouncing DVD Logo Screensaver',
   },
@@ -562,6 +574,9 @@ export function breadcrumbNameForTool(tool: Tool, locale: Locale = defaultLocale
 // The WebApplication entity describes the tool itself, which is not always worded the
 // same way as the page's meta description. Falls back to the meta description.
 const customAppDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
+  'oled-burn-in-test': {
+    en: 'Free OLED burn-in test with static color checks and a moving pattern mode, for checking and helping prevent screen ghosting and image retention.',
+  },
   'dvd-screensaver': {
     en: 'Free bouncing DVD logo screensaver — customizable background color, speed, and logo size, fullscreen and online.',
   },

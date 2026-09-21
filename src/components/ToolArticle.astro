@@ -419,6 +419,75 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         angles.
       </p>
     </>
+  ) : tool.id === 'oled-burn-in-test' ? (
+    <>
+      <h2>What Is OLED Burn-In?</h2>
+      <p>
+        Burn-in is permanent or semi-permanent discoloration left on a display when its pixels age unevenly. On an OLED or AMOLED panel
+        every pixel generates its own light and dims a little each hour it is lit, so brightness is spent per pixel rather than drawn from
+        a shared backlight. Anything that sits in the same place at high brightness therefore wears faster than the moving picture around
+        it.
+      </p>
+      <p>
+        That is why burn-in nearly always takes the shape of interface furniture rather than the shape of content: a phone status bar or
+        navigation row, a broadcaster's logo in the corner of a television, a game HUD, a dashboard readout, a taskbar. Those elements hold
+        still for hundreds of hours while everything else changes. Once the gap between the worn pixels and their neighbours is wide enough,
+        the outline stays faintly visible on every screen you open.
+      </p>
+      <p>
+        It is worth separating burn-in from <strong>image retention</strong>, which looks similar and is not the same thing. Retention is a
+        temporary ghost that fades on its own once the static image is gone, often within minutes, and it happens on LCD panels too. Burn-in
+        does not fade. Checking a suspected ghost again after twenty minutes of varied content is the simplest way to tell them apart.
+      </p>
+
+      <h2>How to Check for Existing Burn-In</h2>
+      <p>
+        Switch the tool to <strong>Static Check</strong> and work through the fills. This is a diagnostic pass, so the aim is a completely
+        flat field with nothing in it to distract the eye.
+      </p>
+      <h3>Use the grey levels first</h3>
+      <p>
+        Mid-grey is the most revealing fill on the page, which is why three grey levels come before the colors. Pure white is bright enough
+        to wash faint discoloration out and pure black gives it nothing to show against, but an even mid-tone sits exactly where a worn
+        patch separates from an unworn one. Step through 20%, 50%, and 75% grey and give each a few seconds.
+      </p>
+      <h3>Work in a dim room at a steady brightness</h3>
+      <p>
+        Ambient light and reflections hide precisely the low-contrast detail you are hunting for. Darken the room, hold the display at one
+        brightness while you compare fills, and use the brightness slider rather than your device controls so the level stays consistent
+        between them.
+      </p>
+      <h3>Look for shapes that stay put</h3>
+      <p>
+        Real burn-in keeps its position while the fill color changes around it, and it looks like something you recognise: the bar along the
+        top, a rectangle where a logo lives, a row of icons. If a mark moves as you tilt the screen or shifts with the light in the room, it
+        is a reflection or a smudge. Check the colored fills afterwards as well, since a single worn sub-pixel channel can show against red,
+        green, or blue before it shows against grey.
+      </p>
+      <p>
+        If you find something, photograph the screen on the fill that shows it most clearly. A dated photo is far more persuasive than a
+        description if you go on to open a warranty claim.
+      </p>
+
+      <h2>How to Help Prevent Burn-In</h2>
+      <p>
+        Switch to <strong>Moving Pattern</strong> and the job changes completely. Nothing in this mode holds still: the grid drifts, a soft
+        sweep travels across the panel, and a colored block wanders the full area, all on a dark base so average brightness stays low. No
+        pixel sits at one value long enough to age ahead of its neighbours, which is the same principle behind every screensaver ever
+        shipped for this problem.
+      </p>
+      <p>
+        Leave it running during the periods that actually cause burn-in, which are the idle ones: a display paused on a menu, a monitor left
+        on a static dashboard, a television showing a channel with a permanent logo, a kiosk between visitors. Those are the hours that do
+        the damage, not ordinary viewing.
+      </p>
+      <p>
+        The habits matter more than any single tool. Avoid leaving bright static interface elements on screen for long stretches, turn on
+        auto-hide for taskbars and playback controls where you can, and lower overall brightness, since wear scales with how hard the pixels
+        are driven. Most modern OLED phones and televisions already ship with pixel shifting, logo dimming, and periodic refresh cycles
+        running quietly in the background. Leave those enabled. This page is a supplement to them, not a replacement.
+      </p>
+    </>
   ) : tool.id === 'dead-pixel-test' ? (
     <>
       <h2>What Is a Dead Pixel?</h2>
@@ -464,7 +533,8 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
       <p>
         Mid-grey is the most revealing screen for panel uniformity. Pure white is bright enough to mask gradual variation, and pure black
         gives the backlight nothing to illuminate, but an even mid-tone makes clouding, patchiness, and brighter corners stand out. On an
-        LCD or LED panel this is where backlight bleeding is easiest to judge.
+        LCD or LED panel this is where backlight bleeding is easiest to judge. On OLED there is no backlight to bleed, so an uneven grey
+        points to worn pixels instead &mdash; the <a href="/oled-burn-in-test/">OLED burn-in test</a> is built for that case.
       </p>
 
       <h2>How to Perform a Dead Pixel Test</h2>
@@ -551,7 +621,8 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
       <h3>OLED Burn-in Check</h3>
       <p>
         Running a red screen briefly can also reveal early burn-in patterns on OLED displays, since burn-in often shows up as faint ghosting
-        against a solid color background.
+        against a solid color background. The <a href="/oled-burn-in-test/">OLED burn-in test</a> takes that further with the grey levels
+        where ghosting separates most clearly, plus a moving pattern mode for helping prevent it.
       </p>
       <h3>Color Uniformity</h3>
       <p>
@@ -585,7 +656,8 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
             LCD/IPS panels and <strong>stuck subpixels</strong> that glow faintly against true black. Hold the screen for 30&ndash;60 seconds in a dark
             room and scan corners and edges first, since bleed concentrates there. On desktop monitors, back away a few feet to separate uniform glow
             from a genuine defect; on phones and tablets, tilt the panel at an angle, where OLED black looks perfectly uniform while LCD shows faint
-            grey haze. Because black draws almost no power on OLED, it will not create burn-in. Pair it with the <a href="/white-screen/">white screen</a> tool, which lights every subpixel and is the better check for dead or stuck pixels and early burn-in ghosting, or the <a href="/red-screen/">red screen</a> tool, which isolates the red sub-pixel specifically.
+            grey haze. Because black draws almost no power on OLED, it will not create burn-in, though it is also too dark to reveal existing
+            burn-in &mdash; the <a href="/oled-burn-in-test/">OLED burn-in test</a> uses mid-grey fills for that. Pair it with the <a href="/white-screen/">white screen</a> tool, which lights every subpixel and is the better check for dead or stuck pixels and early burn-in ghosting, or the <a href="/red-screen/">red screen</a> tool, which isolates the red sub-pixel specifically.
           </p>
           <h3>Why Black Screen Is Good for OLED Displays</h3>
           <p>
@@ -598,7 +670,8 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         <p>
           A pure white fill (#ffffff) drives every subpixel to full brightness, making it the fastest way to reveal <strong>dead pixels</strong>
           (permanently dark dots) and early <strong>OLED burn-in</strong> (faint shadows of static UI elements like a status bar or navigation
-          bar). Run it for a minute at a time rather than continuously. Sustained full-white brightness is what accelerates OLED wear, so
+          bar), which the dedicated <a href="/oled-burn-in-test/">OLED burn-in test</a> isolates with mid-grey fills. Run it for a minute at
+          a time rather than continuously. Sustained full-white brightness is what accelerates OLED wear, so
           desktop monitors and TVs tolerate longer sessions than phones, where manufacturers cap brightness specifically to limit this. Check
           the panel from a straight angle and from the side, since burn-in shadows are often only visible off-axis. For a full picture, cross-check
           with the <a href="/black-screen/">black screen</a> tool: black exposes backlight bleed and stuck subpixels without the wear risk white

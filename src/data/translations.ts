@@ -619,6 +619,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'brown-screen': { es: 'Pantalla Marrón', pt: 'Tela Marrom', fr: 'Écran Marron', de: 'Brauner Bildschirm', hi: 'भूरी स्क्रीन', ja: '茶色の画面' },
   'grey-screen': { es: 'Pantalla Gris', pt: 'Tela Cinza', fr: 'Écran Gris', de: 'Grauer Bildschirm', hi: 'स्लेटी स्क्रीन', ja: '灰色の画面' },
   'custom-color-screen': { es: 'Pantalla de Color Personalizado', pt: 'Tela de Cor Personalizada', fr: 'Écran Couleur Personnalisé', de: 'Benutzerdefinierter Farbbildschirm', hi: 'कस्टम कलर स्क्रीन', ja: 'カスタムカラー画面' },
+  'oled-burn-in-test': { es: 'Test de Burn-In OLED', pt: 'Teste de Burn-In OLED', fr: 'Test de Burn-In OLED', de: 'OLED-Burn-In-Test', hi: 'OLED बर्न-इन टेस्ट', ja: 'OLED焼き付きテスト' },
   'dvd-screensaver': { es: 'Salvapantallas del Logo DVD', pt: 'Protetor de Tela do Logo DVD', fr: 'Écran de Veille Logo DVD', de: 'DVD-Logo Bildschirmschoner', hi: 'DVD लोगो स्क्रीनसेवर', ja: 'DVDロゴ スクリーンセーバー' },
   'dead-pixel-test': { es: 'Test de Píxeles Muertos', pt: 'Teste de Pixels Mortos', fr: 'Test de Pixels Morts', de: 'Pixelfehler-Test', hi: 'डेड पिक्सल टेस्ट', ja: 'ドット抜けテスト' },
   'gradient-screen': { es: 'Pantalla de Degradado', pt: 'Tela de Degradê', fr: 'Écran Dégradé', de: 'Farbverlauf-Bildschirm', hi: 'ग्रेडिएंट स्क्रीन', ja: 'グラデーション画面' },
@@ -645,6 +646,14 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
+  'oled-burn-in-test': {
+    es: 'Un test de burn-in OLED con dos modos: fondos grises y de color para revelar el ghosting existente, más un patrón en movimiento que ayuda a prevenir el desgaste desigual de los píxeles.',
+    pt: 'Um teste de burn-in OLED com dois modos: fundos cinza e coloridos para revelar o ghosting existente, mais um padrão em movimento que ajuda a evitar o desgaste desigual dos pixels.',
+    fr: "Un test de burn-in OLED à deux modes : des aplats gris et colorés pour révéler le ghosting existant, plus un motif animé qui aide à prévenir le vieillissement inégal des pixels.",
+    de: 'Ein OLED-Burn-In-Test mit zwei Modi: graue und farbige Vollbilder, die vorhandenes Ghosting sichtbar machen, plus ein bewegtes Muster gegen ungleichmäßige Pixelalterung.',
+    hi: 'दो मोड वाला OLED बर्न-इन टेस्ट: मौजूदा घोस्टिंग दिखाने के लिए स्लेटी और रंगीन फुलस्क्रीन, और पिक्सल की असमान घिसाई रोकने में मदद करने वाला चलता-फिरता पैटर्न।',
+    ja: '2つのモードを備えたOLED焼き付きテスト。グレーやカラーの単色表示で既存のゴーストを確認し、動くパターンで画素の不均一な劣化を防ぎます。',
+  },
   'dvd-screensaver': {
     es: 'El clásico salvapantallas del logo DVD rebotando a pantalla completa, con velocidad, tamaño y color de fondo ajustables, y un color nuevo en cada rebote.',
     pt: 'O clássico protetor de tela do logo DVD quicando em tela cheia, com velocidade, tamanho e cor de fundo ajustáveis, e uma cor nova a cada batida.',
