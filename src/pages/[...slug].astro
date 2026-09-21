@@ -33,6 +33,7 @@ import {
   alternatesForHome,
   alternatesForTool,
   allToolPaths,
+  breadcrumbNameForTool,
   descriptionForTool,
   h1ForTool,
   landingJsonLd,
@@ -89,7 +90,7 @@ const props = Astro.props as PageProps;
       <nav class="text-sm text-body" aria-label="Breadcrumb">
         <a class="hover:text-ink" href="/">{t(props.locale, 'tool.breadcrumb_home')}</a>
         <span class="mx-2">/</span>
-        <span>{toolName(props.locale, props.tool)}</span>
+        <span>{breadcrumbNameForTool(props.tool, props.locale)}</span>
       </nav>
       <div class={`mt-8 grid gap-8 lg:items-center min-w-0 ${props.tool.kind === 'color' ? 'lg:grid-cols-[1.05fr_0.95fr]' : 'lg:grid-cols-[0.8fr_1.2fr]'}`}>
         <div class="min-w-0">

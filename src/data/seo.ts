@@ -1,6 +1,6 @@
 import { defaultLocale, localeOrder, locales, type Locale } from './locales';
 import { tools, type Tool } from './tools';
-import { toolName, toolSummary, toolFaqs } from './translations';
+import { t, toolName, toolSummary, toolFaqs } from './translations';
 
 export const siteName = 'PixoraScreen';
 export const siteUrl = 'https://pixorascreen.com';
@@ -516,6 +516,25 @@ const customH1: Partial<Record<string, Partial<Record<Locale, string>>>> = {
   },
 };
 
+// Label used for the breadcrumb trail and the WebApplication entity. Kept in one
+// place so the visible breadcrumb and the BreadcrumbList JSON-LD always agree —
+// Google discards breadcrumb markup that does not match the rendered trail.
+const customBreadcrumbNames: Partial<Record<string, Partial<Record<Locale, string>>>> = {
+  'white-screen': {
+    en: 'White Screen Test',
+  },
+  'black-screen': {
+    en: 'Black Screen Test',
+  },
+  'red-screen': {
+    en: 'Red Screen Test',
+  },
+};
+
+export function breadcrumbNameForTool(tool: Tool, locale: Locale = defaultLocale) {
+  return customBreadcrumbNames[tool.id]?.[locale] ?? toolName(locale, tool);
+}
+
 export function h1ForTool(tool: Tool, locale: Locale = defaultLocale) {
   if (customH1[tool.id]?.[locale]) {
     return customH1[tool.id]![locale]!;
@@ -568,7 +587,7 @@ function stripHtml(text: string): string {
 
 export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLocale) {
   const url = absoluteUrl(path);
-  const tName = toolName(locale, tool);
+  const crumbName = breadcrumbNameForTool(tool, locale);
   const baseSchemas: Record<string, unknown>[] = [
     {
       '@context': 'https://schema.org',
@@ -583,7 +602,7 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
       },
       mainEntity: {
         '@type': 'SoftwareApplication',
-        name: tName,
+        name: crumbName,
         applicationCategory: 'MultimediaApplication',
         operatingSystem: 'Any',
         offers: {
@@ -597,8 +616,8 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
-        { '@type': 'ListItem', position: 2, name: tName || tool.name || tool.id },
+        { '@type': 'ListItem', position: 1, name: t(locale, 'tool.breadcrumb_home'), item: absoluteUrl('/') },
+        { '@type': 'ListItem', position: 2, name: crumbName, item: url },
       ],
     },
     {
@@ -616,7 +635,7 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
     {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      name: tName,
+      name: crumbName,
       url,
       description: descriptionForTool(tool, locale),
       applicationCategory: 'UtilitiesApplication',
