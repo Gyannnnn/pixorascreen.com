@@ -619,6 +619,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'brown-screen': { es: 'Pantalla Marrón', pt: 'Tela Marrom', fr: 'Écran Marron', de: 'Brauner Bildschirm', hi: 'भूरी स्क्रीन', ja: '茶色の画面' },
   'grey-screen': { es: 'Pantalla Gris', pt: 'Tela Cinza', fr: 'Écran Gris', de: 'Grauer Bildschirm', hi: 'स्लेटी स्क्रीन', ja: '灰色の画面' },
   'custom-color-screen': { es: 'Pantalla de Color Personalizado', pt: 'Tela de Cor Personalizada', fr: 'Écran Couleur Personnalisé', de: 'Benutzerdefinierter Farbbildschirm', hi: 'कस्टम कलर स्क्रीन', ja: 'カスタムカラー画面' },
+  'dead-pixel-test': { es: 'Test de Píxeles Muertos', pt: 'Teste de Pixels Mortos', fr: 'Test de Pixels Morts', de: 'Pixelfehler-Test', hi: 'डेड पिक्सल टेस्ट', ja: 'ドット抜けテスト' },
   'gradient-screen': { es: 'Pantalla de Degradado', pt: 'Tela de Degradê', fr: 'Écran Dégradé', de: 'Farbverlauf-Bildschirm', hi: 'ग्रेडिएंट स्क्रीन', ja: 'グラデーション画面' },
   'macos-screen': { es: 'Actualización de macOS', pt: 'Atualização do macOS', fr: 'Mise à jour macOS', de: 'macOS-Aktualisierung', hi: 'macOS अपडेट', ja: 'macOSアップデート' },
   'radar-screen': { es: 'Pantalla de Radar', pt: 'Tela de Radar', fr: 'Écran Radar', de: 'Radar-Bildschirm', hi: 'रडार स्क्रीन', ja: 'レーダー画面' },
@@ -643,6 +644,14 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
+  'dead-pixel-test': {
+    es: 'Un test guiado de seis colores que recorre negro, blanco, rojo, verde, azul y gris a pantalla completa para revisar cualquier pantalla en busca de píxeles muertos, píxeles atascados y fugas de retroiluminación.',
+    pt: 'Um teste guiado de seis cores que percorre preto, branco, vermelho, verde, azul e cinza em tela cheia para verificar qualquer tela em busca de pixels mortos, pixels presos e vazamento de luz.',
+    fr: 'Un test guidé en six couleurs qui parcourt noir, blanc, rouge, vert, bleu et gris en plein écran pour détecter pixels morts, pixels bloqués et fuites de rétroéclairage.',
+    de: 'Ein geführter Test in sechs Farben, der Schwarz, Weiß, Rot, Grün, Blau und Grau im Vollbild durchläuft, um jeden Bildschirm auf tote Pixel, festsitzende Pixel und Backlight-Bleeding zu prüfen.',
+    hi: 'एक निर्देशित छह रंगों वाला टेस्ट जो काला, सफेद, लाल, हरा, नीला और स्लेटी फुलस्क्रीन दिखाकर किसी भी स्क्रीन में डेड पिक्सल, स्टक पिक्सल और बैकलाइट ब्लीड की जांच करता है।',
+    ja: '黒・白・赤・緑・青・グレーの6色を全画面で順に表示し、あらゆる画面のドット抜け、常時点灯画素、バックライト漏れを確認できるテストです。',
+  },
   'custom-color-screen': {
     es: 'Una herramienta versátil de prueba de color de pantalla para generar cualquier pantalla completa de color sólido para comprobar la uniformidad del monitor, fugas de luz e identificar píxeles muertos.',
     pt: 'Uma ferramenta versátil de teste de cor de tela para gerar qualquer cor de preenchimento em tela cheia para verificar uniformidade do monitor, pixels mortos e vazamento de luz.',

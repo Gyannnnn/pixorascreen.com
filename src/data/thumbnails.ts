@@ -15,19 +15,24 @@ export function thumbnailMonitor(inner: string, color = '#111'): string {
 </svg>`;
 }
 
-// export function thumbnailDeadPixelTest(): string {
-//   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
-//   <rect width="320" height="200" fill="#fff"/>
-//   <g opacity="0.5">
-//     <rect x="20" y="20" width="30" height="30" fill="#f00"/><rect x="55" y="20" width="30" height="30" fill="#0f0"/><rect x="90" y="20" width="30" height="30" fill="#00f"/><rect x="125" y="20" width="30" height="30" fill="#ff0"/>
-//     <rect x="160" y="20" width="30" height="30" fill="#0ff"/><rect x="195" y="20" width="30" height="30" fill="#f0f"/><rect x="230" y="20" width="30" height="30" fill="#fff"/><rect x="265" y="20" width="30" height="30" fill="#000"/>
-//     <rect x="20" y="55" width="30" height="30" fill="#000"/><rect x="55" y="55" width="30" height="30" fill="#fff"/><rect x="90" y="55" width="30" height="30" fill="#f00"/><rect x="125" y="55" width="30" height="30" fill="#0f0"/>
-//     <rect x="160" y="55" width="30" height="30" fill="#00f"/><rect x="195" y="55" width="30" height="30" fill="#ff0"/><rect x="230" y="55" width="30" height="30" fill="#0ff"/><rect x="265" y="55" width="30" height="30" fill="#f0f"/>
-//   </g>
-//   <text x="160" y="130" text-anchor="middle" fill="#666" font-family="system-ui" font-size="11" font-weight="600">Dead Pixel Test</text>
-//   <rect x="0.5" y="0.5" width="319" height="199" rx="12" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
-// </svg>`;
-// }
+export function thumbnailDeadPixelTest(): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs><clipPath id="roundClipDpt"><rect width="320" height="200" rx="12"/></clipPath></defs>
+  <g clip-path="url(#roundClipDpt)">
+    <rect width="53.34" height="200" fill="#000000"/>
+    <rect x="53.34" width="53.34" height="200" fill="#ffffff"/>
+    <rect x="106.68" width="53.34" height="200" fill="#ff0000"/>
+    <rect x="160.02" width="53.34" height="200" fill="#00ff00"/>
+    <rect x="213.36" width="53.34" height="200" fill="#0000ff"/>
+    <rect x="266.7" width="53.3" height="200" fill="#808080"/>
+    <circle cx="26" cy="70" r="3" fill="#ffffff"/>
+    <circle cx="80" cy="130" r="3" fill="#111111"/>
+    <rect x="96" y="150" width="128" height="26" rx="13" fill="rgba(0,0,0,0.55)"/>
+    <text x="160" y="167" text-anchor="middle" fill="#ffffff" font-family="system-ui" font-size="11" font-weight="600">Dead Pixel Test</text>
+  </g>
+  <rect x="0.5" y="0.5" width="319" height="199" rx="12" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+</svg>`;
+}
 
 // export function thumbnailStuckPixel(): string {
 //   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
@@ -486,7 +491,7 @@ export function getThumbnail(toolId: string, color?: string): string {
     case 'gradient-screen': return thumbnailGradient();
     case 'rgb-screen': return thumbnailRgb();
     case 'hex-screen': return thumbnailHex();
-    // case 'dead-pixel-test': return thumbnailDeadPixelTest();
+    case 'dead-pixel-test': return thumbnailDeadPixelTest();
     // case 'stuck-pixel-fix': return thumbnailStuckPixel();
     // case 'burn-in-test': return thumbnailBurnIn();
     // case 'brightness-test': return thumbnailBrightnessTest();

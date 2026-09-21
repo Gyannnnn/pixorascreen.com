@@ -243,6 +243,9 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
     hi: 'Android अपडेट सिम्युलेटर ऑनलाइन - मुफ्त फर्जी Android अपडेट और इंस्टॉलेशन स्क्रीन',
     ja: 'Androidアップデートシミュレーター オンライン - 無料偽Androidアップデート＆インストール画面',
   },
+  'dead-pixel-test': {
+    en: 'Dead Pixel Test - Free Online Monitor & Screen Checker | PixoraScreen',
+  },
   'custom-color-screen': {
     en: 'Custom Color Screen - Free Fullscreen Color Picker | PixoraScreen',
   },
@@ -468,6 +471,9 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
     hi: 'किसी भी स्क्रीन को प्रामाणिक Android रोबोट ब्रांडिंग, प्रोग्रेस एनिमेशन, रिस्टार्ट चक्र और कॉन्फ़िगरेबल अपडेट अवधि के साथ एक यथार्थवादी फर्जी Android सिस्टम अपडेट सिम्युलेटर में बदलें। मोबाइल UI डेमो, वीडियो निर्माण, कक्षा प्रशिक्षण और हानिरहित प्रैंक के लिए मुफ्त ऑनलाइन टूल। फुलस्क्रीन, कीबोर्ड शॉर्टकट और एडजस्टेबल स्टार्ट परसेंटेज। बिना डाउनलोड, बिना इंस्टॉलेशन, बिना जोखिम।',
     ja: '本物そっくりのAndroidロボットブランディング、進捗アニメーション、再起動サイクル、設定可能な更新時間を備えたリアルな偽Androidシステムアップデートシミュレーターにどんな画面でも変身。モバイルUIデモ、動画制作、教室トレーニング、無害ないたずらに最適な無料オンラインツール。全画面、キーボードショートカット、開始位置調整可能。ダウンロード不要、インストール不要、リスクなし。',
   },
+  'dead-pixel-test': {
+    en: 'Free dead pixel test — cycle through solid colors to check your monitor, laptop, or phone for dead pixels, stuck pixels, and backlight bleeding. Works on any device.',
+  },
   'custom-color-screen': {
     en: 'Pick any custom color and fill your screen fullscreen. Free color picker with HEX, RGB, and HSL input, saved favorites, and calibration-friendly display testing.',
   },
@@ -508,6 +514,9 @@ const customH1: Partial<Record<string, Partial<Record<Locale, string>>>> = {
   'red-screen': {
     en: 'Red Screen Test: Dead Pixel Checker & Red Light Screen',
   },
+  'dead-pixel-test': {
+    en: 'Dead Pixel Test: Six Color Dead & Stuck Pixel Checker',
+  },
   'custom-color-screen': {
     en: 'Custom Color Screen — Fullscreen Color Picker & Display Tester',
   },
@@ -520,6 +529,9 @@ const customH1: Partial<Record<string, Partial<Record<Locale, string>>>> = {
 // place so the visible breadcrumb and the BreadcrumbList JSON-LD always agree —
 // Google discards breadcrumb markup that does not match the rendered trail.
 const customBreadcrumbNames: Partial<Record<string, Partial<Record<Locale, string>>>> = {
+  'dead-pixel-test': {
+    en: 'Dead Pixel Test',
+  },
   'white-screen': {
     en: 'White Screen Test',
   },
@@ -533,6 +545,18 @@ const customBreadcrumbNames: Partial<Record<string, Partial<Record<Locale, strin
 
 export function breadcrumbNameForTool(tool: Tool, locale: Locale = defaultLocale) {
   return customBreadcrumbNames[tool.id]?.[locale] ?? toolName(locale, tool);
+}
+
+// The WebApplication entity describes the tool itself, which is not always worded the
+// same way as the page's meta description. Falls back to the meta description.
+const customAppDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
+  'dead-pixel-test': {
+    en: 'Free dead pixel test tool — cycle through six colors to check any screen for dead pixels, stuck pixels, and backlight bleeding.',
+  },
+};
+
+export function appDescriptionForTool(tool: Tool, locale: Locale = defaultLocale) {
+  return customAppDescriptions[tool.id]?.[locale] ?? descriptionForTool(tool, locale);
 }
 
 export function h1ForTool(tool: Tool, locale: Locale = defaultLocale) {
@@ -637,7 +661,7 @@ export function toolJsonLd(tool: Tool, path: string, locale: Locale = defaultLoc
       '@type': 'WebApplication',
       name: crumbName,
       url,
-      description: descriptionForTool(tool, locale),
+      description: appDescriptionForTool(tool, locale),
       applicationCategory: 'UtilitiesApplication',
       operatingSystem: 'Any',
       offers: {

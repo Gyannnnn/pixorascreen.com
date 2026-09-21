@@ -350,6 +350,89 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         angles.
       </p>
     </>
+  ) : tool.id === 'dead-pixel-test' ? (
+    <>
+      <h2>What Is a Dead Pixel?</h2>
+      <p>
+        A dead pixel is a single point on your display that no longer lights up at all. It receives no power, so it stays black no matter
+        what the screen is showing — it does not flicker, change color, or respond to anything you do. Against a bright background it
+        reads as a tiny dark speck that never moves, which is why a full white or light-colored screen is the fastest way to find one.
+      </p>
+      <p>
+        A <strong>stuck pixel</strong> is a different fault that is easy to confuse with it. A stuck pixel is still receiving power, but it
+        is frozen on one color — usually red, green, or blue — so instead of a dark speck you get a small dot that glows constantly.
+        The distinction matters because it changes what you can do about it: stuck pixels sometimes recover with rapid color cycling or very
+        gentle pressure, while a genuinely dead pixel is a hardware fault that software cannot bring back.
+      </p>
+      <p>
+        Both are worth identifying precisely before you contact a manufacturer, because warranty policies are usually written around a
+        minimum number of confirmed defective pixels, and they often treat dead and stuck pixels differently.
+      </p>
+
+      <h2>Why Test With Six Colors?</h2>
+      <p>
+        A single color only tells you part of the story. Each screen in this test isolates a different sub-pixel or a different class of
+        defect, and a fault that is obvious on one can be completely invisible on the others.
+      </p>
+      <h3>Black reveals stuck-on and bright pixels</h3>
+      <p>
+        When the whole panel should be dark, any pixel that is still emitting light has nowhere to hide. This is the screen that catches
+        stuck pixels and, on LCD panels, light leaking in from the edges.
+      </p>
+      <h3>White reveals dead and dim pixels</h3>
+      <p>
+        With every sub-pixel driven to full brightness, a pixel that is off shows up as a dark dot. White is also the easiest screen for
+        spotting dust, smudges, and fingerprints, which are frequently mistaken for pixel defects.
+      </p>
+      <h3>Red, green, and blue isolate each sub-pixel</h3>
+      <p>
+        Every pixel on a color display is made of a red, a green, and a blue sub-pixel. Filling the screen with one pure channel lights only
+        that sub-pixel across the entire panel, so a failure in just one channel becomes obvious. A pixel whose red sub-pixel has died still
+        looks perfectly normal on the green and blue screens, and can pass unnoticed on white — which is exactly why these three
+        screens are not optional.
+      </p>
+      <h3>Grey reveals backlight unevenness</h3>
+      <p>
+        Mid-grey is the most revealing screen for panel uniformity. Pure white is bright enough to mask gradual variation, and pure black
+        gives the backlight nothing to illuminate, but an even mid-tone makes clouding, patchiness, and brighter corners stand out. On an
+        LCD or LED panel this is where backlight bleeding is easiest to judge.
+      </p>
+
+      <h2>How to Perform a Dead Pixel Test</h2>
+      <p>
+        The test itself takes about a minute, but a few conditions make the difference between a reliable result and a false alarm.
+      </p>
+      <h3>1. Clean the screen first</h3>
+      <p>
+        Wipe the display with a dry microfiber cloth before you start. A speck of dust on a high-density phone or laptop panel looks almost
+        identical to a dead pixel, and this single step prevents most false positives.
+      </p>
+      <h3>2. Turn brightness to maximum</h3>
+      <p>
+        Dim or dying sub-pixels only separate from healthy ones at full output. Raise the display to 100% brightness and disable any
+        adaptive brightness, night mode, or blue-light filter, since those shift color and can hide a faulty channel.
+      </p>
+      <h3>3. Work in a dim room</h3>
+      <p>
+        Ambient light and reflections wash out exactly the low-contrast detail you are looking for. A darkened room is essential for the
+        black and blue screens in particular, where the defects you are hunting are faint by nature.
+      </p>
+      <h3>4. View from a few angles</h3>
+      <p>
+        Some defects, and most backlight bleeding, only appear off-axis. Check each color straight on first, then from the left, right, and
+        slightly above. On a phone or tablet, tilt the device rather than moving yourself.
+      </p>
+      <h3>5. Cycle through all six colors slowly</h3>
+      <p>
+        Give each color ten to fifteen seconds and scan the panel in sections rather than staring at the middle. Check the corners and edges
+        last — that is where bleeding and clouding concentrate. Turn on auto-advance if you would rather keep both hands free, or step
+        through with the arrow keys and revisit any color from the quick-select row.
+      </p>
+      <p>
+        If you do find something, photograph it against the color that shows it most clearly. A dated photo of the defect is far more useful
+        than a description when you open a warranty claim.
+      </p>
+    </>
   ) : tool.id === 'green-screen' ? (
     <>
       <h2>Popular Green Screen Use Cases</h2>
@@ -454,6 +537,13 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         </p>
       )}
     </>
+  )}
+  {(tool.id === 'black-screen' || tool.id === 'white-screen' || tool.id === 'red-screen' || tool.id === 'green-screen' || tool.id === 'blue-screen' || tool.id === 'custom-color-screen' || tool.id === 'hex-screen') && (
+    <p>
+      A single color only catches part of what can go wrong on a panel, so if you want the complete diagnostic rather than one screen, run
+      the <a href="/dead-pixel-test/">full six-color dead pixel test</a> — it walks you through black, white, red, green, blue, and grey in
+      sequence, with guidance on what each one reveals.
+    </p>
   )}
   <h2>Why this page is built differently.</h2>
   <p>

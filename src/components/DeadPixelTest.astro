@@ -1,0 +1,342 @@
+---
+import type { Tool } from '../data/tools';
+import { type Locale } from '../data/locales';
+
+type Props = {
+  tool: Tool;
+  locale: Locale;
+  isCard?: boolean;
+};
+
+const { isCard = false } = Astro.props;
+
+// The order matters: black first (stuck-on pixels stand out immediately against a dark
+// field), then white, then the three sub-pixel channels, then grey for backlight uniformity.
+const steps = [
+  {
+    id: 'black',
+    label: 'Black',
+    color: '#000000',
+    text: '#ffffff',
+    hint: 'Look for bright or colored dots that stay lit. Anything glowing against true black is a stuck pixel.',
+  },
+  {
+    id: 'white',
+    label: 'White',
+    color: '#ffffff',
+    text: '#111111',
+    hint: 'Look for dark spots that stay off. Dark dots against full white are dead pixels, and dust shows up here too.',
+  },
+  {
+    id: 'red',
+    label: 'Red',
+    color: '#ff0000',
+    text: '#ffffff',
+    hint: 'This drives only the red sub-pixel. Any dark or off-color dot means the red channel has failed at that point.',
+  },
+  {
+    id: 'green',
+    label: 'Green',
+    color: '#00ff00',
+    text: '#111111',
+    hint: 'This drives only the green sub-pixel. Green is the brightest channel to the eye, so faults are easiest to spot here.',
+  },
+  {
+    id: 'blue',
+    label: 'Blue',
+    color: '#0000ff',
+    text: '#ffffff',
+    hint: 'This drives only the blue sub-pixel. Blue is the dimmest channel, so check it in a darkened room.',
+  },
+  {
+    id: 'grey',
+    label: 'Grey',
+    color: '#808080',
+    text: '#ffffff',
+    hint: 'Look for uneven brightness, patches, or glow near the edges. Mid-grey is where backlight bleeding shows up most clearly.',
+  },
+];
+---
+
+<section class="rounded-lg border border-hairline bg-canvas shadow-soft" aria-label="Dead pixel test">
+  <div
+    class:list={[
+      'group relative grid overflow-hidden rounded-md border border-hairline',
+      'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink',
+      isCard ? 'min-h-full' : 'min-h-[605px] sm:min-h-[504px] lg:min-h-[400px]',
+    ]}
+    style={`background:${steps[0].color};`}
+    tabindex="0"
+    data-dead-pixel-test
+    data-steps={JSON.stringify(steps)}
+    data-is-card={isCard ? 'true' : 'false'}
+  >
+    <!-- Per-color guidance overlay. Dismissible, because it sits on top of the panel
+         being inspected and would otherwise hide the very pixels being checked. -->
+    <div class="pointer-events-none absolute inset-x-0 top-0 z-20 flex justify-center p-3 sm:p-4" data-hint-wrap>
+      <div
+        class="pointer-events-auto flex max-w-lg items-start gap-3 rounded-xl bg-black/55 px-4 py-3 text-left shadow-xs ring-1 ring-white/15 backdrop-blur-sm transition-opacity"
+        data-hint-box
+        role="status"
+      >
+        <p class="text-xs leading-5 text-white/95 sm:text-sm" data-hint-text>{steps[0].hint}</p>
+        <button
+          class="-mr-1 -mt-1 shrink-0 rounded-md p-1 text-white/70 transition-colors hover:bg-white/15 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          type="button"
+          data-hint-dismiss
+          aria-label="Hide guidance overlay"
+        >
+          <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <button
+      class="absolute right-3 top-3 z-30 grid size-11 place-items-center rounded-lg bg-black/25 text-white/90 shadow-xs ring-1 ring-white/15 backdrop-blur-xs transition-all hover:bg-black/45 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      type="button"
+      data-fullscreen-icon
+      aria-label="Enter fullscreen"
+    >
+      <svg class="size-6.25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3" />
+        <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
+        <path d="M16 21h3a2 2 0 0 0 2-2v-3" />
+        <path d="M3 16v3a2 2 0 0 0 2 2h3" />
+      </svg>
+    </button>
+
+    <!-- Restores the overlay after it has been dismissed, so the guidance is not lost for good. -->
+    <button
+      class="absolute right-16 top-3 z-30 hidden size-11 place-items-center rounded-lg bg-black/25 text-white/90 shadow-xs ring-1 ring-white/15 backdrop-blur-xs transition-all hover:bg-black/45 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      type="button"
+      data-hint-restore
+      aria-label="Show guidance overlay"
+    >
+      <svg class="size-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 16v-4M12 8h.01" />
+      </svg>
+    </button>
+
+    <div class="relative z-10 mt-auto bg-canvas/85 backdrop-blur-md" data-controls-bar>
+      <div class="divide-y divide-hairline/50">
+        <div class="p-3.5 sm:p-4 md:p-5">
+          <div class="grid gap-4 md:grid-cols-2 md:items-center min-w-0">
+            <div class="flex flex-col gap-3 min-w-0">
+              <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+                <p class="whitespace-nowrap font-mono text-sm font-medium text-ink" data-progress aria-live="polite">
+                  1 of {steps.length} &mdash; {steps[0].label}
+                </p>
+                <label class="flex shrink-0 cursor-pointer items-center gap-2 whitespace-nowrap text-xs text-muted">
+                  <input class="size-4 cursor-pointer accent-current" type="checkbox" data-autoplay autocomplete="off" />
+                  Auto-advance (5s)
+                </label>
+              </div>
+
+              <!-- Progress rail: also a quick visual of how far through the pass you are. -->
+              <div class="flex items-center gap-1" aria-hidden="true">
+                {steps.map((_, index) => (
+                  <span class="h-1 flex-1 rounded-full bg-hairline transition-colors" data-rail={index}></span>
+                ))}
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button
+                  class="flex-1 rounded-lg border border-hairline px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-canvas-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                  type="button"
+                  data-prev
+                >
+                  &larr; Previous
+                </button>
+                <button
+                  class="flex-1 rounded-lg border border-hairline bg-ink px-3 py-2 text-sm font-medium text-canvas transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                  type="button"
+                  data-next
+                >
+                  Next &rarr;
+                </button>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3 min-w-0">
+              <p class="font-mono text-xs text-muted">Jump to color</p>
+              <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Jump to a specific test color">
+                {steps.map((step, index) => (
+                  <button
+                    class="flex items-center gap-2 rounded-full border border-hairline py-1 pl-1 pr-3 text-xs font-medium text-ink transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                    type="button"
+                    data-jump={index}
+                    aria-label={`Show the ${step.label.toLowerCase()} test screen`}
+                  >
+                    <span class="size-5 shrink-0 rounded-full border border-hairline" style={`background:${step.color};`}></span>
+                    {step.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  type Step = { id: string; label: string; color: string; text: string; hint: string };
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-dead-pixel-test]')) {
+    if (root.dataset.isCard === 'true') continue;
+
+    const steps: Step[] = JSON.parse(root.dataset.steps || '[]');
+    if (steps.length === 0) continue;
+
+    const progress = root.querySelector<HTMLElement>('[data-progress]');
+    const hintText = root.querySelector<HTMLElement>('[data-hint-text]');
+    const hintWrap = root.querySelector<HTMLElement>('[data-hint-wrap]');
+    const hintRestore = root.querySelector<HTMLElement>('[data-hint-restore]');
+    const autoplay = root.querySelector<HTMLInputElement>('[data-autoplay]');
+    const controlsBar = root.querySelector<HTMLElement>('[data-controls-bar]');
+    const jumpButtons = Array.from(root.querySelectorAll<HTMLElement>('[data-jump]'));
+    const rails = Array.from(root.querySelectorAll<HTMLElement>('[data-rail]'));
+
+    let index = 0;
+    let timer: number | undefined;
+    let hintDismissed = false;
+
+    const AUTO_ADVANCE_MS = 5000;
+
+    const render = () => {
+      const step = steps[index];
+      root.style.background = step.color;
+      if (progress) progress.textContent = `${index + 1} of ${steps.length} — ${step.label}`;
+      if (hintText) hintText.textContent = step.hint;
+
+      for (const [i, rail] of rails.entries()) {
+        rail.style.background = i <= index ? step.text : '';
+        rail.style.opacity = i <= index ? '0.85' : '';
+      }
+      for (const [i, button] of jumpButtons.entries()) {
+        button.setAttribute('aria-current', i === index ? 'true' : 'false');
+        button.classList.toggle('ring-2', i === index);
+        button.classList.toggle('ring-ink', i === index);
+      }
+    };
+
+    const go = (next: number) => {
+      index = (next + steps.length) % steps.length;
+      render();
+    };
+
+    const stopTimer = () => {
+      if (timer !== undefined) window.clearInterval(timer);
+      timer = undefined;
+    };
+
+    const syncTimer = () => {
+      stopTimer();
+      if (autoplay?.checked) timer = window.setInterval(() => go(index + 1), AUTO_ADVANCE_MS);
+    };
+
+    // Advancing by hand while auto-advance is on should reset the dwell time,
+    // otherwise the next automatic step can fire almost immediately.
+    const step = (delta: number) => {
+      go(index + delta);
+      if (autoplay?.checked) syncTimer();
+    };
+
+    const setHintVisible = (visible: boolean) => {
+      hintDismissed = !visible;
+      if (hintWrap) hintWrap.style.display = visible ? '' : 'none';
+      if (hintRestore) hintRestore.style.display = visible ? 'none' : 'grid';
+    };
+
+    root.querySelector('[data-next]')?.addEventListener('click', () => step(1));
+    root.querySelector('[data-prev]')?.addEventListener('click', () => step(-1));
+    root.querySelector('[data-hint-dismiss]')?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      setHintVisible(false);
+    });
+    hintRestore?.addEventListener('click', () => setHintVisible(true));
+    autoplay?.addEventListener('change', syncTimer);
+
+    for (const button of jumpButtons) {
+      button.addEventListener('click', () => {
+        go(Number(button.dataset.jump));
+        if (autoplay?.checked) syncTimer();
+      });
+    }
+
+    const doFullscreen = () => {
+      try {
+        const p = root.requestFullscreen?.({ navigationUI: 'hide' } as any);
+        if (p && typeof p.catch === 'function') p.catch(() => root.requestFullscreen?.());
+      } catch (_) {
+        root.requestFullscreen?.();
+      }
+    };
+    for (const button of root.querySelectorAll<HTMLElement>('[data-fullscreen], [data-fullscreen-icon]')) {
+      button.addEventListener('click', doFullscreen);
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      const isActive = document.fullscreenElement === root;
+      root.classList.toggle('is-fullscreen', isActive);
+      if (controlsBar) controlsBar.style.display = isActive ? 'none' : '';
+      for (const button of root.querySelectorAll<HTMLElement>('[data-fullscreen], [data-fullscreen-icon]')) {
+        button.style.display = isActive ? 'none' : '';
+      }
+      if (hintRestore) hintRestore.style.right = isActive ? '0.75rem' : '';
+      // Leaving fullscreen stops the cycle; an unattended timer changing colors
+      // behind the page is confusing once the tool is no longer in view.
+      if (!isActive && autoplay?.checked) {
+        autoplay.checked = false;
+        stopTimer();
+      }
+    });
+
+    // Fullscreen hides the controls bar, so on a touch device tapping the panel is the
+    // only way left to move through the sequence.
+    root.addEventListener('click', (event) => {
+      if (document.fullscreenElement !== root) return;
+      if ((event.target as HTMLElement)?.closest('[data-hint-box]')) return;
+      step(1);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLSelectElement ||
+        event.target instanceof HTMLTextAreaElement
+      ) return;
+
+      const key = event.key;
+
+      // F follows the site-wide convention and stays global. The stepping keys do not:
+      // Space and the arrows are how the page itself scrolls, and this page has a long
+      // article under the tool, so they only apply once the tool is focused or fullscreen.
+      if (key === 'f' || key === 'F') {
+        doFullscreen();
+        return;
+      }
+
+      const ownsKeys = document.fullscreenElement === root || root.contains(document.activeElement);
+      if (!ownsKeys) return;
+
+      if (key === 'ArrowRight' || key === 'ArrowDown' || key === ' ' || key === 'Spacebar') {
+        event.preventDefault();
+        step(1);
+      } else if (key === 'ArrowLeft' || key === 'ArrowUp') {
+        event.preventDefault();
+        step(-1);
+      } else if (key === 'h' || key === 'H') {
+        setHintVisible(hintDismissed);
+      }
+      // Esc is handled by the browser's own fullscreen exit.
+    });
+
+    setHintVisible(true);
+    render();
+  }
+</script>
