@@ -619,6 +619,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'brown-screen': { es: 'Pantalla Marrón', pt: 'Tela Marrom', fr: 'Écran Marron', de: 'Brauner Bildschirm', hi: 'भूरी स्क्रीन', ja: '茶色の画面' },
   'grey-screen': { es: 'Pantalla Gris', pt: 'Tela Cinza', fr: 'Écran Gris', de: 'Grauer Bildschirm', hi: 'स्लेटी स्क्रीन', ja: '灰色の画面' },
   'custom-color-screen': { es: 'Pantalla de Color Personalizado', pt: 'Tela de Cor Personalizada', fr: 'Écran Couleur Personnalisé', de: 'Benutzerdefinierter Farbbildschirm', hi: 'कस्टम कलर स्क्रीन', ja: 'カスタムカラー画面' },
+  'countdown-timer': { es: 'Temporizador y Cronómetro', pt: 'Temporizador e Cronômetro', fr: 'Minuteur et Chronomètre', de: 'Countdown-Timer & Stoppuhr', hi: 'काउंटडाउन टाइमर और स्टॉपवॉच', ja: 'カウントダウンタイマー＆ストップウォッチ' },
   'oled-burn-in-test': { es: 'Test de Burn-In OLED', pt: 'Teste de Burn-In OLED', fr: 'Test de Burn-In OLED', de: 'OLED-Burn-In-Test', hi: 'OLED बर्न-इन टेस्ट', ja: 'OLED焼き付きテスト' },
   'dvd-screensaver': { es: 'Salvapantallas del Logo DVD', pt: 'Protetor de Tela do Logo DVD', fr: 'Écran de Veille Logo DVD', de: 'DVD-Logo Bildschirmschoner', hi: 'DVD लोगो स्क्रीनसेवर', ja: 'DVDロゴ スクリーンセーバー' },
   'dead-pixel-test': { es: 'Test de Píxeles Muertos', pt: 'Teste de Pixels Mortos', fr: 'Test de Pixels Morts', de: 'Pixelfehler-Test', hi: 'डेड पिक्सल टेस्ट', ja: 'ドット抜けテスト' },
@@ -646,6 +647,14 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
+  'countdown-timer': {
+    es: 'Un temporizador de cuenta atrás y cronómetro a pantalla completa, con una pantalla lo bastante grande para leerse desde el fondo de una sala, presets rápidos, duración personalizada, alarmas y vueltas.',
+    pt: 'Um temporizador de contagem regressiva e cronômetro em tela cheia, com um mostrador grande o bastante para ser lido do fundo da sala, presets rápidos, duração personalizada, alarmes e voltas.',
+    fr: "Un minuteur et chronomètre en plein écran, avec un affichage assez grand pour être lu du fond d'une salle, des préréglages rapides, une durée personnalisée, des alarmes et des tours.",
+    de: 'Ein Countdown-Timer und eine Stoppuhr im Vollbild, mit einer Anzeige, die noch aus der letzten Reihe lesbar ist, Schnellvorgaben, eigener Dauer, Alarmtönen und Rundenzeiten.',
+    hi: 'फुलस्क्रीन काउंटडाउन टाइमर और स्टॉपवॉच, जिसका डिस्प्ले कमरे के पीछे से भी पढ़ा जा सके, साथ में त्वरित प्रीसेट, कस्टम अवधि, अलार्म और लैप टाइम।',
+    ja: '部屋の後ろからでも読める大きな表示の全画面カウントダウンタイマー＆ストップウォッチ。プリセット、任意の時間設定、アラーム音、ラップタイムに対応。',
+  },
   'oled-burn-in-test': {
     es: 'Un test de burn-in OLED con dos modos: fondos grises y de color para revelar el ghosting existente, más un patrón en movimiento que ayuda a prevenir el desgaste desigual de los píxeles.',
     pt: 'Um teste de burn-in OLED com dois modos: fundos cinza e coloridos para revelar o ghosting existente, mais um padrão em movimento que ajuda a evitar o desgaste desigual dos pixels.',

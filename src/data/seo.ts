@@ -252,6 +252,9 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
   'oled-burn-in-test': {
     en: 'OLED Burn-In Test - Free Fullscreen Screen Protection Checker | PixoraScreen',
   },
+  'countdown-timer': {
+    en: 'Fullscreen Countdown Timer & Stopwatch - Free Online | PixoraScreen',
+  },
   'custom-color-screen': {
     en: 'Custom Color Screen - Free Fullscreen Color Picker | PixoraScreen',
   },
@@ -486,6 +489,9 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
   'oled-burn-in-test': {
     en: 'Free OLED burn-in test — check your OLED or AMOLED display for ghosting and image retention using solid colors and moving patterns. Works on phones, TVs, and monitors.',
   },
+  'countdown-timer': {
+    en: 'Free fullscreen countdown timer and stopwatch for presentations, workshops, classrooms, and workouts. Large display, custom alarm, works on any device.',
+  },
   'custom-color-screen': {
     en: 'Pick any custom color and fill your screen fullscreen. Free color picker with HEX, RGB, and HSL input, saved favorites, and calibration-friendly display testing.',
   },
@@ -535,6 +541,9 @@ const customH1: Partial<Record<string, Partial<Record<Locale, string>>>> = {
   'oled-burn-in-test': {
     en: 'OLED Burn-In Test: Check for Ghosting & Image Retention',
   },
+  'countdown-timer': {
+    en: 'Fullscreen Countdown Timer & Stopwatch',
+  },
   'custom-color-screen': {
     en: 'Custom Color Screen — Fullscreen Color Picker & Display Tester',
   },
@@ -547,6 +556,9 @@ const customH1: Partial<Record<string, Partial<Record<Locale, string>>>> = {
 // place so the visible breadcrumb and the BreadcrumbList JSON-LD always agree —
 // Google discards breadcrumb markup that does not match the rendered trail.
 const customBreadcrumbNames: Partial<Record<string, Partial<Record<Locale, string>>>> = {
+  'countdown-timer': {
+    en: 'Countdown Timer & Stopwatch',
+  },
   'oled-burn-in-test': {
     en: 'OLED Burn-In Test',
   },
@@ -574,6 +586,9 @@ export function breadcrumbNameForTool(tool: Tool, locale: Locale = defaultLocale
 // The WebApplication entity describes the tool itself, which is not always worded the
 // same way as the page's meta description. Falls back to the meta description.
 const customAppDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
+  'countdown-timer': {
+    en: 'Free fullscreen countdown timer and stopwatch with large display, presets, custom alarm, and lap tracking.',
+  },
   'oled-burn-in-test': {
     en: 'Free OLED burn-in test with static color checks and a moving pattern mode, for checking and helping prevent screen ghosting and image retention.',
   },

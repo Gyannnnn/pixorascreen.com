@@ -83,7 +83,88 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         When using {name.toLowerCase()} for focus sessions, study sprints, or as a desktop companion, place it on a second monitor or beside your primary display. The flip clock provides an always-visible time reference without demanding attention, while the integrated Pomodoro timer helps structure your work into focused intervals and restorative breaks. The gentle flip animation and optional click sound create a subtle productivity rhythm.
       </p>
       <p>
-        For optimal use, set the clock to 24-hour format or toggle seconds off depending on your preference. Switch to Countdown mode and select a Pomodoro interval that matches your workflow. Adjust brightness downward in low-light environments to reduce eye strain and make the clock a comfortable presence rather than a distraction. The retro flip animation is designed to be satisfying without being intrusive, making it suitable for long-running sessions in offices, libraries, study rooms, and home workspaces.
+        For optimal use, set the clock to 24-hour format or toggle seconds off depending on your preference. Switch to Countdown mode and select a Pomodoro interval that matches your workflow. If you need a plain countdown or a stopwatch instead of a focus cycle, the <a href="/countdown-timer/">fullscreen countdown timer and stopwatch</a> covers any duration, with presets, an alarm, and lap times. Adjust brightness downward in low-light environments to reduce eye strain and make the clock a comfortable presence rather than a distraction. The retro flip animation is designed to be satisfying without being intrusive, making it suitable for long-running sessions in offices, libraries, study rooms, and home workspaces.
+      </p>
+    </>
+  ) : tool.kind === 'saver' && tool.id === 'countdown-timer' ? (
+    <>
+      <h2>How to Use</h2>
+      <p>
+        The two modes sit behind the toggle on the left of the control bar, and switching between them clears whatever was running so you
+        never inherit a half-finished count. <strong>Timer</strong> counts down from a duration you choose. <strong>Stopwatch</strong>
+        counts up from zero and records laps.
+      </p>
+      <h3>Setting a duration</h3>
+      <p>
+        The preset buttons cover the durations most people reach for: one minute, five, ten, fifteen, twenty five, and an hour. For anything
+        else, type minutes and seconds into the two boxes and press Set. The display updates immediately so you can confirm the duration
+        before you start it, which matters when you are setting up in front of an audience.
+      </p>
+      <h3>The alarm</h3>
+      <p>
+        Two alarms are available from the dropdown next to the Alarm checkbox: a rising <strong>chime</strong> for quiet rooms and a
+        repeating <strong>beep</strong> that cuts through noise. Both are generated in the browser, so neither adds a download. When the
+        countdown reaches zero the entire screen also flashes, which is the part that carries across a room when a device is muted or the
+        audience is loud. Uncheck Alarm for a silent finish with the flash alone.
+      </p>
+      <h3>Running it fullscreen</h3>
+      <p>
+        Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> and the digits scale to fill the display, which is
+        what the page is built around. <kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> starts and pauses,
+        <kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> resets,
+        <kbd class="rounded border border-hairline px-2 py-1 font-mono">L</kbd> records a lap, and
+        <kbd class="rounded border border-hairline px-2 py-1 font-mono">M</kbd> swaps modes, so you can run a whole session without
+        touching the controls. The dark and light themes suit a dimmed room and a bright one respectively.
+      </p>
+
+      <h2>Timer vs. Stopwatch: Which Do I Need?</h2>
+      <p>
+        The distinction is simply which end of the interval you care about. Use a <strong>timer</strong> when the length is decided in
+        advance and the thing that matters is being told when it is over: a ten minute talk, a thirty minute exam, eight minutes for the
+        pasta. You set the number, and the alarm does the watching so you do not have to.
+      </p>
+      <p>
+        Use a <strong>stopwatch</strong> when the length is the thing you are trying to find out. It starts at zero and keeps going until
+        you stop it, which is what you want for timing how long a task actually takes, running drills, or measuring repeated attempts.
+        Laps matter here: they let you mark points along the way and compare the splits between them afterwards.
+      </p>
+      <p>
+        A quick test if you are unsure: if you can say the number before you begin, you want the timer. If the number is the answer, you
+        want the stopwatch.
+      </p>
+
+      <h2>Common Uses</h2>
+      <h3>Presentations and conference talks</h3>
+      <p>
+        Set the slot length, put it fullscreen on a laptop facing the speaker or a monitor at the back of the room, and nobody has to make
+        wind-up gestures. The large digits are the whole point here; a phone timer on a lectern is unreadable from three metres away.
+      </p>
+      <h3>Classroom activities and exams</h3>
+      <p>
+        A shared countdown on the projector answers the how-long-left question for the whole room at once. The flash at zero is easier to
+        respond to than a sound in a busy classroom, and it works with the projector audio muted.
+      </p>
+      <h3>Workshops and timed exercises</h3>
+      <p>
+        Short rounds are exactly what the presets are for: start a five or ten minute block, reset between them, and keep the same screen up
+        all session. Stopwatch mode with laps suits exercises where you want to record how long each group actually needed.
+      </p>
+      <h3>Cooking</h3>
+      <p>
+        A tablet propped on the counter with a fullscreen countdown is readable from across the kitchen with your hands full, and the custom
+        entry handles the odd durations recipes ask for.
+      </p>
+      <h3>Workouts and interval training</h3>
+      <p>
+        Time work and rest intervals from a phone or a TV, and use the stopwatch with laps to log rounds or sets. The beep alarm is the one
+        to pick here, since it carries over music and effort.
+      </p>
+      <h3>Focus sessions</h3>
+      <p>
+        A twenty five minute preset is there for exactly this. If you want the full structured routine rather than a plain countdown,
+        the <a href="/clock-screen/">clock screen</a> has a Pomodoro focus mode built into its flip clock, with a work interval and a custom
+        reminder label. That page is the better home for a repeating focus cycle; this one is better when you just need a clock counting
+        down.
       </p>
     </>
   ) : tool.kind === 'saver' && tool.id === 'dvd-screensaver' ? (

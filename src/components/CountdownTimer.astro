@@ -1,0 +1,70 @@
+---
+export const ssr = false;
+export const prerender = false;
+import type { Tool } from '../data/tools';
+import type { Locale } from '../data/locales';
+import ReactCountdownTimer from './CountdownTimer.tsx';
+import ToolFallback from './ToolFallback.astro';
+
+type Props = { tool: Tool; locale: Locale };
+const { tool, locale } = Astro.props;
+---
+
+<ReactCountdownTimer tool={tool} locale={locale} client:only="react">
+  <ToolFallback slot="fallback" tool={tool} locale={locale} />
+</ReactCountdownTimer>
+
+<style>
+  /* The readout is the product here, so it scales with the viewport rather than
+     sitting at a fixed size. ch units keep the width stable as digits change. */
+  :global(.countdown-readout) {
+    font-size: clamp(3.5rem, 15vw, 7rem);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :global(.countdown-container:fullscreen) {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+
+  /* Fullscreen is the across-the-room case, so the digits take as much of the
+     screen as the shorter axis allows. */
+  :global(.countdown-container:fullscreen .countdown-readout) {
+    font-size: min(22vw, 34vh);
+  }
+
+  @media (max-aspect-ratio: 1/1) {
+    :global(.countdown-container:fullscreen .countdown-readout) {
+      font-size: min(26vw, 22vh);
+    }
+  }
+
+  /* End of countdown: the whole surface flashes so it reads from across a room
+     even with the sound off or muted. */
+  @keyframes countdown-flash {
+    0%, 100% { background-color: #dc2626; color: #ffffff; }
+    50% { background-color: #111114; color: #ffffff; }
+  }
+
+  :global(.countdown-finished) {
+    animation: countdown-flash 0.9s steps(1, end) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.countdown-finished) {
+      animation: none;
+      background-color: #dc2626 !important;
+      color: #ffffff !important;
+    }
+  }
+
+  :global(html.is-countdown-fullscreen),
+  :global(html.is-countdown-fullscreen body) {
+    overflow: hidden !important;
+  }
+</style>
