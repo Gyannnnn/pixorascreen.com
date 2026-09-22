@@ -196,6 +196,29 @@ const timerFaqs = () => [
   },
 ];
 
+const videoCallFaqs = () => [
+  {
+    question: 'Is this an actual video call, or just a visual simulation?',
+    answer: 'It is purely a visual simulation. Nothing connects, nothing transmits, and no camera or microphone is ever accessed. The participant tiles are animated color panels with invented names, not real people or real video, and the mute and camera buttons only change what is drawn on screen. Your browser never asks for device permissions, because the page has no use for them.',
+  },
+  {
+    question: 'Can I customize the participant names or number of tiles?',
+    answer: 'Yes, both. Use the tile selector under the call to switch between four, six, and nine participants, and type your own comma separated list into the names field then press Apply. The first tile is always labelled You, and the rest take your names in order, looping if you list fewer names than tiles. Leave the field empty to go back to the default set.',
+  },
+  {
+    question: 'How do I trigger the "frozen/bad connection" effect?',
+    answer: 'Press the Freeze button in the control bar, or press B while the call has focus or is fullscreen. The tiles stop animating and go soft and desaturated the way a stalled stream does, a buffering spinner and a Reconnecting message appear, and the call timer stops advancing. Press it again to resume. It is a toggle, so you can hold the frozen state for as long as you need.',
+  },
+  {
+    question: 'Does this work on mobile devices?',
+    answer: 'Yes. The grid reflows to two columns on narrow screens and the control bar stays reachable with a thumb, so it works on a phone or tablet in either orientation. Fullscreen behaves a little differently across mobile browsers, which is normal, but the call itself renders and all the buttons work. Since everything is drawn in the browser, there is nothing to install.',
+  },
+  {
+    question: 'Is this appropriate to use during an actual meeting?',
+    answer: 'It is built for pranks, filming, and personal use, not for deceiving people who are relying on you. Using it to fake attendance at a real meeting, mislead an employer or client, or fabricate evidence that you were somewhere you were not can carry genuine consequences at work, and that is not what this page is for. Playing a joke on a friend, shooting a skit, or putting a call on screen for a talk about video-call etiquette is exactly what it is for. Use your judgement about which situation you are in.',
+  },
+];
+
 const effectFaqs = (name: string) => [
   {
     question: `Is the ${name.toLowerCase()} safe to use?`,
@@ -407,6 +430,7 @@ export const tools: Tool[] = [
       }
     ] },
   { id: 'fake-virus-screen', name: 'Fake Virus Screen', shortName: 'Fake Virus', slug: 'fake-virus-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#111827', summary: 'A harmless fake virus screen simulator with 4 realistic alert styles — Chrome malware warning, Microsoft Defender SmartScreen, Windows Security antivirus dashboard, and WannaCry ransomware. Free online prank tool for theatrical browser effects, video staging, and classroom demonstrations.', intent: 'a dramatic fake virus warning experience that looks convincing but stays completely safe, reversible, and browser-only', useCases: ['friendly pranks and office jokes', 'YouTube and TikTok prank videos', 'streaming and gaming intermissions', 'cybersecurity awareness demonstrations', 'classroom and training presentations', 'theatre stage productions and escape rooms', 'Halloween and party effects', 'video production and content creation'], controls: ['fullscreen', 'escape hint', '4 alert styles', 'sound toggle', 'keyboard shortcuts', 'brightness'], faqs: effectFaqs('Fake Virus Screen') },
+  { id: 'fake-video-call', name: 'Fake Video Call Screen', shortName: 'Video Call', slug: 'fake-video-call', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#0d1117', summary: 'A generic fullscreen video call simulation with a participant grid, mute and camera controls, a connecting state, and a freeze effect that mimics a bad connection. Nothing connects and no camera is used.', intent: 'a convincing but entirely fake video call you can put on screen for a joke, a skit, or a moment away from the desk', useCases: ['pranks and April Fools jokes', 'YouTube and TikTok skits', 'video and social content backdrops', 'presentations about video-call etiquette', 'a lighthearted reason to step away briefly', 'screen recording and stage backdrops'], controls: ['fullscreen', 'freeze / bad connection', 'mute toggle', 'camera toggle', 'tile count', 'custom names'], faqs: videoCallFaqs() },
   // { id: 'terminal-screen', name: 'Terminal Screen', shortName: 'Terminal', slug: 'terminal-screen', localizedSlugs: {}, category: 'pranks', kind: 'prank', color: '#050505', summary: 'A premium terminal-style fullscreen page for demos, code-themed scenes, and ambient setups.', intent: 'minimal terminal atmosphere without installing anything', useCases: ['developer videos', 'demo backdrops', 'event staging', 'ambient screen'], controls: ['fullscreen', 'theme toggle', 'brightness', 'keyboard shortcuts', 'copy prompt'], faqs: effectFaqs('Terminal Screen') },
   { id: 'windows-update', name: 'Fake Windows Update Screen', shortName: 'Windows Update', slug: 'windows-update', localizedSlugs: {}, category: 'fake', kind: 'fake', color: '#0078d7', summary: 'A realistic fake Windows Update screen simulator with 4 modes — spinning dots, update progress bar, blue screen of death, and recovery mode. Free online prank tool for harmless staged demos, video props, classroom jokes, and event screens.', intent: 'a convincing Windows Update simulation for harmless pranks, video production, and screen effects', useCases: ['friendly pranks and office jokes', 'YouTube and TikTok prank videos', 'streaming and gaming intermissions', 'video production and content creation', 'classroom demonstrations', 'theatre stage productions and escape rooms', 'event screens and conference displays', 'screen recording backdrops'], controls: ['fullscreen', '4 simulation modes', 'speed control', 'pause/resume', 'show percentage', 'keyboard shortcuts', 'escape hint', 'brightness'], faqs: effectFaqs('Windows Update Screen') },
   // { id: 'windows-xp-screen', name: 'Windows XP Screen', shortName: 'Windows XP', slug: 'windows-xp-screen', localizedSlugs: {}, category: 'fake', kind: 'fake', color: '#3b82f6', summary: 'A nostalgic desktop-inspired fake screen for retro videos, demos, and themed presentations.', intent: 'retro desktop atmosphere inside a static webpage', useCases: ['retro videos', 'demo staging', 'party displays', 'nostalgia projects'], controls: ['fullscreen', 'brightness', 'timer', 'share screen', 'related fake screens'], faqs: effectFaqs('Windows XP Screen') },

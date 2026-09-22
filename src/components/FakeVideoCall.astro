@@ -1,0 +1,660 @@
+---
+import type { Tool } from '../data/tools';
+import type { Locale } from '../data/locales';
+
+type Props = { tool: Tool; locale: Locale; isCard?: boolean };
+const { isCard = false } = Astro.props;
+
+// Generic placeholder participants. Deliberately invented names and abstract color
+// tiles: nothing here imitates a real person, a real photo, or any real platform's
+// interface. The look is a generic video-call grid, not a copy of a specific product.
+const defaultNames = ['Alex Rivera', 'Priya Nair', 'Sam Okafor', 'Mia Chen', 'Jonas Weber', 'Lena Costa', 'Tom Ellis', 'Ada Mensah'];
+
+const tints = [
+  ['#2b6cb0', '#1a365d'],
+  ['#2f855a', '#1c4532'],
+  ['#975a16', '#5f370e'],
+  ['#6b46c1', '#322659'],
+  ['#b83280', '#521b41'],
+  ['#2c7a7b', '#1d4044'],
+  ['#4a5568', '#1a202c'],
+  ['#9b2c2c', '#4a1616'],
+];
+---
+
+<div
+  class={`fvc ${isCard ? 'fvc-card' : ''}`}
+  data-fake-video-call
+  data-is-card={isCard ? 'true' : 'false'}
+  data-names={JSON.stringify(defaultNames)}
+  data-tints={JSON.stringify(tints)}
+  tabindex="0"
+  aria-label="Fake video call screen"
+>
+  <div class="fvc-stage" data-stage>
+    <!-- Meeting chrome: an original, generic header. No product name or mark. -->
+    <div class="fvc-topbar" data-topbar>
+      <span class="fvc-rec" aria-hidden="true"></span>
+      <span class="fvc-room">Team Sync</span>
+      <span class="fvc-elapsed" data-elapsed>00:00</span>
+    </div>
+
+    <div class="fvc-grid" data-grid></div>
+
+    <!-- Frozen / bad connection overlay -->
+    <div class="fvc-frozen" data-frozen hidden>
+      <div class="fvc-buffer" aria-hidden="true"></div>
+      <p class="fvc-frozen-text">Reconnecting…</p>
+      <p class="fvc-frozen-sub">Your network connection is unstable</p>
+    </div>
+
+    <!-- Connecting state shown on load -->
+    <div class="fvc-connecting" data-connecting>
+      <div class="fvc-spinner" aria-hidden="true"></div>
+      <p class="fvc-connecting-text">Connecting…</p>
+    </div>
+
+    <!-- Call ended state -->
+    <div class="fvc-ended" data-ended hidden>
+      <p class="fvc-ended-text">Call ended</p>
+      <button class="fvc-rejoin" type="button" data-rejoin>Rejoin</button>
+    </div>
+
+    <div class="fvc-actions" data-actions>
+      <button class="fvc-btn" type="button" data-mic aria-pressed="false" aria-label="Toggle microphone" title="Mute / unmute (M)">
+        <svg class="fvc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3" />
+        </svg>
+        <span class="fvc-slash" data-mic-slash hidden aria-hidden="true"></span>
+      </button>
+
+      <button class="fvc-btn" type="button" data-cam aria-pressed="false" aria-label="Toggle camera" title="Camera on / off (C)">
+        <svg class="fvc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 7.5A1.5 1.5 0 0 1 3.5 6h11A1.5 1.5 0 0 1 16 7.5v9A1.5 1.5 0 0 1 14.5 18h-11A1.5 1.5 0 0 1 2 16.5z" />
+          <path d="m16 10.5 5-3v9l-5-3z" />
+        </svg>
+        <span class="fvc-slash" data-cam-slash hidden aria-hidden="true"></span>
+      </button>
+
+      <button class="fvc-btn fvc-btn-wide" type="button" data-freeze aria-pressed="false" title="Freeze / bad connection (B)">
+        <svg class="fvc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11" />
+        </svg>
+        <span class="fvc-btn-label">Freeze</span>
+      </button>
+
+      <button class="fvc-btn" type="button" data-fullscreen aria-label="Toggle fullscreen" title="Fullscreen (F)">
+        <svg class="fvc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+        </svg>
+      </button>
+
+      <button class="fvc-btn fvc-btn-leave" type="button" data-leave aria-label="Leave call" title="Leave call">
+        <svg class="fvc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9a16 16 0 0 1 18 0v3.2a1.6 1.6 0 0 1-1.7 1.6l-3-.3a1.6 1.6 0 0 1-1.4-1.3l-.3-1.6a12 12 0 0 0-5.2 0l-.3 1.6a1.6 1.6 0 0 1-1.4 1.3l-3 .3A1.6 1.6 0 0 1 3 12.2z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  {!isCard && (
+    <div class="fvc-settings">
+      <div class="fvc-set-row">
+        <span class="fvc-set-label">Tiles</span>
+        <div class="fvc-seg" role="group" aria-label="Number of participant tiles">
+          <button class="fvc-seg-btn" type="button" data-count="4">4</button>
+          <button class="fvc-seg-btn" type="button" data-count="6">6</button>
+          <button class="fvc-seg-btn" type="button" data-count="9">9</button>
+        </div>
+        <label class="fvc-names">
+          <span class="fvc-set-label">Names</span>
+          <input type="text" data-names-input placeholder="Comma separated names" aria-label="Participant names, comma separated" />
+        </label>
+        <button class="fvc-set-apply" type="button" data-apply>Apply</button>
+      </div>
+    </div>
+  )}
+</div>
+
+<!-- Global rather than scoped: the participant tiles are created in JS, so they never
+     receive Astro's scope attribute and scoped rules would not reach them. Every
+     selector below is namespaced under .fvc-, the same approach MatrixScreen uses. -->
+<style is:global>
+  .fvc {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .fvc:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  .fvc-stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 605px;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background: #0d1117;
+    color: #e6edf3;
+  }
+  @media (min-width: 640px) { .fvc-stage { min-height: 504px; } }
+  @media (min-width: 1024px) { .fvc-stage { min-height: 400px; } }
+
+  .fvc-card .fvc-stage { min-height: 100%; height: 100%; border-radius: 0; }
+  .fvc-card { pointer-events: none; height: 100%; }
+
+  .fvc-stage:fullscreen { min-height: 100vh; border-radius: 0; }
+
+  .fvc-topbar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.75rem;
+    color: rgb(230 237 243 / 0.72);
+    border-bottom: 1px solid rgb(255 255 255 / 0.07);
+  }
+  .fvc-rec {
+    width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: #f85149;
+    animation: fvc-pulse 2s ease-in-out infinite;
+  }
+  .fvc-room { font-weight: 600; color: rgb(230 237 243 / 0.9); }
+  .fvc-elapsed { margin-left: auto; font-variant-numeric: tabular-nums; font-family: ui-monospace, monospace; }
+
+  .fvc-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.6rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, 1fr);
+    align-content: stretch;
+    transition: filter 0.25s ease;
+  }
+  @media (min-width: 640px) {
+    .fvc-grid[data-cols="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  .fvc-tile {
+    position: relative;
+    min-height: 0;
+    border-radius: 0.65rem;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background-size: 220% 220%;
+    animation: fvc-drift 14s ease-in-out infinite;
+  }
+  .fvc-tile[data-speaking="true"] { outline: 3px solid #8ab4f8; outline-offset: -3px; }
+
+  .fvc-avatar {
+    width: clamp(2.75rem, 30%, 5.5rem);
+    aspect-ratio: 1;
+    border-radius: 9999px;
+    display: grid;
+    place-items: center;
+    background: rgb(0 0 0 / 0.34);
+    color: #fff;
+    font-weight: 600;
+    font-size: clamp(0.95rem, 7cqw, 1.6rem);
+    letter-spacing: 0.03em;
+  }
+
+  /* Pulsing ring on whoever is currently speaking. */
+  .fvc-avatar-speaking { animation: fvc-ring 1.7s ease-out infinite; }
+
+  /* Per-tile status badge: a muted mic for everyone who is not talking, and an
+     animated level meter for whoever is. Both are always in the DOM and swapped
+     by CSS, so nothing has to be rebuilt when the active speaker changes. */
+  .fvc-badge {
+    position: absolute;
+    top: 0.45rem;
+    right: 0.45rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 9999px;
+    display: grid;
+    place-items: center;
+    background: rgb(0 0 0 / 0.55);
+  }
+  .fvc-badge svg { width: 0.95rem; height: 0.95rem; }
+  .fvc-badge-speaking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background: rgb(138 180 248 / 0.92);
+  }
+  .fvc-badge-speaking i {
+    width: 3px;
+    height: 4px;
+    border-radius: 2px;
+    background: #10233f;
+    animation: fvc-talk 0.9s ease-in-out infinite;
+  }
+  .fvc-tile[data-speaking="true"] .fvc-badge-muted { display: none; }
+  .fvc-tile:not([data-speaking="true"]) .fvc-badge-speaking { display: none; }
+  /* Your own tile only shows muted when you actually mute yourself. */
+  .fvc-tile[data-self="true"] .fvc-badge-muted { display: none; }
+  .fvc-grid[data-mic-off="true"] .fvc-tile[data-self="true"] .fvc-badge-muted { display: grid; }
+
+  .fvc-name {
+    position: absolute;
+    left: 0.5rem;
+    bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    max-width: calc(100% - 0.8rem);
+    padding: 0.15rem 0.45rem;
+    border-radius: 0.3rem;
+    background: rgb(0 0 0 / 0.45);
+    font-size: 0.72rem;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .fvc-muted-dot { width: 0.55rem; height: 0.55rem; border-radius: 9999px; background: #f85149; flex: none; }
+
+  .fvc-camoff { background: #161b22 !important; animation: none !important; }
+
+  /* Overlays */
+  .fvc-connecting, .fvc-frozen, .fvc-ended {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 0.6rem;
+    background: rgb(13 17 23 / 0.82);
+    backdrop-filter: blur(2px);
+    text-align: center;
+    padding: 1rem;
+  }
+  .fvc-connecting[hidden], .fvc-frozen[hidden], .fvc-ended[hidden] { display: none; }
+
+  .fvc-connecting-text, .fvc-frozen-text, .fvc-ended-text { font-size: 0.95rem; font-weight: 600; }
+  .fvc-frozen-sub { font-size: 0.75rem; color: rgb(230 237 243 / 0.65); }
+
+  .fvc-spinner, .fvc-buffer {
+    width: 2.25rem; height: 2.25rem; border-radius: 9999px;
+    border: 3px solid rgb(255 255 255 / 0.18);
+    border-top-color: #58a6ff;
+    animation: fvc-spin 0.9s linear infinite;
+  }
+  .fvc-buffer { border-top-color: #d29922; }
+
+  .fvc-rejoin {
+    margin-top: 0.2rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 0.4rem;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    background: rgb(255 255 255 / 0.08);
+    color: #e6edf3;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .fvc-rejoin:hover { background: rgb(255 255 255 / 0.16); }
+
+  /* The freeze holds the current frame: animations stop and the picture degrades,
+     the way a stalled stream actually looks. */
+  .fvc-is-frozen .fvc-grid { filter: grayscale(0.55) blur(1.5px) contrast(0.92); }
+  .fvc-is-frozen .fvc-tile,
+  .fvc-is-frozen .fvc-badge-speaking i,
+  .fvc-is-frozen .fvc-avatar-speaking { animation-play-state: paused; }
+
+  .fvc-actions {
+    position: relative;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.8rem 0.7rem 1rem;
+    border-top: 1px solid rgb(255 255 255 / 0.06);
+    background: rgb(13 17 23 / 0.97);
+  }
+  .fvc-btn {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    background: rgb(255 255 255 / 0.08);
+    color: #e6edf3;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.12s;
+  }
+  .fvc-btn:hover { background: rgb(255 255 255 / 0.18); }
+  .fvc-btn:active { transform: scale(0.94); }
+  .fvc-btn:focus-visible { outline: 2px solid #8ab4f8; outline-offset: 3px; }
+  /* An engaged toggle reads as red, the way a muted mic or stopped camera does. */
+  .fvc-btn[aria-pressed='true'] { background: #ea4335; border-color: #ea4335; color: #fff; }
+  .fvc-btn-wide[aria-pressed='true'] { background: #e2a336; border-color: #e2a336; color: #14161a; }
+  .fvc-btn-leave {
+    width: 4.75rem;
+    background: #ea4335;
+    border-color: #ea4335;
+    color: #fff;
+    margin-left: 0.4rem;
+  }
+  .fvc-btn-leave:hover { background: #f2544a; }
+  .fvc-ico { width: 1.35rem; height: 1.35rem; }
+
+  /* The freeze control keeps its label where there is room, since it is the one
+     button whose purpose is not obvious from an icon. */
+  .fvc-btn-wide { width: 3rem; padding: 0; }
+  .fvc-btn-label { display: none; font-size: 0.82rem; font-weight: 600; }
+  @media (min-width: 640px) {
+    .fvc-btn-wide { width: auto; padding-inline: 1.15rem; }
+    .fvc-btn-label { display: inline; }
+  }
+
+  .fvc-slash {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 1.7rem; height: 2px;
+    background: currentColor;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    border-radius: 2px;
+  }
+
+  .fvc-settings {
+    border: 1px solid var(--color-hairline, rgb(0 0 0 / 0.1));
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.75rem;
+  }
+  .fvc-set-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+  .fvc-set-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.6; }
+  .fvc-seg { display: inline-flex; border: 1px solid var(--color-hairline, rgb(0 0 0 / 0.12)); border-radius: 0.45rem; padding: 0.1rem; }
+  .fvc-seg-btn {
+    padding: 0.25rem 0.6rem; border-radius: 0.3rem; font-size: 0.78rem; cursor: pointer;
+    background: transparent; border: 1px solid transparent; color: inherit;
+  }
+  /* Tint-and-outline rather than an inverted fill, so the label stays legible in
+     both the light and dark site themes without needing a wrapper element. */
+  .fvc-seg-btn[aria-pressed='true'] {
+    background: rgb(128 128 128 / 0.22);
+    border: 1px solid currentColor;
+    font-weight: 700;
+  }
+  .fvc-names { display: flex; align-items: center; gap: 0.4rem; flex: 1 1 14rem; min-width: 0; }
+  .fvc-names input {
+    flex: 1; min-width: 0;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.35rem;
+    border: 1px solid var(--color-hairline, rgb(0 0 0 / 0.14));
+    background: transparent;
+    font-size: 0.78rem;
+    color: inherit;
+  }
+  .fvc-set-apply {
+    padding: 0.32rem 0.7rem; border-radius: 0.35rem; font-size: 0.78rem; cursor: pointer;
+    border: 1px solid var(--color-hairline, rgb(0 0 0 / 0.14)); background: transparent; color: inherit;
+  }
+
+  @keyframes fvc-spin { to { transform: rotate(360deg); } }
+  @keyframes fvc-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+  @keyframes fvc-drift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  @keyframes fvc-talk {
+    0%, 100% { height: 4px; }
+    50% { height: 12px; }
+  }
+  @keyframes fvc-ring {
+    0% { box-shadow: 0 0 0 0 rgb(138 180 248 / 0.65); }
+    70% { box-shadow: 0 0 0 16px rgb(138 180 248 / 0); }
+    100% { box-shadow: 0 0 0 0 rgb(138 180 248 / 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fvc-tile, .fvc-rec, .fvc-avatar-speaking { animation: none !important; }
+    .fvc-badge-speaking i { animation: none !important; height: 9px; }
+    .fvc-spinner, .fvc-buffer { animation-duration: 3s; }
+  }
+</style>
+
+<script>
+  type Tint = [string, string];
+
+  const initials = (name: string) =>
+    name
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase() ?? '')
+      .join('') || '?';
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-fake-video-call]')) {
+    const isCard = root.dataset.isCard === 'true';
+    const stage = root.querySelector<HTMLElement>('[data-stage]');
+    const grid = root.querySelector<HTMLElement>('[data-grid]');
+    const connecting = root.querySelector<HTMLElement>('[data-connecting]');
+    const frozen = root.querySelector<HTMLElement>('[data-frozen]');
+    const ended = root.querySelector<HTMLElement>('[data-ended]');
+    const elapsed = root.querySelector<HTMLElement>('[data-elapsed]');
+    const micBtn = root.querySelector<HTMLElement>('[data-mic]');
+    const camBtn = root.querySelector<HTMLElement>('[data-cam]');
+    const freezeBtn = root.querySelector<HTMLElement>('[data-freeze]');
+    const namesInput = root.querySelector<HTMLInputElement>('[data-names-input]');
+    if (!stage || !grid) continue;
+
+    const names: string[] = JSON.parse(root.dataset.names || '[]');
+    const tints: Tint[] = JSON.parse(root.dataset.tints || '[]');
+
+    let count = isCard ? 4 : 6;
+    let speakerIndex = 1;
+    let custom: string[] = [...names];
+    let isFrozen = false;
+    let micOff = false;
+    let camOff = false;
+    let startedAt = Date.now();
+    let timerId: number | undefined;
+
+    const MIC_OFF_SVG =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M12 2a3 3 0 0 1 3 3v5.2M9 9.2V5a3 3 0 0 1 .4-1.5"/>' +
+      '<path d="M19 10v2a7 7 0 0 1-1.1 3.8M15.5 17.6A7 7 0 0 1 5 12v-2"/>' +
+      '<path d="M12 19v3"/><path d="m3 3 18 18"/></svg>';
+
+    // Both status badges live in every tile and CSS decides which one shows, so the
+    // active speaker can change without rebuilding any DOM.
+    const makeBadges = () => {
+      const muted = document.createElement('span');
+      muted.className = 'fvc-badge fvc-badge-muted';
+      muted.title = 'Muted';
+      muted.innerHTML = MIC_OFF_SVG;
+
+      const speaking = document.createElement('span');
+      speaking.className = 'fvc-badge fvc-badge-speaking';
+      speaking.title = 'Speaking';
+      for (let b = 0; b < 3; b += 1) {
+        const bar = document.createElement('i');
+        bar.style.animationDelay = `${b * 0.16}s`;
+        speaking.appendChild(bar);
+      }
+      return [muted, speaking];
+    };
+
+    const paintSpeaker = () => {
+      for (const [i, tile] of Array.from(grid.children).entries()) {
+        (tile as HTMLElement).dataset.speaking = i === speakerIndex ? 'true' : 'false';
+        tile.querySelector('.fvc-avatar')?.classList.toggle('fvc-avatar-speaking', i === speakerIndex);
+      }
+    };
+
+    const render = () => {
+      grid.dataset.cols = count === 4 ? '2' : '3';
+      grid.dataset.micOff = micOff ? 'true' : 'false';
+      grid.innerHTML = '';
+      if (speakerIndex >= count || speakerIndex < 1) speakerIndex = count > 1 ? 1 : 0;
+      for (let i = 0; i < count; i += 1) {
+        const name = i === 0 ? 'You' : custom[(i - 1) % custom.length] || `Guest ${i}`;
+        const [a, b] = tints[i % tints.length];
+        const tile = document.createElement('div');
+        tile.className = 'fvc-tile';
+        if (i === 0) tile.dataset.self = 'true';
+        tile.style.backgroundImage = `linear-gradient(135deg, ${a}, ${b}, ${a})`;
+        tile.style.animationDelay = `${(i * 1.7) % 9}s`;
+        if (i === 0 && camOff) tile.classList.add('fvc-camoff');
+
+        const avatar = document.createElement('div');
+        avatar.className = 'fvc-avatar';
+        avatar.textContent = initials(name);
+        tile.appendChild(avatar);
+
+        for (const badge of makeBadges()) tile.appendChild(badge);
+
+        const label = document.createElement('div');
+        label.className = 'fvc-name';
+        label.appendChild(document.createTextNode(name));
+        tile.appendChild(label);
+
+        grid.appendChild(tile);
+      }
+      paintSpeaker();
+    };
+
+    const tickElapsed = () => {
+      if (!elapsed) return;
+      // Frozen calls stop counting, which is part of what sells the effect.
+      if (isFrozen) return;
+      const secs = Math.floor((Date.now() - startedAt) / 1000);
+      elapsed.textContent = `${String(Math.floor(secs / 60)).padStart(2, '0')}:${String(secs % 60).padStart(2, '0')}`;
+    };
+
+    const setFrozen = (next: boolean) => {
+      isFrozen = next;
+      root.classList.toggle('fvc-is-frozen', next);
+      stage.classList.toggle('fvc-is-frozen', next);
+      if (frozen) frozen.hidden = !next;
+      freezeBtn?.setAttribute('aria-pressed', next ? 'true' : 'false');
+    };
+
+    const setMic = (next: boolean) => {
+      micOff = next;
+      micBtn?.setAttribute('aria-pressed', next ? 'true' : 'false');
+      const slash = root.querySelector<HTMLElement>('[data-mic-slash]');
+      if (slash) slash.hidden = !next;
+      render();
+    };
+
+    const setCam = (next: boolean) => {
+      camOff = next;
+      camBtn?.setAttribute('aria-pressed', next ? 'true' : 'false');
+      const slash = root.querySelector<HTMLElement>('[data-cam-slash]');
+      if (slash) slash.hidden = !next;
+      render();
+    };
+
+    render();
+
+    if (isCard) {
+      connecting?.setAttribute('hidden', '');
+      continue;
+    }
+
+    // Connecting state on load, then the call "joins".
+    window.setTimeout(() => {
+      connecting?.setAttribute('hidden', '');
+      startedAt = Date.now();
+      tickElapsed();
+    }, 1900);
+    timerId = window.setInterval(tickElapsed, 1000);
+
+    // The speaker moves around the grid the way it does on a real call, which is
+    // what stops the mock reading as a still image.
+    window.setInterval(() => {
+      if (isFrozen || count < 2) return;
+      let next = speakerIndex;
+      while (next === speakerIndex && count > 2) next = 1 + Math.floor(Math.random() * (count - 1));
+      speakerIndex = count > 2 ? next : 1;
+      paintSpeaker();
+    }, 4200);
+
+    micBtn?.addEventListener('click', () => setMic(!micOff));
+    camBtn?.addEventListener('click', () => setCam(!camOff));
+    freezeBtn?.addEventListener('click', () => setFrozen(!isFrozen));
+
+    root.querySelector('[data-leave]')?.addEventListener('click', () => {
+      setFrozen(false);
+      if (ended) ended.hidden = false;
+    });
+    root.querySelector('[data-rejoin]')?.addEventListener('click', () => {
+      if (ended) ended.hidden = true;
+      if (connecting) connecting.hidden = false;
+      window.setTimeout(() => {
+        connecting?.setAttribute('hidden', '');
+        startedAt = Date.now();
+        tickElapsed();
+      }, 1400);
+    });
+
+    for (const button of root.querySelectorAll<HTMLElement>('[data-count]')) {
+      button.addEventListener('click', () => {
+        count = Number(button.dataset.count) || 6;
+        for (const other of root.querySelectorAll<HTMLElement>('[data-count]')) {
+          other.setAttribute('aria-pressed', other === button ? 'true' : 'false');
+        }
+        render();
+      });
+      button.setAttribute('aria-pressed', Number(button.dataset.count) === count ? 'true' : 'false');
+    }
+
+    root.querySelector('[data-apply]')?.addEventListener('click', () => {
+      const raw = (namesInput?.value ?? '').split(',').map((n) => n.trim()).filter(Boolean);
+      custom = raw.length > 0 ? raw : [...names];
+      render();
+    });
+
+    const doFullscreen = () => {
+      if (document.fullscreenElement === stage) {
+        document.exitFullscreen?.().catch(() => {});
+        return;
+      }
+      try {
+        const p = stage.requestFullscreen?.({ navigationUI: 'hide' } as any);
+        if (p && typeof p.catch === 'function') p.catch(() => stage.requestFullscreen?.());
+      } catch (_) {
+        stage.requestFullscreen?.();
+      }
+    };
+    root.querySelector('[data-fullscreen]')?.addEventListener('click', doFullscreen);
+
+    document.addEventListener('keydown', (event) => {
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLSelectElement ||
+        event.target instanceof HTMLTextAreaElement
+      ) return;
+
+      const key = event.key.toLowerCase();
+      if (key === 'f') { doFullscreen(); return; }
+
+      // The rest only apply once the tool owns the interaction, so they do not
+      // take over typing or scrolling elsewhere on the page.
+      const owns = document.fullscreenElement === stage || root.contains(document.activeElement);
+      if (!owns) return;
+
+      if (key === 'b') setFrozen(!isFrozen);
+      else if (key === 'm') setMic(!micOff);
+      else if (key === 'c') setCam(!camOff);
+    });
+
+    window.addEventListener('beforeunload', () => {
+      if (timerId !== undefined) window.clearInterval(timerId);
+    });
+  }
+</script>

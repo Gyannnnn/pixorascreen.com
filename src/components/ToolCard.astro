@@ -26,6 +26,7 @@ import WindowsXpCrash from './WindowsXpCrash.astro';
 import RadarScreen from './RadarScreen.astro';
 import WhiteNoiseScreen from './WhiteNoiseScreen.astro';
 import FakeVirusScreen from './FakeVirusScreen.astro';
+import FakeVideoCall from './FakeVideoCall.astro';
 import WindowsUpdate from './WindowsUpdate.astro';
 import UbuntuScreen from './UbuntuScreen.astro';
 import MacOSUpdate from './MacOSUpdate.astro';
@@ -83,6 +84,7 @@ const altText = `${toolName(locale, tool)} preview`;
           {/* Prank Screens */}
           {tool.id === 'radar-screen' && <RadarScreen tool={tool} locale={locale} isCard={true} />}
           {tool.id === 'white-noise-screen' && <WhiteNoiseScreen tool={tool} locale={locale} isCard={true} />}
+          {tool.id === 'fake-video-call' && <FakeVideoCall tool={tool} locale={locale} isCard={true} />}
 
           {/* Fake Screens */}
           {tool.id === 'windows-update' && <WindowsUpdate tool={tool} locale={locale} isCard={true} />}

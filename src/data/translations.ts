@@ -619,6 +619,7 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
   'brown-screen': { es: 'Pantalla Marrón', pt: 'Tela Marrom', fr: 'Écran Marron', de: 'Brauner Bildschirm', hi: 'भूरी स्क्रीन', ja: '茶色の画面' },
   'grey-screen': { es: 'Pantalla Gris', pt: 'Tela Cinza', fr: 'Écran Gris', de: 'Grauer Bildschirm', hi: 'स्लेटी स्क्रीन', ja: '灰色の画面' },
   'custom-color-screen': { es: 'Pantalla de Color Personalizado', pt: 'Tela de Cor Personalizada', fr: 'Écran Couleur Personnalisé', de: 'Benutzerdefinierter Farbbildschirm', hi: 'कस्टम कलर स्क्रीन', ja: 'カスタムカラー画面' },
+  'fake-video-call': { es: 'Videollamada Falsa', pt: 'Videochamada Falsa', fr: 'Faux Appel Vidéo', de: 'Gefälschter Videoanruf', hi: 'फर्जी वीडियो कॉल स्क्रीन', ja: '偽ビデオ通話画面' },
   'countdown-timer': { es: 'Temporizador y Cronómetro', pt: 'Temporizador e Cronômetro', fr: 'Minuteur et Chronomètre', de: 'Countdown-Timer & Stoppuhr', hi: 'काउंटडाउन टाइमर और स्टॉपवॉच', ja: 'カウントダウンタイマー＆ストップウォッチ' },
   'oled-burn-in-test': { es: 'Test de Burn-In OLED', pt: 'Teste de Burn-In OLED', fr: 'Test de Burn-In OLED', de: 'OLED-Burn-In-Test', hi: 'OLED बर्न-इन टेस्ट', ja: 'OLED焼き付きテスト' },
   'dvd-screensaver': { es: 'Salvapantallas del Logo DVD', pt: 'Protetor de Tela do Logo DVD', fr: 'Écran de Veille Logo DVD', de: 'DVD-Logo Bildschirmschoner', hi: 'DVD लोगो स्क्रीनसेवर', ja: 'DVDロゴ スクリーンセーバー' },
@@ -647,6 +648,14 @@ const toolNames: Record<string, Partial<Record<Locale, string>>> = {
 };
 
 const toolSummaries: Record<string, Partial<Record<Locale, string>>> = {
+  'fake-video-call': {
+    es: 'Una simulación genérica de videollamada a pantalla completa, con cuadrícula de participantes, controles de micrófono y cámara, estado de conexión y un efecto de congelado que imita una mala conexión. No conecta nada ni usa la cámara.',
+    pt: 'Uma simulação genérica de videochamada em tela cheia, com grade de participantes, controles de microfone e câmera, estado de conexão e um efeito de congelamento que imita uma conexão ruim. Nada se conecta e a câmera não é usada.',
+    fr: "Une simulation générique d'appel vidéo en plein écran : grille de participants, boutons micro et caméra, état de connexion et un effet de gel qui imite une mauvaise connexion. Rien ne se connecte et la caméra n'est jamais utilisée.",
+    de: 'Eine generische Videoanruf-Simulation im Vollbild, mit Teilnehmerraster, Mikrofon- und Kamerasteuerung, Verbindungsstatus und einem Einfrier-Effekt wie bei schlechter Verbindung. Es wird nichts verbunden und keine Kamera verwendet.',
+    hi: 'फुलस्क्रीन वीडियो कॉल का सामान्य सिमुलेशन — प्रतिभागियों का ग्रिड, माइक और कैमरा बटन, कनेक्टिंग स्टेट, और खराब कनेक्शन जैसा फ्रीज़ इफेक्ट। कुछ भी कनेक्ट नहीं होता और कैमरा उपयोग नहीं होता।',
+    ja: '参加者グリッド、マイク・カメラ操作、接続中表示、通信不良のようなフリーズ演出を備えた全画面のビデオ通話シミュレーション。実際に接続もカメラ使用もしません。',
+  },
   'countdown-timer': {
     es: 'Un temporizador de cuenta atrás y cronómetro a pantalla completa, con una pantalla lo bastante grande para leerse desde el fondo de una sala, presets rápidos, duración personalizada, alarmas y vueltas.',
     pt: 'Um temporizador de contagem regressiva e cronômetro em tela cheia, com um mostrador grande o bastante para ser lido do fundo da sala, presets rápidos, duração personalizada, alarmes e voltas.',

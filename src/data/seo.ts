@@ -255,6 +255,9 @@ const customTitles: Partial<Record<string, Partial<Record<Locale, string>>>> = {
   'countdown-timer': {
     en: 'Fullscreen Countdown Timer & Stopwatch - Free Online | PixoraScreen',
   },
+  'fake-video-call': {
+    en: 'Fake Video Call Screen - Free Online Prank Tool | PixoraScreen',
+  },
   'custom-color-screen': {
     en: 'Custom Color Screen - Free Fullscreen Color Picker | PixoraScreen',
   },
@@ -492,6 +495,9 @@ const customDescriptions: Partial<Record<string, Partial<Record<Locale, string>>
   'countdown-timer': {
     en: 'Free fullscreen countdown timer and stopwatch for presentations, workshops, classrooms, and workouts. Large display, custom alarm, works on any device.',
   },
+  'fake-video-call': {
+    en: 'Realistic fake video call screen for pranks, content creation, or a believable excuse to step away. Fullscreen, free, no download or account needed.',
+  },
   'custom-color-screen': {
     en: 'Pick any custom color and fill your screen fullscreen. Free color picker with HEX, RGB, and HSL input, saved favorites, and calibration-friendly display testing.',
   },
@@ -544,6 +550,9 @@ const customH1: Partial<Record<string, Partial<Record<Locale, string>>>> = {
   'countdown-timer': {
     en: 'Fullscreen Countdown Timer & Stopwatch',
   },
+  'fake-video-call': {
+    en: 'Fake Video Call Screen: Free Online Prank Tool',
+  },
   'custom-color-screen': {
     en: 'Custom Color Screen — Fullscreen Color Picker & Display Tester',
   },
@@ -556,6 +565,9 @@ const customH1: Partial<Record<string, Partial<Record<Locale, string>>>> = {
 // place so the visible breadcrumb and the BreadcrumbList JSON-LD always agree —
 // Google discards breadcrumb markup that does not match the rendered trail.
 const customBreadcrumbNames: Partial<Record<string, Partial<Record<Locale, string>>>> = {
+  'fake-video-call': {
+    en: 'Fake Video Call Screen',
+  },
   'countdown-timer': {
     en: 'Countdown Timer & Stopwatch',
   },
@@ -586,6 +598,9 @@ export function breadcrumbNameForTool(tool: Tool, locale: Locale = defaultLocale
 // The WebApplication entity describes the tool itself, which is not always worded the
 // same way as the page's meta description. Falls back to the meta description.
 const customAppDescriptions: Partial<Record<string, Partial<Record<Locale, string>>>> = {
+  'fake-video-call': {
+    en: 'Free fake video call screen simulator with a freeze/bad-connection effect, for pranks and content creation. Fullscreen, no download needed.',
+  },
   'countdown-timer': {
     en: 'Free fullscreen countdown timer and stopwatch with large display, presets, custom alarm, and lap tracking.',
   },

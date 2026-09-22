@@ -424,6 +424,78 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
         screens, photography backdrops, gaming room decoration, and creative content production — all without downloading anything.
       </p>
     </>
+  ) : tool.kind === 'prank' && tool.id === 'fake-video-call' ? (
+    <>
+      <h2>What Is This?</h2>
+      <p>
+        This is a fullscreen simulation of a video call: a grid of participant tiles, a control bar with mute and camera buttons, a
+        connecting state while it "joins", and a call timer ticking along in the corner. It looks, from a few feet away or through a phone
+        camera, like you are mid-meeting in a Zoom-style call. Nothing about it is real. No connection is made, no camera or microphone is
+        touched, and your browser never asks for device permissions, because the page has no use for them.
+      </p>
+      <p>
+        People reach for it for three reasons. It makes a good <strong>prank</strong>, because a call is one of the few things nobody
+        questions. It makes a useful <strong>prop</strong> for a skit or a thumbnail, where a real call would mean coordinating real people.
+        And it gives you a <strong>believable way to step away</strong> from a screen for a minute without a conversation about it.
+      </p>
+      <p>
+        The interface is deliberately generic. It is our own design, not a copy of any particular product, so there are no real logos,
+        names, or branding anywhere in it. That keeps it usable in a video you plan to publish, where reproducing a company's interface is
+        the part that tends to cause problems.
+      </p>
+
+      <h2>How to Use</h2>
+      <h3>The freeze effect</h3>
+      <p>
+        This is the feature worth knowing about. Press the <strong>Freeze</strong> button or hit
+        <kbd class="rounded border border-hairline px-2 py-1 font-mono">B</kbd> and the call stalls: the tiles stop moving and go soft and
+        washed out the way a stuck stream does, a buffering spinner appears with a "Reconnecting" message, and the call timer stops
+        advancing. It is a toggle, so the frozen state holds for as long as you want and releases when you press it again. A frozen call is
+        far more convincing than a perfect one, because everybody has sat through exactly that.
+      </p>
+      <h3>Mute and camera</h3>
+      <p>
+        The microphone and camera buttons behave the way you would expect: both show a struck-through icon when off, a red dot appears
+        beside your name when you are muted, and turning the camera off drops your own tile to a dark panel with your initials. Keyboard
+        shortcuts are <kbd class="rounded border border-hairline px-2 py-1 font-mono">M</kbd> and
+        <kbd class="rounded border border-hairline px-2 py-1 font-mono">C</kbd>.
+      </p>
+      <h3>Participants</h3>
+      <p>
+        Choose four, six, or nine tiles under the call, and type your own comma separated names into the field then press Apply. The first
+        tile is always you. Picking names your audience recognises is the single thing that makes the biggest difference to how convincing
+        it looks.
+      </p>
+      <h3>Fullscreen</h3>
+      <p>
+        Press <kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> or the fullscreen button to lose the browser entirely,
+        which is what sells it. <kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> leaves. The Leave button ends the
+        call to a "Call ended" screen with a Rejoin option, which is a tidy way to finish a bit.
+      </p>
+
+      <h2>Use Cases</h2>
+      <h3>Pranks and April Fools</h3>
+      <p>
+        Leave it fullscreen on a housemate's laptop and watch them wait for someone to speak. Freeze it just as they lean in. It is harmless
+        and it resets the moment you close the tab.
+      </p>
+      <h3>Video and social content</h3>
+      <p>
+        Skits about meeting culture more or less write themselves, and this saves you staging a real call to film one. Because the interface
+        is original rather than a copy of a real product, it is safer to put in a video you intend to publish.
+      </p>
+      <h3>Presentations about video-call etiquette</h3>
+      <p>
+        If you are running a session on remote meeting habits, a live call on the screen behind you is a better prop than a screenshot. The
+        freeze effect gives you the frozen-participant moment on cue.
+      </p>
+      <h3>A lighthearted moment away</h3>
+      <p>
+        Sometimes you want the screen to look busy for two minutes. That is a joke people have been making about meetings for years, and it
+        works best as exactly that, a joke among people who will find it funny. It is not meant for convincing an employer you were
+        somewhere you were not, and it is worth keeping the difference in mind.
+      </p>
+    </>
   ) : tool.kind === 'prank' ? (
     <>
       <h2>Prank setup and performance tips.</h2>
@@ -767,6 +839,19 @@ const blog = (tool.id === 'white-screen' || tool.id === 'black-screen' || tool.i
       the <a href="/dead-pixel-test/">full six-color dead pixel test</a> — it walks you through black, white, red, green, blue, and grey in
       sequence, with guidance on what each one reveals.
     </p>
+  )}
+  {(tool.id === 'fake-video-call' || tool.id === 'fake-virus-screen' || tool.id === 'windows-xp-crash' || tool.id === 'blue-screen-prank') && (
+    <>
+      <h2>More prank tools</h2>
+      <p>
+        These pages are all built the same way: a browser-only visual, nothing installed, nothing changed on the machine, and everything
+        gone the moment the tab closes.
+        {tool.id !== 'fake-video-call' && <> The <a href="/fake-video-call/">fake video call screen</a> puts you in a meeting that does not exist, with a freeze effect for a stalled connection.</>}
+        {tool.id !== 'fake-virus-screen' && <> The <a href="/fake-virus-screen/">fake virus screen</a> throws up a convincing security alert.</>}
+        {tool.id !== 'windows-xp-crash' && <> The <a href="/windows-xp-crash/">Windows XP crash screen</a> cascades error dialogs across the desktop.</>}
+        {tool.id !== 'blue-screen-prank' && <> The <a href="/blue-screen-prank/">blue screen prank</a> simulates a full system crash.</>}
+      </p>
+    </>
   )}
   <h2>Why this page is built differently.</h2>
   <p>
