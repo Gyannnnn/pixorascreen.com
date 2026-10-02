@@ -1,10 +1,10 @@
 ---
-import '../styles/global.css';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import SeoHead from '../components/SeoHead.astro';
-import JsonLd from '../components/JsonLd.astro';
-import { type Locale, locales } from '../data/locales';
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import SeoHead from "../components/SeoHead.astro";
+import JsonLd from "../components/JsonLd.astro";
+import { type Locale, locales } from "../data/locales";
 
 type Props = {
   title?: string;
@@ -15,56 +15,77 @@ type Props = {
   lang?: string;
   locale?: Locale;
   currentToolSlug?: string;
-  currentToolLocalizedSlugs?: Partial<Record<Exclude<Locale, 'en'>, string>>;
+  currentToolLocalizedSlugs?: Partial<Record<Exclude<Locale, "en">, string>>;
 };
 
-const { title, description, canonicalPath, alternates, jsonLd, lang = 'en', locale = 'en', currentToolSlug, currentToolLocalizedSlugs } = Astro.props;
+const {
+  title,
+  description,
+  canonicalPath,
+  alternates,
+  jsonLd,
+  lang = "en",
+  locale = "en",
+  currentToolSlug,
+  currentToolLocalizedSlugs,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang={lang}>
   <head>
-  <!-- Google tag (gtag.js) -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-8TNJFPWG7N"
-  ></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TNJFPWG7N"
+    ></script>
 
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'G-8TNJFPWG7N');
-  </script>
+      gtag("config", "G-8TNJFPWG7N");
+    </script>
 
-  <SeoHead
-    title={title}
-    description={description}
-    canonicalPath={canonicalPath}
-    alternates={alternates}
-  />
+    <meta name="google-adsense-account" content="ca-pub-5112161751368867" />
 
-  {jsonLd && <JsonLd data={jsonLd} />}
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5112161751368867"
+      crossorigin="anonymous"></script>
 
-  <script is:inline>
-    const saved = window.localStorage.getItem('freescreen-theme');
-    if (
-      saved === 'dark' ||
-      (!saved &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  </script>
-</head>
+    <SeoHead
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      alternates={alternates}
+    />
+
+    {jsonLd && <JsonLd data={jsonLd} />}
+
+    <script is:inline>
+      const saved = window.localStorage.getItem("freescreen-theme");
+      if (
+        saved === "dark" ||
+        (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+  </head>
   <body>
-    <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-canvas" href="#main">
+    <a
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-canvas"
+      href="#main"
+    >
       Skip to content
     </a>
-    <Navbar locale={locale} currentToolSlug={currentToolSlug} currentToolLocalizedSlugs={currentToolLocalizedSlugs} />
+    <Navbar
+      locale={locale}
+      currentToolSlug={currentToolSlug}
+      currentToolLocalizedSlugs={currentToolLocalizedSlugs}
+    />
     <main id="main">
       <slot />
     </main>
