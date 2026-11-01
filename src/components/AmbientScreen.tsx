@@ -448,7 +448,7 @@ export default function AmbientScreen({ locale, strings: ui = {}, ambientAudioFi
     if (isCard) return;
     // 🌧️ Rain track creation
     if (!audioRainRef.current) {
-      const audio = new Audio('/assets/rain-screen/bgm/dragon-studio-gentle-rain-07-437321.mp3');
+      const audio = new Audio('/assets/rain-screen/bgm/Background%20Sound%202.mp3');
       audio.loop = true;
       audioRainRef.current = audio;
     }

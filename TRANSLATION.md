@@ -94,6 +94,8 @@ Which namespaces matter where (`src/i18n/indexing.ts`, `src/i18n/widgets.ts`):
 
 Changing an English string works the same way: edit `en.ts`, re-translate the key in each locale, and re-stamp it with `--keys`. The lint fails until every locale is done.
 
+The social preview images (`public/og/<locale>.png`, used for `og:image` and `twitter:image`) carry `hero.heading` and `hero.browse`. After changing either string, or adding a locale (add it to `LOCALES` in the script), run `npm run og:images` and commit the PNGs.
+
 ## About, privacy, and contact
 
 - About and privacy: `src/content/pages/<locale>/<about|privacy>.md` (frontmatter: `status`, `title`, `description`, `eyebrow`, `h1`, `lede`, optional `updated`; Markdown body with the same link tokens). A locale without its own file shows the English page as a noindexed draft.
@@ -134,3 +136,4 @@ One tool at a time, all six locales together, so each finished tool is indexed i
 | `npm run deploy` | `npm run verify`, then `wrangler deploy`; a failing check stops the deploy |
 | `node scripts/i18n-fr-spaces.mjs` | Insert French no-break spaces before `: ; ! ?` and inside « » in `fr.ts` and every French content file (the lint rejects ordinary spaces there) |
 | `npm run i18n:status` | Regenerate the tool × locale matrix in PROGRESS.md |
+| `npm run og:images` | Render the per-locale social preview images `public/og/<locale>.png` (1200×630) from each catalog's `hero.heading` and `hero.browse`; needs Inter, Noto Sans Devanagari, and Noto Sans CJK JP installed |

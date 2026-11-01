@@ -13,6 +13,8 @@ Rules every translation follows. [TRANSLATION.md](TRANSLATION.md) describes the 
 | hi | Hindi (Devanagari) | आप | Common tech loanwords in Devanagari: स्क्रीन, पिक्सेल, मॉनिटर, ब्राउज़र |
 | ja | Japanese | です/ます | Full-width punctuation 、。「」; katakana for established loanwords |
 
+Numbers: de and pt group thousands with a period (`12.000`) and use a decimal comma; fr groups with a no-break space (`12 000`) and uses a decimal comma; es follows the RAE/ASALE rule, with no separator in four-digit numbers (`2000`) and a no-break space from five digits (`12 000`), because Mexico reads `2.000` as a decimal; hi and ja group with a comma (`12,000`). Version numbers and product names keep their own form (`macOS 15.5`, `Wanna Decryptor 2.0`).
+
 Product names in lists and cards use the language's own capitalization: sentence case in es/pt/fr (`Pantalla negra`, `Écran noir`), nouns capitalized in de, no case in hi/ja.
 
 **Exception to the register:** the fake operating-system screens copy what the real OS shows, including its form of address. German Windows screens keep Windows' „Sie“ („Schalten Sie den Computer nicht aus.“), while the settings panel around them uses „du“. See *Fake-OS screens* below.

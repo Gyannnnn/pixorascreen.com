@@ -28,7 +28,7 @@ faqs:
   - q: "¿Qué hace el interruptor de lente gravitacional?"
     a: "Al activarlo, el puntero del mouse se comporta como un objeto pesado invisible. Las estrellas cercanas se apartan y se curvan a su alrededor, igual que la gravedad de un agujero negro o de un cúmulo de galaxias curva la luz de los objetos que están detrás. Mueve el puntero por la galaxia para ver cómo se deforman las estrellas."
   - q: "¿Por qué la galaxia va lenta o a saltos en mi laptop?"
-    a: "Cada estrella se dibuja por separado, así que los ajustes de densidad más altos le exigen mucho a una laptop o un celular básicos. Baja la Densidad de cúmulos estelares a entre 2.000 y 4.000 y cierra otras pestañas pesadas, y la animación debería ir fluida."
+    a: "Cada estrella se dibuja por separado, así que los ajustes de densidad más altos le exigen mucho a una laptop o un celular básicos. Baja la Densidad de cúmulos estelares a entre 2000 y 4000 y cierra otras pestañas pesadas, y la animación debería ir fluida."
   - q: "¿Cómo se ven los temas de color?"
     a: "Azul Andrómeda da brazos de un azul frío, Ámbar cósmico un cálido brillo dorado, Turquesa fantasmal un verde azulado pálido, Púrpura Orión una bruma violeta, y Monocromo OLED estrellas blancas sobre negro puro, el más amable con las pantallas OLED."
   - q: "¿Puedo poner música con la galaxia?"
@@ -51,7 +51,7 @@ La pantalla de galaxia dibuja miles de estrellas en brazos espirales alrededor d
 
 | Ajuste | Rango | Qué cambia |
 |---|---|---|
-| Densidad de cúmulos estelares | De 2.000 a 12.000 estrellas | Qué tan llenos y brillantes se ven los brazos |
+| Densidad de cúmulos estelares | De 2000 a 12 000 estrellas | Qué tan llenos y brillantes se ven los brazos |
 | Velocidad de rotación | De 0 a 1,5 | Qué tan rápido gira el disco; 0 lo congela |
 | Inclinación | De 10° a 85° | El ángulo de visión, desde casi de frente hasta casi de canto |
 | Intensidad del brillo del núcleo | Ajustable | El brillo del bulbo central |

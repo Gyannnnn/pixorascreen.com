@@ -141,7 +141,7 @@ export default function SnowScreen({ locale, strings: ui = {}, backgrounds: prop
   const backgrounds = propBg.length > 0 ? propBg : discovered.backgrounds;
   const audioFiles = propAudio.length > 0 ? propAudio : discovered.audioFiles;
 
-  const bgList = backgrounds.length > 0 ? backgrounds : ['/assets/snow-screen/backgrounds/bg.jpg'];
+  const bgList = backgrounds.length > 0 ? backgrounds : ['/assets/snow-screen/backgrounds/bg1.png'];
   const bgmList = audioFiles;
 
   // Selected background & sound options

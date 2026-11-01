@@ -13,7 +13,8 @@ How to resume: read **Next session starts here**, run `nvm use` (Node 22; the sh
 - **M6 is done** (2026-10-31): every tool widget reads its text from the catalogs (876 widget strings in 27 namespaces); English output is unchanged.
 - **M7 is done** (2026-10-31): chrome strings (542 per locale, including the card-visible widgets), contact, 404/500, and about/privacy are translated into es, pt, fr, de, hi, and ja. 24 more pages are indexed (home, about, contact, privacy × 6) with reciprocal hreflang; the sitemap has 69 URLs.
 - **M8 is done** (2026-11-01): all 41 tools are translated into es, pt, fr, de, hi, and ja (246 locale files, all `status: complete` and stamped), together with every widget namespace. All 315 pages are indexable with reciprocal hreflang; the sitemap has 315 URLs.
-- **M9 in progress** (2026-11-01): `deploy` is gated on `verify`, the docs are final, and the SEO pass fixes are in (see *M9 result*). Remaining: the per-locale seo-skill pass and a browser spot check.
+- **M9 is done** (2026-11-01): `deploy` is gated on `verify`; the docs are final; the SEO, hreflang, content, and browser passes are done, and their fixes are in (see *M9 result*). `npm run verify` passes.
+- **Next:** the owner actions at the end of this file: deploy, resubmit the sitemap, and request the AdSense review.
 
 ## Decisions (2026-10-30)
 
@@ -36,7 +37,7 @@ How to resume: read **Next session starts here**, run `nvm use` (Node 22; the sh
 | M6 | Extract widget strings (6a/6b/6c) | done | 2026-10-31 |
 | M7 | Chrome translation, one locale per session | done | 2026-10-31 |
 | M8 | Tool translations, one tool × 6 locales per session | done | 2026-11-01 |
-| M9 | Hardening: `deploy` gated on `verify`, final SEO pass | in progress | 2026-11-01 |
+| M9 | Hardening: `deploy` gated on `verify`, final SEO pass | done | 2026-11-01 |
 
 ## Baseline (M0, 2026-10-30, commit a29b7bd)
 
@@ -272,6 +273,21 @@ Leakage-check additions during M8: share-platform brand names (Facebook, WhatsAp
   - **Fixed:** fake-virus-screen had three `<h1>` elements: the fake Chrome "Deceptive site ahead" and SmartScreen titles were headings too. They are now `role="heading" aria-level="2"` divs. The aquarium clock overlay's `<h1>` (client-rendered, but Google renders JavaScript) is now a `<div>`. Every page now has exactly one h1.
   - **Fixed:** about, privacy, and contact had no structured data. They now carry `AboutPage` (with the author as `mainEntity`), `WebPage` (with `dateModified`), and `ContactPage` JSON-LD, each with `inLanguage` and `isPartOf` the WebSite. Every page now has JSON-LD with `inLanguage`.
   - **Reported, not changed:** 23 English titles exceed 70 characters (max 103), and the es/pt/fr/de translations of them run longer (max 135). Decision 3 keeps the English titles that already rank, and the translations mirror them. Google truncates these in results but still reads the whole title. Descriptions over 170 characters follow the same pattern (en 8, es 40, fr 41); ja runs short (5 under 70 characters), which is normal for Japanese.
+- **seo-page checklist** (en home, red-screen, fake-virus-screen, and the black screen in each locale):
+  - **Fixed, page weight:** the card thumbnails were 1920×1080 PNGs shown about 400px wide, and broken-screen's was 2.5 MB, loaded on every page whose related tools include it. They are now 960×540 WebP with `width`/`height` (broken-screen 2482 → 77 KB, XP crash 290 → 26 KB, hacker typer 143 → 20 KB, macOS update 132 → 4 KB; nine files). The PNGs stay in `public/` in case anything outside links to them.
+  - **Fixed, social previews:** `og:image` was `/og.svg`, which Facebook, X, LinkedIn, and WhatsApp do not render, and it still said "Free Online Screen" (the old name). Each locale now has `public/og/<locale>.png` (1200×630, PixoraScreen plus that locale's `hero.heading` and `hero.browse`), with `og:image:type/width/height`; `npm run og:images` (`scripts/og-images.mjs`) regenerates them.
+  - **Fixed, heading outline:** "Share this tool" was an h3 straight under the h1 (now h2); the mobile menu's category labels were h3s ahead of the h1 (now `<p>`); the fake XP dialog's bold line was an h4 (now `<p>`). No page skips a heading level, and every indexable page has exactly one h1.
+  - **Fixed:** the 404 and 500 pages had no robots tag, so `/404.html` fetched directly would have been indexable. A page without a `pageKey` is now `noindex,follow`.
+  - Canonical, robots, hreflang, OG/Twitter tags, JSON-LD, and render-blocking scripts were clean on every sampled page.
+- **seo-hreflang:** 0 issues on 315 pages (45 sets × 7 languages): every page references itself with its canonical URL, every relation has its return tag, x-default is the English page, codes are ISO 639-1, all HTTPS with trailing slashes, and the sitemap lists exactly the indexable set (hreflang lives in the HTML only).
+  - **Fixed, number format:** the Spanish galaxy article wrote `2.000`/`12.000`, which Mexico reads as decimals. Neutral Spanish now follows the RAE/ASALE rule (`2000`, `12 000`); GLOSSARY.md has the number rules for every locale.
+- **seo-content:** articles run 530–780 words plus 6 FAQs, each with a localized byline linked to the about page and a visible updated date, 4–7 contextual internal links, and an answer-first "How to…" section; about, contact, and privacy exist in every language. No changes needed. Optional, not done: cite a few external authorities (for example, ISO 9241-307 pixel-defect classes on the display tests, Microsoft's tech-support-scam guidance on the prank pages), and add a Terms page.
+- **Browser check** (headless Chrome over the DevTools protocol, dev server; the Claude in Chrome extension was not connected):
+  - Choosing हिन्दी on `/black-screen/` lands on `/hi/kala-screen/` and stores `pixora-locale`; every internal link on that page stays in `/hi/`; on `/red-screen/` the banner offers "यह पेज हिन्दी में देखें" → `/hi/lal-screen/`; dismissing it holds on the next English page; there is no redirect.
+  - **Fixed, Japanese overflow:** `/ja/` and every Japanese page listing the Android card scrolled 7px sideways at 375px. `word-break: auto-phrase` never breaks inside a phrase, and 「偽のAndroidシステムアップデート画面シミュレーター」 is one 332px phrase. `:lang(ja)` now also sets `overflow-wrap: anywhere`, which breaks inside a phrase only when it cannot fit.
+  - **Fixed, hydration mismatch:** the clock card preview (server-rendered, `client:idle`) read the clock for the blinking colon during render, so build-time and load-time opacity disagreed on about half of all loads. The colon stays lit until mount.
+  - **Fixed, broken sound (pre-existing):** the ambient screen's rain toggle requested `dragon-studio-gentle-rain-07-437321.mp3`, which commit b5eeb56 (2026-07-29) renamed to `Background Sound 2.mp3`; it 404ed. The snow screen's fallback background also pointed at a missing `bg.jpg` (now `bg1.png`).
+  - **Console sweep:** all 315 pages at 375px after these fixes: 0 pages with console errors, exceptions, or failed requests. The 375px overflow check passes on the sampled de, fr, hi, and ja pages (and 320px on de and ja); a full 315-page overflow sweep and a desktop console sweep were still running at the time of writing.
 - **Verification:** `npm run verify` exit 0: `astro check` 0 errors and 0 warnings, `i18n-lint` 0 errors (126 warnings, all values that are the same word in both languages: brand names, HEX/RGB, "Pause", "Menu", "Timer"), `content-audit --strict` average shared text 0.3% with no tool over 5%, build OK, `i18n-audit` 0 errors and 0 warnings on 315 pages and 315 sitemap URLs.
 
 ## Tool × locale matrix
@@ -367,3 +383,7 @@ Generated by `npm run i18n:status` on 2026-11-01. ✅ translated and stamped · 
 - [ ] Before deploying M1: export Google Search Console clicks for non-en URLs (sets the M7/M8 order; those pages get noindexed).
 - [ ] AdSense → Privacy & messaging: enable Google's certified consent message for EEA/UK/Switzerland.
 - [ ] Deploy after M1 and after M3; request the AdSense review once M3 is live.
+- [ ] Deploy M9 with `npm run deploy` (it runs `verify` first). Commit `public/og/` and the new `public/assets/thumbnails/**/*.webp` with it.
+- [ ] Google Search Console: resubmit `https://pixorascreen.com/sitemap.xml` (315 URLs, up from 45 at M3) and use URL Inspection → Request indexing on a few translated pages per locale.
+- [ ] Request the AdSense review again once the deploy is live.
+- [ ] Optional: a native speaker spot-checks hi and ja (a few tool pages and one fake-OS screen each).

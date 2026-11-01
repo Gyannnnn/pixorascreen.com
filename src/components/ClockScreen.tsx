@@ -243,6 +243,12 @@ export default function ClockScreen({ locale, strings: ui = {}, isCard = false }
     return { h1: '0', h2: '0', m1: '0', m2: '0', s1: '0', s2: '0', ampm: '' };
   });
 
+  // The blinking colon reads the clock, so it stays lit until mount: the card preview is
+  // server-rendered and hydrated, and a build-time blink phase would not match the client's.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const colonDim = mounted && new Date().getMilliseconds() < 500;
+
   // Load config on mount
   useEffect(() => {
     if (isCard) return;
@@ -773,8 +779,8 @@ export default function ClockScreen({ locale, strings: ui = {}, isCard = false }
 
               {/* Colon */}
               <div className="w-[12px] md:w-[18px] lg:w-[24px] flex flex-col justify-center items-center gap-3.5 md:gap-5 select-none my-auto">
-                <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: timerRunning && (new Date().getMilliseconds() < 500) ? 0.35 : 0.95 }} />
-                <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: timerRunning && (new Date().getMilliseconds() < 500) ? 0.35 : 0.95 }} />
+                <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: timerRunning && colonDim ? 0.35 : 0.95 }} />
+                <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: timerRunning && colonDim ? 0.35 : 0.95 }} />
               </div>
 
               {/* Seconds digits */}
@@ -794,8 +800,8 @@ export default function ClockScreen({ locale, strings: ui = {}, isCard = false }
 
               {/* Blink Colon 1 */}
               <div className="w-[12px] md:w-[18px] lg:w-[24px] flex flex-col justify-center items-center gap-3.5 md:gap-5 select-none my-auto">
-                <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: (new Date().getMilliseconds() < 500) ? 0.35 : 0.95 }} />
-                <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: (new Date().getMilliseconds() < 500) ? 0.35 : 0.95 }} />
+                <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: colonDim ? 0.35 : 0.95 }} />
+                <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: colonDim ? 0.35 : 0.95 }} />
               </div>
 
               {/* Minutes digits */}
@@ -809,8 +815,8 @@ export default function ClockScreen({ locale, strings: ui = {}, isCard = false }
                 <>
                   {/* Blink Colon 2 */}
                   <div className="w-[12px] md:w-[18px] lg:w-[24px] flex flex-col justify-center items-center gap-3.5 md:gap-5 select-none my-auto">
-                    <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: (new Date().getMilliseconds() < 500) ? 0.35 : 0.95 }} />
-                    <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: (new Date().getMilliseconds() < 500) ? 0.35 : 0.95 }} />
+                    <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: colonDim ? 0.35 : 0.95 }} />
+                    <div className="size-2 sm:size-2.5 md:size-3.5 lg:size-4 rounded-full bg-current transition-opacity duration-200" style={{ opacity: colonDim ? 0.35 : 0.95 }} />
                   </div>
 
                   {/* Seconds digits */}

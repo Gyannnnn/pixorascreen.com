@@ -268,6 +268,10 @@ body {
   font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", "Noto Sans JP", var(--font-sans);
   line-break: strict;
   word-break: auto-phrase;
+  /* auto-phrase never breaks inside a phrase, so one long phrase (「偽のAndroidシステムアップデート画面
+     シミュレーター」) set the min-content width of its card and pushed the grid past a 375px screen.
+     anywhere allows a break inside a phrase only when the phrase cannot fit on the line. */
+  overflow-wrap: anywhere;
 }
 
 :lang(ja) h1,

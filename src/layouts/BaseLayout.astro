@@ -12,7 +12,7 @@ type Props = {
   title?: string;
   description?: string;
   canonicalPath?: string;
-  /** Identifies the page across locales; drives robots, hreflang and the language switcher. */
+  /** Identifies the page across locales; drives robots, hreflang and the language switcher. Omitted: noindex. */
   pageKey?: PageKey;
   jsonLd?: unknown;
   locale?: Locale;
@@ -24,7 +24,8 @@ const { title, description, canonicalPath, pageKey, jsonLd, locale = "en", chrom
 
 const lang = locales[locale].lang;
 const pageAlternates = pageKey ? alternates(pageKey, locale) : [];
-const noindex = pageKey ? !isIndexable(pageKey, locale) : false;
+// Pages outside the PageKey set (the 404 and 500 pages) are never indexed.
+const noindex = pageKey ? !isIndexable(pageKey, locale) : true;
 const ogLocaleAlternates = pageAlternates
   .filter((alternate) => alternate.locale !== locale)
   .map((alternate) => locales[alternate.locale].ogLocale);
