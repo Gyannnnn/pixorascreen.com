@@ -1,18 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomePage from '../components/HomePage.astro';
-import { alternatesForHome, landingJsonLd } from '../data/seo';
-import { locales } from '../data/locales';
+import { landingJsonLd } from '../data/seo';
+import { t } from '../i18n/ui';
 ---
 
 <BaseLayout
-  title="PixoraScreen - Premium Fullscreen Utilities"
-  description="Open fullscreen color screens, screen tests, screen savers, prank screens, and fake update screens from one fast, accessible web app."
+  title={t('en', 'home.meta_title')}
+  description={t('en', 'home.meta_description')}
   canonicalPath="/"
-  lang={locales.en.lang}
   locale="en"
-  alternates={alternatesForHome()}
-  jsonLd={landingJsonLd()}
+  pageKey={{ kind: 'home' }}
+  jsonLd={landingJsonLd('en')}
 >
   <HomePage locale="en" />
 </BaseLayout>

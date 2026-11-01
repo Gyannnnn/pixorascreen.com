@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 
 interface Props {
-  tool: Tool;
   locale: Locale;
+  /** UI strings from the "aquarium" catalog namespace; card previews pass none. */
+  strings?: Record<string, string>;
   aquariumAudioFiles: string[];
   isCard?: boolean;
 }
@@ -48,7 +48,7 @@ const PRESETS = [
   { id: 'sunset', name: 'Coral Sunset', bgGrad: 'linear-gradient(to bottom, #701a75, #4a044e, #0f172a)' },
 ];
 
-export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCard = false }: Props) {
+export default function AquariumScreen({ locale, strings: ui = {}, aquariumAudioFiles, isCard = false }: Props) {
   const [showSettings, setShowSettings] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedBg, setSelectedBg] = useState(PRESETS[0]);
@@ -899,12 +899,12 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
 
   const dateFormatted = () => {
     const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return time.toLocaleDateString(undefined, options);
+    return time.toLocaleDateString(document.documentElement.lang || undefined, options);
   };
 
   const formatAudioName = (file: string) => {
     const parts = file.split('/');
-    const name = parts[parts.length - 1] || 'Track';
+    const name = parts[parts.length - 1] || ui.track_fallback || '';
     return name.replace(/\.[^/.]+$/, "").replace(/-|_/g, " ");
   };
 
@@ -943,7 +943,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
       {/* 2. Top-left Status Indicator */}
       {!isFullscreen && !isCard && (
         <div className="absolute top-4 left-4 z-10 flex flex-col gap-1 text-[10px] sm:text-xs text-cyan-200/80 font-mono tracking-widest pointer-events-none select-none">
-          <span>AQUATIC SIMULATOR SYSTEM</span>
+          <span>{ui.heading}</span>
           <span className="text-emerald-400 opacity-90">ORGANISMS STATE: ACTIVE ({fishCount} Fish)</span>
         </div>
       )}
@@ -955,9 +955,9 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
         {/* Clock Overlay */}
         {overlayMode === 'clock' && (
           <div className="flex flex-col items-center justify-center px-10 py-6 rounded-3xl border border-white/10 bg-slate-950/45 backdrop-blur-md shadow-2xl animate-fadeIn select-none pointer-events-auto">
-            <h1 className="text-4xl sm:text-5xl font-mono font-extralight tracking-widest text-slate-100 drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
+            <div className="text-4xl sm:text-5xl font-mono font-extralight tracking-widest text-slate-100 drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
               {timeFormatted()}
-            </h1>
+            </div>
             <div className="h-[1px] w-20 bg-cyan-400/40 my-3" />
             <p className="text-[9px] sm:text-[10px] text-cyan-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)] tracking-widest font-mono uppercase">
               {dateFormatted()}
@@ -978,10 +978,10 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
               />
               <div className="flex flex-col items-center">
                 <span className="text-xs tracking-[0.25em] font-medium text-cyan-300 uppercase font-mono">
-                  {breathePhase === 'inhale' && 'Inhale'}
-                  {breathePhase === 'hold1' && 'Hold'}
-                  {breathePhase === 'exhale' && 'Exhale'}
-                  {breathePhase === 'hold2' && 'Hold'}
+                  {breathePhase === 'inhale' && ui.inhale}
+                  {breathePhase === 'hold1' && ui.hold}
+                  {breathePhase === 'exhale' && ui.exhale}
+                  {breathePhase === 'hold2' && ui.hold}
                 </span>
                 <span className="text-3xl font-light font-mono text-white mt-1">
                   {breatheSeconds}s
@@ -989,7 +989,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
               </div>
             </div>
             <p className="text-[9px] text-cyan-200/60 font-mono tracking-widest uppercase">
-              Aquarium Wave sync coach
+              {ui.breath_heading}
             </p>
           </div>
         )}
@@ -1006,7 +1006,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
                 onClick={(e) => { e.stopPropagation(); setTimerRunning((r) => !r); }}
                 className="px-3.5 py-1 rounded-full border border-white/20 text-[10px] font-semibold text-neutral-200 bg-neutral-950/60 hover:bg-neutral-900 hover:text-white cursor-pointer active:scale-95 transition-all uppercase tracking-wider mr-2"
               >
-                {timerRunning ? 'Pause' : 'Start'}
+                {timerRunning ? ui.pause : ui.start}
               </button>
               <button
                 onClick={(e) => {
@@ -1017,11 +1017,11 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
                 }}
                 className="px-3.5 py-1 rounded-full border border-white/20 text-[10px] font-semibold text-neutral-200 bg-neutral-950/60 hover:bg-neutral-900 hover:text-white cursor-pointer active:scale-95 transition-all uppercase tracking-wider"
               >
-                Reset
+                {ui.reset}
               </button>
             </div>
             <p className="text-[9px] text-cyan-200/50 font-mono uppercase tracking-widest">
-              Marine Focus Countdown
+              {ui.timer_heading}
             </p>
           </div>
         )}
@@ -1039,7 +1039,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
           className={`flex items-center justify-center w-10 h-10 rounded-xl bg-slate-950/80 hover:bg-slate-900 border cursor-pointer hover:border-cyan-400/40 transition-all active:scale-95 duration-300 ${
             showSettings ? 'rotate-90 text-cyan-400 border-cyan-500/20' : 'border-white/10 text-white'
           }`}
-          title="Toggle settings panel"
+          title={ui.settings_title}
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
             <circle cx="12" cy="12" r="3" />
@@ -1049,7 +1049,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
         <button
           onClick={(e) => { e.stopPropagation(); toggleFullscreen(); }}
           className="w-10 h-10 rounded-xl bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white shadow-xl cursor-pointer hover:border-cyan-400/40 transition-all active:scale-95"
-          title="Toggle fullscreen View"
+          title={ui.fullscreen_title}
         >
           {isFullscreen ? (
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1067,7 +1067,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
       {/* User click notification helper */}
       {!isCard && (
         <div className="absolute bottom-4 left-4 z-10 text-[9px] text-cyan-200/50 font-mono tracking-wider pointer-events-none">
-          * CLICK WATER TO FEED FISH FLAKES
+          {ui.feed_hint}
         </div>
       )}
 
@@ -1082,8 +1082,8 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
         {/* Header */}
         <div className="flex justify-between items-center border-b border-white/10 pb-2">
           <div>
-            <h3 className="text-sm font-semibold tracking-wide uppercase">Marine Aquarium Settings</h3>
-            <p className="text-[10px] text-slate-400 mt-0.5">Customize fish species counts, water currents, soundscapes and synth drone</p>
+            <h3 className="text-sm font-semibold tracking-wide uppercase">{ui.panel_heading}</h3>
+            <p className="text-[10px] text-slate-400 mt-0.5">{ui.panel_subtitle}</p>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -1099,12 +1099,12 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
               }}
               className="text-[10px] font-semibold text-cyan-400 bg-cyan-950/30 hover:bg-cyan-900/40 border border-cyan-500/20 px-2.5 py-1 rounded-lg cursor-pointer transition-colors"
             >
-              Reset Ecosystem
+              {ui.reset_ecosystem}
             </button>
             <button
               onClick={() => setShowSettings(false)}
               className="text-neutral-450 hover:text-white p-1 rounded-lg border border-transparent hover:border-white/10 hover:bg-white/5 cursor-pointer transition-all duration-200"
-              aria-label="Close settings"
+              aria-label={ui.close_settings}
             >
               <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -1117,7 +1117,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Preset Background Water Colors */}
           <div className="flex flex-col gap-2">
-            <span className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider block">Aquatic Light Gradients</span>
+            <span className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider block">{ui.light}</span>
             <div className="grid grid-cols-2 gap-2 mt-1">
               {PRESETS.map((p) => (
                 <button
@@ -1129,7 +1129,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
                       : 'border-white/10 bg-slate-900/40 hover:border-white/20'
                   }`}
                 >
-                  <div className="text-[10px] font-medium text-slate-200">{p.name}</div>
+                  <div className="text-[10px] font-medium text-slate-200">{ui[`theme_${p.id}`]}</div>
                 </button>
               ))}
             </div>
@@ -1140,7 +1140,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
             {/* Fish count */}
             <div className="flex flex-col gap-1">
               <div className="flex justify-between items-center text-xs text-slate-350">
-                <span>Ecosystem Fish Count</span>
+                <span>{ui.fish_count}</span>
                 <span className="font-mono text-[10px] text-cyan-400">{fishCount} Fish</span>
               </div>
               <input
@@ -1157,7 +1157,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
             {/* Fish swim speed */}
             <div className="flex flex-col gap-1">
               <div className="flex justify-between items-center text-xs text-slate-350">
-                <span>Water Current (Swim Speed)</span>
+                <span>{ui.current}</span>
                 <span className="font-mono text-[10px] text-cyan-400">{Math.round(fishSpeed * 100)}%</span>
               </div>
               <input
@@ -1178,7 +1178,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
           {/* Sounds */}
           <div className="flex flex-col gap-2 bg-white/5 rounded-xl p-3 border border-white/5">
             <span className="text-[10px] font-semibold text-slate-350 uppercase tracking-widest block border-b border-white/5 pb-1">
-              Aquatic Audio synthesizers
+              {ui.audio}
             </span>
             
             <div className="flex flex-col gap-2 mt-1.5">
@@ -1193,7 +1193,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
                     className="w-3.5 h-3.5 rounded border-neutral-700 bg-neutral-900 text-cyan-400 checked:bg-cyan-400 focus:ring-cyan-550/20 cursor-pointer"
                   />
                   <label htmlFor="aqDrone" className="font-medium text-slate-300 cursor-pointer">
-                    🌊 Sub Ocean Deep Drone
+                    {ui.drone}
                   </label>
                 </div>
                 <input
@@ -1219,7 +1219,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
                     className="w-3.5 h-3.5 rounded border-neutral-700 bg-neutral-900 text-cyan-400 checked:bg-cyan-400 focus:ring-cyan-550/20 cursor-pointer"
                   />
                   <label htmlFor="aqBubbles" className="font-medium text-slate-300 cursor-pointer">
-                    🫧 Bubble Pops Synth
+                    {ui.bubbles}
                   </label>
                 </div>
                 <input
@@ -1238,7 +1238,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
               {aquariumAudioFiles && aquariumAudioFiles.length > 0 && (
                 <>
                   <div className="text-[10px] font-semibold text-slate-450 uppercase tracking-widest pt-2 border-t border-white/5 mt-1 select-none">
-                    Custom marine tracks
+                    {ui.tracks}
                   </div>
                   {aquariumAudioFiles.map((file) => {
                     const cleanName = formatAudioName(file);
@@ -1291,7 +1291,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
           {/* Overlays Focus Mode */}
           <div className="flex flex-col gap-2 bg-white/5 rounded-xl p-3 border border-white/5">
             <span className="text-[10px] font-semibold text-slate-350 uppercase tracking-widest block border-b border-white/5 pb-1">
-              Marine Focus Overlays
+              {ui.overlays}
             </span>
             <div className="grid grid-cols-4 gap-2 mt-1.5">
               {(['none', 'clock', 'breathing', 'timer'] as const).map((mode) => (
@@ -1311,7 +1311,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
                       : 'border-white/10 bg-slate-900/40 text-neutral-400 hover:text-white'
                   }`}
                 >
-                  {mode === 'none' ? 'Off' : mode}
+                  {ui[`overlay_${mode}`]}
                 </button>
               ))}
             </div>
@@ -1319,7 +1319,7 @@ export default function AquariumScreen({ tool, locale, aquariumAudioFiles, isCar
             {/* Pomodoro controls inside settings drawer */}
             {overlayMode === 'timer' && (
               <div className="flex flex-col gap-1.5 mt-2 pt-2 border-t border-white/5 animate-fadeIn">
-                <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase block">Timer Limit</span>
+                <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase block">{ui.timer_limit}</span>
                 <div className="flex gap-2">
                   {([10, 25, 50] as const).map((duration) => (
                     <button

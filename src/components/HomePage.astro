@@ -2,7 +2,7 @@
 import ToolCard from './ToolCard.astro';
 import { categories, popularTools, tools, type ToolCategoryId } from '../data/tools';
 import { type Locale } from '../data/locales';
-import { t, toolName } from '../data/translations';
+import { categoryDescription, categoryName, t } from '../i18n/ui';
 
 type Props = {
   locale: Locale;
@@ -23,7 +23,6 @@ const categoryIds = Object.keys(categories) as ToolCategoryId[];
     </p>
     <div class="mt-8 flex flex-wrap gap-3">
       <a class="rounded-full bg-ink px-5 py-3 text-sm font-medium text-canvas hover:bg-body" href="#colors">{t(locale, 'hero.browse')}</a>
-      <!-- <a class="rounded-full border border-hairline bg-canvas px-5 py-3 text-sm font-medium text-ink hover:bg-canvas-soft" href="/dead-pixel-test/">{t(locale, 'hero.run_test')}</a> -->
     </div>
     <p class="mt-5 font-mono text-xs text-muted">{t(locale, 'hero.tool_count', { count: String(tools.length) })}</p>
   </div>
@@ -70,9 +69,9 @@ const categoryIds = Object.keys(categories) as ToolCategoryId[];
   return (
     <section id={categoryId} class="site-shell scroll-mt-24 py-16">
       <div class="max-w-2xl">
-        <p class="font-mono text-xs text-muted">{categories[categoryId].name.toUpperCase()}</p>
-        <h2 class="mt-3 text-3xl font-semibold text-balance text-ink">{categories[categoryId].name}</h2>
-        <p class="mt-3 text-base leading-7 text-body">{categories[categoryId].description}</p>
+        <p class="font-mono text-xs text-muted">{categoryName(locale, categoryId).toLocaleUpperCase(locale)}</p>
+        <h2 class="mt-3 text-3xl font-semibold text-balance text-ink">{categoryName(locale, categoryId)}</h2>
+        <p class="mt-3 text-base leading-7 text-body">{categoryDescription(locale, categoryId)}</p>
       </div>
       <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {categoryTools.map((tool) => <ToolCard tool={tool} locale={locale} />)}

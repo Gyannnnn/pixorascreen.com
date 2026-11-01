@@ -1,34 +1,42 @@
 ---
 import type { Tool } from '../data/tools';
 import { type Locale } from '../data/locales';
+import { strings, t } from '../i18n/ui';
 
 type Props = {
   tool: Tool;
   locale: Locale;
 };
 
+const { locale } = Astro.props;
+
+// Color names are lowercased inside running text ("Show the black test screen"), except in
+// German, where they are nouns and keep their capital ("Testbildschirm Schwarz anzeigen").
+const inSentence = (label: string) => (locale === 'de' ? label : label.toLocaleLowerCase(locale));
+
 // Static Check fills. The greys come first because an even mid-tone is where faint
 // ghosting separates from the background; the primaries follow because a worn
 // sub-pixel channel shows up against its own color before it shows against white.
 const fills = [
-  { id: 'grey-20', label: '20% Grey', color: '#333333' },
-  { id: 'grey-50', label: '50% Grey', color: '#808080' },
-  { id: 'grey-75', label: '75% Grey', color: '#bfbfbf' },
-  { id: 'white', label: 'White', color: '#ffffff' },
-  { id: 'red', label: 'Red', color: '#ff0000' },
-  { id: 'green', label: 'Green', color: '#00ff00' },
-  { id: 'blue', label: 'Blue', color: '#0000ff' },
-  { id: 'black', label: 'Black', color: '#000000' },
+  { id: 'grey-20', label: t(locale, 'oled.fill_grey20'), color: '#333333' },
+  { id: 'grey-50', label: t(locale, 'oled.fill_grey50'), color: '#808080' },
+  { id: 'grey-75', label: t(locale, 'oled.fill_grey75'), color: '#bfbfbf' },
+  { id: 'white', label: t(locale, 'oled.fill_white'), color: '#ffffff' },
+  { id: 'red', label: t(locale, 'oled.fill_red'), color: '#ff0000' },
+  { id: 'green', label: t(locale, 'oled.fill_green'), color: '#00ff00' },
+  { id: 'blue', label: t(locale, 'oled.fill_blue'), color: '#0000ff' },
+  { id: 'black', label: t(locale, 'oled.fill_black'), color: '#000000' },
 ];
 ---
 
-<section class="rounded-lg border border-hairline bg-canvas shadow-soft" aria-label="OLED burn-in test">
+<section class="rounded-lg border border-hairline bg-canvas shadow-soft" aria-label={t(locale, 'oled.section_label')}>
   <div
     class="group relative grid min-h-[605px] overflow-hidden rounded-md border border-hairline sm:min-h-[504px] lg:min-h-[400px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
     style={`background:${fills[1].color};`}
     tabindex="0"
     data-burn-in
     data-fills={JSON.stringify(fills)}
+    data-i18n={JSON.stringify(strings(locale, 'oled'))}
   >
     <!-- Moving Pattern draws here; hidden while Static Check is active so the fill
          below stays perfectly flat, which is what makes faint ghosting visible. -->
@@ -40,7 +48,7 @@ const fills = [
       class="absolute right-3 top-3 z-20 grid size-11 place-items-center rounded-lg bg-black/25 text-white/90 shadow-xs ring-1 ring-white/15 backdrop-blur-xs transition-all hover:bg-black/45 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       type="button"
       data-fullscreen-icon
-      aria-label="Enter fullscreen"
+      aria-label={t(locale, 'oled.enter_fullscreen')}
     >
       <svg class="size-6.25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M8 3H5a2 2 0 0 0-2 2v3" />
@@ -56,14 +64,14 @@ const fills = [
           <!-- Mode switch. The two modes do opposite jobs, so the note below spells
                out which one you are in rather than leaving it to be inferred. -->
           <div class="flex flex-wrap items-center gap-3">
-            <div class="inline-flex rounded-lg border border-hairline p-0.5" role="group" aria-label="Test mode">
+            <div class="inline-flex rounded-lg border border-hairline p-0.5" role="group" aria-label={t(locale, 'oled.mode_group')}>
               <button
                 class="rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
                 type="button"
                 data-mode-btn="static"
                 aria-pressed="true"
               >
-                Static Check
+                {t(locale, 'oled.mode_static')}
               </button>
               <button
                 class="rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
@@ -71,7 +79,7 @@ const fills = [
                 data-mode-btn="moving"
                 aria-pressed="false"
               >
-                Moving Pattern
+                {t(locale, 'oled.mode_moving')}
               </button>
             </div>
             <p class="min-w-0 flex-1 text-xs leading-5 text-body" data-mode-note aria-live="polite"></p>
@@ -80,13 +88,13 @@ const fills = [
           <div class="mt-3 grid gap-3 min-w-0">
             <div class="min-w-0" data-fill-group>
               <div class="flex flex-wrap items-center gap-2">
-                <span class="font-mono text-xs text-muted">Test fill</span>
+                <span class="font-mono text-xs text-muted">{t(locale, 'oled.fill_label')}</span>
                 {fills.map((fill, index) => (
                   <button
                     class="flex items-center gap-1.5 rounded-full border border-hairline py-0.5 pl-0.5 pr-2.5 text-xs font-medium text-ink transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                     type="button"
                     data-fill={index}
-                    aria-label={`Fill the screen with ${fill.label.toLowerCase()}`}
+                    aria-label={t(locale, 'oled.fill_button', { fill: inSentence(fill.label) })}
                   >
                     <span class="size-4 shrink-0 rounded-full border border-hairline" style={`background:${fill.color};`}></span>
                     {fill.label}
@@ -98,7 +106,7 @@ const fills = [
             <div class="grid min-w-0 gap-3 sm:grid-cols-2">
               <label class="block">
                 <span class="flex items-center justify-between text-xs text-muted">
-                  <span>Brightness</span>
+                  <span>{t(locale, 'oled.brightness')}</span>
                   <span class="font-mono text-ink" data-brightness-value>100%</span>
                 </span>
                 <input
@@ -109,14 +117,14 @@ const fills = [
                   step="5"
                   value="100"
                   data-brightness
-                  aria-label="Brightness"
+                  aria-label={t(locale, 'oled.brightness')}
                 />
               </label>
 
               <div class="hidden" data-pattern-group>
                 <label class="block">
                   <span class="flex items-center justify-between text-xs text-muted">
-                    <span>Pattern speed</span>
+                    <span>{t(locale, 'oled.pattern_speed')}</span>
                     <span class="font-mono text-ink" data-speed-value>1.0x</span>
                   </span>
                   <input
@@ -127,7 +135,7 @@ const fills = [
                     step="0.1"
                     value="1"
                     data-speed
-                    aria-label="Pattern speed"
+                    aria-label={t(locale, 'oled.pattern_speed')}
                   />
                 </label>
               </div>
@@ -142,14 +150,9 @@ const fills = [
 <script>
   type Fill = { id: string; label: string; color: string };
 
-  const NOTES: Record<string, string> = {
-    static:
-      'Checking for burn-in. Hold each fill for a few seconds in a dim room and look for faint shadows or patches that stay put as you change color.',
-    moving:
-      'Helping prevent burn-in. Nothing here stays still, so no pixel holds one value long enough to age unevenly. Leave it running while the screen is idle.',
-  };
-
   for (const root of document.querySelectorAll<HTMLElement>('[data-burn-in]')) {
+    const text: Record<string, string> = JSON.parse(root.dataset.i18n || '{}');
+    const NOTES: Record<string, string> = { static: text.note_static ?? '', moving: text.note_moving ?? '' };
     const fills: Fill[] = JSON.parse(root.dataset.fills || '[]');
     if (fills.length === 0) continue;
 

@@ -1,6 +1,7 @@
 ---
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
+import { t } from '../i18n/ui';
 import BootScreen from './BootScreen.astro';
 import { ubuntuBootScreen } from '../data/boot-screens/ubuntu';
 
@@ -8,9 +9,9 @@ type Props = { tool: Tool; locale: Locale; isCard?: boolean };
 const { tool, locale, isCard = false } = Astro.props;
 ---
 
-<section class="ubuntu-update-wrapper" data-ubuntu-update aria-label="Ubuntu Update Simulator">
+<section class="ubuntu-update-wrapper" data-ubuntu-update aria-label={t(locale, 'ubuntu.section_label')}>
   <div class="uu-simulator group" data-uu-simulator data-is-card={isCard ? "true" : "false"} id="uuSimulator">
-    <button class="uu-fs-btn" id="uuFsBtn" type="button" aria-label="Fullscreen" onclick="window.__uuUpdate?.fullscreen()">
+    <button class="uu-fs-btn" id="uuFsBtn" type="button" aria-label={t(locale, 'ubuntu.fullscreen')} onclick="window.__uuUpdate?.fullscreen()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M8 3H5a2 2 0 0 0-2 2v3" />
         <path d="M21 8V5a2 2 0 0 0-2-2h-3" />

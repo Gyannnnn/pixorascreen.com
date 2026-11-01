@@ -113,13 +113,80 @@ body {
   margin-block: 1rem;
 }
 
-.rich-article ul {
+.rich-article ul,
+.rich-article ol {
   margin-block: 1rem;
   padding-left: 1.25rem;
 }
 
+.rich-article ul {
+  list-style: disc;
+}
+
+.rich-article ol {
+  list-style: decimal;
+}
+
+.rich-article a {
+  color: var(--color-link);
+}
+
+.rich-article a:hover {
+  text-decoration: underline;
+}
+
 .rich-article li {
   margin-block: 0.5rem;
+}
+
+.rich-article table {
+  width: 100%;
+  margin-block: 1.5rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.rich-article th,
+.rich-article td {
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  border-bottom: 1px solid var(--color-hairline);
+  text-align: left;
+  vertical-align: top;
+}
+
+.rich-article th {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+/* Byline above a tool article. */
+.rich-article .article-meta {
+  margin-block: 0 -1.5rem;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.rich-article .article-meta a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Markdown articles carry no classes; these match the utility classes the old JSX used. */
+.rich-article kbd {
+  border: 1px solid var(--color-hairline);
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-mono);
+}
+
+.rich-article code {
+  border: 1px solid var(--color-hairline);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: calc(1.25 / 0.875);
 }
 
 [data-screen-tool].is-fullscreen [data-fullscreen-hint] {
@@ -135,4 +202,76 @@ body {
   max-height: none !important;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+/* "View this page in <language>" suggestion; fixed so it never shifts the layout. */
+.locale-banner {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: calc(100vw - 2rem);
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border: 1px solid var(--color-hairline);
+  border-radius: 9999px;
+  background: var(--color-canvas);
+  box-shadow: var(--shadow-soft);
+  transform: translateX(-50%);
+  font-size: 0.875rem;
+}
+
+.locale-banner[hidden] {
+  display: none;
+}
+
+.locale-banner__link {
+  color: var(--color-link);
+  font-weight: 500;
+}
+
+.locale-banner__close {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  place-items: center;
+  border-radius: 9999px;
+  color: var(--color-muted);
+}
+
+.locale-banner__close svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Hindi and Japanese typography. The Latin stack has no Devanagari or Japanese glyphs, so
+   name system fonts that do. Devanagari vowel signs sit above and below the line, so tight
+   heading line-heights clip them, and letter-spacing breaks conjunct letters apart. */
+:lang(hi) {
+  font-family: "Nirmala UI", "Kohinoor Devanagari", "Noto Sans Devanagari", "Mangal", var(--font-sans);
+}
+
+:lang(hi) h1,
+:lang(hi) h2,
+:lang(hi) h3 {
+  line-height: 1.35;
+}
+
+:lang(hi) [class*="tracking-"],
+:lang(hi) .font-mono {
+  letter-spacing: 0;
+}
+
+:lang(ja) {
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", "Noto Sans JP", var(--font-sans);
+  line-break: strict;
+  word-break: auto-phrase;
+}
+
+:lang(ja) h1,
+:lang(ja) h2,
+:lang(ja) h3 {
+  line-height: 1.3;
 }

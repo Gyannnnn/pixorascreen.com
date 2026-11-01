@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 
 interface AmbientScreenProps {
-  tool: Tool;
   locale: Locale;
+  /** UI strings from the "ambient" catalog namespace; card previews pass none. */
+  strings?: Record<string, string>;
   ambientAudioFiles?: string[];
   isCard?: boolean;
 }
@@ -85,31 +85,7 @@ const playTimerBell = () => {
   }
 };
 
-// Helper to clean up filenames for dynamic audio display
-const formatAudioName = (fileUrl: string) => {
-  try {
-    const parts = fileUrl.split('/');
-    const filename = parts[parts.length - 1]; // get filename
-    const baseName = filename.substring(0, filename.lastIndexOf('.')); // remove extension
-    
-    // Replace hyphens, underscores, and remove trailing numeric IDs
-    const cleaned = baseName
-      .replace(/[-_]/g, ' ')
-      .replace(/\b\d+\b/g, '') // remove pure numbers
-      .trim();
-      
-    // Capitalize words
-    return cleaned
-      .split(' ')
-      .filter(Boolean)
-      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(' ');
-  } catch (err) {
-    return 'Custom Audio';
-  }
-};
-
-export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], isCard = false }: AmbientScreenProps) {
+export default function AmbientScreen({ locale, strings: ui = {}, ambientAudioFiles = [], isCard = false }: AmbientScreenProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const fluidCanvasRef = useRef<HTMLCanvasElement>(null);
   const starsCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -651,7 +627,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
       month: 'long',
       day: 'numeric',
     };
-    return time.toLocaleDateString(undefined, options);
+    return time.toLocaleDateString(document.documentElement.lang || undefined, options);
   };
 
   // Timer helper values
@@ -695,7 +671,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
         <div
           onClick={toggleFullscreen}
           className="absolute inset-0 cursor-pointer z-3"
-          title="Click to go Fullscreen"
+          title={ui.click_fullscreen}
         />
       )}
 
@@ -740,17 +716,17 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
               }`}
             >
               <h2 className="text-xl sm:text-2xl font-semibold tracking-wide font-sans text-white capitalize drop-shadow-sm select-none">
-                {breathePhase === 'inhale' && 'Inhale...'}
-                {breathePhase === 'hold1' && 'Hold...'}
-                {breathePhase === 'exhale' && 'Exhale...'}
-                {breathePhase === 'hold2' && 'Rest...'}
+                {breathePhase === 'inhale' && ui.inhale}
+                {breathePhase === 'hold1' && ui.hold}
+                {breathePhase === 'exhale' && ui.exhale}
+                {breathePhase === 'hold2' && ui.rest}
               </h2>
               <span className="text-[11px] font-mono opacity-80 mt-1 sm:mt-1.5 bg-black/35 px-2.5 py-0.5 rounded-full select-none">
                 {breatheSeconds}s
               </span>
             </div>
             <p className="text-[11px] sm:text-xs text-neutral-300 font-light mt-6 tracking-widest uppercase opacity-75 backdrop-blur-xs px-4 py-1.5 rounded-full bg-black/20 border border-white/5 font-mono">
-              Guided Focus • Box Breathing (4s Cycle)
+              {ui.breath_heading}
             </p>
           </div>
         )}
@@ -790,7 +766,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                   {formattedTimer()}
                 </span>
                 <span className="text-[9px] uppercase tracking-[0.2em] font-semibold text-neutral-400 mt-1 select-none">
-                  {timerRunning ? 'Focusing...' : 'Paused'}
+                  {timerRunning ? ui.focusing : ui.paused}
                 </span>
               </div>
             </div>
@@ -805,7 +781,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                     : 'bg-green-500/25 border-green-500/45 text-green-300 hover:bg-green-500/35'
                 }`}
               >
-                {timerRunning ? 'Pause' : 'Start'}
+                {timerRunning ? ui.pause : ui.start}
               </button>
               <button
                 onClick={() => {
@@ -815,7 +791,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                 }}
                 className="px-3.5 py-1.5 rounded-lg text-xs bg-neutral-800 border border-white/10 text-neutral-400 hover:text-white capitalize transition-colors cursor-pointer"
               >
-                Reset
+                {ui.reset}
               </button>
             </div>
           </div>
@@ -834,8 +810,8 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
             className={`flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 text-white cursor-pointer transition-transform duration-300 backdrop-blur-md ${
               showSettings ? 'rotate-90 border-amber-400/50 text-amber-400' : ''
             }`}
-            aria-label="Toggle Control Panel"
-            title="Toggle Control Panel"
+            aria-label={ui.panel_label}
+            title={ui.panel_label}
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
@@ -845,8 +821,8 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
           <button
             onClick={toggleFullscreen}
             className="flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 text-white cursor-pointer transition-all duration-200 backdrop-blur-md hover:border-white/25"
-            aria-label="Toggle Fullscreen"
-            title="Toggle Fullscreen"
+            aria-label={ui.fullscreen}
+            title={ui.fullscreen}
           >
             {isFullscreen ? (
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -871,8 +847,8 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
         {/* Drawers Header */}
         <div className="flex justify-between items-center border-b border-white/10 pb-2">
           <div>
-            <h3 className="text-sm font-semibold tracking-wide uppercase">Ambient Settings</h3>
-            <p className="text-[10px] text-neutral-450 mt-0.5">Customize interactive ambient lighting and atmospheric soundscapes</p>
+            <h3 className="text-sm font-semibold tracking-wide uppercase">{ui.panel_heading}</h3>
+            <p className="text-[10px] text-neutral-450 mt-0.5">{ui.panel_subtitle}</p>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -892,7 +868,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
               }}
               className="text-[10px] font-semibold text-amber-400 bg-amber-950/30 hover:bg-amber-900/40 border border-amber-500/20 px-2.5 py-1 rounded-lg cursor-pointer transition-colors"
             >
-              Reset Defaults
+              {ui.reset_defaults}
             </button>
             <button
               onClick={() => setShowSettings(false)}
@@ -908,7 +884,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
           
           {/* Preset Gradient Selection */}
           <div className="flex flex-col gap-2">
-            <span className="text-[11px] font-semibold text-neutral-350 uppercase tracking-wider">Aether Gradient Presets</span>
+            <span className="text-[11px] font-semibold text-neutral-350 uppercase tracking-wider">{ui.presets}</span>
             <div className="grid grid-cols-3 gap-2 mt-1 font-mono">
               {PRESETS.map((p) => (
                 <button
@@ -930,7 +906,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                       />
                     ))}
                   </div>
-                  <span className="text-[10px] font-medium text-neutral-300 mt-1 font-sans">{p.name}</span>
+                  <span className="text-[10px] font-medium text-neutral-300 mt-1 font-sans">{ui[`theme_${p.id}`]}</span>
                 </button>
               ))}
             </div>
@@ -942,9 +918,9 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
             {/* Speed Range Slider */}
             <div className="flex flex-col gap-1.5 animate-none">
               <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                <span>Morphing Flow Speed</span>
+                <span>{ui.flow_speed}</span>
                 <span className="font-mono text-xs text-amber-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
-                  {flowSpeed === 0 ? 'Frozen' : `${Math.round(flowSpeed * 100)}%`}
+                  {flowSpeed === 0 ? ui.frozen : `${Math.round(flowSpeed * 100)}%`}
                 </span>
               </div>
               <input
@@ -961,7 +937,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
             {/* Particle Density Slider */}
             <div className="flex flex-col gap-1.5">
               <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                <span>Cosmic Star Density</span>
+                <span>{ui.star_density}</span>
                 <span className="font-mono text-xs text-amber-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                   {starDensity} stars
                 </span>
@@ -985,7 +961,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
           {/* Atmospheric Audio Soundscape mixer */}
           <div className="flex flex-col gap-2.5 bg-white/5 rounded-xl p-3 border border-white/5">
             <span className="text-[11px] font-semibold text-neutral-350 uppercase tracking-wider block border-b border-white/5 pb-1">
-              Atmospheric Soundscape Mixer
+              {ui.mixer}
             </span>
             <div className="flex flex-col gap-2 mt-1">
               
@@ -993,10 +969,12 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
               {ambientAudioFiles && ambientAudioFiles.length > 0 && (
                 <>
                   <div className="text-[10px] font-semibold text-neutral-450 uppercase tracking-widest pb-1 select-none">
-                    Custom Ambient Tracks
+                    {ui.custom_tracks}
                   </div>
-                  {ambientAudioFiles.map((file) => {
-                    const cleanName = formatAudioName(file);
+                  {ambientAudioFiles.map((file, idx) => {
+                    // The bundled files are named after their uploaders, not their music, so the
+                    // label is a translated, numbered name rather than the cleaned-up filename.
+                    const cleanName = (ui.track ?? '').replace('{n}', String(idx + 1));
                     const isPlaying = activeCustomAudios[file] || false;
                     const vol = customAudiosVolume[file] !== undefined ? customAudiosVolume[file] : 0.4;
                     const cleanId = `custom-audio-${file.replace(/[^a-zA-Z0-9]/g, '-')}`;
@@ -1052,7 +1030,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                     className="w-3.5 h-3.5 rounded border-neutral-700 bg-neutral-900 text-amber-400 checked:bg-amber-400 focus:ring-amber-550/20 cursor-pointer"
                   />
                   <label htmlFor="lofiToggle" className="font-medium text-neutral-250 cursor-pointer">
-                    🎵 Calming Lofi Synth
+                    {ui.lofi}
                   </label>
                 </div>
                 <input
@@ -1078,7 +1056,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                     className="w-3.5 h-3.5 rounded border-neutral-700 bg-neutral-900 text-amber-400 checked:bg-amber-400 focus:ring-amber-550/20 cursor-pointer"
                   />
                   <label htmlFor="rainToggle" className="font-medium text-neutral-250 cursor-pointer">
-                    🌧️ Gentle Rainfall
+                    {ui.rain}
                   </label>
                 </div>
                 <input
@@ -1104,7 +1082,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                     className="w-3.5 h-3.5 rounded border-neutral-700 bg-neutral-900 text-amber-400 checked:bg-amber-400 focus:ring-amber-550/20 cursor-pointer"
                   />
                   <label htmlFor="fireToggle" className="font-medium text-neutral-250 cursor-pointer">
-                    🔥 Crackling Hearth
+                    {ui.hearth}
                   </label>
                 </div>
                 <input
@@ -1125,7 +1103,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
           {/* Ambient overlays - Clock, Breathe, timer */}
           <div className="flex flex-col gap-2 bg-white/5 rounded-xl p-3 border border-white/5">
             <span className="text-[11px] font-semibold text-neutral-350 uppercase tracking-wider block border-b border-white/5 pb-1">
-              Screen Overlay Focus Mode
+              {ui.overlay_heading}
             </span>
             <div className="grid grid-cols-4 gap-2 mt-1.5">
               {(['none', 'clock', 'breathing', 'timer'] as const).map((mode) => (
@@ -1138,10 +1116,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                       : 'border-white/5 bg-neutral-900/30 text-neutral-400 hover:text-white'
                   }`}
                 >
-                  {mode === 'none' && 'None'}
-                  {mode === 'clock' && 'Clock'}
-                  {mode === 'breathing' && 'Breathe'}
-                  {mode === 'timer' && 'Timer'}
+                  {ui[`overlay_${mode}`]}
                 </button>
               ))}
             </div>
@@ -1153,7 +1128,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
               {overlayMode === 'clock' && (
                 <div className="flex flex-wrap gap-x-4 gap-y-1.5 animate-fadeIn p-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[10px] text-neutral-400 uppercase tracking-widest">Font:</span>
+                    <span className="text-[10px] text-neutral-400 uppercase tracking-widest">{ui.font}</span>
                     <div className="flex gap-1">
                       {(['sans', 'serif', 'mono'] as const).map((typo) => (
                         <button
@@ -1165,7 +1140,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                               : 'bg-neutral-950 border-white/5 text-neutral-550 hover:text-white'
                           }`}
                         >
-                          {typo}
+                          {ui[`font_${typo}`]}
                         </button>
                       ))}
                     </div>
@@ -1177,7 +1152,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                       onChange={(e) => setShowAmPm(e.target.checked)}
                       className="w-3 h-3 rounded bg-neutral-955 border-neutral-700 text-amber-400 checked:bg-amber-400 focus:ring-amber-550/20 cursor-pointer"
                     />
-                    AM/PM
+                    {ui.ampm}
                   </label>
                   <label className="flex items-center gap-1 text-[10px] text-neutral-350 cursor-pointer select-none">
                     <input
@@ -1186,7 +1161,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                       onChange={(e) => setShowDate(e.target.checked)}
                       className="w-3 h-3 rounded bg-neutral-955 border-neutral-700 text-amber-400 checked:bg-amber-400 focus:ring-amber-550/20 cursor-pointer"
                     />
-                    Date
+                    {ui.date}
                   </label>
                 </div>
               )}
@@ -1194,14 +1169,14 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
               {/* Setup Breathing settings */}
               {overlayMode === 'breathing' && (
                 <div className="text-[10px] text-neutral-400 italic animate-fadeIn py-1">
-                  💡 Inhale as the circle expands, hold your breath, and exhale as it relaxes (Box breathing). Great for study/focus.
+                  {ui.breath_tip}
                 </div>
               )}
 
               {/* Setup Timer settings */}
               {overlayMode === 'timer' && (
                 <div className="flex items-center gap-2.5 animate-fadeIn p-1">
-                  <span className="text-[10px] text-neutral-400 uppercase tracking-widest">Duration:</span>
+                  <span className="text-[10px] text-neutral-400 uppercase tracking-widest">{ui.duration}</span>
                   <div className="flex gap-1.5">
                     {([5, 15, 25, 45] as const).map((m) => (
                       <button
@@ -1218,7 +1193,7 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
                             : 'bg-neutral-900 border-white/5 text-neutral-500 hover:text-neutral-300'
                         }`}
                       >
-                        {m}m
+                        {(ui.minutes_short ?? '').replace('{n}', String(m))}
                       </button>
                     ))}
                   </div>
@@ -1231,11 +1206,11 @@ export default function AmbientScreen({ tool, locale, ambientAudioFiles = [], is
 
         {/* Shortcuts / footer info inside drawer */}
         <div className="text-[10px] text-neutral-500 border-t border-white/5 pt-2 flex flex-wrap gap-x-4 gap-y-1">
-          <span>⌨️ Keyboards: <strong className="text-neutral-400">F</strong> Fullscreen</span>
-          <span>• <strong className="text-neutral-400">Space</strong> Settings</span>
-          <span>• <strong className="text-neutral-300">C</strong> Clock</span>
-          <span>• <strong className="text-neutral-300">B</strong> Breathe</span>
-          <span>• <strong className="text-neutral-400">Esc</strong> Exit</span>
+          <span>{ui.keys_heading} <strong className="text-neutral-400">F</strong> {ui.key_fullscreen}</span>
+          <span>• <strong className="text-neutral-400">Space</strong> {ui.key_settings}</span>
+          <span>• <strong className="text-neutral-300">C</strong> {ui.key_clock}</span>
+          <span>• <strong className="text-neutral-300">B</strong> {ui.key_breathe}</span>
+          <span>• <strong className="text-neutral-400">Esc</strong> {ui.key_exit}</span>
         </div>
       </div>}
     </div>

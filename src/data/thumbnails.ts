@@ -385,7 +385,7 @@ export function thumbnailFakeVirus(): string {
 // }
 
 export function thumbnailWindowsUpdate(): string {
-  return '<img src="/assets/thumbnails/fakescreen/windows-update-screen.png" alt="" class="size-full object-cover" />';
+  return '<img src="/assets/thumbnails/fakescreen/windows-update-screen.webp" width="960" height="540" decoding="async" alt="" class="size-full object-cover" />';
 }
 
 export function thumbnailWindowsXp(): string {
@@ -426,15 +426,15 @@ export function thumbnailWindows11(): string {
 }
 
 export function thumbnailUbuntu(): string {
-  return '<img src="/assets/thumbnails/fakescreen/ubuntu-update-screen.png" alt="" class="size-full object-cover" />';
+  return '<img src="/assets/thumbnails/fakescreen/ubuntu-update-screen.webp" width="960" height="540" decoding="async" alt="" class="size-full object-cover" />';
 }
 
 export function thumbnailMacOSUpdate(): string {
-  return '<img src="/assets/thumbnails/fakescreen/macos-update-screen.png" alt="" class="size-full object-cover" />';
+  return '<img src="/assets/thumbnails/fakescreen/macos-update-screen.webp" width="960" height="540" decoding="async" alt="" class="size-full object-cover" />';
 }
 
 export function thumbnailAndroidUpdate(): string {
-  return '<img src="/assets/thumbnails/fakescreen/android-update-screen.png" alt="" class="size-full object-cover" />';
+  return '<img src="/assets/thumbnails/fakescreen/android-update-screen.webp" width="960" height="540" decoding="async" alt="" class="size-full object-cover" />';
 }
 
 export function thumbnailGradient(): string {

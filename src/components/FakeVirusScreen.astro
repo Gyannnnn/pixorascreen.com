@@ -1,13 +1,19 @@
 ---
 import type { Tool } from "../data/tools";
-import type { Locale } from "../data/locales";
-import { t } from "../data/translations";
+import { locales, type Locale } from "../data/locales";
+import { strings, t } from "../i18n/ui";
 
 type Props = { tool: Tool; locale: Locale; isCard?: boolean };
 const { tool, locale, isCard = false } = Astro.props;
+// Sentences with embedded links or keys keep them wherever a translation places the placeholder.
+const riskParts = t(locale, 'fakevirus.chrome_risks').split('{link}');
+const helpKeys: Record<string, string> = { f: 'F', one: '1', four: '4', s: 'S', esc: 'Esc' };
+const helpParts = t(locale, 'fakevirus.help').split(/(\{[a-z]+\})/);
+// Placeholder threat date (the script replaces it with the current time) in this locale's format.
+const threatDate = new Intl.DateTimeFormat(locales[locale].lang, { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit', second: '2-digit', timeZone: 'UTC' }).format(new Date(Date.UTC(2026, 6, 10, 9, 25)));
 ---
 
-<div class="fv" id="fv" data-fake-virus-screen data-is-card={isCard ? "true" : "false"} aria-label="Fake Virus Screen Prank">
+<div class="fv" id="fv" data-fake-virus-screen data-is-card={isCard ? "true" : "false"} data-i18n={JSON.stringify(strings(locale, 'fakevirus'))} aria-label={t(locale, 'fakevirus.section_label')}>
   <!-- Chrome Block Template -->
   <div class="fv-template fv-chrome" id="tplChrome">
     <div class="chrome-box">
@@ -17,17 +23,17 @@ const { tool, locale, isCard = false } = Astro.props;
           <path d="M50 20v35M50 68h.02" stroke="#d93025" stroke-width="10" stroke-linecap="round" />
         </svg>
       </div>
-      <h1 class="chrome-title">Deceptive site ahead</h1>
+      <div class="chrome-title" role="heading" aria-level="2">{t(locale, 'fakevirus.chrome_title')}</div>
       <p class="chrome-p">
-        Attackers on this site may trick you into doing something dangerous like installing software or revealing your personal information (for example, passwords, phone numbers, or credit cards). <span role="link" class="chrome-link cursor-pointer" id="chromeLearnMore">Learn more</span>
+        {t(locale, 'fakevirus.chrome_body')} <span role="link" class="chrome-link cursor-pointer" id="chromeLearnMore">{t(locale, 'fakevirus.chrome_learn_more')}</span>
       </p>
       <div class="chrome-actions">
-        <button class="chrome-btn btn-details" id="chromeDetailsBtn" type="button">Details</button>
-        <button class="chrome-btn btn-green" id="chromeBackBtn" type="button">Go back to safety</button>
+        <button class="chrome-btn btn-details" id="chromeDetailsBtn" type="button">{t(locale, 'fakevirus.chrome_details')}</button>
+        <button class="chrome-btn btn-green" id="chromeBackBtn" type="button">{t(locale, 'fakevirus.chrome_back')}</button>
       </div>
       <div class="chrome-collapsed hidden" id="chromeDetailsPanel">
-        <p>Google Safe Browsing recently detected malware on this site. Web browsers use this warning to prevent you from visiting websites that are reported as unsafe.</p>
-        <p>If you understand the risks, you can <span role="link" class="chrome-link-unsafe cursor-pointer" id="chromeVisitAnyway">visit this unsafe site</span>.</p>
+        <p>{t(locale, 'fakevirus.chrome_detail_body')}</p>
+        <p>{riskParts[0]}<span role="link" class="chrome-link-unsafe cursor-pointer" id="chromeVisitAnyway">{t(locale, 'fakevirus.chrome_visit_unsafe')}</span>{riskParts[1]}</p>
       </div>
     </div>
   </div>
@@ -40,21 +46,21 @@ const { tool, locale, isCard = false } = Astro.props;
           <path d="M12 2L4 5v6c0 5.5 3.5 10.5 8 12 4.5-1.5 8-6.5 8-12V5l-8-3z" fill="#fff"/>
           <path d="M12 7v6M12 17h.01" stroke="#e02424" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <span>Microsoft Defender SmartScreen</span>
+        <span>{t(locale, 'fakevirus.ss_brand')}</span>
       </div>
-      <h1 class="ss-title">This site has been blocked by Microsoft Defender SmartScreen</h1>
+      <div class="ss-title" role="heading" aria-level="2">{t(locale, 'fakevirus.ss_title')}</div>
       <p class="ss-p">
-        Microsoft Defender SmartScreen has blocked this website because it has been reported for containing dangerous files or phishing threats. We recommend that you do not continue to this site.
+        {t(locale, 'fakevirus.ss_body')}
       </p>
       <div class="ss-actions">
-        <button class="ss-btn-back" id="ssBackBtn" type="button">Go back to my start page</button>
-        <span role="link" class="ss-link-more cursor-pointer" id="ssMoreBtn">More information</span>
+        <button class="ss-btn-back" id="ssBackBtn" type="button">{t(locale, 'fakevirus.ss_back')}</button>
+        <span role="link" class="ss-link-more cursor-pointer" id="ssMoreBtn">{t(locale, 'fakevirus.ss_more')}</span>
       </div>
       <div class="ss-expanded hidden" id="ssExpanded">
-        <p>This website has been reported to Microsoft for containing threats to your personal data or device. Microsoft Defender SmartScreen assists you by warning you of suspicious content on websites.</p>
+        <p>{t(locale, 'fakevirus.ss_more_body')}</p>
         <div class="ss-expanded-links">
-          <span role="link" class="ss-ex-link cursor-pointer" id="ssReportSafe">Report that this site is safe</span>
-          <span role="link" class="ss-ex-link cursor-pointer" id="ssProceed">Disregard and proceed (unsafe)</span>
+          <span role="link" class="ss-ex-link cursor-pointer" id="ssReportSafe">{t(locale, 'fakevirus.ss_report_safe')}</span>
+          <span role="link" class="ss-ex-link cursor-pointer" id="ssProceed">{t(locale, 'fakevirus.ss_proceed')}</span>
         </div>
       </div>
     </div>
@@ -68,7 +74,7 @@ const { tool, locale, isCard = false } = Astro.props;
           <svg viewBox="0 0 24 24" class="def-logo">
             <path d="M12 2L4 5v6c0 5.5 3.5 10.5 8 12 4.5-1.5 8-6.5 8-12V5l-8-3z" fill="#0078d7"/>
           </svg>
-          <span>Windows Security</span>
+          <span>{t(locale, 'fakevirus.def_brand')}</span>
         </div>
         <div class="def-window-ctrl">
           <span class="def-ctrl-btn">―</span>
@@ -85,35 +91,35 @@ const { tool, locale, isCard = false } = Astro.props;
           <div class="def-side-item">⚙️</div>
         </div>
         <div class="def-main">
-          <h2 class="def-main-title">Virus & threat protection</h2>
+          <h2 class="def-main-title">{t(locale, 'fakevirus.def_title')}</h2>
           <div class="def-banner">
             <div class="def-banner-shield">🛡️</div>
             <div class="def-banner-text">
-              <h3>Severe threats found.</h3>
-              <p>Antivirus detected malicious files on your machine. Start actions immediately to remove them.</p>
+              <h3>{t(locale, 'fakevirus.def_severe')}</h3>
+              <p>{t(locale, 'fakevirus.def_severe_body')}</p>
             </div>
           </div>
-          <div class="def-section-lbl">Current threats</div>
+          <div class="def-section-lbl">{t(locale, 'fakevirus.def_current')}</div>
           <div class="def-threat-card">
-            <div class="def-threat-name">Trojan:Win32/Wacatac.B!rfn</div>
+            <div class="def-threat-name" translate="no">Trojan:Win32/Wacatac.B!rfn</div>
             <div class="def-details">
-              <div><span>Alert level:</span> <strong class="red-txt">Severe</strong></div>
-              <div><span>Status:</span> <strong class="red-txt">Active</strong></div>
-              <div><span>Date:</span> <span id="defThreatDate">7/10/2026, 9:25:00 AM</span></div>
-              <div><span>Category:</span> Trojan</div>
-              <div><span>Details:</span> This program is dangerous and executes commands from an attacker.</div>
+              <div><span>{t(locale, 'fakevirus.def_alert_level')}</span> <strong class="red-txt">{t(locale, 'fakevirus.def_severe_level')}</strong></div>
+              <div><span>{t(locale, 'fakevirus.def_status')}</span> <strong class="red-txt">{t(locale, 'fakevirus.def_active')}</strong></div>
+              <div><span>{t(locale, 'fakevirus.def_date')}</span> <span id="defThreatDate">{threatDate}</span></div>
+              <div><span>{t(locale, 'fakevirus.def_category')}</span> {t(locale, 'fakevirus.def_category_value')}</div>
+              <div><span>{t(locale, 'fakevirus.def_details')}</span> {t(locale, 'fakevirus.def_details_value')}</div>
               <div>
-                <span>Affected items:</span>
+                <span>{t(locale, 'fakevirus.def_affected')}</span>
                 <div class="def-files-list">
-                  <code>file: C:\Users\Admin\Downloads\setup_installer.exe</code>
-                  <code>file: C:\Windows\System32\drivers\host.sys</code>
+                  <code translate="no">file: C:\Users\Admin\Downloads\setup_installer.exe</code>
+                  <code translate="no">file: C:\Windows\System32\drivers\host.sys</code>
                 </div>
               </div>
             </div>
             <div class="def-threat-actions">
-              <button class="def-action-btn" id="defActionBtn" type="button">Start actions</button>
+              <button class="def-action-btn" id="defActionBtn" type="button">{t(locale, 'fakevirus.def_start')}</button>
               <div class="def-action-progress hidden" id="defProgress">
-                <span>Removing threats... <span id="defProgressPct">0</span>%</span>
+                <span>{t(locale, 'fakevirus.def_removing')} <span id="defProgressPct">0</span>%</span>
                 <div class="def-progress-bar"><div class="def-progress-fill" id="defProgressFill"></div></div>
               </div>
             </div>
@@ -128,12 +134,12 @@ const { tool, locale, isCard = false } = Astro.props;
         <svg viewBox="0 0 24 24" class="def-toast-logo">
           <path d="M12 2L4 5v6c0 5.5 3.5 10.5 8 12 4.5-1.5 8-6.5 8-12V5l-8-3z" fill="#0078d7"/>
         </svg>
-        <span>Windows Security</span>
+        <span>{t(locale, 'fakevirus.def_brand')}</span>
         <span class="def-toast-x" id="defToastClose">✕</span>
       </div>
       <div class="def-toast-b">
-        <strong>Threats detected</strong>
-        <p>Microsoft Defender Antivirus detected malware or other potentially unwanted software. Click to react in Windows Security.</p>
+        <strong>{t(locale, 'fakevirus.toast_title')}</strong>
+        <p>{t(locale, 'fakevirus.toast_body')}</p>
       </div>
     </div>
   </div>
@@ -144,74 +150,74 @@ const { tool, locale, isCard = false } = Astro.props;
       <div class="wc-side">
         <div class="wc-warning">
           <span class="wc-padlock">🔒</span>
-          <p class="wc-warning-txt">Ooops, your files have been encrypted!</p>
+          <p class="wc-warning-txt">{t(locale, 'fakevirus.wc_warning')}</p>
         </div>
         <div class="wc-timer-card">
           <div class="wc-timer-section">
-            <span class="wc-timer-title">Payment will be raised on</span>
+            <span class="wc-timer-title">{t(locale, 'fakevirus.wc_raised')}</span>
             <span class="wc-timer-clock" id="wcTimerRaise">02:23:59:59</span>
           </div>
           <div class="wc-timer-section">
-            <span class="wc-timer-title">Files will be lost on</span>
+            <span class="wc-timer-title">{t(locale, 'fakevirus.wc_lost')}</span>
             <span class="wc-timer-clock" id="wcTimerLost">06:23:59:59</span>
           </div>
         </div>
         <div class="wc-payment">
-          <span class="wc-btc-lbl">Send $300 worth of bitcoin to this address:</span>
+          <span class="wc-btc-lbl">{t(locale, 'fakevirus.wc_send')}</span>
           <div class="wc-btc-input">
             <input type="text" value="1ACoM15f21QWD3156v156Dfg3161dfg16" id="wcBtcAddr" readonly />
-            <button class="wc-copy-btn" id="wcBtnCopy" type="button">Copy</button>
+            <button class="wc-copy-btn" id="wcBtnCopy" type="button">{t(locale, 'fakevirus.wc_copy')}</button>
           </div>
           <div class="wc-actions">
-            <button class="wc-action-btn" id="wcCheckPayment" type="button">Check Payment</button>
-            <button class="wc-action-btn" id="wcDecrypt" type="button">Decrypt</button>
+            <button class="wc-action-btn" id="wcCheckPayment" type="button">{t(locale, 'fakevirus.wc_check')}</button>
+            <button class="wc-action-btn" id="wcDecrypt" type="button">{t(locale, 'fakevirus.wc_decrypt')}</button>
           </div>
         </div>
       </div>
       <div class="wc-main">
-        <div class="wc-banner">Wana Decrypt0r 2.0</div>
+        <div class="wc-banner">{t(locale, 'fakevirus.wc_banner')}</div>
         <div class="wc-scroll">
-          <h3>What Happened to My Computer?</h3>
-          <p>Your important files are encrypted. Many of your documents, photos, videos, databases and other files are no longer accessible because they have been encrypted. Maybe you are busy looking for a way to recover your files, but do not waste your time. Nobody can recover your files without our decryption service.</p>
-          <h3>Can I Recover My Files?</h3>
-          <p>Sure. We guarantee that you can recover all your files safely and easily. But you don't have enough time. You can try to decrypt some files for free. Click Decrypt to try. But if you want to decrypt all your files, you need to pay.</p>
-          <h3>How Do I Pay?</h3>
-          <p>Payment is accepted in Bitcoin only. Send $300 worth of Bitcoin to the address specified on this screen.</p>
+          <h3>{t(locale, 'fakevirus.wc_what')}</h3>
+          <p>{t(locale, 'fakevirus.wc_what_body')}</p>
+          <h3>{t(locale, 'fakevirus.wc_recover')}</h3>
+          <p>{t(locale, 'fakevirus.wc_recover_body')}</p>
+          <h3>{t(locale, 'fakevirus.wc_pay')}</h3>
+          <p>{t(locale, 'fakevirus.wc_pay_body')}</p>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Settings overlay Gear -->
-  <button class="fv-gear-btn" id="fvGearBtn" type="button" aria-label="Prank Settings">
+  <button class="fv-gear-btn" id="fvGearBtn" type="button" aria-label={t(locale, 'fakevirus.settings')}>
     ⚙️
   </button>
-  <button class="fv-fs-btn" id="fvFsBtn" type="button" aria-label="Fullscreen">
+  <button class="fv-fs-btn" id="fvFsBtn" type="button" aria-label={t(locale, 'fakevirus.fullscreen')}>
     ⛶
   </button>
 
   <div class="fv-settings" id="fvSettings">
     <div class="fv-settings-header">
-      <span>Virus Prank Settings</span>
+      <span>{t(locale, 'fakevirus.panel_heading')}</span>
       <button class="fv-close-settings" id="fvCloseSettings" type="button">✕</button>
     </div>
     <div class="fv-settings-body">
       <div class="fv-setting-row">
-        <label for="fvTemplateSelect">Alert Interface:</label>
+        <label for="fvTemplateSelect">{t(locale, 'fakevirus.interface')}</label>
         <select id="fvTemplateSelect">
-          <option value="chrome">Google Chrome Malware Warning</option>
-          <option value="smartscreen">Microsoft Defender SmartScreen</option>
-          <option value="defender">Windows Security Antivirus Dashboard</option>
-          <option value="wannacry">WannaCry Ransomware Screen</option>
+          <option value="chrome">{t(locale, 'fakevirus.tpl_chrome')}</option>
+          <option value="smartscreen">{t(locale, 'fakevirus.ss_brand')}</option>
+          <option value="defender">{t(locale, 'fakevirus.tpl_defender')}</option>
+          <option value="wannacry">{t(locale, 'fakevirus.tpl_wannacry')}</option>
         </select>
       </div>
       <div class="fv-setting-row">
         <label class="checkbox-label">
-          <input type="checkbox" id="fvSoundToggle" checked /> Play Security Siren/Alarms
+          <input type="checkbox" id="fvSoundToggle" checked /> {t(locale, 'fakevirus.sound')}
         </label>
       </div>
       <div class="fv-setting-hint">
-        Prank Instructions: Click Fullscreen (or press <strong>F</strong>). Once in Fullscreen, press keys <strong>1</strong> to <strong>4</strong> to switch alert styles instantly. Press <strong>S</strong> to toggle alarm sound, and <strong>Esc</strong> to exit.
+        {helpParts.map((part) => (/^\{[a-z]+\}$/.test(part) ? <strong>{helpKeys[part.slice(1, -1)]}</strong> : part))}
       </div>
     </div>
   </div>
@@ -968,6 +974,8 @@ const { tool, locale, isCard = false } = Astro.props;
 <script is:inline>
   (function () {
     var root = document.getElementById("fv");
+    var text = {};
+    try { text = JSON.parse(root.getAttribute("data-i18n") || "{}"); } catch (error) {}
     var fsBtn = document.getElementById("fvFsBtn");
     var gearBtn = document.getElementById("fvGearBtn");
     var settingsOverlay = document.getElementById("fvSettings");
@@ -1106,7 +1114,7 @@ const { tool, locale, isCard = false } = Astro.props;
     if (chromeLearnMore) {
       chromeLearnMore.addEventListener("click", function(e) {
         e.preventDefault(); e.stopPropagation();
-        alert("This warning is a simulation for pranks. Your device is running normally.");
+        alert(text.simulation_notice);
       });
     }
     if (chromeVisitAnyway) {
@@ -1196,7 +1204,7 @@ const { tool, locale, isCard = false } = Astro.props;
             clearInterval(defenderProgressInterval);
             // Play fake critical error alert pop-up
             setTimeout(function() {
-              alert("Windows Security: Threat quarantine failed. System files at C:\\Windows\\System32 are compromised. Secondary scan required.");
+              alert(text.quarantine_failed);
               exitFS();
               resetDefenderState();
             }, 1000);
@@ -1253,9 +1261,9 @@ const { tool, locale, isCard = false } = Astro.props;
         e.stopPropagation();
         wcBtcAddr.select();
         navigator.clipboard.writeText(wcBtcAddr.value).then(function() {
-          wcBtnCopy.textContent = "Copied!";
+          wcBtnCopy.textContent = text.wc_copied;
           setTimeout(function() {
-            wcBtnCopy.textContent = "Copy";
+            wcBtnCopy.textContent = text.wc_copy;
           }, 1500);
         });
       });
@@ -1265,9 +1273,15 @@ const { tool, locale, isCard = false } = Astro.props;
       var wbtns = [wcDecrypt, wcCheckPayment];
       wbtns.forEach(function(btn) {
         if (btn) {
+          // Clicking a payment button reveals the joke instead of demanding money:
+          // no blocking dialog, and nothing here can take a payment.
+          var originalLabel = btn.textContent;
           btn.addEventListener("click", function(e) {
             e.stopPropagation();
-            alert("No decryption keys found. Please transfer $300 to start recovery.");
+            btn.textContent = text.wc_prank_reveal;
+            setTimeout(function() {
+              btn.textContent = originalLabel;
+            }, 2500);
           });
         }
       });

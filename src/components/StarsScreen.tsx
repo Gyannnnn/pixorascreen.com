@@ -1,14 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react';
-import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 
 interface StarsScreenProps {
-  tool: Tool;
   locale: Locale;
+  /** UI strings from the "stars" catalog namespace; card previews pass none. */
+  strings?: Record<string, string>;
   isCard?: boolean;
 }
 
-export default function StarsScreen({ tool, locale, isCard = false }: StarsScreenProps) {
+export default function StarsScreen({ locale, strings: ui = {}, isCard = false }: StarsScreenProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const starsCanvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -183,7 +183,7 @@ export default function StarsScreen({ tool, locale, isCard = false }: StarsScree
       />
       {/* Fullscreen trigger */}
       {!isFullscreen && !isCard && (
-        <div onClick={toggleFullscreen} className="absolute inset-0 cursor-pointer z-10" title="Click to go Fullscreen" />
+        <div onClick={toggleFullscreen} className="absolute inset-0 cursor-pointer z-10" title={ui.click_fullscreen} />
       )}
       {/* Top right controls */}
       {!isCard && (
@@ -191,8 +191,8 @@ export default function StarsScreen({ tool, locale, isCard = false }: StarsScree
           <button
             onClick={toggleFullscreen}
             className="flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 text-white cursor-pointer transition-all duration-200 backdrop-blur-md hover:border-white/25"
-            aria-label="Toggle Fullscreen"
-            title="Toggle Fullscreen"
+            aria-label={ui.fullscreen}
+            title={ui.fullscreen}
           >
             {isFullscreen ? (
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

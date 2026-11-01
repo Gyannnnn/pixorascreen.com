@@ -4,6 +4,7 @@ import type { Locale } from '../data/locales';
 import ReactSnowScreen from './SnowScreen.tsx';
 import { getToolAssets } from '../utils/assets';
 import ToolFallback from './ToolFallback.astro';
+import { strings } from '../i18n/ui';
 
 type Props = { tool: Tool; locale: Locale };
 const { tool, locale } = Astro.props;
@@ -11,8 +12,9 @@ const { tool, locale } = Astro.props;
 const { backgrounds, audioFiles } = getToolAssets('snow-screen');
 ---
 
-<ReactSnowScreen 
-  tool={tool} 
+<ReactSnowScreen
+  strings={strings(locale, 'snow')}
+  
   locale={locale} 
   backgrounds={backgrounds} 
   audioFiles={audioFiles} 

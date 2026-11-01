@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 
 interface Props {
-  tool: Tool;
   locale: Locale;
+  /** UI strings from the "clock" catalog namespace; card previews show no text and pass none. */
+  strings?: Record<string, string>;
   isCard?: boolean;
 }
 
@@ -210,7 +210,7 @@ function FlipDigit({ value, theme, isGlass }: FlipDigitProps) {
   );
 }
 
-export default function ClockScreen({ tool, locale, isCard = false }: Props) {
+export default function ClockScreen({ locale, strings: ui = {}, isCard = false }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Persistence Key
@@ -470,7 +470,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
       if (key === 'f') {
         e.preventDefault();
         toggleFullscreen();
-      } else if (key === 'space') {
+      } else if (key === ' ' || e.code === 'Space') {
         e.preventDefault();
         if (isTimerMode) {
           setTimerRunning((prev) => !prev);
@@ -713,8 +713,8 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
             <button
               onClick={() => setTimerRunning(!timerRunning)}
               className="flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 text-white cursor-pointer backdrop-blur-md transition-colors"
-              title={timerRunning ? "Pause Timer" : "Start Timer"}
-              aria-label="Play or Pause countdown timer"
+              title={timerRunning ? ui.pause_timer : ui.start_timer}
+              aria-label={ui.play_pause_label}
             >
               {timerRunning ? (
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
@@ -729,8 +729,8 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
               showSettings ? 'rotate-90 text-white' : 'border-white/10 text-white'
             }`}
             style={showSettings ? { borderColor: currentTheme.accent, color: currentTheme.accent } : {}}
-            aria-label="Toggle clock controls panel"
-            title="Clock Settings"
+            aria-label={ui.settings_label}
+            title={ui.settings_title}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="3" />
@@ -740,8 +740,8 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
           <button
             onClick={toggleFullscreen}
             className="flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 text-white cursor-pointer backdrop-blur-md hover:border-white/20 transition-colors"
-            aria-label="Toggle Fullscreen"
-            title="Toggle Fullscreen"
+            aria-label={ui.fullscreen}
+            title={ui.fullscreen}
           >
             {isFullscreen ? (
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -824,8 +824,8 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
               {/* AM/PM indicator labels (For 12 Hour Mode) */}
               {!is24Hour && (
                 <div className="flex flex-col justify-end gap-1 ml-2.5 self-center pb-1 h-[72px] sm:h-[95px] md:h-[120px] select-none text-[10px] sm:text-xs">
-                  <span className={`font-mono font-bold tracking-wider transition-colors duration-300 ${timeDigits.ampm === 'AM' ? 'opacity-100 font-extrabold' : 'opacity-30'}`} style={{ color: timeDigits.ampm === 'AM' ? currentTheme.accent : undefined }}>AM</span>
-                  <span className={`font-mono font-bold tracking-wider transition-colors duration-300 ${timeDigits.ampm === 'PM' ? 'opacity-100 font-extrabold' : 'opacity-30'}`} style={{ color: timeDigits.ampm === 'PM' ? currentTheme.accent : undefined }}>PM</span>
+                  <span className={`font-mono font-bold tracking-wider transition-colors duration-300 ${timeDigits.ampm === 'AM' ? 'opacity-100 font-extrabold' : 'opacity-30'}`} style={{ color: timeDigits.ampm === 'AM' ? currentTheme.accent : undefined }}>{ui.am}</span>
+                  <span className={`font-mono font-bold tracking-wider transition-colors duration-300 ${timeDigits.ampm === 'PM' ? 'opacity-100 font-extrabold' : 'opacity-30'}`} style={{ color: timeDigits.ampm === 'PM' ? currentTheme.accent : undefined }}>{ui.pm}</span>
                 </div>
               )}
             </>
@@ -850,7 +850,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
         {/* Countdown mode notifications and labels */}
         {isTimerMode && !timerRunning && timerSecondsLeft === 0 && (
           <div className="text-xs sm:text-sm text-center px-4 py-1.5 rounded-lg font-mono animate-bounce" style={{ backgroundColor: `${currentTheme.accent}25`, color: currentTheme.accent }}>
-            ⏱️ Timer Finished!
+            {ui.timer_finished}
           </div>
         )}
       </div>
@@ -867,16 +867,16 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
           <div>
             <h3 className="text-sm font-semibold tracking-wider uppercase flex items-center gap-1.5 font-mono text-white">
               <span className="inline-block size-2 rounded-full bg-current animate-pulse" style={{ color: currentTheme.accent }} />
-              Flip Clock Customizer
+              {ui.panel_heading}
             </h3>
-            <p className="text-[10px] text-neutral-400 mt-0.5">Adjust clock display, timer preferences, ticking, and aesthetics</p>
+            <p className="text-[10px] text-neutral-400 mt-0.5">{ui.panel_subtitle}</p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={resetAllToDefaults}
               className="text-[11px] font-medium text-white hover:text-neutral-200 border border-white/20 hover:bg-white/10 px-2.5 py-1 rounded-lg cursor-pointer transition-colors"
             >
-              Reset Defaults
+              {ui.reset_defaults}
             </button>
             <button
               onClick={() => setShowSettings(false)}
@@ -893,7 +893,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
             
             {/* Mode Swapper: Clock vs. Countdown Timer */}
             <div className="flex flex-col gap-1.5">
-              <span className="text-xs font-semibold text-neutral-300">⏲️ Operation Mode</span>
+              <span className="text-xs font-semibold text-neutral-300">{ui.operation_mode}</span>
               <div className="flex gap-2">
                 <button
                   onClick={() => setIsTimerMode(false)}
@@ -903,7 +903,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
                       : 'bg-neutral-900 border-white/5 text-neutral-400 hover:text-white hover:border-white/15'
                   }`}
                 >
-                  Standard Clock
+                  {ui.standard_clock}
                 </button>
                 <button
                   onClick={() => {
@@ -917,7 +917,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
                       : 'bg-neutral-900 border-white/5 text-neutral-400 hover:text-white hover:border-white/15'
                   }`}
                 >
-                  Focus Countdown
+                  {ui.focus_countdown}
                 </button>
               </div>
             </div>
@@ -925,7 +925,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
             {/* Display preferences (only relevant in clock mode) */}
             {!isTimerMode ? (
               <div className="flex flex-col gap-2">
-                <span className="text-xs font-semibold text-neutral-300">📺 Display Options</span>
+                <span className="text-xs font-semibold text-neutral-300">{ui.display_options}</span>
                 <div className="flex flex-wrap gap-3">
                   <label className="flex items-center gap-2 text-xs text-neutral-300 cursor-pointer select-none">
                     <input 
@@ -934,7 +934,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
                       onChange={(e) => setIs24Hour(e.target.checked)}
                       className="accent-white size-3.5 cursor-pointer"
                     />
-                    24-Hour Format
+                    {ui.format_24h}
                   </label>
                   <label className="flex items-center gap-2 text-xs text-neutral-300 cursor-pointer select-none">
                     <input 
@@ -943,7 +943,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
                       onChange={(e) => setShowSeconds(e.target.checked)}
                       className="accent-white size-3.5 cursor-pointer"
                     />
-                    Show Seconds
+                    {ui.show_seconds}
                   </label>
                 </div>
               </div>
@@ -951,7 +951,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
               // Countdown preferences
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center text-xs font-semibold text-neutral-300">
-                  <span>⏱️ Timer Preset (Minutes)</span>
+                  <span>{ui.timer_preset}</span>
                   <span className="font-mono text-green-400">{timerPresetMin}m</span>
                 </div>
                 <div className="flex gap-3 items-center">
@@ -975,7 +975,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
                     }}
                     className="text-[10px] bg-red-950/20 text-red-400 border border-red-500/25 px-2 py-0.5 rounded cursor-pointer"
                   >
-                    Reset Timer
+                    {ui.reset_timer}
                   </button>
                 </div>
               </div>
@@ -984,13 +984,13 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
             {/* Custom Label Reminder */}
             <div className="flex flex-col gap-1.5">
               <label htmlFor="clockLabelText" className="text-xs font-semibold text-neutral-300">
-                ✍️ Focus Reminder / Custom Label
+                {ui.custom_label}
               </label>
               <input
                 id="clockLabelText"
                 type="text"
                 maxLength={40}
-                placeholder="Deep Work, Study, Rest, Breathe..."
+                placeholder={ui.label_placeholder}
                 value={customLabel}
                 onChange={(e) => setCustomLabel(e.target.value)}
                 className="w-full bg-neutral-900 border border-white/10 focus:border-white/35 text-white rounded-lg px-3 py-1.5 text-xs outline-none transition-colors"
@@ -1003,7 +1003,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
             
             {/* Audio Settings */}
             <div className="flex flex-col gap-1.5">
-              <span className="text-xs font-semibold text-neutral-300">🔊 Sound Effects</span>
+              <span className="text-xs font-semibold text-neutral-300">{ui.sound_effects}</span>
               <div className="flex gap-2">
                 <button
                   onClick={() => setSoundMode('mute')}
@@ -1013,7 +1013,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
                       : 'bg-neutral-900 border-white/5 text-neutral-400 hover:text-white hover:border-white/15'
                   }`}
                 >
-                  🔕 Mute
+                  {ui.mute}
                 </button>
                 <button
                   onClick={() => {
@@ -1026,7 +1026,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
                       : 'bg-neutral-900 border-white/5 text-neutral-400 hover:text-white hover:border-white/15'
                   }`}
                 >
-                  🔔 Retro Click
+                  {ui.retro_click}
                 </button>
               </div>
             </div>
@@ -1034,7 +1034,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
             {/* Global Brightness Slider */}
             <div className="flex flex-col gap-1.5">
               <div className="flex justify-between items-center text-xs font-semibold text-neutral-300">
-                <span>💡 Screen Brightness Dimmer</span>
+                <span>{ui.dimmer}</span>
                 <span className="font-mono">{brightness}%</span>
               </div>
               <input
@@ -1051,7 +1051,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
 
         {/* Theme select section */}
         <div className="border-t border-white/5 pt-3 mt-1.5 flex flex-col gap-2">
-          <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-widest font-mono">Select Aesthetic Theme</span>
+          <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-widest font-mono">{ui.select_theme}</span>
           <div className="flex flex-wrap gap-2">
             {THEMES.map((theme) => (
               <button
@@ -1070,7 +1070,7 @@ export default function ClockScreen({ tool, locale, isCard = false }: Props) {
                   className="inline-block size-3 rounded-full border border-white/15 shadow-xs" 
                   style={{ background: theme.accent }}
                 />
-                {theme.name}
+                {ui[`theme_${theme.id}`]}
               </button>
             ))}
           </div>

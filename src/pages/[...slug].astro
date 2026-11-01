@@ -10,7 +10,6 @@ import WindowsUpdate from '../components/WindowsUpdate.astro';
 import MacOSUpdate from '../components/MacOSUpdate.astro';
 import UbuntuScreen from '../components/UbuntuScreen.astro';
 import AndroidUpdate from '../components/AndroidUpdate.astro';
-import ToolArticle from '../components/ToolArticle.astro';
 import RadarScreen from '../components/RadarScreen.astro';
 import FakeVirusScreen from '../components/FakeVirusScreen.astro';
 import WhiteNoiseScreen from '../components/WhiteNoiseScreen.astro';
@@ -33,19 +32,10 @@ import FakeVideoCall from '../components/FakeVideoCall.astro';
 import ShareTool from '../components/ShareTool.astro';
 import { localeOrder, locales, type Locale } from '../data/locales';
 import { getRelatedTools, tools, type Tool } from '../data/tools';
-import { t, toolName, toolSummary, toolFaqs } from '../data/translations';
-import {
-  alternatesForHome,
-  alternatesForTool,
-  allToolPaths,
-  breadcrumbNameForTool,
-  descriptionForTool,
-  h1ForTool,
-  landingJsonLd,
-  titleForTool,
-  toolJsonLd,
-  toolPath,
-} from '../data/seo';
+import { categoryLabel, t, toolName } from '../i18n/ui';
+import { homePath, staticPagePath } from '../i18n/paths';
+import { allToolPaths, landingJsonLd, siteAuthor, toolJsonLd, toolPath } from '../data/seo';
+import { toolText } from '../i18n/content';
 
 type PageProps =
   | { kind: 'home'; locale: Locale; path: string }
@@ -65,45 +55,48 @@ export function getStaticPaths() {
 }
 
 const props = Astro.props as PageProps;
+const text = props.kind === 'tool' ? toolText(props.tool, props.locale) : null;
+// Byline: "By {author} · Updated {date}" in the page language, with the author linked to the about page.
+const byline = text?.updated
+  ? t(props.locale, 'tool.byline', {
+      date: new Intl.DateTimeFormat(locales[props.locale].lang, { dateStyle: 'long', timeZone: 'UTC' }).format(text.updated),
+    }).split('{author}')
+  : null;
 ---
 
 {props.kind === 'home' ? (
   <BaseLayout
-    title="PixoraScreen - Premium Fullscreen Utilities"
-    description="Open fullscreen color screens, screen tests, screen savers, prank screens, and fake update screens from one fast, accessible web app."
+    title={t(props.locale, 'home.meta_title')}
+    description={t(props.locale, 'home.meta_description')}
     canonicalPath={props.path}
-    jsonLd={landingJsonLd()}
-    lang={locales[props.locale].lang}
+    jsonLd={landingJsonLd(props.locale)}
     locale={props.locale}
-    alternates={alternatesForHome()}
+    pageKey={{ kind: 'home' }}
   >
     <HomePage locale={props.locale} />
   </BaseLayout>
 ) : (
   <BaseLayout
-    title={titleForTool(props.tool, props.locale)}
-    description={descriptionForTool(props.tool, props.locale)}
+    title={text!.title}
+    description={text!.description}
     canonicalPath={toolPath(props.tool, props.locale)}
-    alternates={alternatesForTool(props.tool)}
-    jsonLd={toolJsonLd(props.tool, props.path, props.locale)}
-    lang={locales[props.locale].lang}
+    pageKey={{ kind: 'tool', id: props.tool.id }}
+    jsonLd={toolJsonLd(props.tool, props.path, props.locale, text!)}
     locale={props.locale}
-    currentToolSlug={props.tool.slug}
-    currentToolLocalizedSlugs={props.tool.localizedSlugs}
   >
     <section class="site-shell py-10 md:py-16">
-      <nav class="text-sm text-body" aria-label="Breadcrumb">
-        <a class="hover:text-ink" href="/">{t(props.locale, 'tool.breadcrumb_home')}</a>
+      <nav class="text-sm text-body" aria-label={t(props.locale, 'tool.breadcrumb_label')}>
+        <a class="hover:text-ink" href={homePath(props.locale)}>{t(props.locale, 'tool.breadcrumb_home')}</a>
         <span class="mx-2">/</span>
-        <span>{breadcrumbNameForTool(props.tool, props.locale)}</span>
+        <span>{text!.breadcrumb}</span>
       </nav>
       <div class={`mt-8 grid gap-8 lg:items-center min-w-0 ${props.tool.kind === 'color' || props.tool.kind === 'test' ? 'lg:grid-cols-[1.05fr_0.95fr]' : 'lg:grid-cols-[0.8fr_1.2fr]'}`}>
         <div class="min-w-0">
-          <p class="font-mono text-xs text-muted">{props.tool.category.toUpperCase()}</p>
-          <h1 class="mt-4 text-5xl font-semibold leading-[0.95] text-balance text-ink md:text-6xl">{h1ForTool(props.tool, props.locale)}</h1>
-          <p class="mt-5 text-lg leading-8 text-body">{toolSummary(props.locale, props.tool)}</p>
+          <p class="font-mono text-xs text-muted">{categoryLabel(props.locale, props.tool.category)}</p>
+          <h1 class="mt-4 text-5xl font-semibold leading-[0.95] text-balance text-ink md:text-6xl">{text!.h1}</h1>
+          <p class="mt-5 text-lg leading-8 text-body">{text!.lede}</p>
           <div class="mt-6 flex flex-wrap gap-2">
-            {props.tool.controls.slice(0, 5).map((control) => <span class="rounded-full border border-hairline bg-canvas px-3 py-1 text-xs text-body">{control}</span>)}
+            {text!.chips.map((control) => <span class="rounded-full border border-hairline bg-canvas px-3 py-1 text-xs text-body">{control}</span>)}
           </div>
         </div>
         <div class="min-w-0">
@@ -173,197 +166,9 @@ const props = Astro.props as PageProps;
           <h2 class="mt-3 text-2xl font-semibold text-balance text-ink">{t(props.locale, 'tool.shortcuts_heading')}</h2>
         </div>
         <div class="grid gap-3 text-sm text-body md:col-span-2 sm:grid-cols-3">
-          {props.tool.slug === 'fake-video-call' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">B</kbd> Freeze / Bad Connection</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">M</kbd> Mute / Unmute</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">C</kbd> Camera On / Off</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'countdown-timer' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Start / Pause</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> Reset</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">L</kbd> Lap (Stopwatch)</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">M</kbd> Timer / Stopwatch</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'oled-burn-in-test' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">M</kbd> Switch Check / Pattern Mode</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">&rarr;</kbd> Next Test Fill</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">&larr;</kbd> Previous Test Fill</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'dvd-screensaver' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Pause / Resume</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> Reset Logo Position</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'dead-pixel-test' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">&rarr;/Space</kbd> Next Color</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">&larr;</kbd> Previous Color</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Tap</kbd> Next Color (fullscreen)</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">H</kbd> Toggle Guidance Overlay</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'blue-screen-prank' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'broken-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'hacker-typer' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">1-3</kbd> Switch File Tabs</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">S</kbd> Toggle Key Switch Audio</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">A</kbd> Toggle Auto-Pilot</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Tab/Enter</kbd> Run Exploit Console</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'windows-update' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Pause / Resume</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'macos-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Pause / Resume</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'ubuntu-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Pause / Resume</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'android-update' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Pause / Resume</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'radar-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Pause / Resume Sweep</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">S</kbd> Toggle Sonar Audio</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">L</kbd> Detect Live Location</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'fake-virus-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">1-4</kbd> Switch Alert Styles</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">S</kbd> Toggle Sound Alert</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'white-noise-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">1-3</kbd> Switch Static Styles</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">S</kbd> Toggle Static Sound</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">&uarr;&darr;</kbd> Adjust Volume</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'windows-xp-crash' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen / Active Prank</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Click</kbd> Spawn More Error Dialogs</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Drag Header</kbd> Infinite Drag Cascade Glitch</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Reset & Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'fireplace-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen / Active Fire</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">1-5</kbd> Switch Styles</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">S</kbd> Toggle Sound Mode</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">&uarr;&darr;</kbd> Adjust Volume</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'snow-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Toggle Customizer Panel</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">C</kbd> Toggle Image Mode</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">M</kbd> Toggle Sound Mode</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> Reset Controls</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'rain-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Toggle Customizer Panel</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">M</kbd> Toggle Sound Mode</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> Reset Controls</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'matrix-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Toggle Customizer Drawer</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">M</kbd> Toggle Sound/Ambient Focus</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">C</kbd> Cycle Code Stream Type</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> Reset Options</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'clock-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Customizer Drawer (or Pause Timer)</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">S</kbd> Toggle Ticking Sound Mode</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">T</kbd> Toggle Clock vs. Timer Mode</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> Reset Controls</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'aquarium-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Toggle Settings Panel</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">C</kbd> Toggle Clock Mode</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">B</kbd> Toggle Guided Breathing</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'rgb-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen Mode</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> Pure Red Subpixel Test</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">G</kbd> Pure Green Subpixel Test</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">B</kbd> Pure Blue Subpixel Test</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">W / K</kbd> White / Black Fills</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Space</kbd> Toggle RGB Auto Cycle</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : props.tool.slug === 'hex-screen' ? (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> Fullscreen Mode</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">1 - 4</kbd> Select Color Swatch</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> Random HEX Palette</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">C</kbd> Copy Current HEX Code</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">D</kbd> Download 4K Wallpaper</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">Esc</kbd> Exit Fullscreen</p>
-            </>
-          ) : (
-            <>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">F</kbd> {t(props.locale, 'tool.shortcut_fullscreen')}</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">R</kbd> {t(props.locale, 'tool.shortcut_random')}</p>
-              <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">C</kbd> {t(props.locale, 'tool.shortcut_copy')}</p>
-            </>
-          )}
+          {text!.shortcuts.map((shortcut) => (
+            <p><kbd class="rounded border border-hairline px-2 py-1 font-mono">{shortcut.keys}</kbd> {shortcut.label}</p>
+          ))}
         </div>
       </div>
     </section>
@@ -374,7 +179,7 @@ const props = Astro.props as PageProps;
       <p class="font-mono text-xs text-muted">{t(props.locale, 'tool.faq')}</p>
       <h2 class="mt-3 text-3xl font-semibold text-balance text-ink">{t(props.locale, 'tool.faq_heading', { name: toolName(props.locale, props.tool) })}</h2>
       <div class="mt-6 divide-y divide-hairline rounded-lg border border-hairline bg-canvas">
-        {toolFaqs(props.locale, props.tool.id, props.tool.faqs).map((faq) => (
+        {text!.faqs.map((faq) => (
           <details class="group p-5">
             <summary class="list-none cursor-pointer text-base font-medium text-ink">{faq.question}</summary>
             <p class="mt-3 text-sm leading-6 text-body">{faq.answer}</p>
@@ -383,6 +188,11 @@ const props = Astro.props as PageProps;
       </div>
     </section>
 
-    <ToolArticle tool={props.tool} locale={props.locale} />
+    <article class="site-shell rich-article max-w-3xl py-16">
+      {byline && (
+        <p class="article-meta">{byline[0]}<a href={staticPagePath('about', props.locale)}>{siteAuthor.name}</a>{byline[1]}</p>
+      )}
+      <Fragment set:html={text!.articleHtml} />
+    </article>
   </BaseLayout>
 )}

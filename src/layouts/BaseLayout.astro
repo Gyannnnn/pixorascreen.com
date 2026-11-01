@@ -5,30 +5,40 @@ import Footer from "../components/Footer.astro";
 import SeoHead from "../components/SeoHead.astro";
 import JsonLd from "../components/JsonLd.astro";
 import { type Locale, locales } from "../data/locales";
+import { alternates, isIndexable, languageOptions, type PageKey } from "../i18n/indexing";
+import { t } from "../i18n/ui";
 
 type Props = {
   title?: string;
   description?: string;
   canonicalPath?: string;
-  alternates?: { lang: string; href: string }[];
+  /** Identifies the page across locales; drives robots, hreflang and the language switcher. */
+  pageKey?: PageKey;
   jsonLd?: unknown;
-  lang?: string;
   locale?: Locale;
-  currentToolSlug?: string;
-  currentToolLocalizedSlugs?: Partial<Record<Exclude<Locale, "en">, string>>;
+  /** false: no navbar, footer, or skip link (error pages render their own per-locale chrome). */
+  chrome?: boolean;
 };
 
-const {
-  title,
-  description,
-  canonicalPath,
-  alternates,
-  jsonLd,
-  lang = "en",
-  locale = "en",
-  currentToolSlug,
-  currentToolLocalizedSlugs,
-} = Astro.props;
+const { title, description, canonicalPath, pageKey, jsonLd, locale = "en", chrome = true } = Astro.props;
+
+const lang = locales[locale].lang;
+const pageAlternates = pageKey ? alternates(pageKey, locale) : [];
+const noindex = pageKey ? !isIndexable(pageKey, locale) : false;
+const ogLocaleAlternates = pageAlternates
+  .filter((alternate) => alternate.locale !== locale)
+  .map((alternate) => locales[alternate.locale].ogLocale);
+const languages = languageOptions(pageKey, locale);
+// Offered by the "view in your language" banner: complete translations of this page only.
+const bannerTargets = languages
+  .filter((language) => !language.current)
+  .map((language) => ({
+    locale: language.locale,
+    lang: locales[language.locale].lang,
+    href: language.href,
+    text: t(language.locale, "banner.view_in"),
+    dismiss: t(language.locale, "banner.dismiss"),
+  }));
 ---
 
 <!doctype html>
@@ -59,7 +69,10 @@ const {
       title={title}
       description={description}
       canonicalPath={canonicalPath}
-      alternates={alternates}
+      alternates={pageAlternates}
+      noindex={noindex}
+      ogLocale={locales[locale].ogLocale}
+      ogLocaleAlternates={ogLocaleAlternates}
     />
 
     {jsonLd && <JsonLd data={jsonLd} />}
@@ -75,20 +88,55 @@ const {
     </script>
   </head>
   <body>
+    {chrome && (
     <a
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-canvas"
       href="#main"
     >
-      Skip to content
+      {t(locale, "common.skip_to_content")}
     </a>
-    <Navbar
-      locale={locale}
-      currentToolSlug={currentToolSlug}
-      currentToolLocalizedSlugs={currentToolLocalizedSlugs}
-    />
+    )}
+    {chrome && <Navbar locale={locale} languages={languages} />}
     <main id="main">
       <slot />
     </main>
-    <Footer locale={locale} />
+    {chrome && <Footer locale={locale} />}
+    {bannerTargets.length > 0 && (
+      <div class="locale-banner" data-locale-banner data-targets={JSON.stringify(bannerTargets)} hidden>
+        <a class="locale-banner__link" data-locale-banner-link></a>
+        <button class="locale-banner__close" type="button" data-locale-banner-close>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+      </div>
+    )}
+    <script is:inline>
+      // Suggest the visitor's chosen language when this page exists in it. Never redirects.
+      (function () {
+        var banner = document.querySelector("[data-locale-banner]");
+        if (!banner) return;
+        try {
+          var preferred = window.localStorage.getItem("pixora-locale");
+          if (!preferred || window.localStorage.getItem("pixora-banner-dismissed") === preferred) return;
+          var target = JSON.parse(banner.dataset.targets || "[]").find(function (entry) { return entry.locale === preferred; });
+          if (!target) return;
+          var link = banner.querySelector("[data-locale-banner-link]");
+          var close = banner.querySelector("[data-locale-banner-close]");
+          link.href = target.href;
+          link.textContent = target.text;
+          link.lang = target.lang;
+          close.setAttribute("aria-label", target.dismiss);
+          close.addEventListener("click", function () {
+            banner.hidden = true;
+            window.localStorage.setItem("pixora-banner-dismissed", preferred);
+          });
+          link.addEventListener("click", function () {
+            window.localStorage.removeItem("pixora-banner-dismissed");
+          });
+          banner.hidden = false;
+        } catch (error) {
+          // Storage unavailable: no banner.
+        }
+      })();
+    </script>
   </body>
 </html>

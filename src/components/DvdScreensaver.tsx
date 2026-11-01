@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 
 interface DvdScreensaverProps {
-  tool: Tool;
   locale: Locale;
+  /** UI strings from the "dvd" catalog namespace; card previews show no text and pass none. */
+  strings?: Record<string, string>;
   isCard?: boolean;
 }
 
@@ -15,7 +15,7 @@ const LOGO_COLORS = [
   '#30b0c7', '#007aff', '#5856d6', '#af52de', '#ff2d55',
 ];
 
-export default function DvdScreensaver({ tool, locale, isCard = false }: DvdScreensaverProps) {
+export default function DvdScreensaver({ locale, strings: ui = {}, isCard = false }: DvdScreensaverProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -269,8 +269,8 @@ export default function DvdScreensaver({ tool, locale, isCard = false }: DvdScre
           <button
             onClick={() => setPaused((prev) => !prev)}
             className="flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 text-white cursor-pointer transition-all duration-200 backdrop-blur-md hover:border-white/25"
-            aria-label={paused ? 'Resume animation' : 'Pause animation'}
-            title={paused ? 'Resume (Space)' : 'Pause (Space)'}
+            aria-label={paused ? ui.resume_label : ui.pause_label}
+            title={paused ? ui.resume_title : ui.pause_title}
           >
             {paused ? (
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
@@ -283,8 +283,8 @@ export default function DvdScreensaver({ tool, locale, isCard = false }: DvdScre
             className={`flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 text-white cursor-pointer transition-all duration-200 backdrop-blur-md hover:border-white/25 ${
               showSettings ? 'rotate-90 border-white/30' : ''
             }`}
-            aria-label="Toggle settings"
-            title="Settings"
+            aria-label={ui.settings_label}
+            title={ui.settings_title}
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
@@ -294,8 +294,8 @@ export default function DvdScreensaver({ tool, locale, isCard = false }: DvdScre
           <button
             onClick={toggleFullscreen}
             className="flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 text-white cursor-pointer transition-all duration-200 backdrop-blur-md hover:border-white/25"
-            aria-label="Toggle Fullscreen"
-            title="Toggle Fullscreen (F)"
+            aria-label={ui.fullscreen_label}
+            title={ui.fullscreen_title}
           >
             {isFullscreen ? (
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -319,11 +319,11 @@ export default function DvdScreensaver({ tool, locale, isCard = false }: DvdScre
         >
           <div className="m-3 rounded-2xl border border-white/10 bg-neutral-950/90 p-4 backdrop-blur-xl sm:m-4">
             <div className="flex items-center justify-between">
-              <p className="font-mono text-xs uppercase tracking-wide text-white/60">Screensaver settings</p>
+              <p className="font-mono text-xs uppercase tracking-wide text-white/60">{ui.settings_heading}</p>
               <button
                 onClick={() => setShowSettings(false)}
                 className="rounded-md p-1 text-white/60 transition-colors hover:bg-white/10 hover:text-white cursor-pointer"
-                aria-label="Close settings"
+                aria-label={ui.close_settings}
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <path d="M18 6 6 18M6 6l12 12" />
@@ -334,7 +334,7 @@ export default function DvdScreensaver({ tool, locale, isCard = false }: DvdScre
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <div>
                 <div className="flex items-center justify-between text-xs text-white/70">
-                  <span>Speed</span>
+                  <span>{ui.speed}</span>
                   <span className="font-mono text-xs text-white bg-white/10 px-2 py-0.5 rounded border border-white/5">{speed.toFixed(1)}x</span>
                 </div>
                 <input
@@ -345,13 +345,13 @@ export default function DvdScreensaver({ tool, locale, isCard = false }: DvdScre
                   value={speed}
                   onChange={(e) => setSpeed(Number(e.target.value))}
                   className="mt-2 w-full h-1 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-white"
-                  aria-label="Animation speed"
+                  aria-label={ui.speed_label}
                 />
               </div>
 
               <div>
                 <div className="flex items-center justify-between text-xs text-white/70">
-                  <span>Logo size</span>
+                  <span>{ui.logo_size}</span>
                   <span className="font-mono text-xs text-white bg-white/10 px-2 py-0.5 rounded border border-white/5">{logoSize}px</span>
                 </div>
                 <input
@@ -362,19 +362,19 @@ export default function DvdScreensaver({ tool, locale, isCard = false }: DvdScre
                   value={logoSize}
                   onChange={(e) => setLogoSize(Number(e.target.value))}
                   className="mt-2 w-full h-1 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-white"
-                  aria-label="Logo size"
+                  aria-label={ui.logo_size}
                 />
               </div>
 
               <div>
-                <p className="text-xs text-white/70">Background</p>
+                <p className="text-xs text-white/70">{ui.background}</p>
                 <div className="mt-2 flex items-center gap-2">
                   <input
                     type="color"
                     value={bgColor}
                     onChange={(e) => setBgColor(e.target.value)}
                     className="h-8 w-12 cursor-pointer rounded border border-white/15 bg-transparent"
-                    aria-label="Background color"
+                    aria-label={ui.background_label}
                   />
                   <span className="font-mono text-xs text-white/70">{bgColor}</span>
                 </div>
@@ -386,7 +386,7 @@ export default function DvdScreensaver({ tool, locale, isCard = false }: DvdScre
                   onClick={() => { resetRef.current += 1; }}
                   className="rounded-lg border border-white/15 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-white/10 cursor-pointer"
                 >
-                  Reset position (R)
+                  {ui.reset_position}
                 </button>
               </div>
             </div>

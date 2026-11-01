@@ -4,6 +4,7 @@ import type { Locale } from '../data/locales';
 import ReactGalaxyScreen from './GalaxyScreen.tsx';
 import { getToolAssets } from '../utils/assets';
 import ToolFallback from './ToolFallback.astro';
+import { strings } from '../i18n/ui';
 
 type Props = {
   tool: Tool;
@@ -14,8 +15,8 @@ const { tool, locale } = Astro.props;
 const { audioFiles: ambientAudioFiles } = getToolAssets('ambient-screen');
 ---
 
-<ReactGalaxyScreen 
-  tool={tool} 
+<ReactGalaxyScreen
+  strings={strings(locale, 'galaxy')}
   locale={locale} 
   ambientAudioFiles={ambientAudioFiles} 
   client:only="react" 

@@ -1,0 +1,12 @@
+---
+import ContentPage from '../../components/pages/ContentPage.astro';
+import { localeOrder, type Locale } from '../../i18n/locales';
+
+export function getStaticPaths() {
+  return localeOrder.filter((locale) => locale !== 'en').map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+---
+
+<ContentPage locale={locale} page="privacy" />

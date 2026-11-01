@@ -1,7 +1,8 @@
 ---
 import type { Tool } from '../data/tools';
 import { type Locale } from '../data/locales';
-import { t } from '../data/translations';
+import { t } from '../i18n/ui';
+import { siteName } from '../data/seo';
 
 type Props = {
   tool: Tool;
@@ -62,7 +63,7 @@ const initialRgb = (() => {
 })();
 ---
 
-<section class="rounded-lg border border-hairline bg-canvas shadow-soft" aria-label={`${t(locale, 'site.title')} interactive screen`}>
+<section class="rounded-lg border border-hairline bg-canvas shadow-soft" aria-label={t(locale, 'screen.interactive_label', { site: siteName })}>
   <div
     class="group relative grid min-h-[605px] sm:min-h-[504px] lg:min-h-[400px] overflow-hidden rounded-md border border-hairline"
     style={`background:${initialBackground};`}
@@ -154,7 +155,7 @@ const initialRgb = (() => {
                   {t(locale, 'screen.favorite')}
                 </button>
                 <div class="inline-flex h-8 items-center rounded-lg border border-hairline bg-canvas p-0.5 shadow-xs focus-within:ring-2 focus-within:ring-ink focus-within:ring-offset-2 transition-shadow max-w-full">
-                  <select class="h-full border-0 bg-transparent py-0 pl-1.5 sm:pl-2 pr-1 text-xs text-body hover:text-ink focus:ring-0 focus:outline-hidden cursor-pointer font-medium max-w-[110px] sm:max-w-none" data-download-orientation aria-label="Select screen orientation for download">
+                  <select class="h-full border-0 bg-transparent py-0 pl-1.5 sm:pl-2 pr-1 text-xs text-body hover:text-ink focus:ring-0 focus:outline-hidden cursor-pointer font-medium max-w-[110px] sm:max-w-none" data-download-orientation aria-label={t(locale, 'screen.orientation_label')}>
                     <option value="landscape">{t(locale, 'screen.orientation_landscape')}</option>
                     <option value="portrait">{t(locale, 'screen.orientation_portrait')}</option>
                     <option value="square">{t(locale, 'screen.orientation_square')}</option>
@@ -186,22 +187,22 @@ const initialRgb = (() => {
         {mode === 'rgb' && (
           <div class="flex flex-wrap items-center gap-1.5 border-t border-hairline/60 px-3 py-2.5 sm:px-4 md:px-5 bg-canvas-soft/40">
             <span class="text-xs font-mono font-medium text-muted mr-1 shrink-0">{t(locale, 'screen.subpixel_tests')}</span>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-red-500/50 hover:text-red-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#ff0000" title="Pure Red Subpixel Test (Press R)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-red-500/50 hover:text-red-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#ff0000" title={t(locale, 'screen.tip_red')}>
               <span class="size-2.5 rounded-full bg-[#ff0000]"></span> {t(locale, 'screen.pure_red')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-green-500/50 hover:text-green-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#00ff00" title="Pure Green Subpixel Test (Press G)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-green-500/50 hover:text-green-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#00ff00" title={t(locale, 'screen.tip_green')}>
               <span class="size-2.5 rounded-full bg-[#00ff00]"></span> {t(locale, 'screen.pure_green')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-blue-500/50 hover:text-blue-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#0000ff" title="Pure Blue Subpixel Test (Press B)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-blue-500/50 hover:text-blue-500 transition-colors cursor-pointer" type="button" data-rgb-preset="#0000ff" title={t(locale, 'screen.tip_blue')}>
               <span class="size-2.5 rounded-full bg-[#0000ff]"></span> {t(locale, 'screen.pure_blue')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-rgb-preset="#ffffff" title="White Subpixel Test (Press W)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-rgb-preset="#ffffff" title={t(locale, 'screen.tip_white')}>
               <span class="size-2.5 rounded-full bg-white border border-gray-400"></span> {t(locale, 'screen.white')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-rgb-preset="#000000" title="Black Subpixel Test (Press K)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-rgb-preset="#000000" title={t(locale, 'screen.tip_black')}>
               <span class="size-2.5 rounded-full bg-black border border-gray-600"></span> {t(locale, 'screen.black')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer sm:ml-auto" type="button" data-rgb-split title="Reset to 3-Channel Split View">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer sm:ml-auto" type="button" data-rgb-split title={t(locale, 'screen.tip_rgb_split')}>
               <span class="flex size-3 overflow-hidden rounded-full border border-hairline"><span class="w-1/3 bg-red-500"></span><span class="w-1/3 bg-green-500"></span><span class="w-1/3 bg-blue-500"></span></span> {t(locale, 'screen.rgb_split')}
             </button>
           </div>
@@ -209,19 +210,19 @@ const initialRgb = (() => {
         {mode === 'hex' && (
           <div class="flex flex-wrap items-center gap-1.5 border-t border-hairline/60 px-3 py-2.5 sm:px-4 md:px-5 bg-canvas-soft/40">
             <span class="text-xs font-mono font-medium text-muted mr-1 shrink-0">{t(locale, 'screen.hex_presets')}</span>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#000000" title="OLED Black (#000000)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#000000" title={t(locale, 'screen.tip_oled_black')}>
               <span class="size-2.5 rounded-full bg-black border border-gray-600"></span> {t(locale, 'screen.oled_black')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#121212" title="Dark Mode Grey (#121212)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#121212" title={t(locale, 'screen.tip_dark_mode')}>
               <span class="size-2.5 rounded-full bg-[#121212] border border-gray-600"></span> {t(locale, 'screen.dark_mode')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-blue-500/50 hover:text-blue-500 transition-colors cursor-pointer" type="button" data-hex-preset="#0070f3" title="Brand Blue (#0070F3)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:border-blue-500/50 hover:text-blue-500 transition-colors cursor-pointer" type="button" data-hex-preset="#0070f3" title={t(locale, 'screen.tip_brand_blue')}>
               <span class="size-2.5 rounded-full bg-[#0070f3]"></span> #0070F3
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#ffffff" title="Pure White (#FFFFFF)">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer" type="button" data-hex-preset="#ffffff" title={t(locale, 'screen.tip_pure_white')}>
               <span class="size-2.5 rounded-full bg-white border border-gray-400"></span> {t(locale, 'screen.white')}
             </button>
-            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer sm:ml-auto" type="button" data-hex-palette-reset title="Reset to 4-Color Palette Split">
+            <button class="inline-flex h-7 items-center gap-1.5 rounded-md border border-hairline bg-canvas px-2 sm:px-2.5 text-xs font-medium text-body hover:bg-canvas-soft transition-colors cursor-pointer sm:ml-auto" type="button" data-hex-palette-reset title={t(locale, 'screen.tip_palette_reset')}>
               <span class="flex size-3 overflow-hidden rounded-full border border-hairline"><span class="w-1/4 bg-[#171717]"></span><span class="w-1/4 bg-[#7c3aed]"></span><span class="w-1/4 bg-[#ff0080]"></span><span class="w-1/4 bg-[#f9cb28]"></span></span> {t(locale, 'screen.palette_reset')}
             </button>
           </div>
@@ -475,8 +476,10 @@ const initialRgb = (() => {
         width = 1080;
         height = 1080;
       } else if (orientation === 'device') {
-        width = window.screen.width || window.innerWidth;
-        height = window.screen.height || window.innerHeight;
+        // screen.width/height are CSS pixels; scale by the pixel ratio to get the panel's real resolution.
+        const ratio = window.devicePixelRatio || 1;
+        width = Math.round((window.screen.width || window.innerWidth) * ratio);
+        height = Math.round((window.screen.height || window.innerHeight) * ratio);
       }
 
       const canvas = document.createElement('canvas');

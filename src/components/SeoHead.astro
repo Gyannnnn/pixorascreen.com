@@ -4,13 +4,18 @@ import { absoluteUrl, defaultDescription, siteName } from '../data/seo';
 type Alternate = {
   lang: string;
   href: string;
+  locale?: string;
 };
 
 type Props = {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  /** Only indexable translations of this page; empty when the page itself is not indexable. */
   alternates?: Alternate[];
+  noindex?: boolean;
+  ogLocale?: string;
+  ogLocaleAlternates?: string[];
 };
 
 const {
@@ -18,9 +23,15 @@ const {
   description = defaultDescription,
   canonicalPath = '/',
   alternates = [],
+  noindex = false,
+  ogLocale,
+  ogLocaleAlternates = [],
 } = Astro.props;
+const xDefault = alternates.find((alternate) => alternate.lang === 'en');
 
 const canonical = absoluteUrl(canonicalPath);
+// One social preview per language (scripts/og-images.mjs); og:locale is e.g. "hi_IN".
+const ogImage = absoluteUrl(`/og/${(ogLocale ?? 'en').split('_')[0]}.png`);
 const pageTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 ---
 
@@ -36,21 +47,24 @@ const pageTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 <link rel="sitemap" href="/sitemap.xml" />
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex,follow" />}
 <link rel="canonical" href={canonical} />
-  {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />)}
-  {alternates.length > 0 && (() => {
-    const en = alternates.find(a => a.lang === 'en');
-    return <link rel="alternate" hreflang="x-default" href={en ? en.href : alternates[0].href} />;
-  })()}
+{alternates.map((alternate) => <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />)}
+{xDefault && <link rel="alternate" hreflang="x-default" href={xDefault.href} />}
 <meta property="og:type" content="website" />
+{ogLocale && <meta property="og:locale" content={ogLocale} />}
+{ogLocaleAlternates.map((alternate) => <meta property="og:locale:alternate" content={alternate} />)}
 <meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
-<meta property="og:image" content={absoluteUrl('/og.svg')} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content={description} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={pageTitle} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={absoluteUrl('/og.svg')} />
+<meta name="twitter:image" content={ogImage} />
 <meta name="twitter:image:alt" content={description} />

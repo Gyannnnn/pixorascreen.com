@@ -1,9 +1,10 @@
 ---
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
+import { strings, t } from '../i18n/ui';
 
 type Props = { tool: Tool; locale: Locale; isCard?: boolean };
-const { isCard = false } = Astro.props;
+const { isCard = false, locale } = Astro.props;
 
 // Generic placeholder participants. Deliberately invented names and abstract color
 // tiles: nothing here imitates a real person, a real photo, or any real platform's
@@ -27,15 +28,16 @@ const tints = [
   data-fake-video-call
   data-is-card={isCard ? 'true' : 'false'}
   data-names={JSON.stringify(defaultNames)}
+  data-i18n={JSON.stringify(strings(locale, 'videocall'))}
   data-tints={JSON.stringify(tints)}
   tabindex="0"
-  aria-label="Fake video call screen"
+  aria-label={t(locale, 'videocall.section_label')}
 >
   <div class="fvc-stage" data-stage>
     <!-- Meeting chrome: an original, generic header. No product name or mark. -->
     <div class="fvc-topbar" data-topbar>
       <span class="fvc-rec" aria-hidden="true"></span>
-      <span class="fvc-room">Team Sync</span>
+      <span class="fvc-room">{t(locale, 'videocall.meeting_title')}</span>
       <span class="fvc-elapsed" data-elapsed>00:00</span>
     </div>
 
@@ -44,24 +46,24 @@ const tints = [
     <!-- Frozen / bad connection overlay -->
     <div class="fvc-frozen" data-frozen hidden>
       <div class="fvc-buffer" aria-hidden="true"></div>
-      <p class="fvc-frozen-text">Reconnecting…</p>
-      <p class="fvc-frozen-sub">Your network connection is unstable</p>
+      <p class="fvc-frozen-text">{t(locale, 'videocall.reconnecting')}</p>
+      <p class="fvc-frozen-sub">{t(locale, 'videocall.unstable')}</p>
     </div>
 
     <!-- Connecting state shown on load -->
     <div class="fvc-connecting" data-connecting>
       <div class="fvc-spinner" aria-hidden="true"></div>
-      <p class="fvc-connecting-text">Connecting…</p>
+      <p class="fvc-connecting-text">{t(locale, 'videocall.connecting')}</p>
     </div>
 
     <!-- Call ended state -->
     <div class="fvc-ended" data-ended hidden>
-      <p class="fvc-ended-text">Call ended</p>
-      <button class="fvc-rejoin" type="button" data-rejoin>Rejoin</button>
+      <p class="fvc-ended-text">{t(locale, 'videocall.ended')}</p>
+      <button class="fvc-rejoin" type="button" data-rejoin>{t(locale, 'videocall.rejoin')}</button>
     </div>
 
     <div class="fvc-actions" data-actions>
-      <button class="fvc-btn" type="button" data-mic aria-pressed="false" aria-label="Toggle microphone" title="Mute / unmute (M)">
+      <button class="fvc-btn" type="button" data-mic aria-pressed="false" aria-label={t(locale, 'videocall.mic_label')} title={t(locale, 'videocall.mic_title')}>
         <svg class="fvc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
           <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3" />
@@ -69,7 +71,7 @@ const tints = [
         <span class="fvc-slash" data-mic-slash hidden aria-hidden="true"></span>
       </button>
 
-      <button class="fvc-btn" type="button" data-cam aria-pressed="false" aria-label="Toggle camera" title="Camera on / off (C)">
+      <button class="fvc-btn" type="button" data-cam aria-pressed="false" aria-label={t(locale, 'videocall.cam_label')} title={t(locale, 'videocall.cam_title')}>
         <svg class="fvc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M2 7.5A1.5 1.5 0 0 1 3.5 6h11A1.5 1.5 0 0 1 16 7.5v9A1.5 1.5 0 0 1 14.5 18h-11A1.5 1.5 0 0 1 2 16.5z" />
           <path d="m16 10.5 5-3v9l-5-3z" />
@@ -77,20 +79,20 @@ const tints = [
         <span class="fvc-slash" data-cam-slash hidden aria-hidden="true"></span>
       </button>
 
-      <button class="fvc-btn fvc-btn-wide" type="button" data-freeze aria-pressed="false" title="Freeze / bad connection (B)">
+      <button class="fvc-btn fvc-btn-wide" type="button" data-freeze aria-pressed="false" title={t(locale, 'videocall.freeze_title')}>
         <svg class="fvc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11" />
         </svg>
-        <span class="fvc-btn-label">Freeze</span>
+        <span class="fvc-btn-label">{t(locale, 'videocall.freeze')}</span>
       </button>
 
-      <button class="fvc-btn" type="button" data-fullscreen aria-label="Toggle fullscreen" title="Fullscreen (F)">
+      <button class="fvc-btn" type="button" data-fullscreen aria-label={t(locale, 'videocall.fullscreen_label')} title={t(locale, 'videocall.fullscreen_title')}>
         <svg class="fvc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
         </svg>
       </button>
 
-      <button class="fvc-btn fvc-btn-leave" type="button" data-leave aria-label="Leave call" title="Leave call">
+      <button class="fvc-btn fvc-btn-leave" type="button" data-leave aria-label={t(locale, 'videocall.leave')} title={t(locale, 'videocall.leave')}>
         <svg class="fvc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M3 9a16 16 0 0 1 18 0v3.2a1.6 1.6 0 0 1-1.7 1.6l-3-.3a1.6 1.6 0 0 1-1.4-1.3l-.3-1.6a12 12 0 0 0-5.2 0l-.3 1.6a1.6 1.6 0 0 1-1.4 1.3l-3 .3A1.6 1.6 0 0 1 3 12.2z" />
         </svg>
@@ -101,17 +103,17 @@ const tints = [
   {!isCard && (
     <div class="fvc-settings">
       <div class="fvc-set-row">
-        <span class="fvc-set-label">Tiles</span>
-        <div class="fvc-seg" role="group" aria-label="Number of participant tiles">
+        <span class="fvc-set-label">{t(locale, 'videocall.tiles')}</span>
+        <div class="fvc-seg" role="group" aria-label={t(locale, 'videocall.tiles_group')}>
           <button class="fvc-seg-btn" type="button" data-count="4">4</button>
           <button class="fvc-seg-btn" type="button" data-count="6">6</button>
           <button class="fvc-seg-btn" type="button" data-count="9">9</button>
         </div>
         <label class="fvc-names">
-          <span class="fvc-set-label">Names</span>
-          <input type="text" data-names-input placeholder="Comma separated names" aria-label="Participant names, comma separated" />
+          <span class="fvc-set-label">{t(locale, 'videocall.names')}</span>
+          <input type="text" data-names-input placeholder={t(locale, 'videocall.names_placeholder')} aria-label={t(locale, 'videocall.names_label')} />
         </label>
-        <button class="fvc-set-apply" type="button" data-apply>Apply</button>
+        <button class="fvc-set-apply" type="button" data-apply>{t(locale, 'videocall.apply')}</button>
       </div>
     </div>
   )}
@@ -502,6 +504,7 @@ const tints = [
 
   for (const root of document.querySelectorAll<HTMLElement>('[data-fake-video-call]')) {
     const isCard = root.dataset.isCard === 'true';
+    const text: Record<string, string> = JSON.parse(root.dataset.i18n || '{}');
     const stage = root.querySelector<HTMLElement>('[data-stage]');
     const grid = root.querySelector<HTMLElement>('[data-grid]');
     const connecting = root.querySelector<HTMLElement>('[data-connecting]');
@@ -537,12 +540,12 @@ const tints = [
     const makeBadges = () => {
       const muted = document.createElement('span');
       muted.className = 'fvc-badge fvc-badge-muted';
-      muted.title = 'Muted';
+      muted.title = text.muted ?? '';
       muted.innerHTML = MIC_OFF_SVG;
 
       const speaking = document.createElement('span');
       speaking.className = 'fvc-badge fvc-badge-speaking';
-      speaking.title = 'Speaking';
+      speaking.title = text.speaking ?? '';
       for (let b = 0; b < 3; b += 1) {
         const bar = document.createElement('i');
         bar.style.animationDelay = `${b * 0.16}s`;
@@ -564,7 +567,7 @@ const tints = [
       grid.innerHTML = '';
       if (speakerIndex >= count || speakerIndex < 1) speakerIndex = count > 1 ? 1 : 0;
       for (let i = 0; i < count; i += 1) {
-        const name = i === 0 ? 'You' : custom[(i - 1) % custom.length] || `Guest ${i}`;
+        const name = i === 0 ? text.you ?? '' : custom[(i - 1) % custom.length] || (text.guest ?? '').replace('{n}', String(i));
         const [a, b] = tints[i % tints.length];
         const tile = document.createElement('div');
         tile.className = 'fvc-tile';

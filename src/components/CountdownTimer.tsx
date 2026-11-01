@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 
 interface CountdownTimerProps {
-  tool: Tool;
   locale: Locale;
+  /** UI strings from the "countdown" catalog namespace. */
+  strings: Record<string, string>;
   isCard?: boolean;
 }
 
@@ -34,7 +34,7 @@ const formatStopwatch = (ms: number) => {
   return h > 0 ? `${pad(h)}:${pad(m)}:${pad(s)}.${pad(cs)}` : `${pad(m)}:${pad(s)}.${pad(cs)}`;
 };
 
-export default function CountdownTimer({ tool, locale, isCard = false }: CountdownTimerProps) {
+export default function CountdownTimer({ locale, strings: ui, isCard = false }: CountdownTimerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [mode, setMode] = useState<Mode>('timer');
@@ -308,7 +308,7 @@ export default function CountdownTimer({ tool, locale, isCard = false }: Countdo
           {text}
         </p>
         <p className="mt-3 font-mono text-xs uppercase tracking-[0.2em] opacity-60">
-          {finished ? "Time's up" : mode === 'timer' ? 'Countdown' : 'Stopwatch'}
+          {finished ? ui.times_up : mode === 'timer' ? ui.countdown : ui.stopwatch}
         </p>
 
         {mode === 'stopwatch' && laps.length > 0 && !isCard && (
@@ -316,7 +316,7 @@ export default function CountdownTimer({ tool, locale, isCard = false }: Countdo
             <ul>
               {laps.map((value, index) => (
                 <li key={laps.length - index} className="flex items-center justify-between px-3 py-1.5 font-mono text-xs opacity-80">
-                  <span>Lap {laps.length - index}</span>
+                  <span>{ui.lap_n.replace('{n}', String(laps.length - index))}</span>
                   <span className="tabular-nums">{formatStopwatch(value)}</span>
                   <span className="tabular-nums opacity-60">
                     +{formatStopwatch(value - (laps[index + 1] ?? 0))}
@@ -335,8 +335,8 @@ export default function CountdownTimer({ tool, locale, isCard = false }: Countdo
             type="button"
             onClick={() => setIsDark((v) => !v)}
             className={`grid size-10 place-items-center rounded-xl border backdrop-blur-md transition-all cursor-pointer ${chip}`}
-            aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-            title="Toggle theme"
+            aria-label={isDark ? ui.theme_to_light : ui.theme_to_dark}
+            title={ui.theme_toggle}
           >
             {isDark ? (
               <svg className="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19" /></svg>
@@ -348,8 +348,8 @@ export default function CountdownTimer({ tool, locale, isCard = false }: Countdo
             type="button"
             onClick={toggleFullscreen}
             className={`grid size-10 place-items-center rounded-xl border backdrop-blur-md transition-all cursor-pointer ${chip}`}
-            aria-label="Toggle Fullscreen"
-            title="Toggle Fullscreen (F)"
+            aria-label={ui.fullscreen_label}
+            title={ui.fullscreen_title}
           >
             {isFullscreen ? (
               <svg className="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14h6v6M20 10h-6V4" /></svg>
@@ -364,7 +364,7 @@ export default function CountdownTimer({ tool, locale, isCard = false }: Countdo
       {!isCard && (
         <div className={`relative z-20 border-t px-4 py-3 transition-opacity duration-300 sm:px-5 ${isIdle && isFullscreen ? 'pointer-events-none opacity-0' : 'opacity-100'}`} style={{ borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)' }}>
           <div className="flex flex-wrap items-center gap-2">
-            <div className={`inline-flex rounded-lg border p-0.5 ${chip}`} role="group" aria-label="Mode">
+            <div className={`inline-flex rounded-lg border p-0.5 ${chip}`} role="group" aria-label={ui.mode_group}>
               {(['timer', 'stopwatch'] as Mode[]).map((m) => (
                 <button
                   key={m}
@@ -373,36 +373,36 @@ export default function CountdownTimer({ tool, locale, isCard = false }: Countdo
                   aria-pressed={mode === m}
                   className={`rounded-md px-3 py-1.5 text-xs font-medium capitalize transition-colors cursor-pointer ${mode === m ? chipOn : ''}`}
                 >
-                  {m}
+                  {m === 'timer' ? ui.mode_timer : ui.mode_stopwatch}
                 </button>
               ))}
             </div>
 
             <button type="button" onClick={startPause} className={`rounded-lg border px-4 py-1.5 text-sm font-semibold transition-colors cursor-pointer ${chipOn}`}>
-              {running ? 'Pause' : 'Start'}
+              {running ? ui.pause : ui.start}
             </button>
             <button type="button" onClick={reset} className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer ${chip}`}>
-              Reset
+              {ui.reset}
             </button>
             {mode === 'stopwatch' && (
               <button type="button" onClick={lap} className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer ${chip}`}>
-                Lap
+                {ui.lap}
               </button>
             )}
 
             {mode === 'timer' && (
               <label className={`ml-auto flex cursor-pointer items-center gap-2 rounded-lg border px-2.5 py-1.5 text-xs ${chip}`}>
                 <input type="checkbox" checked={alarmOn} onChange={(e) => setAlarmOn(e.target.checked)} className="size-3.5 cursor-pointer accent-current" />
-                Alarm
+                {ui.alarm}
                 <select
                   value={alarmSound}
                   onChange={(e) => setAlarmSound(e.target.value as AlarmSound)}
                   className="cursor-pointer bg-transparent text-xs outline-none"
-                  aria-label="Alarm sound"
+                  aria-label={ui.alarm_sound}
                   style={{ color: 'inherit' }}
                 >
-                  <option value="chime" style={{ color: '#111' }}>Chime</option>
-                  <option value="beep" style={{ color: '#111' }}>Beep</option>
+                  <option value="chime" style={{ color: '#111' }}>{ui.chime}</option>
+                  <option value="beep" style={{ color: '#111' }}>{ui.beep}</option>
                 </select>
               </label>
             )}
@@ -410,7 +410,7 @@ export default function CountdownTimer({ tool, locale, isCard = false }: Countdo
 
           {mode === 'timer' && (
             <div className="mt-2.5 flex flex-wrap items-center gap-2">
-              <span className="font-mono text-[11px] uppercase tracking-wide opacity-60">Presets</span>
+              <span className="font-mono text-[11px] uppercase tracking-wide opacity-60">{ui.presets}</span>
               {PRESETS.map((minutes) => (
                 <button
                   key={minutes}
@@ -418,7 +418,7 @@ export default function CountdownTimer({ tool, locale, isCard = false }: Countdo
                   onClick={() => applyPreset(minutes)}
                   className={`rounded-full border px-2.5 py-1 text-xs font-medium transition-all cursor-pointer ${presetMs === minutes * 60_000 ? chipOn : chip}`}
                 >
-                  {minutes}m
+                  {ui.minutes_short.replace('{n}', String(minutes))}
                 </button>
               ))}
               <span className="ml-1 flex items-center gap-1 text-xs opacity-80">
@@ -429,9 +429,9 @@ export default function CountdownTimer({ tool, locale, isCard = false }: Countdo
                   value={customMin}
                   onChange={(e) => setCustomMin(e.target.value)}
                   className={`w-14 rounded-md border bg-transparent px-1.5 py-1 text-center font-mono text-xs outline-none ${chip}`}
-                  aria-label="Custom minutes"
+                  aria-label={ui.custom_minutes}
                 />
-                <span className="opacity-60">m</span>
+                <span className="opacity-60">{ui.minutes_unit}</span>
                 <input
                   type="number"
                   min="0"
@@ -439,11 +439,11 @@ export default function CountdownTimer({ tool, locale, isCard = false }: Countdo
                   value={customSec}
                   onChange={(e) => setCustomSec(e.target.value)}
                   className={`w-14 rounded-md border bg-transparent px-1.5 py-1 text-center font-mono text-xs outline-none ${chip}`}
-                  aria-label="Custom seconds"
+                  aria-label={ui.custom_seconds}
                 />
-                <span className="opacity-60">s</span>
+                <span className="opacity-60">{ui.seconds_unit}</span>
                 <button type="button" onClick={applyCustom} className={`ml-1 rounded-md border px-2.5 py-1 text-xs font-medium cursor-pointer ${chip}`}>
-                  Set
+                  {ui.set}
                 </button>
               </span>
             </div>

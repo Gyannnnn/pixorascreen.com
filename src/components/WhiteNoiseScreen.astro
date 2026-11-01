@@ -1,13 +1,16 @@
 ---
 import type { Tool } from "../data/tools";
 import type { Locale } from "../data/locales";
-import { t } from "../data/translations";
+import { t } from "../i18n/ui";
 
 type Props = { tool: Tool; locale: Locale; isCard?: boolean };
 const { tool, locale, isCard = false } = Astro.props;
+// The help sentence keeps its keys bold wherever a translation places {f}, {s}, {styles}, {volume}, {esc}.
+const helpKeys: Record<string, string> = { f: 'F', s: 'S', styles: '1-3', volume: '↑↓', esc: 'Esc' };
+const helpParts = t(locale, 'whitenoise.help').split(/(\{[a-z]+\})/);
 ---
 
-<div class="wn" id="wn" data-white-noise-screen data-is-card={isCard ? "true" : "false"} aria-label="White Noise Screen">
+<div class="wn" id="wn" data-white-noise-screen data-is-card={isCard ? "true" : "false"} aria-label={t(locale, 'whitenoise.section_label')}>
   <!-- Screen Wrapper -->
   <div class="wn-viewport">
     <canvas class="wn-canvas" id="wnCanvas"></canvas>
@@ -18,60 +21,60 @@ const { tool, locale, isCard = false } = Astro.props;
     
     <!-- CRT TV Bad Signal Indicator -->
     <div class="wn-tv-indicator hidden" id="wnIndicator">
-      <div class="wn-tv-channel">AV-1</div>
-      <div class="wn-tv-label">NO SIGNAL</div>
+      <div class="wn-tv-channel">{t(locale, 'whitenoise.channel')}</div>
+      <div class="wn-tv-label">{t(locale, 'whitenoise.no_signal')}</div>
     </div>
   </div>
 
   <!-- Settings overlay Gear -->
-  <button class="wn-gear-btn" id="wnGearBtn" type="button" aria-label="Settings">
+  <button class="wn-gear-btn" id="wnGearBtn" type="button" aria-label={t(locale, 'whitenoise.settings')}>
     ⚙️
   </button>
-  <button class="wn-fs-btn" id="wnFsBtn" type="button" aria-label="Fullscreen">
+  <button class="wn-fs-btn" id="wnFsBtn" type="button" aria-label={t(locale, 'whitenoise.fullscreen')}>
     ⛶
   </button>
 
   <!-- Settings Panel -->
   <div class="wn-settings" id="wnSettings">
     <div class="wn-settings-header">
-      <span>White Noise Settings</span>
+      <span>{t(locale, 'whitenoise.panel_heading')}</span>
       <button class="wn-close-settings" id="wnCloseSettings" type="button">✕</button>
     </div>
     <div class="wn-settings-body">
       <div class="wn-setting-row">
-        <label for="wnStyleSelect">Static Style:</label>
+        <label for="wnStyleSelect">{t(locale, 'whitenoise.style')}</label>
         <select id="wnStyleSelect">
-          <option value="analog">Analog TV Gray Static</option>
-          <option value="color">Rainbow Color Static</option>
-          <option value="vhs">VHS Glitch & Drift Static</option>
+          <option value="analog">{t(locale, 'whitenoise.style_analog')}</option>
+          <option value="color">{t(locale, 'whitenoise.style_color')}</option>
+          <option value="vhs">{t(locale, 'whitenoise.style_vhs')}</option>
         </select>
       </div>
 
       <div class="wn-setting-row">
         <label class="checkbox-label">
-          <input type="checkbox" id="wnScanToggle" checked /> Enable CRT Scanlines
+          <input type="checkbox" id="wnScanToggle" checked /> {t(locale, 'whitenoise.scanlines')}
         </label>
       </div>
 
       <div class="wn-setting-row">
         <label class="checkbox-label">
-          <input type="checkbox" id="wnIndicatorToggle" /> Show "NO SIGNAL" Logo
+          <input type="checkbox" id="wnIndicatorToggle" /> {t(locale, 'whitenoise.show_logo')}
         </label>
       </div>
 
       <div class="wn-setting-row">
-        <label for="wnAudioToggle">Audio Noise:</label>
+        <label for="wnAudioToggle">{t(locale, 'whitenoise.audio')}</label>
         <select id="wnAudioToggle">
-          <option value="static">Pulsing TV Static ("Seee...")</option>
-          <option value="white">Flat White Noise Hisss</option>
-          <option value="pink">Pink Noise (Deep Rain)</option>
-          <option value="off">Muted</option>
+          <option value="static">{t(locale, 'whitenoise.audio_static')}</option>
+          <option value="white">{t(locale, 'whitenoise.audio_white')}</option>
+          <option value="pink">{t(locale, 'whitenoise.audio_pink')}</option>
+          <option value="off">{t(locale, 'whitenoise.audio_off')}</option>
         </select>
       </div>
 
       <div class="wn-setting-row flex-col items-start gap-1">
         <div class="flex justify-between w-full text-xs">
-          <span>Volume:</span>
+          <span>{t(locale, 'whitenoise.volume')}</span>
           <span id="wnVolVal">30%</span>
         </div>
         <input type="range" id="wnVolume" min="0" max="100" value="30" class="w-full h-1 bg-neutral-700 rounded-lg appearance-none cursor-pointer" />
@@ -79,14 +82,14 @@ const { tool, locale, isCard = false } = Astro.props;
 
       <div class="wn-setting-row flex-col items-start gap-1">
         <div class="flex justify-between w-full text-xs">
-          <span>Static Speed:</span>
+          <span>{t(locale, 'whitenoise.speed')}</span>
           <span id="wnSpeedVal">1.0x</span>
         </div>
         <input type="range" id="wnSpeed" min="20" max="200" value="100" class="w-full h-1 bg-neutral-700 rounded-lg appearance-none cursor-pointer" />
       </div>
 
       <div class="wn-setting-hint">
-        Click preview or press <strong>F</strong> for Fullscreen. Press <strong>S</strong> to toggle static sound, <strong>1-3</strong> to switch static styles, <strong>&uarr;&darr;</strong> to adjust volume, and <strong>Esc</strong> to exit.
+        {helpParts.map((part) => (/^\{[a-z]+\}$/.test(part) ? <strong>{helpKeys[part.slice(1, -1)]}</strong> : part))}
       </div>
     </div>
   </div>

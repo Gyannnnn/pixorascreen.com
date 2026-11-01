@@ -1,13 +1,13 @@
 ---
 import type { Tool } from '../data/tools';
 import { type Locale } from '../data/locales';
-import { t } from '../data/translations';
+import { strings, t } from '../i18n/ui';
 
 type Props = { tool: Tool; locale: Locale; isCard?: boolean };
 const { tool, locale, isCard = false } = Astro.props;
 ---
 
-<div class="ht" id="ht" data-hacker-terminal data-is-card={isCard ? "true" : "false"} aria-label="Hacker Typer Terminal">
+<div class="ht" id="ht" data-hacker-terminal data-is-card={isCard ? "true" : "false"} data-i18n={JSON.stringify(strings(locale, 'hackertyper'))} aria-label={t(locale, 'hackertyper.section_label')}>
   <!-- Code Editor Window Frame -->
   <div class="ht-window">
     <!-- Window Titlebar -->
@@ -17,31 +17,33 @@ const { tool, locale, isCard = false } = Astro.props;
         <span class="ht-dot yellow"></span>
         <span class="ht-dot green"></span>
       </div>
-      <div class="ht-title">exploit-node — bash — 120×43</div>
+      <!-- A terminal title is a process name and window size, the same in every language. -->
+      <div class="ht-title" translate="no">exploit-node — bash — 120×43</div>
     </div>
 
     <!-- IDE Sidebar + File Tree + Editor Pane Grid -->
     <div class="ht-body">
       <!-- Mini Side Icon Bar -->
       <div class="ht-sidebar-icons">
-        <div class="ht-icon active" title="Explorer">📂</div>
-        <div class="ht-icon" title="Search">🔍</div>
-        <div class="ht-icon" title="Source Control">🌿</div>
-        <div class="ht-icon" title="Extensions">🧩</div>
-        <div class="ht-icon" style="margin-top: auto;" title="Settings">⚙️</div>
+        <div class="ht-icon active" title={t(locale, 'hackertyper.explorer')}>📂</div>
+        <div class="ht-icon" title={t(locale, 'hackertyper.search')}>🔍</div>
+        <div class="ht-icon" title={t(locale, 'hackertyper.source_control')}>🌿</div>
+        <div class="ht-icon" title={t(locale, 'hackertyper.extensions')}>🧩</div>
+        <div class="ht-icon" style="margin-top: auto;" title={t(locale, 'hackertyper.settings')}>⚙️</div>
       </div>
 
       <!-- File tree panel -->
       <div class="ht-file-tree" id="htFileTree">
-        <div class="tree-header">WORKSPACE</div>
-        <div class="tree-root">📁 exploit-kit</div>
-        <div class="tree-file active" data-file-key="exploit">
+        <div class="tree-header">{t(locale, 'hackertyper.workspace')}</div>
+        <!-- File names, code, terminal output and the shell prompt stay as a real editor shows them, in every language. -->
+        <div class="tree-root" translate="no">📁 exploit-kit</div>
+        <div class="tree-file active" data-file-key="exploit" translate="no">
           <span>📄</span> cve_exploit.c
         </div>
-        <div class="tree-file" data-file-key="sniffer">
+        <div class="tree-file" data-file-key="sniffer" translate="no">
           <span>📄</span> sniffer.py
         </div>
-        <div class="tree-file" data-file-key="cracker">
+        <div class="tree-file" data-file-key="cracker" translate="no">
           <span>📄</span> brute_force.go
         </div>
       </div>
@@ -49,7 +51,7 @@ const { tool, locale, isCard = false } = Astro.props;
       <!-- Main Editor view -->
       <div class="ht-editor">
         <!-- Editor view Tab bar -->
-        <div class="ht-tab-bar" id="htTabBar">
+        <div class="ht-tab-bar" id="htTabBar" translate="no">
           <div class="ht-tab active" data-file-key="exploit">cve_exploit.c <span class="tab-close">×</span></div>
           <div class="ht-tab" data-file-key="sniffer">sniffer.py <span class="tab-close">×</span></div>
           <div class="ht-tab" data-file-key="cracker">brute_force.go <span class="tab-close">×</span></div>
@@ -65,7 +67,7 @@ const { tool, locale, isCard = false } = Astro.props;
             )}
           </div>
           <div class="ht-editor-content">
-            <pre class="ht-pre"><code id="htCodeArea">{isCard && `#include <stdio.h>
+            <pre class="ht-pre" translate="no"><code id="htCodeArea">{isCard && `#include <stdio.h>
 #define COMMIT_CREDS 0xffffffff810b42f6
 void get_root() {
     _commit_creds commit_creds = (_commit_creds)COMMIT_CREDS;
@@ -78,24 +80,24 @@ int main() {
 
         <!-- Terminal Exploit Action Overlay (Hidden by default, triggered on completion/button) -->
         <div class="ht-exploit-overlay hidden" id="htExploitOverlay">
-          <div class="overlay-title">SYSTEM PRIVILEGE TERMINAL OVERFLOW</div>
-          <div class="overlay-logs" id="htExploitLogs"></div>
+          <div class="overlay-title">{t(locale, 'hackertyper.overlay_title')}</div>
+          <div class="overlay-logs" id="htExploitLogs" translate="no"></div>
           <div class="overlay-actions">
-            <button class="overlay-btn red" id="htOverlayCloseBtn" type="button">DISMISS CONSOLE</button>
+            <button class="overlay-btn red" id="htOverlayCloseBtn" type="button">{t(locale, 'hackertyper.dismiss')}</button>
           </div>
         </div>
 
         <!-- Editor Status bar -->
         <div class="ht-status-bar">
-          <div class="status-left">
+          <div class="status-left" translate="no">
             <span class="badge">admin@node-x1</span>
             <span class="branch">⎇ main*</span>
           </div>
           <div class="status-right">
-            <span>Spaces: 4</span>
+            <span>{t(locale, 'hackertyper.spaces')}</span>
             <span>UTF-8</span>
             <span>C/C++</span>
-            <span id="htCursorPos">Ln 1, Col 1</span>
+            <span id="htCursorPos">{t(locale, 'hackertyper.cursor', { line: '1', col: '1' })}</span>
           </div>
         </div>
       </div>
@@ -104,41 +106,41 @@ int main() {
     <!-- Quick action controls panel -->
     <div class="ht-controls">
       <button class="ctrl-btn main" id="htFsBtn" type="button">
-        ⛶ Fullscreen
+        {t(locale, 'hackertyper.fullscreen')}
       </button>
       <button class="ctrl-btn" id="htClearBtn" type="button">
-        ⎚ Reset Area
+        {t(locale, 'hackertyper.reset')}
       </button>
       <button class="ctrl-btn" id="htAutoBtn" type="button">
-        ▶ Auto-Pilot
+        {t(locale, 'hackertyper.autopilot')}
       </button>
       <button class="ctrl-btn red-glow" id="htExploitTriggerBtn" type="button">
-        ⚡ Run Exploit
+        {t(locale, 'hackertyper.run_exploit')}
       </button>
 
       <div class="ctrl-item">
-        <label for="htStyleSelect">MX Switch:</label>
+        <label for="htStyleSelect">{t(locale, 'hackertyper.switch')}</label>
         <select id="htStyleSelect">
-          <option value="blue">Blue Switch (Clicky)</option>
-          <option value="brown">Brown Switch (Tactile)</option>
-          <option value="typewriter">Typewriter (Metallic)</option>
-          <option value="mute">Muted</option>
+          <option value="blue">{t(locale, 'hackertyper.switch_blue')}</option>
+          <option value="brown">{t(locale, 'hackertyper.switch_brown')}</option>
+          <option value="typewriter">{t(locale, 'hackertyper.switch_typewriter')}</option>
+          <option value="mute">{t(locale, 'hackertyper.switch_mute')}</option>
         </select>
       </div>
 
       <div class="ctrl-item">
-        <label for="htThemeSelect">Theme:</label>
+        <label for="htThemeSelect">{t(locale, 'hackertyper.theme')}</label>
         <select id="htThemeSelect">
-          <option value="dark">VS Code Dark</option>
-          <option value="monokai">Monokai Retro</option>
-          <option value="amber">Amber Terminal</option>
-          <option value="matrix">Matrix Green</option>
+          <option value="dark">{t(locale, 'hackertyper.theme_dark')}</option>
+          <option value="monokai">{t(locale, 'hackertyper.theme_monokai')}</option>
+          <option value="amber">{t(locale, 'hackertyper.theme_amber')}</option>
+          <option value="matrix">{t(locale, 'hackertyper.theme_matrix')}</option>
         </select>
       </div>
 
       <div class="ctrl-item">
-        <label for="htSpeed">Speed:</label>
-        <input type="range" id="htSpeed" min="1" max="15" value="6" class="speed-range" aria-label="Typing speed" />
+        <label for="htSpeed">{t(locale, 'hackertyper.speed')}</label>
+        <input type="range" id="htSpeed" min="1" max="15" value="6" class="speed-range" aria-label={t(locale, 'hackertyper.speed_label')} />
       </div>
     </div>
   </div>
@@ -579,6 +581,8 @@ int main() {
 <script is:inline>
   (function () {
     const root = document.getElementById("ht");
+    let text = {};
+    try { text = JSON.parse(root.getAttribute("data-i18n") || "{}"); } catch (error) {}
     const codeArea = document.getElementById("htCodeArea");
     const lineNumbers = document.getElementById("htLineNumbers");
     const codeView = document.getElementById("htCodeView");
@@ -766,7 +770,7 @@ func main() {
       
       // Update cursor coordinate display
       const col = codeText.substring(codeText.lastIndexOf("\n") + 1).length + 1;
-      cursorPosVal.textContent = `Ln ${linesCount}, Col ${col}`;
+      cursorPosVal.textContent = text.cursor.replace("{line}", linesCount).replace("{col}", col);
     }
 
     // Tab switcher
@@ -965,8 +969,8 @@ func main() {
         "============================================================",
         "[root@server-gateway-ch1]# id",
         "uid=0(root) gid=0(root) groups=0(root) context=unconfined",
-        "[root@server-gateway-ch1]# echo \"Access Granted. System fully compromised.\"",
-        "Access Granted. System fully compromised."
+        "[root@server-gateway-ch1]# echo \"" + text.access_granted + "\"",
+        text.access_granted
       ];
 
       initAudio();
@@ -1017,7 +1021,7 @@ func main() {
       if (autoPilotActive) return;
       autoPilotActive = true;
       if (autoBtn) {
-        autoBtn.textContent = "⏸ Pause Auto";
+        autoBtn.textContent = text.pause_auto;
         autoBtn.classList.add("main");
       }
       
@@ -1036,7 +1040,7 @@ func main() {
       autoPilotActive = false;
       if (autoPilotTimer) clearTimeout(autoPilotTimer);
       if (autoBtn) {
-        autoBtn.textContent = "▶ Auto-Pilot";
+        autoBtn.textContent = text.autopilot;
         autoBtn.classList.remove("main");
       }
     }

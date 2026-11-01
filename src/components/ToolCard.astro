@@ -1,8 +1,8 @@
 ---
 import type { Tool } from '../data/tools';
 import { type Locale } from '../data/locales';
-import { toolName, toolSummary } from '../data/translations';
-import { categories } from '../data/tools';
+import { categoryName, strings, t, toolName, toolSummary } from '../i18n/ui';
+import { toolPath } from '../i18n/paths';
 import { getThumbnail } from '../data/thumbnails';
 
 // Import Screensaver Components for Live Preview Cards
@@ -38,31 +38,30 @@ type Props = {
 };
 
 const { tool, locale } = Astro.props;
-const category = categories[tool.category];
 const thumbnailSvg = tool.thumbnail ?? getThumbnail(tool.id, tool.color);
-const altText = `${toolName(locale, tool)} preview`;
+const altText = t(locale, 'card.preview_alt', { name: toolName(locale, tool) });
 ---
 
 <a
   class="group relative flex flex-col rounded-2xl border border-hairline bg-canvas outline-none transition-all duration-200 hover:-translate-y-1 hover:shadow-soft focus-visible:-translate-y-1 focus-visible:shadow-soft"
   style={`box-shadow: 0 0 24px -4px ${tool.color}33, 0 1px 1px rgb(0 0 0 / 0.03)`}
-  href={`/${tool.slug}/`}
+  href={toolPath(tool, locale)}
 >
   <div class="relative aspect-video overflow-hidden rounded-t-2xl bg-canvas-soft-2">
     {tool.id === 'hacker-typer' && (
-      <img src="/assets/thumbnails/hacker-typer/hackertyper.png" alt={altText} class="size-full object-cover" loading="lazy" />
+      <img src="/assets/thumbnails/hacker-typer/hackertyper.webp" width="960" height="540" decoding="async" alt={altText} class="size-full object-cover" loading="lazy" />
     )}
     {tool.id === 'windows-xp-crash' && (
-      <img src="/assets/thumbnails/windowsxp-crash-screen/windowsxp-crash.png" alt={altText} class="size-full object-cover" loading="lazy" />
+      <img src="/assets/thumbnails/windowsxp-crash-screen/windowsxp-crash.webp" width="960" height="540" decoding="async" alt={altText} class="size-full object-cover" loading="lazy" />
     )}
     {tool.id === 'fake-virus-screen' && (
-      <img src="/assets/thumbnails/fake-virus-screen/fake-virus-screen.png" alt={altText} class="size-full object-cover" loading="lazy" />
+      <img src="/assets/thumbnails/fake-virus-screen/fake-virus-screen.webp" width="960" height="540" decoding="async" alt={altText} class="size-full object-cover" loading="lazy" />
     )}
     {tool.id === 'broken-screen' && (
-      <img src="/assets/thumbnails/broken-screen/broken-screen.png" alt={altText} class="size-full object-cover" loading="lazy" />
+      <img src="/assets/thumbnails/broken-screen/broken-screen.webp" width="960" height="540" decoding="async" alt={altText} class="size-full object-cover" loading="lazy" />
     )}
     {tool.id === 'blue-screen-prank' && (
-      <img src="/assets/thumbnails/blue-screen/blue-screen.png" alt={altText} class="size-full object-cover" loading="lazy" />
+      <img src="/assets/thumbnails/blue-screen/blue-screen.webp" width="960" height="540" decoding="async" alt={altText} class="size-full object-cover" loading="lazy" />
     )}
 
     {tool.id !== 'hacker-typer' && tool.id !== 'windows-xp-crash' && tool.id !== 'fake-virus-screen' && tool.id !== 'broken-screen' && tool.id !== 'blue-screen-prank' && (
@@ -70,16 +69,16 @@ const altText = `${toolName(locale, tool)} preview`;
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
           {/* Screen Savers */}
           {tool.id === 'fireplace-screen' && <FireplaceScreen tool={tool} locale={locale} isCard={true} />}
-          {tool.id === 'aquarium-screen' && <AquariumScreen client:idle tool={tool} locale={locale} aquariumAudioFiles={[]} isCard={true} />}
-          {tool.id === 'matrix-screen' && <MatrixScreen client:idle tool={tool} locale={locale} isCard={true} />}
-          {tool.id === 'rain-screen' && <RainScreen client:idle tool={tool} locale={locale} backgrounds={[]} audioFiles={[]} isCard={true} />}
-          {tool.id === 'snow-screen' && <SnowScreen client:idle tool={tool} locale={locale} isCard={true} />}
-          {tool.id === 'galaxy-screen' && <GalaxyScreen client:idle tool={tool} locale={locale} isCard={true} />}
-          {tool.id === 'stars-screen' && <StarsScreen client:idle tool={tool} locale={locale} isCard={true} />}
-          {tool.id === 'clock-screen' && <ClockScreen client:idle tool={tool} locale={locale} isCard={true} />}
-          {tool.id === 'ambient-screen' && <AmbientScreen client:idle tool={tool} locale={locale} isCard={true} />}
-          {tool.id === 'dvd-screensaver' && <DvdScreensaver client:idle tool={tool} locale={locale} isCard={true} />}
-          {tool.id === 'countdown-timer' && <CountdownTimer client:idle tool={tool} locale={locale} isCard={true} />}
+          {tool.id === 'aquarium-screen' && <AquariumScreen client:idle locale={locale} aquariumAudioFiles={[]} isCard={true} />}
+          {tool.id === 'matrix-screen' && <MatrixScreen client:idle locale={locale} isCard={true} />}
+          {tool.id === 'rain-screen' && <RainScreen client:idle locale={locale} backgrounds={[]} audioFiles={[]} isCard={true} />}
+          {tool.id === 'snow-screen' && <SnowScreen client:idle locale={locale} isCard={true} />}
+          {tool.id === 'galaxy-screen' && <GalaxyScreen client:idle locale={locale} isCard={true} />}
+          {tool.id === 'stars-screen' && <StarsScreen client:idle locale={locale} isCard={true} />}
+          {tool.id === 'clock-screen' && <ClockScreen client:idle locale={locale} isCard={true} />}
+          {tool.id === 'ambient-screen' && <AmbientScreen client:idle locale={locale} isCard={true} />}
+          {tool.id === 'dvd-screensaver' && <DvdScreensaver client:idle locale={locale} isCard={true} />}
+          {tool.id === 'countdown-timer' && <CountdownTimer client:idle locale={locale} strings={strings(locale, 'countdown')} isCard={true} />}
 
           {/* Prank Screens */}
           {tool.id === 'radar-screen' && <RadarScreen tool={tool} locale={locale} isCard={true} />}
@@ -103,7 +102,7 @@ const altText = `${toolName(locale, tool)} preview`;
         {toolName(locale, tool)}
       </h3>
       <span class="shrink-0 rounded-full border border-hairline px-2 py-0.5 text-[10px] font-medium leading-normal text-muted">
-        {category.name}
+        {categoryName(locale, tool.category)}
       </span>
     </div>
     <p class="line-clamp-2 text-sm leading-relaxed text-body">

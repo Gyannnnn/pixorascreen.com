@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Snowfall from 'react-snowfall';
-import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import { getToolAssets } from '../utils/assets';
 
 interface SnowScreenProps {
-  tool: Tool;
   locale: Locale;
+  /** UI strings from the "snow" catalog namespace; card previews pass none. */
+  strings?: Record<string, string>;
   backgrounds?: string[];
   audioFiles?: string[];
   isCard?: boolean;
@@ -125,7 +125,12 @@ const AESTHETIC_COLORS = [
   { name: 'Warm Charcoal', value: '#94a3b8' },
 ];
 
-export default function SnowScreen({ tool, locale, backgrounds: propBg = [], audioFiles: propAudio = [], isCard = false }: SnowScreenProps) {
+export default function SnowScreen({ locale, strings: ui = {}, backgrounds: propBg = [], audioFiles: propAudio = [], isCard = false }: SnowScreenProps) {
+  // A key-hint sentence with the key highlighted wherever the translation puts {key}.
+  const keyHint = (template: string | undefined, key: string) => {
+    const [before, after] = (template ?? '').split('{key}');
+    return <>{before}<strong className="text-neutral-400">{key}</strong>{after}</>;
+  };
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Custom Images State
@@ -245,7 +250,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
       if (key === 'f') {
         e.preventDefault();
         toggleFullscreen();
-      } else if (key === 'space') {
+      } else if (key === ' ' || e.code === 'Space') {
         e.preventDefault();
         setShowSettings((prev) => !prev);
       } else if (key === 'c') {
@@ -389,7 +394,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
         <div 
           className="absolute inset-0 cursor-pointer z-4"
           onClick={toggleFullscreen}
-          title="Click to go Fullscreen"
+          title={ui.click_fullscreen}
         />
       )}
 
@@ -405,8 +410,8 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
             className={`flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 text-white cursor-pointer transition-transform duration-300 backdrop-blur-md ${
               showSettings ? 'rotate-90 border-sky-400/50 text-sky-400' : ''
             }`}
-            aria-label="Toggle Control Panel"
-            title="Toggle Control Panel"
+            aria-label={ui.panel_label}
+            title={ui.panel_label}
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
@@ -416,8 +421,8 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
           <button
             onClick={toggleFullscreen}
             className="flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 text-white cursor-pointer transition-all duration-200 backdrop-blur-md hover:border-white/25"
-            aria-label="Toggle Fullscreen"
-            title="Toggle Fullscreen"
+            aria-label={ui.fullscreen}
+            title={ui.fullscreen}
           >
             {isFullscreen ? (
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -442,15 +447,15 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
         {/* Header */}
         <div className="flex justify-between items-center border-b border-white/10 pb-2">
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-wide uppercase">Snow Customizer</h3>
-            <p className="text-[10px] text-neutral-400 mt-0.5">Customize winter atmosphere and aesthetics</p>
+            <h3 className="text-sm font-semibold text-white tracking-wide uppercase">{ui.panel_heading}</h3>
+            <p className="text-[10px] text-neutral-400 mt-0.5">{ui.panel_subtitle}</p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={resetToDefaults}
               className="text-[11px] font-medium text-sky-400 bg-sky-950/30 hover:bg-sky-900/40 border border-sky-500/20 px-2.5 py-1 rounded-lg cursor-pointer transition-colors"
             >
-              Reset Defaults
+              {ui.reset_defaults}
             </button>
             <button
               onClick={() => setShowSettings(false)}
@@ -469,7 +474,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
             {/* Snowflake Count */}
             <div className="flex flex-col gap-1.5">
               <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                <span>Snowflake Count</span>
+                <span>{ui.count}</span>
                 <span className="font-mono text-xs text-sky-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                   {snowflakeCount}
                 </span>
@@ -492,7 +497,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
               step={0.1}
               value={speed}
               onChange={setSpeed}
-              label="Falling Speed"
+              label={ui.speed}
             />
           </div>
 
@@ -505,7 +510,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
               step={0.1}
               value={wind}
               onChange={setWind}
-              label="Wind Drift"
+              label={ui.wind}
             />
 
             {/* Radius Range Slider */}
@@ -516,12 +521,12 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
                 step={0.5}
                 value={radius}
                 onChange={setRadius}
-                label="Flake Size (Radius)"
+                label={ui.size}
               />
             ) : (
               <div className="flex flex-col gap-1 bg-sky-950/20 border border-sky-400/10 rounded-xl px-3 py-2 text-center h-full justify-center">
-                <span className="text-xs text-sky-300 font-semibold">❄️ Photorealistic Mode Active</span>
-                <span className="text-[10px] text-neutral-400 leading-tight">Circle size settings are disabled. Sizing is governed by the Photorealistic controls below.</span>
+                <span className="text-xs text-sky-300 font-semibold">{ui.photo_active}</span>
+                <span className="text-[10px] text-neutral-400 leading-tight">{ui.photo_note}</span>
               </div>
             )}
           </div>
@@ -541,7 +546,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
                 className="w-4 h-4 rounded border-neutral-700 bg-neutral-800 text-sky-500 checked:bg-sky-500 checked:border-sky-500 focus:ring-sky-500/20 focus:ring-2 cursor-pointer"
               />
               <label htmlFor="useImageCheckbox" className="text-xs font-semibold text-neutral-200 cursor-pointer select-none">
-                ❄️ Use Photorealistic Snowflake Images
+                {ui.photo_toggle}
               </label>
             </div>
 
@@ -555,13 +560,13 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
                   step={1.0}
                   value={imageRadius}
                   onChange={setImageRadius}
-                  label="Image Snowflake Size"
+                  label={ui.image_size}
                 />
 
                 {/* Opacity Control */}
                 <div className="flex flex-col gap-1.5">
                   <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                    <span>Image Max Opacity</span>
+                    <span>{ui.opacity}</span>
                     <span className="font-mono text-xs text-sky-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                       {Math.round(imageOpacity * 100)}%
                     </span>
@@ -580,7 +585,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
                 {/* Rotation Speed Control */}
                 <div className="flex flex-col gap-1.5">
                   <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                    <span>Rotation Speed</span>
+                    <span>{ui.rotation}</span>
                     <span className="font-mono text-xs text-sky-450 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                       {imageRotationSpeed.toFixed(1)}x
                     </span>
@@ -599,7 +604,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
             ) : (
               /* Color selector when Image is NOT selected - Circular options! */
               <div className="flex flex-col gap-2 bg-white/5 rounded-xl p-3 border border-white/5 mt-1 animate-fadeIn h-full justify-center">
-                <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider">Select Crystal Color Tint</span>
+                <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider">{ui.tint}</span>
                 <div className="flex flex-wrap gap-2 mt-1 justify-start">
                   {AESTHETIC_COLORS.map((item) => (
                     <button
@@ -611,7 +616,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
                           : 'border-white/15 hover:border-white/35 hover:scale-105'
                       }`}
                       style={{ backgroundColor: item.value }}
-                      title={item.name}
+                      title={ui[`tint_${item.name.toLowerCase().replace(/ /g, '_')}`]}
                     >
                       {color === item.value && (
                         <span className="text-shadow-sm font-bold text-[9px] drop-shadow-md text-neutral-900">✓</span>
@@ -626,7 +631,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
           {/* Right Column: Dynamic Audio Sounds selector */}
           <div className="flex flex-col gap-2 bg-white/5 rounded-xl p-3 border border-white/5 lg:mt-7 mt-1 h-full justify-center">
             <div className="flex justify-between items-center">
-              <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider">Ambient Sound Effects</span>
+              <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider">{ui.sound}</span>
               {bgmList.length > 0 && (
                 <button
                   type="button"
@@ -638,13 +643,13 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
                       : 'bg-neutral-800 border-white/5 text-neutral-400 hover:text-white'
                   }`}
                 >
-                  {bgmPlaying ? 'Playing' : 'Muted'}
+                  {bgmPlaying ? ui.playing : ui.muted}
                 </button>
               )}
             </div>
 
             {bgmList.length === 0 ? (
-              <div className="text-[10px] text-neutral-500 italic pb-1">No ambient files placed in backgrounds/bgm folder.</div>
+              <div className="text-[10px] text-neutral-500 italic pb-1">{ui.no_audio}</div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1.5">
                 <div className="flex flex-col gap-1">
@@ -658,10 +663,10 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
                     }}
                     className="bg-neutral-900 border border-white/10 text-xs text-white rounded-lg p-2 outline-none focus:border-sky-400 cursor-pointer"
                   >
-                    <option value="none">Mute / No Sound</option>
+                    <option value="none">{ui.no_sound}</option>
                     {bgmList.map((bgm, idx) => (
                       <option key={bgm} value={bgm}>
-                        Background Sound {idx + 1}
+                        {(ui.track ?? '').replace('{n}', String(idx + 1))}
                       </option>
                     ))}
                   </select>
@@ -670,7 +675,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
                 {/* BGM Volume */}
                 <div className="flex flex-col gap-1 justify-center">
                   <div className="flex justify-between items-center text-[10px] text-neutral-400">
-                    <span>Sound Volume</span>
+                    <span>{ui.volume}</span>
                     <span className="font-mono text-sky-400">{Math.round(bgmVolume * 100)}%</span>
                   </div>
                   <input
@@ -692,7 +697,7 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
 
         {/* Dynamic Background Image Scene selector */}
         <div className="border-t border-white/5 pt-3 mt-1 flex flex-col gap-2">
-          <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider">Select Background Scene</span>
+          <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider">{ui.background}</span>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-1">
             {bgList.map((bg, idx) => (
               <button
@@ -720,11 +725,11 @@ export default function SnowScreen({ tool, locale, backgrounds: propBg = [], aud
 
         {/* Footnote Keyboard hints */}
         <div className="text-[10px] text-neutral-500 border-t border-white/5 pt-2 flex flex-wrap gap-x-4 gap-y-1">
-          <span>⌨️ Press <strong className="text-neutral-400">F</strong> for Fullscreen</span>
-          <span>• Space to Toggle Settings</span>
-          <span>• <strong className="text-neutral-400">C</strong> to Toggle Image Mode</span>
-          <span>• <strong className="text-neutral-400">M</strong> to Toggle Sound Mode</span>
-          <span>• <strong className="text-neutral-400">R</strong> to Reset defaults</span>
+          <span>{keyHint(ui.hint_fullscreen, 'F')}</span>
+          <span>{ui.hint_space}</span>
+          <span>{keyHint(ui.hint_image, 'C')}</span>
+          <span>{keyHint(ui.hint_sound, 'M')}</span>
+          <span>{keyHint(ui.hint_reset, 'R')}</span>
         </div>
       </div>}
     </div>

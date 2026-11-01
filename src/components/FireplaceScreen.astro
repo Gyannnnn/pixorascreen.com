@@ -1,6 +1,7 @@
 ---
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
+import { t } from '../i18n/ui';
 
 type Props = { tool: Tool; locale: Locale; isCard?: boolean };
 const { tool, locale, isCard = false } = Astro.props;
@@ -23,7 +24,7 @@ const { tool, locale, isCard = false } = Astro.props;
 
   <!-- Floating controls toggle for fullscreen mode -->
   <div class="fp-fs-gear" id="fpFsGear">
-    <button class="fp-btn" id="fpFsGearBtn" type="button" aria-label="Toggle Controls">
+    <button class="fp-btn" id="fpFsGearBtn" type="button" aria-label={t(locale, 'fireplace.toggle_controls')}>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="3"/>
         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -34,24 +35,24 @@ const { tool, locale, isCard = false } = Astro.props;
   <!-- HUD: always visible on preview, toggleable in fullscreen -->
   <div class="fp-hud" id="fpHud">
     <div class="fp-hud-left">
-      <button class="fp-btn" id="fpSoundBtn" type="button" aria-label="Toggle Sound">
+      <button class="fp-btn" id="fpSoundBtn" type="button" aria-label={t(locale, 'fireplace.toggle_sound')}>
         <svg id="fpSoundIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M11 5L6 9H2v6h4l5 4V5z"/>
           <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
         </svg>
       </button>
       <div class="fp-vol-wrap">
-        <input type="range" id="fpVol" class="fp-vol-slider" min="0" max="100" value="70" aria-label="Volume" />
+        <input type="range" id="fpVol" class="fp-vol-slider" min="0" max="100" value="70" aria-label={t(locale, 'fireplace.volume_label')} />
       </div>
     </div>
     <div class="fp-hud-right">
-      <button class="fp-btn" id="fpSettingsBtn" type="button" aria-label="Settings">
+      <button class="fp-btn" id="fpSettingsBtn" type="button" aria-label={t(locale, 'fireplace.settings')}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="3"/>
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
         </svg>
       </button>
-      <button class="fp-btn" id="fpFsBtn" type="button" aria-label="Fullscreen">
+      <button class="fp-btn" id="fpFsBtn" type="button" aria-label={t(locale, 'fireplace.fullscreen')}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
         </svg>
@@ -63,43 +64,43 @@ const { tool, locale, isCard = false } = Astro.props;
   <div class="fp-settings" id="fpSettings">
     <div class="fp-settings-inner">
       <div class="fp-settings-header">
-        <span>Fireplace Controls</span>
-        <button class="fp-btn fp-close-btn" id="fpCloseSettings" type="button" aria-label="Close">✕</button>
+        <span>{t(locale, 'fireplace.panel_heading')}</span>
+        <button class="fp-btn fp-close-btn" id="fpCloseSettings" type="button" aria-label={t(locale, 'fireplace.close')}>✕</button>
       </div>
 
       <!-- 1. Sleep Timer (TOP of drawer with pill chips) -->
       <div class="fp-section">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <div class="fp-section-title">⏱️ Sleep Timer</div>
+          <div class="fp-section-title">{t(locale, 'fireplace.sleep_timer')}</div>
           <span class="fp-val-badge" id="fpTimerBadge" style="display:none; font-variant-numeric: tabular-nums;">--:--</span>
         </div>
         <div class="fp-chip-group" id="fpTimerGroup">
-          <button type="button" class="fp-chip active" data-value="0">Off</button>
-          <button type="button" class="fp-chip" data-value="15">15 min</button>
-          <button type="button" class="fp-chip" data-value="30">30 min</button>
-          <button type="button" class="fp-chip" data-value="60">60 min</button>
-          <button type="button" class="fp-chip" data-value="90">90 min</button>
+          <button type="button" class="fp-chip active" data-value="0">{t(locale, 'fireplace.timer_off')}</button>
+          <button type="button" class="fp-chip" data-value="15">{t(locale, 'fireplace.minutes', { n: '15' })}</button>
+          <button type="button" class="fp-chip" data-value="30">{t(locale, 'fireplace.minutes', { n: '30' })}</button>
+          <button type="button" class="fp-chip" data-value="60">{t(locale, 'fireplace.minutes', { n: '60' })}</button>
+          <button type="button" class="fp-chip" data-value="90">{t(locale, 'fireplace.minutes', { n: '90' })}</button>
         </div>
       </div>
 
       <!-- 2. Flame Color Theme Chips (No dropdown clipping!) -->
       <div class="fp-section">
-        <div class="fp-section-title">🔥 Flame Color Theme</div>
+        <div class="fp-section-title">{t(locale, 'fireplace.flame_theme')}</div>
         <div class="fp-chip-group" id="fpStyleGroup">
           <button type="button" class="fp-chip fp-chip-color active" data-value="classic">
-            <span class="fp-dot" style="background:#ff7700"></span> Classic
+            <span class="fp-dot" style="background:#ff7700"></span> {t(locale, 'fireplace.flame_classic')}
           </button>
           <button type="button" class="fp-chip fp-chip-color" data-value="amber">
-            <span class="fp-dot" style="background:#f59e0b"></span> Amber
+            <span class="fp-dot" style="background:#f59e0b"></span> {t(locale, 'fireplace.flame_amber')}
           </button>
           <button type="button" class="fp-chip fp-chip-color" data-value="blue">
-            <span class="fp-dot" style="background:#3b82f6"></span> Blue
+            <span class="fp-dot" style="background:#3b82f6"></span> {t(locale, 'fireplace.flame_blue')}
           </button>
           <button type="button" class="fp-chip fp-chip-color" data-value="purple">
-            <span class="fp-dot" style="background:#a855f7"></span> Violet
+            <span class="fp-dot" style="background:#a855f7"></span> {t(locale, 'fireplace.flame_violet')}
           </button>
           <button type="button" class="fp-chip fp-chip-color" data-value="green">
-            <span class="fp-dot" style="background:#22c55e"></span> Emerald
+            <span class="fp-dot" style="background:#22c55e"></span> {t(locale, 'fireplace.flame_emerald')}
           </button>
         </div>
       </div>
@@ -108,13 +109,13 @@ const { tool, locale, isCard = false } = Astro.props;
       <div class="fp-grid">
         <div class="fp-grid-col">
           <div class="fp-setting-row">
-            <label for="fpSoundToggle">🔊 Audio Sound</label>
+            <label for="fpSoundToggle">{t(locale, 'fireplace.audio')}</label>
             <input type="checkbox" id="fpSoundToggle" class="fp-checkbox" />
           </div>
 
           <div class="fp-setting-row">
             <div class="fp-row-label-wrap">
-              <label for="fpVolSettings">🔈 Volume</label>
+              <label for="fpVolSettings">{t(locale, 'fireplace.volume')}</label>
               <span class="fp-val-badge" id="fpVolBadge">70%</span>
             </div>
             <input type="range" id="fpVolSettings" min="0" max="100" value="70" class="fp-slider" />
@@ -122,7 +123,7 @@ const { tool, locale, isCard = false } = Astro.props;
 
           <div class="fp-setting-row">
             <div class="fp-row-label-wrap">
-              <label for="fpCrackle">🪵 Fire Crackle</label>
+              <label for="fpCrackle">{t(locale, 'fireplace.crackle')}</label>
               <span class="fp-val-badge" id="fpCrackleBadge">70%</span>
             </div>
             <input type="range" id="fpCrackle" min="0" max="100" value="70" class="fp-slider" />
@@ -132,7 +133,7 @@ const { tool, locale, isCard = false } = Astro.props;
         <div class="fp-grid-col">
           <div class="fp-setting-row">
             <div class="fp-row-label-wrap">
-              <label for="fpFlameSize">🔥 Flame Height</label>
+              <label for="fpFlameSize">{t(locale, 'fireplace.flame_height')}</label>
               <span class="fp-val-badge" id="fpFlameSizeBadge">100%</span>
             </div>
             <input type="range" id="fpFlameSize" min="60" max="160" value="110" class="fp-slider" />
@@ -140,7 +141,7 @@ const { tool, locale, isCard = false } = Astro.props;
 
           <div class="fp-setting-row">
             <div class="fp-row-label-wrap">
-              <label for="fpBloomStrength">✨ Glow Intensity</label>
+              <label for="fpBloomStrength">{t(locale, 'fireplace.glow')}</label>
               <span class="fp-val-badge" id="fpBloomBadge">40%</span>
             </div>
             <input type="range" id="fpBloomStrength" min="5" max="35" value="15" class="fp-slider" />

@@ -1,0 +1,53 @@
+---
+// About and privacy pages in any locale, from src/content/pages/<locale>/<page>.md.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import type { Locale } from '../../i18n/locales';
+import { locales } from '../../i18n/locales';
+import { absoluteUrl, siteUrl, staticPagePath } from '../../i18n/paths';
+import { siteAuthor, siteName } from '../../data/seo';
+import { pageContent, type ContentPageId } from '../../i18n/content';
+import { t } from '../../i18n/ui';
+
+type Props = { locale: Locale; page: ContentPageId };
+const { locale, page } = Astro.props;
+const content = pageContent(locale, page);
+const updated = content.updated
+  ? t(locale, 'page.last_updated', {
+      date: new Intl.DateTimeFormat(locales[locale].lang, { dateStyle: 'long', timeZone: 'UTC' }).format(content.updated),
+    })
+  : null;
+// The about page describes the person behind the site, so it says so in structured data too.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': page === 'about' ? 'AboutPage' : 'WebPage',
+  name: content.title,
+  description: content.description,
+  url: absoluteUrl(staticPagePath(page, locale)),
+  inLanguage: locales[locale].lang,
+  ...(content.updated ? { dateModified: content.updated.toISOString().slice(0, 10) } : {}),
+  isPartOf: { '@type': 'WebSite', name: siteName, url: siteUrl },
+  ...(page === 'about' ? { mainEntity: { '@type': 'Person', name: siteAuthor.name } } : {}),
+};
+---
+
+<BaseLayout
+  title={content.title}
+  description={content.description}
+  canonicalPath={staticPagePath(page, locale)}
+  locale={locale}
+  pageKey={{ kind: 'page', id: page }}
+  jsonLd={jsonLd}
+>
+  <section class="site-shell py-16 md:py-24">
+    <div class="max-w-3xl">
+      <p class="font-mono text-xs text-muted uppercase tracking-wider">{content.eyebrow}</p>
+      <h1 class="mt-4 text-5xl font-semibold leading-[0.95] text-balance text-ink md:text-6xl">{content.h1}</h1>
+      <p class="mt-6 text-lg leading-8 text-body text-balance">{content.lede}</p>
+      {updated && <p class="mt-4 text-sm text-muted">{updated}</p>}
+    </div>
+  </section>
+
+  <section class="border-y border-hairline bg-canvas">
+    <article class="rich-article site-shell max-w-3xl py-12 md:py-16" set:html={content.html} />
+  </section>
+</BaseLayout>

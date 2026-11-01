@@ -4,6 +4,7 @@ import type { Locale } from '../data/locales';
 import ReactMatrixScreen from './MatrixScreen.tsx';
 import { getToolAssets } from '../utils/assets';
 import ToolFallback from './ToolFallback.astro';
+import { strings } from '../i18n/ui';
 
 type Props = { tool: Tool; locale: Locale };
 const { tool, locale } = Astro.props;
@@ -11,8 +12,9 @@ const { tool, locale } = Astro.props;
 const { audioFiles } = getToolAssets('rain-screen');
 ---
 
-<ReactMatrixScreen 
-  tool={tool} 
+<ReactMatrixScreen
+  strings={strings(locale, 'matrix')}
+  
   locale={locale} 
   audioFiles={audioFiles} 
   client:only="react" 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import { getToolAssets } from '../utils/assets';
 
 interface RainScreenProps {
-  tool: Tool;
   locale: Locale;
+  /** UI strings from the "rain" catalog namespace; card previews pass none. */
+  strings?: Record<string, string>;
   backgrounds?: string[];
   audioFiles?: string[];
   isCard?: boolean;
@@ -268,25 +268,20 @@ class GlassDroplet {
   }
 }
 
-const formatAudioName = (fileUrl: string) => {
-  try {
+export default function RainScreen({ locale, strings: ui = {}, backgrounds: propBg = [], audioFiles: propAudio = [], isCard = false }: RainScreenProps) {
+  // Soundtracks ship as "Background Sound N.mp3"; the label is translated and keeps the
+  // file's own number, so it names the same file whatever order the list arrives in.
+  const trackLabel = (fileUrl: string, idx: number) => {
     const fileName = decodeURIComponent(fileUrl.split('/').pop() || '');
-    const baseName = fileName.replace(/\.[^/.]+$/, '');
-    const cleaned = baseName
-      .replace(/^([a-z0-9]+-)+/i, '')
-      .replace(/[-_]/g, ' ')
-      .replace(/\(\d+\)/g, '')
-      .trim();
-    if (cleaned.length > 2) {
-      return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
-    }
-    return baseName || 'Soundtrack';
-  } catch {
-    return 'Soundtrack';
-  }
-};
+    const num = fileName.match(/(\d+)\.[^.]+$/)?.[1] ?? String(idx + 1);
+    return (ui.track ?? '').replace('{n}', num);
+  };
 
-export default function RainScreen({ tool, locale, backgrounds: propBg = [], audioFiles: propAudio = [], isCard = false }: RainScreenProps) {
+  // A key-hint sentence with the key highlighted wherever the translation puts {key}.
+  const keyHint = (template: string | undefined, key: string, className: string) => {
+    const [before, after] = (template ?? '').split('{key}');
+    return <>{before}<strong className={className}>{key}</strong>{after}</>;
+  };
   // Dynamically discover assets if props are empty or not passed
   const discovered = getToolAssets('rain-screen');
   const backgrounds = propBg.length > 0 ? propBg : discovered.backgrounds;
@@ -720,8 +715,8 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
             </svg>
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-wide leading-tight">Rain Savvy</h3>
-            <p className="text-[10px] text-neutral-400 tracking-wider">AESTHETIC Lofi RAINSCREEN</p>
+            <h3 className="text-sm font-semibold text-white tracking-wide leading-tight">{ui.kicker}</h3>
+            <p className="text-[10px] text-neutral-400 tracking-wider">{ui.heading}</p>
           </div>
         </div>
       )}
@@ -740,8 +735,8 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
                 ? 'bg-sky-500/10 border-sky-400/40 text-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.25)]' 
                 : 'bg-neutral-900/60 border-white/10 text-neutral-300 hover:border-white/30 hover:bg-neutral-900/80'
             }`}
-            aria-label="Toggle Control Panel"
-            title="Toggle Control Settings (Space)"
+            aria-label={ui.panel_label}
+            title={ui.panel_title}
           >
             <svg className={`w-[18px] h-[18px] transition-transform duration-300 ${panelOpen ? 'rotate-90 text-sky-400' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
@@ -752,8 +747,8 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
           <button
             onClick={toggleFullscreen}
             className="flex items-center justify-center w-9 h-9 rounded-lg bg-neutral-900/60 backdrop-blur-xl border border-white/10 text-neutral-300 hover:border-white/30 hover:bg-neutral-900/80 transition-all duration-200 cursor-pointer"
-            aria-label="Toggle Fullscreen"
-            title="Toggle Fullscreen (F)"
+            aria-label={ui.fullscreen_label}
+            title={ui.fullscreen_title}
           >
             {isFullscreen ? (
               <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -778,7 +773,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
         <div className="flex justify-between items-center border-b border-white/5 pb-2 shrink-0">
           <div className="flex items-center gap-2">
             <span className="text-xs text-sky-400">⚡</span>
-            <span className="text-xs font-semibold text-white uppercase tracking-wider">Rain Control Center</span>
+            <span className="text-xs font-semibold text-white uppercase tracking-wider">{ui.panel_heading}</span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -786,7 +781,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
               onClick={resetToDefaults}
               className="text-[10px] text-neutral-400 hover:text-white px-2 py-0.5 rounded border border-white/5 bg-neutral-900/40 hover:bg-neutral-800 transition-colors duration-150 cursor-pointer"
             >
-              Reset to Defaults
+              {ui.reset_defaults}
             </button>
             <button 
               onClick={() => setPanelOpen(false)}
@@ -805,7 +800,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
             <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                  <span>Rain Drops Intensity</span>
+                  <span>{ui.intensity}</span>
                   <span className="font-mono text-xs text-sky-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                     {density}
                   </span>
@@ -827,7 +822,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
                 step={0.5}
                 value={speed}
                 onChange={setSpeed}
-                label="Falling Velocity"
+                label={ui.speed}
               />
             </div>
 
@@ -835,7 +830,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
             <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                  <span>Wind Slope (Angle)</span>
+                  <span>{ui.wind}</span>
                   <span className="font-mono text-xs text-sky-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                     {wind.toFixed(1)}
                   </span>
@@ -854,7 +849,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
 
               {/* Split Switch for Streaks vs Wet Glass */}
               <div className="flex flex-col gap-1">
-                <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider">Animation Mode</span>
+                <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider">{ui.animation_mode}</span>
                 <div className="grid grid-cols-2 gap-2 mt-1">
                   <button
                     onClick={() => setRainType('streaks')}
@@ -864,7 +859,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
                         : 'bg-neutral-900/40 border-white/5 text-neutral-450 hover:text-white'
                     }`}
                   >
-                    🌧️ Active Rain Streaks
+                    {ui.mode_streaks}
                   </button>
                   <button
                     onClick={() => setRainType('glass')}
@@ -874,7 +869,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
                         : 'bg-neutral-900/40 border-white/5 text-neutral-450 hover:text-white'
                     }`}
                   >
-                    🪟 Raindrops on Glass
+                    {ui.mode_glass}
                   </button>
                 </div>
               </div>
@@ -901,7 +896,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
                       rainType === 'glass' ? 'opacity-45 cursor-not-allowed' : ''
                     }`}
                   >
-                    💦 Floor Splashes
+                    {ui.splashes}
                   </label>
                 </div>
 
@@ -917,7 +912,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
                     htmlFor="thunderEnabled" 
                     className="text-xs font-semibold text-neutral-300 cursor-pointer select-none"
                   >
-                    ⚡ Ambient Lightning
+                    {ui.lightning}
                   </label>
                 </div>
               </div>
@@ -925,7 +920,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
               {thunderEnabled && (
                 <div className="flex flex-col gap-1.5 bg-sky-950/20 rounded-xl p-3 border border-sky-500/10 animate-fadeIn">
                   <div className="flex justify-between items-center text-[10px] text-neutral-300">
-                    <span className="flex items-center gap-1">⚡ Lightning Flash Interval</span>
+                    <span className="flex items-center gap-1">{ui.lightning_interval}</span>
                     <span className="font-mono text-sky-400 bg-neutral-900/60 px-1.5 py-0.5 rounded border border-white/5">
                       every ~{thunderInterval}s
                     </span>
@@ -943,7 +938,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
               )}
 
               <div className="flex flex-col gap-2 bg-white/5 rounded-xl p-3 border border-white/5 animate-fadeIn">
-                <span className="text-[11px] font-semibold text-neutral-350 uppercase tracking-wider">Select Glow/Color Preset</span>
+                <span className="text-[11px] font-semibold text-neutral-350 uppercase tracking-wider">{ui.color_preset}</span>
                 <div className="flex flex-wrap gap-2 mt-1 justify-start">
                   {AESTHETIC_RAIN_COLORS.map((item) => (
                     <button
@@ -955,7 +950,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
                           : 'border-white/10 hover:border-white/30 hover:scale-105'
                       }`}
                       style={{ backgroundColor: item.value }}
-                      title={item.name}
+                      title={ui[`color_${item.name.toLowerCase().replace(/ /g, '_')}`]}
                     >
                       {color === item.value && (
                         <span className="text-shadow-sm font-bold text-[9px] drop-shadow-md text-neutral-900">✓</span>
@@ -969,7 +964,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
             {/* Right Block - Audio BGM managers */}
             <div className="flex flex-col gap-2 bg-white/5 rounded-xl p-3 border border-white/5 lg:mt-7 mt-1 h-full justify-center">
               <div className="flex justify-between items-center">
-                <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider">Ambient Soundtrack</span>
+                <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider">{ui.soundtrack}</span>
                 {audioFiles.length > 0 && (
                   <button
                     type="button"
@@ -981,13 +976,13 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
                         : 'bg-neutral-800 border-white/5 text-neutral-400 hover:text-white'
                     }`}
                   >
-                    {bgmPlaying ? 'Playing' : 'Muted'}
+                    {bgmPlaying ? ui.playing : ui.muted}
                   </button>
                 )}
               </div>
 
               {audioFiles.length === 0 ? (
-                <div className="text-[10px] text-neutral-500 italic pb-1">No ambient files placed in backgrounds/bgm folder.</div>
+                <div className="text-[10px] text-neutral-500 italic pb-1">{ui.no_audio}</div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1.5">
                   <div className="flex flex-col gap-1">
@@ -1004,10 +999,10 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
                       }}
                       className="bg-neutral-900 border border-white/10 text-xs text-white rounded-lg p-2 outline-none focus:border-sky-400 cursor-pointer"
                     >
-                      <option value="none">Mute / No Sound</option>
+                      <option value="none">{ui.no_sound}</option>
                       {audioFiles.map((bgm, idx) => (
                         <option key={bgm} value={bgm}>
-                          🎵 {formatAudioName(bgm)}
+                          🎵 {trackLabel(bgm, idx)}
                         </option>
                       ))}
                     </select>
@@ -1016,7 +1011,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
                   {/* BGM Volume */}
                   <div className="flex flex-col gap-1 justify-center">
                     <div className="flex justify-between items-center text-[10px] text-neutral-400">
-                      <span>Sound Volume</span>
+                      <span>{ui.volume}</span>
                       <span className="font-mono text-sky-450">{Math.round(bgmVolume * 100)}%</span>
                     </div>
                     <input
@@ -1037,7 +1032,7 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
 
           {/* Dynamic Background Image Scene Selector */}
           <div className="border-t border-white/5 pt-3 mt-1 flex flex-col gap-2">
-            <span className="text-[11px] font-semibold text-neutral-350 uppercase tracking-wider">Select Background Scene</span>
+            <span className="text-[11px] font-semibold text-neutral-350 uppercase tracking-wider">{ui.background}</span>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-1">
               {bgList.map((bg, idx) => (
                 <button
@@ -1065,10 +1060,10 @@ export default function RainScreen({ tool, locale, backgrounds: propBg = [], aud
 
           {/* Footnote Keyboard hints */}
           <div className="text-[10px] text-neutral-555 border-t border-white/5 pt-2 flex flex-wrap gap-x-4 gap-y-1">
-            <span>⌨️ Press <strong className="text-neutral-300">F</strong> for Fullscreen</span>
-            <span>• Space to Toggle Settings</span>
-            <span>• <strong className="text-neutral-305">M</strong> to Toggle Sound Mode</span>
-            <span>• <strong className="text-neutral-305">R</strong> to Reset defaults</span>
+            <span>{keyHint(ui.hint_fullscreen, 'F', 'text-neutral-300')}</span>
+            <span>{ui.hint_space}</span>
+            <span>{keyHint(ui.hint_sound, 'M', 'text-neutral-305')}</span>
+            <span>{keyHint(ui.hint_reset, 'R', 'text-neutral-305')}</span>
           </div>
         </div>
       </div>}

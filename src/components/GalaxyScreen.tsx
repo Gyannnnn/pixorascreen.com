@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
-import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 
 interface GalaxyScreenProps {
-  tool: Tool;
   locale: Locale;
+  /** UI strings from the "galaxy" catalog namespace; card previews pass none. */
+  strings?: Record<string, string>;
   ambientAudioFiles?: string[];
   isCard?: boolean;
 }
@@ -67,7 +67,7 @@ const GALAXY_THEMES: GalaxyTheme[] = [
   }
 ];
 
-export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isCard = false }: GalaxyScreenProps) {
+export default function GalaxyScreen({ locale, strings: ui = {}, ambientAudioFiles = [], isCard = false }: GalaxyScreenProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -551,8 +551,8 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
             </svg>
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-wide leading-tight">Cosmogony</h3>
-            <p className="text-[10px] text-gray-400 tracking-wider">REALISTIC GALAXY SIMULATION</p>
+            <h3 className="text-sm font-semibold text-white tracking-wide leading-tight">{ui.kicker}</h3>
+            <p className="text-[10px] text-gray-400 tracking-wider">{ui.heading}</p>
           </div>
         </div>
       )}
@@ -571,8 +571,8 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
                 ? 'bg-indigo-500/10 border-indigo-400/40 text-indigo-400 shadow-[0_0_12px_rgba(99,102,241,0.25)]' 
                 : 'bg-neutral-900/60 border-white/10 text-neutral-300 hover:border-white/30 hover:bg-neutral-900/80'
             }`}
-            aria-label="Toggle Control Center"
-            title="Toggle Controls (Space)"
+            aria-label={ui.controls_label}
+            title={ui.controls_title}
           >
             <svg className={`w-[18px] h-[18px] transition-transform duration-300 ${panelOpen ? 'rotate-90 text-indigo-400' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
@@ -583,8 +583,8 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
           <button
             onClick={toggleFullscreen}
             className="flex items-center justify-center w-9 h-9 rounded-lg bg-neutral-900/60 backdrop-blur-xl border border-white/10 text-neutral-300 hover:border-white/30 hover:bg-neutral-900/80 transition-all duration-200 cursor-pointer"
-            aria-label="Toggle Fullscreen"
-            title="Toggle Fullscreen (F)"
+            aria-label={ui.fullscreen_label}
+            title={ui.fullscreen_title}
           >
             {isFullscreen ? (
               <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -609,14 +609,14 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
         <div className="flex justify-between items-center border-b border-white/5 pb-2 shrink-0">
           <div className="flex items-center gap-2">
             <span className="text-xs text-indigo-400">🌌</span>
-            <span className="text-xs font-semibold text-white uppercase tracking-wider">Galaxy Customization Panel</span>
+            <span className="text-xs font-semibold text-white uppercase tracking-wider">{ui.panel_heading}</span>
           </div>
           <div className="flex items-center gap-3">
             <button
               onClick={resetToDefaults}
               className="text-[10px] text-neutral-400 hover:text-white px-2 py-0.5 rounded border border-white/5 bg-neutral-900/40 hover:bg-neutral-800 transition-colors duration-150 cursor-pointer"
             >
-              Reset Defaults
+              {ui.reset_defaults}
             </button>
             <button 
               onClick={() => setPanelOpen(false)}
@@ -635,7 +635,7 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
             <div className="flex flex-col gap-3.5">
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                  <span>Star Cluster Density</span>
+                  <span>{ui.density}</span>
                   <span className="font-mono text-xs text-indigo-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                     {starCount}
                   </span>
@@ -653,7 +653,7 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
 
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                  <span>Rotation Velocity</span>
+                  <span>{ui.rotation}</span>
                   <span className="font-mono text-xs text-indigo-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                     {rotationSpeed.toFixed(1)}x
                   </span>
@@ -671,7 +671,7 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
 
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                  <span>Inclination Tilt (3D Angle)</span>
+                  <span>{ui.tilt}</span>
                   <span className="font-mono text-xs text-indigo-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                     {tiltAngle}°
                   </span>
@@ -692,7 +692,7 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
             <div className="flex flex-col gap-3.5">
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                  <span>Core Glow Intensity</span>
+                  <span>{ui.core_glow}</span>
                   <span className="font-mono text-xs text-indigo-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                     {coreIntensity.toFixed(2)}x
                   </span>
@@ -711,8 +711,8 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
               {/* Gravity lensing black hole toggle */}
               <div className="flex justify-between items-center p-2 rounded-xl bg-neutral-900/40 border border-white/5">
                 <div className="flex flex-col leading-tight">
-                  <span className="text-xs font-medium text-neutral-300">Space Lensing Black Hole</span>
-                  <span className="text-[10px] text-neutral-500 mt-0.5">Mouse simulates massive body gravity distortion</span>
+                  <span className="text-xs font-medium text-neutral-300">{ui.lensing}</span>
+                  <span className="text-[10px] text-neutral-500 mt-0.5">{ui.lensing_hint}</span>
                 </div>
                 <button
                   onClick={() => setGravityLensing(g => !g)}
@@ -729,7 +729,7 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
               {/* Sound volume slider */}
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                  <span>Sound Volume</span>
+                  <span>{ui.volume}</span>
                   <span className="font-mono text-xs text-indigo-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                     {Math.round(bgmVolume * 100)}%
                   </span>
@@ -750,7 +750,7 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
 
           {/* Theme options selection */}
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-semibold text-neutral-300 tracking-wider">Galaxy Constellation Presets</span>
+            <span className="text-xs font-semibold text-neutral-300 tracking-wider">{ui.presets}</span>
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
               {GALAXY_THEMES.map((theme) => (
                 <button
@@ -762,7 +762,7 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
                       : 'bg-neutral-900/50 border-white/5 text-neutral-400 hover:text-neutral-200 hover:border-white/20'
                   }`}
                 >
-                  {theme.name}
+                  {ui[`theme_${theme.id}`]}
                 </button>
               ))}
             </div>
@@ -770,7 +770,7 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
 
           {/* Audio stream selection */}
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-semibold text-neutral-300 tracking-wider">Space Soundscape Audio</span>
+            <span className="text-xs font-semibold text-neutral-300 tracking-wider">{ui.soundscape}</span>
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => { setSelectedBgm('none'); setBgmPlaying(false); }}
@@ -780,11 +780,11 @@ export default function GalaxyScreen({ tool, locale, ambientAudioFiles = [], isC
                     : 'bg-neutral-900/50 border-white/5 text-neutral-400 hover:text-neutral-200'
                 }`}
               >
-                Mute Audio
+                {ui.mute}
               </button>
               {audioList.map((bgm, idx) => {
                 const isSelected = selectedBgm === bgm;
-                const trackName = bgm.split('/').pop()?.split('-')[0] || `Ambient Pad ${idx + 1}`;
+                const trackName = bgm.split('/').pop()?.split('-')[0] || (ui.track_fallback ?? '').replace('{n}', String(idx + 1));
                 return (
                   <button
                     key={bgm}

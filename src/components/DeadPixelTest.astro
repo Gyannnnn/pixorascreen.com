@@ -1,6 +1,7 @@
 ---
 import type { Tool } from '../data/tools';
 import { type Locale } from '../data/locales';
+import { strings, t } from '../i18n/ui';
 
 type Props = {
   tool: Tool;
@@ -8,57 +9,61 @@ type Props = {
   isCard?: boolean;
 };
 
-const { isCard = false } = Astro.props;
+const { isCard = false, locale } = Astro.props;
+
+// Color names are lowercased inside running text ("Show the black test screen"), except in
+// German, where they are nouns and keep their capital ("Testbildschirm Schwarz anzeigen").
+const inSentence = (label: string) => (locale === 'de' ? label : label.toLocaleLowerCase(locale));
 
 // The order matters: black first (stuck-on pixels stand out immediately against a dark
 // field), then white, then the three sub-pixel channels, then grey for backlight uniformity.
 const steps = [
   {
     id: 'black',
-    label: 'Black',
+    label: t(locale, 'deadpixel.label_black'),
     color: '#000000',
     text: '#ffffff',
-    hint: 'Look for bright or colored dots that stay lit. Anything glowing against true black is a stuck pixel.',
+    hint: t(locale, 'deadpixel.hint_black'),
   },
   {
     id: 'white',
-    label: 'White',
+    label: t(locale, 'deadpixel.label_white'),
     color: '#ffffff',
     text: '#111111',
-    hint: 'Look for dark spots that stay off. Dark dots against full white are dead pixels, and dust shows up here too.',
+    hint: t(locale, 'deadpixel.hint_white'),
   },
   {
     id: 'red',
-    label: 'Red',
+    label: t(locale, 'deadpixel.label_red'),
     color: '#ff0000',
     text: '#ffffff',
-    hint: 'This drives only the red sub-pixel. Any dark or off-color dot means the red channel has failed at that point.',
+    hint: t(locale, 'deadpixel.hint_red'),
   },
   {
     id: 'green',
-    label: 'Green',
+    label: t(locale, 'deadpixel.label_green'),
     color: '#00ff00',
     text: '#111111',
-    hint: 'This drives only the green sub-pixel. Green is the brightest channel to the eye, so faults are easiest to spot here.',
+    hint: t(locale, 'deadpixel.hint_green'),
   },
   {
     id: 'blue',
-    label: 'Blue',
+    label: t(locale, 'deadpixel.label_blue'),
     color: '#0000ff',
     text: '#ffffff',
-    hint: 'This drives only the blue sub-pixel. Blue is the dimmest channel, so check it in a darkened room.',
+    hint: t(locale, 'deadpixel.hint_blue'),
   },
   {
     id: 'grey',
-    label: 'Grey',
+    label: t(locale, 'deadpixel.label_grey'),
     color: '#808080',
     text: '#ffffff',
-    hint: 'Look for uneven brightness, patches, or glow near the edges. Mid-grey is where backlight bleeding shows up most clearly.',
+    hint: t(locale, 'deadpixel.hint_grey'),
   },
 ];
 ---
 
-<section class="rounded-lg border border-hairline bg-canvas shadow-soft" aria-label="Dead pixel test">
+<section class="rounded-lg border border-hairline bg-canvas shadow-soft" aria-label={t(locale, 'deadpixel.section_label')}>
   <div
     class:list={[
       'group relative grid overflow-hidden rounded-md border border-hairline',
@@ -69,6 +74,7 @@ const steps = [
     tabindex="0"
     data-dead-pixel-test
     data-steps={JSON.stringify(steps)}
+    data-i18n={JSON.stringify(strings(locale, 'deadpixel'))}
     data-is-card={isCard ? 'true' : 'false'}
   >
     <!-- Per-color guidance overlay. Dismissible, because it sits on top of the panel
@@ -84,7 +90,7 @@ const steps = [
           class="-mr-1 -mt-1 shrink-0 rounded-md p-1 text-white/70 transition-colors hover:bg-white/15 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           type="button"
           data-hint-dismiss
-          aria-label="Hide guidance overlay"
+          aria-label={t(locale, 'deadpixel.hide_guidance')}
         >
           <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
             <path d="M18 6 6 18M6 6l12 12" />
@@ -97,7 +103,7 @@ const steps = [
       class="absolute right-3 top-3 z-30 grid size-11 place-items-center rounded-lg bg-black/25 text-white/90 shadow-xs ring-1 ring-white/15 backdrop-blur-xs transition-all hover:bg-black/45 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       type="button"
       data-fullscreen-icon
-      aria-label="Enter fullscreen"
+      aria-label={t(locale, 'deadpixel.enter_fullscreen')}
     >
       <svg class="size-6.25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M8 3H5a2 2 0 0 0-2 2v3" />
@@ -112,7 +118,7 @@ const steps = [
       class="absolute right-16 top-3 z-30 hidden size-11 place-items-center rounded-lg bg-black/25 text-white/90 shadow-xs ring-1 ring-white/15 backdrop-blur-xs transition-all hover:bg-black/45 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       type="button"
       data-hint-restore
-      aria-label="Show guidance overlay"
+      aria-label={t(locale, 'deadpixel.show_guidance')}
     >
       <svg class="size-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="9" />
@@ -127,11 +133,11 @@ const steps = [
             <div class="flex flex-col gap-3 min-w-0">
               <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
                 <p class="whitespace-nowrap font-mono text-sm font-medium text-ink" data-progress aria-live="polite">
-                  1 of {steps.length} &mdash; {steps[0].label}
+                  {t(locale, 'deadpixel.progress', { current: '1', total: String(steps.length), color: steps[0].label })}
                 </p>
                 <label class="flex shrink-0 cursor-pointer items-center gap-2 whitespace-nowrap text-xs text-muted">
                   <input class="size-4 cursor-pointer accent-current" type="checkbox" data-autoplay autocomplete="off" />
-                  Auto-advance (5s)
+                  {t(locale, 'deadpixel.autoplay')}
                 </label>
               </div>
 
@@ -148,27 +154,27 @@ const steps = [
                   type="button"
                   data-prev
                 >
-                  &larr; Previous
+                  {t(locale, 'deadpixel.previous')}
                 </button>
                 <button
                   class="flex-1 rounded-lg border border-hairline bg-ink px-3 py-2 text-sm font-medium text-canvas transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                   type="button"
                   data-next
                 >
-                  Next &rarr;
+                  {t(locale, 'deadpixel.next')}
                 </button>
               </div>
             </div>
 
             <div class="flex flex-col gap-3 min-w-0">
-              <p class="font-mono text-xs text-muted">Jump to color</p>
-              <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Jump to a specific test color">
+              <p class="font-mono text-xs text-muted">{t(locale, 'deadpixel.jump_label')}</p>
+              <div class="flex flex-wrap items-center gap-2" role="group" aria-label={t(locale, 'deadpixel.jump_group')}>
                 {steps.map((step, index) => (
                   <button
                     class="flex items-center gap-2 rounded-full border border-hairline py-1 pl-1 pr-3 text-xs font-medium text-ink transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                     type="button"
                     data-jump={index}
-                    aria-label={`Show the ${step.label.toLowerCase()} test screen`}
+                    aria-label={t(locale, 'deadpixel.show_step', { color: inSentence(step.label) })}
                   >
                     <span class="size-5 shrink-0 rounded-full border border-hairline" style={`background:${step.color};`}></span>
                     {step.label}
@@ -190,6 +196,7 @@ const steps = [
     if (root.dataset.isCard === 'true') continue;
 
     const steps: Step[] = JSON.parse(root.dataset.steps || '[]');
+    const text: Record<string, string> = JSON.parse(root.dataset.i18n || '{}');
     if (steps.length === 0) continue;
 
     const progress = root.querySelector<HTMLElement>('[data-progress]');
@@ -210,7 +217,12 @@ const steps = [
     const render = () => {
       const step = steps[index];
       root.style.background = step.color;
-      if (progress) progress.textContent = `${index + 1} of ${steps.length} — ${step.label}`;
+      if (progress) {
+        progress.textContent = (text.progress ?? '')
+          .replace('{current}', String(index + 1))
+          .replace('{total}', String(steps.length))
+          .replace('{color}', step.label);
+      }
       if (hintText) hintText.textContent = step.hint;
 
       for (const [i, rail] of rails.entries()) {

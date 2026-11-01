@@ -1,34 +1,9 @@
 import type { APIRoute } from 'astro';
-import { localeOrder, locales } from '../data/locales';
-import { allToolPaths } from '../data/seo';
+import { sitemapEntries } from '../i18n/indexing';
 
+// Same URL set as sitemap.xml; referenced from sitemap-index.xml.
 export const GET: APIRoute = () => {
-  const baseUrl = 'https://pixorascreen.com';
-
-  const urls: { loc: string; changefreq: string; priority: string }[] = [];
-
-  // Homepage
-  urls.push({ loc: `${baseUrl}/`, changefreq: 'daily', priority: '1.0' });
-
-  // Localized homepages
-  for (const locale of localeOrder) {
-    if (locale !== 'en') {
-      urls.push({ loc: `${baseUrl}${locales[locale].pathPrefix}/`, changefreq: 'weekly', priority: '0.8' });
-    }
-  }
-
-  // Static pages
-  urls.push({ loc: `${baseUrl}/about/`, changefreq: 'monthly', priority: '0.4' });
-  urls.push({ loc: `${baseUrl}/contact/`, changefreq: 'monthly', priority: '0.4' });
-  urls.push({ loc: `${baseUrl}/privacy/`, changefreq: 'monthly', priority: '0.4' });
-
-  // Tool pages
-  for (const item of allToolPaths()) {
-    const priority = item.tool.id === 'black-screen' || item.tool.id === 'white-screen' ? '0.9' : '0.8';
-    urls.push({ loc: `${baseUrl}${item.path}`, changefreq: 'weekly', priority });
-  }
-
-  const urlElements = urls
+  const urlElements = sitemapEntries()
     .map(
       (u) =>
         `  <url>\n    <loc>${u.loc}</loc>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`

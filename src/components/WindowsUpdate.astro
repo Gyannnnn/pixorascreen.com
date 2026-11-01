@@ -1,14 +1,15 @@
 ---
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
+import { strings, t } from '../i18n/ui';
 
 type Props = { tool: Tool; locale: Locale; isCard?: boolean };
 const { tool, locale, isCard = false } = Astro.props;
 ---
 
-<section class="windows-update-wrapper" data-win-update aria-label="Windows Update Simulator">
+<section class="windows-update-wrapper" data-win-update data-i18n={JSON.stringify(strings(locale, 'winupdate'))} aria-label={t(locale, 'winupdate.section_label')}>
   <div class="wu-simulator group" data-wu-simulator data-is-card={isCard ? "true" : "false"} id="wuSimulator">
-    <button class="wu-fs-btn" id="wuFullscreenBtn" type="button" aria-label="Fullscreen" onclick="window.__wuUpdate?.fullscreen()">
+    <button class="wu-fs-btn" id="wuFullscreenBtn" type="button" aria-label={t(locale, 'winupdate.fullscreen')} onclick="window.__wuUpdate?.fullscreen()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M8 3H5a2 2 0 0 0-2 2v3" />
         <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
@@ -16,7 +17,7 @@ const { tool, locale, isCard = false } = Astro.props;
         <path d="M3 16v3a2 2 0 0 0 2 2h3" />
       </svg>
     </button>
-    <button class="wu-gear-btn" id="wuGearBtn" type="button" aria-label="Settings" onclick="window.__wuUpdate?.toggleControls()">
+    <button class="wu-gear-btn" id="wuGearBtn" type="button" aria-label={t(locale, 'winupdate.settings')} onclick="window.__wuUpdate?.toggleControls()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="3"/>
         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -29,8 +30,8 @@ const { tool, locale, isCard = false } = Astro.props;
         <rect x="2" y="52" width="46" height="46" rx="6" fill="currentColor"/>
         <rect x="52" y="52" width="46" height="46" rx="6" fill="currentColor"/>
       </svg>
-      <p class="wu-heading" id="wuHeading" role="heading" aria-level="2">Working on updates</p>
-      <p class="wu-subtitle" id="wuSubtitle">Please keep your computer on.</p>
+      <p class="wu-heading" id="wuHeading" role="heading" aria-level="2">{t(locale, 'winupdate.heading')}</p>
+      <p class="wu-subtitle" id="wuSubtitle">{t(locale, 'winupdate.subtitle')}</p>
       <div class="wu-progress-area" id="wuProgressArea">
         <svg class="wu-ring" viewBox="0 0 120 120" aria-hidden="true">
           <circle class="wu-dot-track" id="wuDotTrack" cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="3" opacity="0.35" stroke-dasharray="4.5 8.2" stroke-linecap="round"/>
@@ -38,8 +39,8 @@ const { tool, locale, isCard = false } = Astro.props;
         </svg>
         <span class="wu-pct" id="wuPct">0%</span>
       </div>
-      <p class="wu-note" id="wuNote">Don't turn off your computer</p>
-      <p class="wu-status" id="wuStatus">Preparing...</p>
+      <p class="wu-note" id="wuNote">{t(locale, 'winupdate.note')}</p>
+      <p class="wu-status" id="wuStatus">{t(locale, 'winupdate.msg_preparing')}</p>
       <p class="wu-eta" id="wuEta">&#8203;</p>
     </div>
 
@@ -52,8 +53,8 @@ const { tool, locale, isCard = false } = Astro.props;
             <rect x="2" y="52" width="46" height="46" rx="6" fill="currentColor"/>
             <rect x="52" y="52" width="46" height="46" rx="6" fill="currentColor"/>
           </svg>
-          <p class="wu-restart-text">Restarting...</p>
-          <p class="wu-restart-sub">Please don't turn off your computer</p>
+          <p class="wu-restart-text">{t(locale, 'winupdate.restarting')}</p>
+          <p class="wu-restart-sub">{t(locale, 'winupdate.restart_sub')}</p>
           <div class="wu-boot-dots"><span></span><span></span><span></span></div>
         </div>
       </div>
@@ -65,7 +66,7 @@ const { tool, locale, isCard = false } = Astro.props;
             <rect x="2" y="52" width="46" height="46" rx="6" fill="currentColor"/>
             <rect x="52" y="52" width="46" height="46" rx="6" fill="currentColor"/>
           </svg>
-          <p class="wu-restart-text wu-restart-boot-text">Getting things ready</p>
+          <p class="wu-restart-text wu-restart-boot-text">{t(locale, 'winupdate.getting_ready')}</p>
           <div class="wu-boot-dots"><span></span><span></span><span></span></div>
         </div>
       </div>
@@ -73,8 +74,8 @@ const { tool, locale, isCard = false } = Astro.props;
 
     <div class="wu-controls-overlay" id="wuControlsOverlay">
       <div class="wu-co-header">
-        <span class="wu-co-title">Settings</span>
-        <button class="wu-co-close" type="button" aria-label="Close settings" onclick="window.__wuUpdate?.toggleControls()">
+        <span class="wu-co-title">{t(locale, 'winupdate.settings')}</span>
+        <button class="wu-co-close" type="button" aria-label={t(locale, 'winupdate.close_settings')} onclick="window.__wuUpdate?.toggleControls()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
@@ -83,68 +84,68 @@ const { tool, locale, isCard = false } = Astro.props;
       <div class="wu-co-body">
         <div class="wu-co-row">
           <div class="wu-co-group">
-            <label class="wu-co-label">Theme</label>
+            <label class="wu-co-label">{t(locale, 'winupdate.theme')}</label>
             <select id="wuTheme" onchange="window.__wuUpdate?.theme(this.value)">
-              <option value="default">Windows 11 Blue</option>
-              <option value="dark">Dark Update</option>
-              <option value="light">Light Update</option>
+              <option value="default">{t(locale, 'winupdate.theme_default')}</option>
+              <option value="dark">{t(locale, 'winupdate.theme_dark')}</option>
+              <option value="light">{t(locale, 'winupdate.theme_light')}</option>
             </select>
           </div>
           <div class="wu-co-group">
-            <label class="wu-co-label">Mode</label>
+            <label class="wu-co-label">{t(locale, 'winupdate.mode')}</label>
             <select id="wuMode" onchange="window.__wuUpdate?.mode(this.value)">
-              <option value="realistic">Realistic</option>
-              <option value="manual">Manual</option>
-              <option value="timer">Timer</option>
-              <option value="infinite">Infinite</option>
+              <option value="realistic">{t(locale, 'winupdate.mode_realistic')}</option>
+              <option value="manual">{t(locale, 'winupdate.mode_manual')}</option>
+              <option value="timer">{t(locale, 'winupdate.mode_timer')}</option>
+              <option value="infinite">{t(locale, 'winupdate.mode_infinite')}</option>
             </select>
           </div>
           <div class="wu-co-group">
-            <label class="wu-co-label">Speed</label>
+            <label class="wu-co-label">{t(locale, 'winupdate.speed')}</label>
             <input type="range" min="1" max="10" value="5" id="wuSpeed" oninput="window.__wuUpdate?.speed(this.value)"/>
           </div>
           <div class="wu-co-group" id="wuTimerGroup" style="display:none">
-            <label class="wu-co-label">Duration</label>
+            <label class="wu-co-label">{t(locale, 'winupdate.duration')}</label>
             <select id="wuTimerDuration" onchange="window.__wuUpdate?.timerDuration(this.value)">
-              <option value="5">5 minutes</option>
-              <option value="10">10 minutes</option>
-              <option value="15">15 minutes</option>
-              <option value="30">30 minutes</option>
-              <option value="60">1 hour</option>
+              <option value="5">{t(locale, 'winupdate.minutes', { n: '5' })}</option>
+              <option value="10">{t(locale, 'winupdate.minutes', { n: '10' })}</option>
+              <option value="15">{t(locale, 'winupdate.minutes', { n: '15' })}</option>
+              <option value="30">{t(locale, 'winupdate.minutes', { n: '30' })}</option>
+              <option value="60">{t(locale, 'winupdate.one_hour')}</option>
             </select>
           </div>
           <div class="wu-co-group" id="wuManualGroup" style="display:none">
-            <label class="wu-co-label">Progress</label>
+            <label class="wu-co-label">{t(locale, 'winupdate.progress')}</label>
             <div class="wu-co-slider-row">
               <input type="range" min="0" max="100" value="0" id="wuManualSlider" oninput="document.getElementById('wuManualVal').textContent=this.value+'%';window.__wuUpdate?.manualValue(this.value)"/>
               <span class="wu-co-val" id="wuManualVal">0%</span>
             </div>
           </div>
           <div class="wu-co-group">
-            <label class="wu-co-label">Scenario</label>
+            <label class="wu-co-label">{t(locale, 'winupdate.scenario')}</label>
             <select id="wuScenario" onchange="window.__wuUpdate?.scenario(this.value)">
-              <option value="security">Security Update</option>
-              <option value="feature">Feature Update</option>
-              <option value="cumulative">Cumulative Update</option>
-              <option value="driver">Driver Update</option>
-              <option value="insider">Insider Preview</option>
+              <option value="security">{t(locale, 'winupdate.scenario_security')}</option>
+              <option value="feature">{t(locale, 'winupdate.scenario_feature')}</option>
+              <option value="cumulative">{t(locale, 'winupdate.scenario_cumulative')}</option>
+              <option value="driver">{t(locale, 'winupdate.scenario_driver')}</option>
+              <option value="insider">{t(locale, 'winupdate.scenario_insider')}</option>
             </select>
           </div>
           <div class="wu-co-group">
             <label class="wu-co-check">
               <input type="checkbox" id="wuAutoRestart" onchange="window.__wuUpdate?.autoRestart(this.checked)"/>
-              Auto Restart
+              {t(locale, 'winupdate.auto_restart')}
             </label>
             <label class="wu-co-check">
               <input type="checkbox" id="wuSound" onchange="window.__wuUpdate?.sound(this.checked)"/>
-              Sound
+              {t(locale, 'winupdate.sound')}
             </label>
           </div>
         </div>
         <div class="wu-co-actions">
-          <button onclick="window.__wuUpdate?.restart()">Restart</button>
-          <button onclick="window.__wuUpdate?.reset()">Reset</button>
-          <button class="wu-co-fs" onclick="window.__wuUpdate?.fullscreen()">Fullscreen</button>
+          <button onclick="window.__wuUpdate?.restart()">{t(locale, 'winupdate.restart')}</button>
+          <button onclick="window.__wuUpdate?.reset()">{t(locale, 'winupdate.reset')}</button>
+          <button class="wu-co-fs" onclick="window.__wuUpdate?.fullscreen()">{t(locale, 'winupdate.fullscreen')}</button>
         </div>
       </div>
     </div>
@@ -650,6 +651,7 @@ const { tool, locale, isCard = false } = Astro.props;
   const C = 2 * Math.PI * 52;
   const sim = document.getElementById('wuSimulator');
   const wrapper = sim.closest('[data-win-update]');
+  const T = JSON.parse(wrapper.dataset.i18n || '{}');
   const ringFill = document.getElementById('wuRingFill');
   const dotTrack = document.getElementById('wuDotTrack');
   const pctEl = document.getElementById('wuPct');
@@ -691,54 +693,54 @@ const { tool, locale, isCard = false } = Astro.props;
 
   const scenarios = {
     security: { title: 'Security Update', phases: [
-      { r: [0,4], m: ['Preparing...','Checking for security updates...','Getting things ready...'] },
-      { r: [4,12], m: ['Downloading security intelligence...','Downloading updates...','Downloading update 1 of 3...'] },
-      { r: [12,28], m: ['Downloading security update...','Downloading cumulative update...'] },
-      { r: [28,50], m: ['Installing security updates...','Installing update 1 of 3...','Installing cumulative update...'] },
-      { r: [50,68], m: ['Applying security patches...','Configuring Windows...','Configuring system settings...'] },
-      { r: [68,82], m: ['Applying settings...','Optimizing system...','Performing maintenance...'] },
-      { r: [82,93], m: ['Cleaning up...','Cleaning up temporary files...','Finalizing...'] },
-      { r: [93,100], m: ['Almost there...','Finalizing updates...','Please wait...'] },
+      { r: [0,4], m: [T.msg_preparing,T.msg_checking_for_security_updates,T.msg_getting_things_ready] },
+      { r: [4,12], m: [T.msg_downloading_security_intelligence,T.msg_downloading_updates,T.msg_downloading_update_1_of_3] },
+      { r: [12,28], m: [T.msg_downloading_security_update,T.msg_downloading_cumulative_update] },
+      { r: [28,50], m: [T.msg_installing_security_updates,T.msg_installing_update_1_of_3,T.msg_installing_cumulative_update] },
+      { r: [50,68], m: [T.msg_applying_security_patches,T.msg_configuring_windows,T.msg_configuring_system_settings] },
+      { r: [68,82], m: [T.msg_applying_settings,T.msg_optimizing_system,T.msg_performing_maintenance] },
+      { r: [82,93], m: [T.msg_cleaning_up,T.msg_cleaning_up_temporary_files,T.msg_finalizing] },
+      { r: [93,100], m: [T.msg_almost_there,T.msg_finalizing_updates,T.msg_please_wait] },
     ]},
     feature: { title: 'Feature Update', phases: [
-      { r: [0,3], m: ['Preparing...','Checking compatibility...','Getting your PC ready...'] },
-      { r: [3,10], m: ['Downloading feature update...','Downloading Windows update...','Downloading update...'] },
-      { r: [10,22], m: ['Downloading update...','Downloading additional files...'] },
-      { r: [22,45], m: ['Installing feature update...','Installing new components...'] },
-      { r: [45,60], m: ['Configuring features...','Configuring Windows...'] },
-      { r: [60,75], m: ['Migrating data...','Moving files...','Applying settings...'] },
-      { r: [75,88], m: ['Cleaning up...','Optimizing your PC...','Performing maintenance...'] },
-      { r: [88,95], m: ['Finalizing...','Almost there...'] },
-      { r: [95,100], m: ['Please wait...','Finalizing your update...'] },
+      { r: [0,3], m: [T.msg_preparing,T.msg_checking_compatibility,T.msg_getting_your_pc_ready] },
+      { r: [3,10], m: [T.msg_downloading_feature_update,T.msg_downloading_windows_update,T.msg_downloading_update] },
+      { r: [10,22], m: [T.msg_downloading_update,T.msg_downloading_additional_files] },
+      { r: [22,45], m: [T.msg_installing_feature_update,T.msg_installing_new_components] },
+      { r: [45,60], m: [T.msg_configuring_features,T.msg_configuring_windows] },
+      { r: [60,75], m: [T.msg_migrating_data,T.msg_moving_files,T.msg_applying_settings] },
+      { r: [75,88], m: [T.msg_cleaning_up,T.msg_optimizing_your_pc,T.msg_performing_maintenance] },
+      { r: [88,95], m: [T.msg_finalizing,T.msg_almost_there] },
+      { r: [95,100], m: [T.msg_please_wait,T.msg_finalizing_your_update] },
     ]},
     cumulative: { title: 'Cumulative Update', phases: [
-      { r: [0,4], m: ['Preparing...','Checking for updates...','Getting ready...'] },
-      { r: [4,15], m: ['Downloading cumulative update...','Downloading update...'] },
-      { r: [15,30], m: ['Downloading updates...','Downloading additional files...'] },
-      { r: [30,55], m: ['Installing cumulative update...','Installing update...'] },
-      { r: [55,70], m: ['Applying patches...','Configuring system...'] },
-      { r: [70,82], m: ['Optimizing system...','Applying settings...'] },
-      { r: [82,94], m: ['Cleaning up...','Finalizing...'] },
-      { r: [94,100], m: ['Almost done...','Finalizing updates...'] },
+      { r: [0,4], m: [T.msg_preparing,T.msg_checking_for_updates,T.msg_getting_ready] },
+      { r: [4,15], m: [T.msg_downloading_cumulative_update,T.msg_downloading_update] },
+      { r: [15,30], m: [T.msg_downloading_updates,T.msg_downloading_additional_files] },
+      { r: [30,55], m: [T.msg_installing_cumulative_update,T.msg_installing_update] },
+      { r: [55,70], m: [T.msg_applying_patches,T.msg_configuring_system] },
+      { r: [70,82], m: [T.msg_optimizing_system,T.msg_applying_settings] },
+      { r: [82,94], m: [T.msg_cleaning_up,T.msg_finalizing] },
+      { r: [94,100], m: [T.msg_almost_done,T.msg_finalizing_updates] },
     ]},
     driver: { title: 'Driver Update', phases: [
-      { r: [0,5], m: ['Preparing...','Checking for driver updates...'] },
-      { r: [5,18], m: ['Downloading driver updates...','Downloading device drivers...'] },
-      { r: [18,35], m: ['Downloading drivers...','Downloading additional drivers...'] },
-      { r: [35,58], m: ['Installing driver updates...','Installing device drivers...'] },
-      { r: [58,72], m: ['Configuring devices...','Applying driver settings...'] },
-      { r: [72,85], m: ['Optimizing system...','Finalizing driver setup...'] },
-      { r: [85,100], m: ['Cleaning up...','Finalizing installation...'] },
+      { r: [0,5], m: [T.msg_preparing,T.msg_checking_for_driver_updates] },
+      { r: [5,18], m: [T.msg_downloading_driver_updates,T.msg_downloading_device_drivers] },
+      { r: [18,35], m: [T.msg_downloading_drivers,T.msg_downloading_additional_drivers] },
+      { r: [35,58], m: [T.msg_installing_driver_updates,T.msg_installing_device_drivers] },
+      { r: [58,72], m: [T.msg_configuring_devices,T.msg_applying_driver_settings] },
+      { r: [72,85], m: [T.msg_optimizing_system,T.msg_finalizing_driver_setup] },
+      { r: [85,100], m: [T.msg_cleaning_up,T.msg_finalizing_installation] },
     ]},
     insider: { title: 'Windows Insider Update', phases: [
-      { r: [0,3], m: ['Preparing...','Connecting to Insider Preview...','Getting ready...'] },
-      { r: [3,12], m: ['Downloading Insider Preview...','Downloading build...'] },
-      { r: [12,25], m: ['Downloading preview build...','Downloading update...'] },
-      { r: [25,48], m: ['Installing preview...','Installing new build...'] },
-      { r: [48,63], m: ['Configuring preview features...','Configuring Windows...'] },
-      { r: [63,78], m: ['Migrating user data...','Moving files...','Applying settings...'] },
-      { r: [78,90], m: ['Cleaning up...','Optimizing...'] },
-      { r: [90,100], m: ['Almost done...','Finalizing preview build...'] },
+      { r: [0,3], m: [T.msg_preparing,T.msg_connecting_to_insider_preview,T.msg_getting_ready] },
+      { r: [3,12], m: [T.msg_downloading_insider_preview,T.msg_downloading_build] },
+      { r: [12,25], m: [T.msg_downloading_preview_build,T.msg_downloading_update] },
+      { r: [25,48], m: [T.msg_installing_preview,T.msg_installing_new_build] },
+      { r: [48,63], m: [T.msg_configuring_preview_features,T.msg_configuring_windows] },
+      { r: [63,78], m: [T.msg_migrating_user_data,T.msg_moving_files,T.msg_applying_settings] },
+      { r: [78,90], m: [T.msg_cleaning_up,T.msg_optimizing] },
+      { r: [90,100], m: [T.msg_almost_done,T.msg_finalizing_preview_build] },
     ]},
   };
 
@@ -790,10 +792,10 @@ const { tool, locale, isCard = false } = Astro.props;
   function updateEta() {
     if (state.paused || state.progress <= 0 || state.progress >= 100) {
       if (state.progress <= 0) {
-        etaEl.textContent = 'Estimating...';
+        etaEl.textContent = T.eta_estimating;
         etaEl.classList.remove('hidden');
       } else if (state.progress >= 100) {
-        etaEl.textContent = 'Completing...';
+        etaEl.textContent = T.eta_completing;
       }
       return;
     }
@@ -802,7 +804,7 @@ const { tool, locale, isCard = false } = Astro.props;
       const elapsed = (Date.now() - state.timerStart) / 1000;
       const total = state.timerDuration * 60;
       const r = Math.max(0, total - elapsed);
-      etaEl.textContent = r < 60 ? Math.round(r) + ' seconds remaining' : Math.round(r / 60) + ' minutes remaining';
+      etaEl.textContent = r < 60 ? T.eta_seconds.replace('{n}', Math.round(r)) : T.eta_minutes.replace('{n}', Math.round(r / 60));
       etaEl.classList.remove('hidden');
       return;
     }
@@ -813,7 +815,7 @@ const { tool, locale, isCard = false } = Astro.props;
     if (state.etaMode === 0 && state.etaCooldown <= 0) {
       state.etaMode = 1;
       state.etaCooldown = 3 + Math.floor(Math.random() * 8);
-      etaEl.textContent = 'Estimating...';
+      etaEl.textContent = T.eta_estimating;
       etaEl.classList.remove('hidden');
       return;
     }
@@ -821,7 +823,7 @@ const { tool, locale, isCard = false } = Astro.props;
     if (state.etaCooldown <= 0 && Math.random() < 0.06) {
       state.etaCooldown = 4 + Math.floor(Math.random() * 10);
       state.etaMode = state.etaMode === 1 ? 0 : 1;
-      if (state.etaMode === 0) { etaEl.textContent = 'Estimating...'; return; }
+      if (state.etaMode === 0) { etaEl.textContent = T.eta_estimating; return; }
     }
 
     if (state.etaMode === 1 && recent.length > 3) {
@@ -830,9 +832,9 @@ const { tool, locale, isCard = false } = Astro.props;
         let remaining = (100 - state.progress) / avg * (0.6 + Math.random() * 0.5);
         if (Math.random() < 0.1) remaining *= 1.5 + Math.random() * 2;
         let text;
-        if (remaining < 60) text = Math.max(1, Math.round(remaining)) + ' seconds remaining';
-        else if (remaining < 3600) text = Math.max(1, Math.round(remaining / 60)) + ' minutes remaining';
-        else text = (remaining / 60 / 60).toFixed(1) + ' hours remaining';
+        if (remaining < 60) text = T.eta_seconds.replace('{n}', Math.max(1, Math.round(remaining)));
+        else if (remaining < 3600) text = T.eta_minutes.replace('{n}', Math.max(1, Math.round(remaining / 60)));
+        else text = T.eta_hours.replace('{n}', (remaining / 60 / 60).toFixed(1));
         if (text !== state.lastEtaText) {
           etaEl.textContent = text;
           state.lastEtaText = text;
@@ -842,7 +844,7 @@ const { tool, locale, isCard = false } = Astro.props;
       }
     }
     if (state.etaMode === 0 || recent.length <= 3) {
-      etaEl.textContent = 'Estimating...';
+      etaEl.textContent = T.eta_estimating;
       etaEl.classList.remove('hidden');
     }
   }
@@ -1047,8 +1049,8 @@ const { tool, locale, isCard = false } = Astro.props;
     restartOverlay.classList.remove('fade-in', 'fade-out');
     state.paused = false;
     setProgress(0);
-    statusEl.textContent = 'Preparing...';
-    etaEl.textContent = 'Estimating...';
+    statusEl.textContent = T.msg_preparing;
+    etaEl.textContent = T.eta_estimating;
   }
 
   function restartSim() { resetProgress(); state.restartCount = 0; }

@@ -1,7 +1,9 @@
 ---
 import { categories, tools, type ToolCategoryId } from '../data/tools';
 import { type Locale } from '../data/locales';
-import { t, toolName } from '../data/translations';
+import { siteName } from '../data/seo';
+import { categoryName, t, toolName } from '../i18n/ui';
+import { homePath, staticPagePath, toolPath } from '../i18n/paths';
 import BrandLogo from './BrandLogo.astro';
 
 type Props = {
@@ -15,7 +17,7 @@ type CategoryGroup = { id: ToolCategoryId; name: string; tools: typeof tools };
 const toolsByCategory = categoryIds
   .map((id) => ({
     id,
-    name: categories[id].name,
+    name: categoryName(locale, id),
     tools: tools.filter((tool) => tool.category === id),
   }))
   .filter((c) => c.tools.length > 0) as CategoryGroup[];
@@ -29,7 +31,7 @@ const half = Math.ceil(colors.tools.length / 2);
   <div class="site-shell py-14">
     <div class="grid gap-10 lg:grid-cols-[1.2fr_2fr]">
       <div class="max-w-sm">
-        <a href="/" class="inline-flex items-center" aria-label={`${t(locale, 'site.title')} home`}>
+        <a href={homePath(locale)} class="inline-flex items-center" aria-label={t(locale, 'common.home_label', { site: siteName })}>
           <BrandLogo size="md" />
         </a>
         <p class="mt-4 text-sm leading-6 text-muted">
@@ -42,17 +44,17 @@ const half = Math.ceil(colors.tools.length / 2);
           <ul class="mt-3 space-y-1.5">
             {colors.tools.slice(0, half).map((tool) => (
               <li>
-                <a class="whitespace-nowrap text-sm text-body hover:text-ink transition-colors" href={`/${tool.slug}/`}>{toolName(locale, tool)}</a>
+                <a class="whitespace-nowrap text-sm text-body hover:text-ink transition-colors" href={toolPath(tool, locale)}>{toolName(locale, tool)}</a>
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <h2 class="font-mono text-xs text-muted sr-only">{colors.name} (cont.)</h2>
+          <h2 class="font-mono text-xs text-muted sr-only">{t(locale, 'footer.continued', { name: colors.name })}</h2>
           <ul class="mt-3 space-y-1.5 xl:mt-0">
             {colors.tools.slice(half).map((tool) => (
               <li>
-                <a class="whitespace-nowrap text-sm text-body hover:text-ink transition-colors" href={`/${tool.slug}/`}>{toolName(locale, tool)}</a>
+                <a class="whitespace-nowrap text-sm text-body hover:text-ink transition-colors" href={toolPath(tool, locale)}>{toolName(locale, tool)}</a>
               </li>
             ))}
           </ul>
@@ -63,7 +65,7 @@ const half = Math.ceil(colors.tools.length / 2);
             <ul class="mt-3 space-y-1.5">
               {catTools.map((tool) => (
                 <li>
-                  <a class="whitespace-nowrap text-sm text-body hover:text-ink transition-colors" href={`/${tool.slug}/`}>{toolName(locale, tool)}</a>
+                  <a class="whitespace-nowrap text-sm text-body hover:text-ink transition-colors" href={toolPath(tool, locale)}>{toolName(locale, tool)}</a>
                 </li>
               ))}
             </ul>
@@ -74,12 +76,12 @@ const half = Math.ceil(colors.tools.length / 2);
   </div>
   <div class="border-t border-hairline">
     <div class="site-shell flex flex-wrap items-center justify-between gap-4 py-5">
-      <p class="text-xs text-muted">&copy; {new Date().getFullYear()} {t(locale, 'site.title')}.</p>
-      <p class="text-xs text-muted">Made In India 🇮🇳</p>
+      <p class="text-xs text-muted">&copy; {new Date().getFullYear()} {siteName}.</p>
+      <p class="text-xs text-muted">{t(locale, 'footer.made_in')}</p>
       <nav class="flex flex-wrap gap-x-4 gap-y-1">
-        <a class="text-xs text-muted hover:text-ink transition-colors" href="/about/">{t(locale, 'footer.about')}</a>
-        <a class="text-xs text-muted hover:text-ink transition-colors" href="/privacy/">{t(locale, 'footer.privacy')}</a>
-        <a class="text-xs text-muted hover:text-ink transition-colors" href="/contact/">{t(locale, 'footer.contact')}</a>
+        <a class="text-xs text-muted hover:text-ink transition-colors" href={staticPagePath('about', locale)}>{t(locale, 'footer.about')}</a>
+        <a class="text-xs text-muted hover:text-ink transition-colors" href={staticPagePath('privacy', locale)}>{t(locale, 'footer.privacy')}</a>
+        <a class="text-xs text-muted hover:text-ink transition-colors" href={staticPagePath('contact', locale)}>{t(locale, 'footer.contact')}</a>
         
       </nav>
     </div>

@@ -1,7 +1,7 @@
 ---
 import type { Tool } from "../data/tools";
 import type { Locale } from "../data/locales";
-import { t } from "../data/translations";
+import { strings, t } from "../i18n/ui";
 import { brokenScreenAssets } from "../data/brokenScreenAssets";
 
 type Props = { tool: Tool; locale: Locale; isCard?: boolean };
@@ -15,15 +15,16 @@ const images = brokenScreenAssets.map((file) => `/assets/broken-screen/${file}`)
   data-broken-screen
   data-images={JSON.stringify(images)}
   data-is-card={isCard ? "true" : "false"}
-  aria-label="Broken Screen Prank"
+  data-i18n={JSON.stringify(strings(locale, 'broken'))}
+  aria-label={t(locale, 'broken.section_label')}
 >
   <!-- Screen Preview Area -->
   <div class="bs-root group relative flex min-h-[504px] w-full items-center justify-center overflow-hidden rounded-lg bg-black cursor-pointer outline-none" id="bsRoot">
     <div class="bs-preview absolute inset-0 flex items-center justify-center bg-black" id="bsPreview">
       {images.length > 0 ? (
-        <img id="bsActiveImg" src={images[0]} alt="Broken screen" class="bs-active-img h-full w-full object-cover pointer-events-none transition-all duration-300" />
+        <img id="bsActiveImg" src={images[0]} alt={t(locale, 'broken.image_alt_initial')} class="bs-active-img h-full w-full object-cover pointer-events-none transition-all duration-300" />
       ) : (
-        <div class="bs-empty text-white/25 text-xs font-mono p-5 text-center">Add images to public/assets/broken-screen/</div>
+        <div class="bs-empty text-white/25 text-xs font-mono p-5 text-center">{t(locale, 'broken.no_images')}</div>
       )}
     </div>
 
@@ -46,9 +47,9 @@ const images = brokenScreenAssets.map((file) => `/assets/broken-screen/${file}`)
             data-index={i} 
             data-src={src} 
             type="button" 
-            aria-label={`Select style ${i + 1}`}
+            aria-label={t(locale, 'broken.select_style', { n: String(i + 1) })}
           >
-            <img src={src} alt={`Style ${i + 1}`} class="h-full w-full object-cover pointer-events-none" loading="lazy" />
+            <img src={src} alt={t(locale, 'broken.style_alt', { n: String(i + 1) })} class="h-full w-full object-cover pointer-events-none" loading="lazy" />
           </button>
         ))}
       </div>
@@ -132,6 +133,8 @@ const images = brokenScreenAssets.map((file) => `/assets/broken-screen/${file}`)
     var activeImg = document.getElementById("bsActiveImg");
     var thumbs = document.querySelectorAll(".bs-thumb");
     var wrapper = document.querySelector("[data-broken-screen]");
+    var text = {};
+    try { text = JSON.parse((wrapper && wrapper.getAttribute("data-i18n")) || "{}"); } catch (error) {}
     var controlsBar = document.getElementById("bsControlsBar");
     var fsBtn = document.getElementById("bsFsBtn");
 
@@ -150,7 +153,7 @@ const images = brokenScreenAssets.map((file) => `/assets/broken-screen/${file}`)
       
       if (activeImg) {
         activeImg.src = src;
-        activeImg.alt = "Broken screen " + (index + 1);
+        activeImg.alt = text.image_alt.replace("{n}", index + 1);
       }
       
       thumbs.forEach(function (t, i) {

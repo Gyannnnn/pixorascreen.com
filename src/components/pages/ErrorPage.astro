@@ -1,0 +1,126 @@
+---
+// 404 and 500 pages. Cloudflare serves one prerendered file for every missing URL, so the page
+// carries a complete block per locale (header, message, popular tools, footer) and a tiny script
+// shows the block that matches the URL's locale prefix. Without JavaScript, English shows.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BrandLogo from '../BrandLogo.astro';
+import ToolCard from '../ToolCard.astro';
+import { popularTools } from '../../data/tools';
+import { siteName } from '../../data/seo';
+import { localeOrder, locales } from '../../i18n/locales';
+import { homePath, staticPagePath } from '../../i18n/paths';
+import { t } from '../../i18n/ui';
+
+type Props = { kind: 'not_found' | 'server_error' };
+const { kind } = Astro.props;
+const isNotFound = kind === 'not_found';
+const titles = Object.fromEntries(localeOrder.map((locale) => [locale, t(locale, `${kind}.meta_title`)]));
+---
+
+<BaseLayout
+  title={t('en', `${kind}.meta_title`)}
+  description={t('en', `${kind}.meta_description`)}
+  canonicalPath={isNotFound ? '/404/' : '/500/'}
+  locale="en"
+  chrome={false}
+>
+  {localeOrder.map((locale) => (
+    <div data-error-locale={locale} lang={locales[locale].lang} hidden={locale !== 'en'}>
+      <header class="border-b border-hairline bg-canvas/90">
+        <div class="site-shell flex h-16 items-center justify-between">
+          <a href={homePath(locale)} class="flex items-center" aria-label={t(locale, 'common.home_label', { site: siteName })}>
+            <BrandLogo size="md" />
+          </a>
+          <a class="rounded-full px-3 py-2 text-sm text-body hover:bg-canvas-soft-2 hover:text-ink" href={homePath(locale)}>{t(locale, 'tool.breadcrumb_home')}</a>
+        </div>
+      </header>
+
+      <section class="site-shell py-16 md:py-24">
+        <div class="relative overflow-hidden rounded-3xl border border-hairline bg-canvas p-8 md:p-14 shadow-soft">
+          <div class={`pointer-events-none absolute -right-24 -top-24 size-96 rounded-full blur-3xl ${isNotFound ? 'bg-cyan-brand/10' : 'bg-amber-brand/10'}`}></div>
+          <div class={`pointer-events-none absolute -bottom-24 -left-24 size-96 rounded-full blur-3xl ${isNotFound ? 'bg-violet-brand/10' : 'bg-pink-brand/10'}`}></div>
+          <div class="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <div class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas-soft px-3.5 py-1.5 text-xs font-mono text-muted">
+                <span class={`size-2 rounded-full ${isNotFound ? 'bg-pink-brand animate-pulse' : 'bg-amber-brand animate-ping'}`}></span>
+                {t(locale, `${kind}.badge`)}
+              </div>
+              <h1 class="mt-5 text-4xl font-semibold leading-[0.95] text-balance text-ink md:text-6xl">{t(locale, `${kind}.heading`)}</h1>
+              <p class="mt-5 text-lg leading-8 text-body max-w-xl">{t(locale, `${kind}.body`)}</p>
+              <div class="mt-8 flex flex-wrap gap-3">
+                {isNotFound ? (
+                  <>
+                    <a class="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-canvas transition-all hover:bg-body" href={homePath(locale)}>
+                      {t(locale, 'not_found.home')}
+                    </a>
+                    <a class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas px-6 py-3.5 text-sm font-medium text-ink transition-all hover:bg-canvas-soft" href={`${homePath(locale)}#colors`}>
+                      {t(locale, 'not_found.explore')}
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <button class="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-canvas transition-all hover:bg-body cursor-pointer" type="button" onclick="window.location.reload()">
+                      {t(locale, 'server_error.refresh')}
+                    </button>
+                    <a class="inline-flex items-center gap-2 rounded-full border border-hairline bg-canvas px-6 py-3.5 text-sm font-medium text-ink transition-all hover:bg-canvas-soft" href={homePath(locale)}>
+                      {t(locale, 'server_error.home')}
+                    </a>
+                  </>
+                )}
+              </div>
+            </div>
+            <div class="relative flex aspect-video w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-hairline bg-canvas-soft-2 p-6 text-center select-none shadow-inner">
+              <div class="relative z-10 flex flex-col items-center">
+                <span class={`font-mono text-7xl md:text-8xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r ${isNotFound ? 'from-pink-brand via-violet-brand to-cyan-brand' : 'from-amber-brand via-pink-brand to-violet-brand'}`}>
+                  {isNotFound ? '404' : '500'}
+                </span>
+                <div class="mt-3 flex items-center gap-2 font-mono text-xs text-muted">
+                  <span class={`inline-block size-2 rounded-full ${isNotFound ? 'bg-red-500' : 'bg-amber-500'}`}></span>
+                  <span>{t(locale, isNotFound ? 'not_found.signal' : 'server_error.diagnostic')}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-t border-hairline bg-canvas py-16">
+        <div class="site-shell">
+          <div class="max-w-xl">
+            <p class="font-mono text-xs text-muted">{t(locale, isNotFound ? 'not_found.recommended' : 'server_error.try_another')}</p>
+            <h2 class="mt-3 text-3xl font-semibold text-balance text-ink">{t(locale, `${kind}.popular_heading`)}</h2>
+            <p class="mt-2 text-sm leading-6 text-body">{t(locale, `${kind}.popular_body`)}</p>
+          </div>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {popularTools.slice(0, 4).map((tool) => <ToolCard tool={tool} locale={locale} />)}
+          </div>
+        </div>
+      </section>
+
+      <footer class="border-t border-hairline bg-canvas-soft">
+        <div class="site-shell flex flex-wrap items-center justify-between gap-4 py-5">
+          <p class="text-xs text-muted">&copy; {new Date().getFullYear()} {siteName}.</p>
+          <nav class="flex flex-wrap gap-x-4 gap-y-1">
+            <a class="text-xs text-muted hover:text-ink" href={staticPagePath('about', locale)}>{t(locale, 'footer.about')}</a>
+            <a class="text-xs text-muted hover:text-ink" href={staticPagePath('privacy', locale)}>{t(locale, 'footer.privacy')}</a>
+            <a class="text-xs text-muted hover:text-ink" href={staticPagePath('contact', locale)}>{t(locale, 'footer.contact')}</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+  ))}
+  <div hidden data-error-titles={JSON.stringify(titles)}></div>
+  <script is:inline>
+    (function () {
+      var first = location.pathname.split("/")[1] || "";
+      var block = document.querySelector('[data-error-locale="' + first + '"]');
+      if (!block || first === "en") return;
+      document.querySelectorAll("[data-error-locale]").forEach(function (el) { el.hidden = el !== block; });
+      document.documentElement.lang = block.getAttribute("lang");
+      try {
+        var titles = JSON.parse(document.querySelector("[data-error-titles]").getAttribute("data-error-titles"));
+        if (titles[first]) document.title = titles[first];
+      } catch (error) {}
+    })();
+  </script>
+</BaseLayout>

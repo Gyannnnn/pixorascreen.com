@@ -1,31 +1,12 @@
 import type { APIRoute } from 'astro';
-import { localeOrder, locales } from '../data/locales';
-import { allToolPaths, siteUrl } from '../data/seo';
+import { sitemapEntries } from '../i18n/indexing';
 
+// Lists indexable URLs only: a translation enters once it is complete (see TRANSLATION.md).
 export const GET: APIRoute = () => {
-  const pages: { path: string; priority: string; changefreq: string }[] = [
-    { path: '/', priority: '1.0', changefreq: 'daily' },
-    ...localeOrder
-      .filter((locale) => locale !== 'en')
-      .map((locale) => ({
-        path: `${locales[locale].pathPrefix}/`,
-        priority: '0.8',
-        changefreq: 'weekly',
-      })),
-    ...allToolPaths().map(({ path, tool }) => ({
-      path,
-      priority: tool.id === 'black-screen' || tool.id === 'white-screen' ? '0.9' : '0.8',
-      changefreq: 'weekly',
-    })),
-    { path: '/about/', priority: '0.4', changefreq: 'monthly' },
-    { path: '/privacy/', priority: '0.4', changefreq: 'monthly' },
-    { path: '/contact/', priority: '0.4', changefreq: 'monthly' },
-  ];
-
-  const urlElements = pages
+  const urlElements = sitemapEntries()
     .map(
-      ({ path, priority, changefreq }) => `  <url>
-    <loc>${siteUrl}${path}</loc>
+      ({ loc, priority, changefreq }) => `  <url>
+    <loc>${loc}</loc>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`

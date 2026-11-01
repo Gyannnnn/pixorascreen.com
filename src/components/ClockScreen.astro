@@ -2,6 +2,7 @@
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import ReactClockScreen from './ClockScreen.tsx';
+import { strings } from '../i18n/ui';
 import ToolFallback from './ToolFallback.astro';
 
 type Props = {
@@ -12,10 +13,10 @@ type Props = {
 const { tool, locale } = Astro.props;
 ---
 
-<ReactClockScreen 
-  tool={tool} 
-  locale={locale} 
-  client:only="react" 
+<ReactClockScreen
+  locale={locale}
+  strings={strings(locale, 'clock')}
+  client:only="react"
 >
   <ToolFallback slot="fallback" tool={tool} locale={locale} />
 </ReactClockScreen>

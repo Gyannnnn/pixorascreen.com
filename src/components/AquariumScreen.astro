@@ -4,6 +4,7 @@ import type { Locale } from '../data/locales';
 import ReactAquariumScreen from './AquariumScreen.tsx';
 import { getToolAssets } from '../utils/assets';
 import ToolFallback from './ToolFallback.astro';
+import { strings } from '../i18n/ui';
 
 type Props = {
   tool: Tool;
@@ -14,8 +15,9 @@ const { tool, locale } = Astro.props;
 const { audioFiles: aquariumAudioFiles } = getToolAssets('aquarium-screen');
 ---
 
-<ReactAquariumScreen 
-  tool={tool} 
+<ReactAquariumScreen
+  strings={strings(locale, 'aquarium')}
+  
   locale={locale} 
   aquariumAudioFiles={aquariumAudioFiles}
   client:only="react" 

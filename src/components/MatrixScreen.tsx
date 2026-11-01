@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 
 interface MatrixScreenProps {
-  tool: Tool;
   locale: Locale;
+  /** UI strings from the "matrix" catalog namespace; card previews pass none. */
+  strings?: Record<string, string>;
   audioFiles?: string[];
   isCard?: boolean;
 }
@@ -33,7 +33,12 @@ const hexToRgba = (hex: string, opacity: number) => {
   return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 };
 
-export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScreenProps) {
+export default function MatrixScreen({ locale, strings: ui = {}, isCard = false }: MatrixScreenProps) {
+  // A key-hint sentence with the key highlighted wherever the translation puts {key}.
+  const keyHint = (template: string | undefined, key: string) => {
+    const [before, after] = (template ?? '').split('{key}');
+    return <>{before}<strong className="text-neutral-400">{key}</strong>{after}</>;
+  };
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -148,7 +153,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
       if (key === 'f') {
         e.preventDefault();
         toggleFullscreen();
-      } else if (key === 'space') {
+      } else if (key === ' ' || e.code === 'Space') {
         e.preventDefault();
         setShowSettings((prev) => !prev);
       } else if (key === 'm') {
@@ -596,7 +601,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
         <div 
           className="absolute inset-0 cursor-pointer z-4"
           onClick={toggleFullscreen}
-          title="Click to go Fullscreen"
+          title={ui.click_fullscreen}
         />
       )}
 
@@ -612,8 +617,8 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
             className={`flex items-center justify-center w-10 h-10 rounded-xl bg-black/50 hover:bg-black/75 border border-white/10 text-white cursor-pointer transition-transform duration-300 backdrop-blur-md ${
               showSettings ? 'rotate-90 border-green-400/50 text-green-400' : ''
             }`}
-            aria-label="Toggle Customizer settings options"
-            title="Toggle settings panel"
+            aria-label={ui.settings_label}
+            title={ui.settings_title}
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
@@ -623,8 +628,8 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
           <button
             onClick={toggleFullscreen}
             className="flex items-center justify-center w-10 h-10 rounded-xl bg-black/50 hover:bg-black/75 border border-white/10 text-white cursor-pointer transition-all duration-200 backdrop-blur-md hover:border-white/20"
-            aria-label="Toggle Fullscreen view"
-            title="Toggle Fullscreen"
+            aria-label={ui.fullscreen_label}
+            title={ui.fullscreen_title}
           >
             {isFullscreen ? (
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -651,16 +656,16 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
           <div>
             <h3 className="text-sm font-semibold text-white tracking-wider uppercase flex items-center gap-1.5 font-mono">
               <span className="inline-block size-2 rounded-full bg-green-500 animate-pulse" />
-              Matrix Code Customizer
+              {ui.panel_heading}
             </h3>
-            <p className="text-[10px] text-neutral-400 mt-0.5">Customize digital streams, colors, and audio environment</p>
+            <p className="text-[10px] text-neutral-400 mt-0.5">{ui.panel_subtitle}</p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={resetToDefaults}
               className="text-[11px] font-medium text-green-400 bg-green-950/20 hover:bg-green-900/35 border border-green-500/25 px-2.5 py-1 rounded-lg cursor-pointer transition-colors"
             >
-              Reset Defaults
+              {ui.reset_defaults}
             </button>
             <button
               onClick={() => setShowSettings(false)}
@@ -676,12 +681,12 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
           <div className="flex flex-col gap-3.5">
             <div className="flex flex-col gap-1.5">
               <label htmlFor="customTextVal" className="text-xs font-semibold text-neutral-300">
-                👤 Custom Name / Text Rain
+                {ui.custom_text}
               </label>
               <input
                 id="customTextVal"
                 type="text"
-                placeholder="Enter Name or Message..."
+                placeholder={ui.custom_placeholder}
                 value={customText}
                 onChange={(e) => setCustomText(e.target.value)}
                 maxLength={45}
@@ -691,7 +696,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
 
             <div className="flex flex-col gap-1.5">
               <label htmlFor="characterSelector" className="text-xs font-semibold text-neutral-300">
-                🧬 Stream Character Type
+                {ui.char_type}
               </label>
               <select
                 id="characterSelector"
@@ -699,13 +704,13 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
                 onChange={(e) => setCharSet(e.target.value)}
                 className="bg-neutral-900 border border-white/10 focus:border-green-500 hover:border-white/20 text-xs text-white rounded-lg p-2 outline-none cursor-pointer transition-colors"
               >
-                <option value="classic">Classical Matrix (Half-width Katakana)</option>
-                <option value="binary">Binary Code (0 and 1)</option>
-                <option value="alpha">Alphanumeric (English characters)</option>
+                <option value="classic">{ui.char_classic}</option>
+                <option value="binary">{ui.char_binary}</option>
+                <option value="alpha">{ui.char_alpha}</option>
                 {customText.trim().length > 0 && (
                   <>
-                    <option value="custom-seq">Custom String (Sequence Spell-out)</option>
-                    <option value="custom">Custom String (Random Sample)</option>
+                    <option value="custom-seq">{ui.char_custom_seq}</option>
+                    <option value="custom">{ui.char_custom}</option>
                   </>
                 )}
               </select>
@@ -713,7 +718,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
 
             <div className="flex flex-col gap-1.5">
               <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                <span>Font Size</span>
+                <span>{ui.font_size}</span>
                 <span className="font-mono text-xs text-green-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                   {fontSize}px
                 </span>
@@ -733,7 +738,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
           <div className="flex flex-col gap-3.5">
             <div className="flex flex-col gap-1.5">
               <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                <span>Rain Speed</span>
+                <span>{ui.speed}</span>
                 <span className="font-mono text-xs text-green-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                   {speed.toFixed(1)}x
                 </span>
@@ -751,7 +756,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
 
             <div className="flex flex-col gap-1.5">
               <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                <span>Stream Density</span>
+                <span>{ui.density}</span>
                 <span className="font-mono text-xs text-green-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                   {(1 / density).toFixed(1)}x
                 </span>
@@ -769,7 +774,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
 
             <div className="flex flex-col gap-1.5">
               <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-                <span>Trail Length</span>
+                <span>{ui.trail}</span>
                 <span className="font-mono text-xs text-green-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                   {Math.round((0.25 - trailLength) * 400)}%
                 </span>
@@ -789,7 +794,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
 
         <div className="border-t border-white/5 pt-3.5 mt-0.5 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-2">
-            <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider font-mono">Select Glow Palette</span>
+            <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider font-mono">{ui.palette}</span>
             <div className="flex flex-wrap gap-2 mt-1">
               {COLOR_PRESETS.map((preset) => (
                 <button
@@ -812,7 +817,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
                         : preset.primary
                     }}
                   />
-                  {preset.name}
+                  {ui[`theme_${preset.id}`]}
                 </button>
               ))}
             </div>
@@ -820,7 +825,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
 
           <div className="flex flex-col gap-1.5 justify-center">
             <div className="flex justify-between items-center text-xs font-medium text-neutral-300">
-              <span className="flex items-center gap-1">✨ Glow Intensity</span>
+              <span className="flex items-center gap-1">{ui.glow}</span>
               <span className="font-mono text-xs text-green-400 bg-neutral-900/60 px-2 py-0.5 rounded border border-white/5">
                 {glowStrength}px
               </span>
@@ -840,7 +845,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
         {/* Ambient environment sound system Row */}
         <div className="border-t border-white/5 pt-3.5 mt-0.5 flex flex-col gap-2">
           <div className="flex justify-between items-center">
-            <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider font-mono">Ambient Audio Synthesizer</span>
+            <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider font-mono">{ui.audio}</span>
             <button
               type="button"
               onClick={() => setAudioPlaying(!audioPlaying)}
@@ -851,7 +856,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
                   : 'bg-neutral-800 border-white/5 text-neutral-400 hover:text-white'
               }`}
             >
-              {audioPlaying ? 'Sound On' : 'Sound Off'}
+              {audioPlaying ? ui.sound_on : ui.sound_off}
             </button>
           </div>
           
@@ -867,7 +872,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
                   : 'bg-neutral-950/40 border-white/10 text-neutral-400 hover:text-white'
               }`}
             >
-              🔇 Muted
+              {ui.muted}
             </button>
             <button
               onClick={() => {
@@ -880,7 +885,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
                   : 'bg-neutral-950/40 border-white/10 text-neutral-400 hover:text-white'
               }`}
             >
-              📟 Grid Hum
+              {ui.grid_hum}
             </button>
             <button
               onClick={() => {
@@ -893,7 +898,7 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
                   : 'bg-neutral-950/40 border-white/10 text-neutral-400 hover:text-white'
               }`}
             >
-              🧬 Mainframe Room
+              {ui.mainframe}
             </button>
             <button
               onClick={() => {
@@ -906,14 +911,14 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
                   : 'bg-neutral-950/40 border-white/10 text-neutral-400 hover:text-white'
               }`}
             >
-              🛰️ Data Pulse
+              {ui.data_pulse}
             </button>
           </div>
         </div>
 
         <div className="border-t border-white/5 pt-3.5 mt-0.5 flex flex-col gap-1.5">
           <div className="flex justify-between items-center text-[10px] text-neutral-400">
-            <span>Synthesizer Master Volume</span>
+            <span>{ui.volume}</span>
             <span className="font-mono text-green-400">{Math.round(volume * 100)}%</span>
           </div>
           <input
@@ -930,11 +935,11 @@ export default function MatrixScreen({ tool, locale, isCard = false }: MatrixScr
 
         {/* Keyboard Shortcuts Footer notes */}
         <div className="text-[10px] text-neutral-500 border-t border-white/5 pt-2 flex flex-wrap gap-x-4 gap-y-1">
-          <span>⌨️ Press <strong className="text-neutral-400">F</strong> for Fullscreen</span>
-          <span>• Space for Options Drawer</span>
-          <span>• <strong className="text-neutral-400">M</strong> to Toggle Sounds</span>
-          <span>• <strong className="text-neutral-400">C</strong> to Cycle Matrix Modes</span>
-          <span>• <strong className="text-neutral-400">R</strong> to Reset defaults</span>
+          <span>{keyHint(ui.hint_fullscreen, 'F')}</span>
+          <span>{ui.hint_space}</span>
+          <span>{keyHint(ui.hint_sound, 'M')}</span>
+          <span>{keyHint(ui.hint_cycle, 'C')}</span>
+          <span>{keyHint(ui.hint_reset, 'R')}</span>
         </div>
       </div>}
     </div>

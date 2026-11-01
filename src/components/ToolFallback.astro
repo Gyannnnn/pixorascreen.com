@@ -1,6 +1,6 @@
 ---
 import type { Tool } from '../data/tools';
-import { toolName } from '../data/translations';
+import { t, toolName } from '../i18n/ui';
 import type { Locale } from '../data/locales';
 
 type Props = {
@@ -17,7 +17,7 @@ const bgStyle = tool.color ? `background: ${tool.color};` : 'background: linear-
 <div
   class={`relative flex w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-hairline bg-canvas shadow-soft ${minHeight}`}
   style={bgStyle}
-  aria-label={`Loading ${name}`}
+  aria-label={t(locale, 'fallback.loading', { name })}
 >
   <!-- Vignette & Subtle ambient mesh overlay -->
   <div class="pointer-events-none absolute inset-0 bg-radial-[circle_at_center,_transparent_30%,_rgba(0,0,0,0.6)_100%]"></div>
@@ -35,7 +35,7 @@ const bgStyle = tool.color ? `background: ${tool.color};` : 'background: linear-
     <!-- Tool Name & Loading text -->
     <div class="text-center">
       <p class="text-sm font-semibold text-white tracking-wide">{name}</p>
-      <p class="text-xs text-white/70 mt-0.5 font-mono animate-pulse">Preparing ambient experience...</p>
+      <p class="text-xs text-white/70 mt-0.5 font-mono animate-pulse">{t(locale, 'fallback.preparing')}</p>
     </div>
   </div>
 

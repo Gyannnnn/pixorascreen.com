@@ -4,6 +4,7 @@ import type { Locale } from '../data/locales';
 import ReactAmbientScreen from './AmbientScreen.tsx';
 import { getToolAssets } from '../utils/assets';
 import ToolFallback from './ToolFallback.astro';
+import { strings } from '../i18n/ui';
 
 type Props = {
   tool: Tool;
@@ -14,8 +15,9 @@ const { tool, locale } = Astro.props;
 const { audioFiles: ambientAudioFiles } = getToolAssets('ambient-screen');
 ---
 
-<ReactAmbientScreen 
-  tool={tool} 
+<ReactAmbientScreen
+  strings={strings(locale, 'ambient')}
+  
   locale={locale} 
   ambientAudioFiles={ambientAudioFiles}
   client:only="react" 

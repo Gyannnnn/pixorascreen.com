@@ -1,38 +1,40 @@
 ---
 import type { Tool } from "../data/tools";
 import type { Locale } from "../data/locales";
+import { strings, t } from "../i18n/ui";
 
 type Props = { tool: Tool; locale: Locale; isCard?: boolean };
 const { tool, locale, isCard = false } = Astro.props;
+const [pctBefore, pctAfter] = t(locale, 'bsod.complete').split('{pct}');
 ---
 
-<div class="bsod" id="bsod" data-blue-screen data-is-card={isCard ? "true" : "false"} aria-label="Blue Screen Prank">
+<div class="bsod" id="bsod" data-blue-screen data-is-card={isCard ? "true" : "false"} data-i18n={JSON.stringify(strings(locale, 'bsod'))} aria-label={t(locale, 'bsod.section_label')}>
   <div class="bsod-inner">
     <div class="bsod-body">
       <div class="bsod-sad">:(</div>
-      <p class="bsod-msg">Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</p>
-      <p class="bsod-pct"><span id="bsodPct">0</span>% complete</p>
+      <p class="bsod-msg">{t(locale, 'bsod.message')}</p>
+      <p class="bsod-pct">{pctBefore}<span id="bsodPct">0</span>{pctAfter}</p>
       <div class="bsod-bottom">
         <div class="bsod-qr">
           <canvas id="bsodQr" width="112" height="112"></canvas>
         </div>
         <div class="bsod-info">
-          <p class="bsod-info-line">For more information about this issue and possible fixes, visit https://www.windows.com/stopcode</p>
+          <p class="bsod-info-line">{t(locale, 'bsod.more_info')}</p>
           <div class="bsod-support-block">
-            <p class="bsod-support">If you call a support person, give them this info:</p>
-            <p class="bsod-code">Stop code: <span id="bsodStopCode">CRITICAL_PROCESS_DIED</span></p>
+            <p class="bsod-support">{t(locale, 'bsod.support')}</p>
+            <p class="bsod-code">{t(locale, 'bsod.stop_code')} <span id="bsodStopCode">CRITICAL_PROCESS_DIED</span></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <button class="bsod-fs-btn" id="bsodFsBtn" type="button" aria-label="Fullscreen">
+  <button class="bsod-fs-btn" id="bsodFsBtn" type="button" aria-label={t(locale, 'bsod.fullscreen')}>
     <svg class="bsod-fs-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v6.5m0-6.5h6.5m-6.5 0 6.082 6.082m10.168-6.082V10.25m0-6.5h-6.5m6.5 0-6.082 6.082M3.75 20.25v-6.5m0 6.5h6.5m-6.5 0 6.082-6.082m10.168 6.082v-6.5m0 6.5h-6.5m6.5 0-6.082-6.082" />
     </svg>
   </button>
 
-  <button class="bsod-gear-btn" id="bsodGearBtn" type="button" aria-label="Settings">
+  <button class="bsod-gear-btn" id="bsodGearBtn" type="button" aria-label={t(locale, 'bsod.settings')}>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="bsod-gear-icon" aria-hidden="true">
       <circle cx="12" cy="12" r="3"/>
       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -41,8 +43,8 @@ const { tool, locale, isCard = false } = Astro.props;
 
   <div class="bsod-controls-overlay" id="bsodControlsOverlay">
     <div class="bsod-co-header">
-      <span class="bsod-co-title">Prank Simulation Settings</span>
-      <button class="bsod-co-close" id="bsodCoClose" type="button" aria-label="Close settings">
+      <span class="bsod-co-title">{t(locale, 'bsod.panel_heading')}</span>
+      <button class="bsod-co-close" id="bsodCoClose" type="button" aria-label={t(locale, 'bsod.close_settings')}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -52,14 +54,14 @@ const { tool, locale, isCard = false } = Astro.props;
     <div class="bsod-co-body">
       <div class="bsod-co-row">
         <div class="bsod-co-group">
-          <label class="bsod-co-label" for="bsodDuration">Duration (Seconds)</label>
+          <label class="bsod-co-label" for="bsodDuration">{t(locale, 'bsod.duration')}</label>
           <div class="bsod-co-slider-row">
             <input type="range" min="5" max="180" value="30" id="bsodDuration" />
-            <span class="bsod-co-val" id="bsodDurationVal">30s</span>
+            <span class="bsod-co-val" id="bsodDurationVal">{t(locale, 'bsod.seconds_short', { n: '30' })}</span>
           </div>
         </div>
         <div class="bsod-co-group">
-          <label class="bsod-co-label" for="bsodStartPct">Start Percentage</label>
+          <label class="bsod-co-label" for="bsodStartPct">{t(locale, 'bsod.start_pct')}</label>
           <div class="bsod-co-slider-row">
             <input type="range" min="0" max="95" value="0" id="bsodStartPct" />
             <span class="bsod-co-val" id="bsodStartPctVal">0%</span>
@@ -518,6 +520,8 @@ const { tool, locale, isCard = false } = Astro.props;
 <script is:inline>
   (function () {
     var root = document.getElementById("bsod");
+    var text = {};
+    try { text = JSON.parse(root.getAttribute("data-i18n") || "{}"); } catch (error) {}
     var fsBtn = document.getElementById("bsodFsBtn");
     var pctEl = document.getElementById("bsodPct");
     var canvas = document.getElementById("bsodQr");
@@ -576,7 +580,7 @@ const { tool, locale, isCard = false } = Astro.props;
     if (durationSlider && durationVal) {
       durationSlider.addEventListener("input", function (e) {
         customDuration = parseInt(e.target.value, 10);
-        durationVal.textContent = customDuration + "s";
+        durationVal.textContent = text.seconds_short.replace("{n}", customDuration);
       });
     }
 

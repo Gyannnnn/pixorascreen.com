@@ -1,14 +1,15 @@
 ---
 import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
+import { strings, t } from '../i18n/ui';
 
 type Props = { tool: Tool; locale: Locale; isCard?: boolean };
 const { tool, locale, isCard = false } = Astro.props;
 ---
 
-<section class="macos-update-wrapper" data-macos-update aria-label="macOS Update Simulator">
+<section class="macos-update-wrapper" data-macos-update data-i18n={JSON.stringify(strings(locale, 'macupdate'))} aria-label={t(locale, 'macupdate.section_label')}>
   <div class="mu-simulator group" data-mu-simulator data-is-card={isCard ? "true" : "false"} id="muSimulator">
-    <button class="mu-fs-btn" id="muFsBtn" type="button" aria-label="Fullscreen" onclick="window.__muUpdate?.fullscreen()">
+    <button class="mu-fs-btn" id="muFsBtn" type="button" aria-label={t(locale, 'macupdate.fullscreen')} onclick="window.__muUpdate?.fullscreen()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M8 3H5a2 2 0 0 0-2 2v3" />
         <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
@@ -16,7 +17,7 @@ const { tool, locale, isCard = false } = Astro.props;
         <path d="M3 16v3a2 2 0 0 0 2 2h3" />
       </svg>
     </button>
-    <button class="mu-gear-btn" id="muGearBtn" type="button" aria-label="Settings" onclick="window.__muUpdate?.toggleControls()">
+    <button class="mu-gear-btn" id="muGearBtn" type="button" aria-label={t(locale, 'macupdate.settings')} onclick="window.__muUpdate?.toggleControls()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="3"/>
         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -27,8 +28,8 @@ const { tool, locale, isCard = false } = Astro.props;
       <svg class="mu-logo" viewBox="0 0 136 162" fill="currentColor" aria-hidden="true">
         <path d="M133.6 126.251c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.197-2.12-9.973-3.17-14.34-3.17-4.58 0-9.492 1.05-14.746 3.17-5.262 2.13-9.501 3.24-12.742 3.35-4.929.21-9.842-1.96-14.746-6.52-3.13-2.73-7.045-7.41-11.735-14.04-5.032-7.08-9.169-15.29-12.41-24.65C1.74 106.671 0 96.881 0 87.403c0-10.857 2.346-20.221 7.045-28.068C10.738 53.032 15.651 48.06 21.8 44.41c6.149-3.65 12.793-5.51 19.948-5.629 3.915 0 9.049 1.211 15.429 3.591 6.362 2.388 10.447 3.599 12.238 3.599 1.339 0 5.877-1.416 13.57-4.239 7.275-2.618 13.415-3.702 18.445-3.275 13.63 1.1 23.87 6.473 30.68 16.153-12.19 7.386-18.22 17.731-18.1 31.002.11 10.337 3.86 18.939 11.23 25.769 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM102.34 3.241c0 8.1021-2.96 15.667-8.86 22.669-7.12 8.324-15.732 13.134-25.071 12.375-.119-.972-.188-1.995-.188-3.07 0-7.778 3.386-16.102 9.399-22.908 3.002-3.446 6.82-6.3113 11.45-8.597C93.69 1.4584 98.06.2132 102.17 0c.12 1.0831.17 2.1663.17 3.2409z"/>
       </svg>
-      <p class="mu-heading" id="muHeading" role="heading" aria-level="2">macOS Sequoia 15.5</p>
-      <p class="mu-status" id="muStatus">Preparing…</p>
+      <p class="mu-heading" id="muHeading" role="heading" aria-level="2">{t(locale, 'macupdate.name_major')}</p>
+      <p class="mu-status" id="muStatus">{t(locale, 'macupdate.msg_preparing')}</p>
       <div class="mu-progress-area" id="muProgressArea">
         <div class="mu-progress-track" id="muProgressTrack">
           <div class="mu-progress-fill" id="muProgressFill" style="width:0%"></div>
@@ -46,8 +47,8 @@ const { tool, locale, isCard = false } = Astro.props;
           <svg class="mu-logo mu-logo-restart" viewBox="0 0 136 162" fill="currentColor" aria-hidden="true">
             <path d="M133.6 126.251c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.197-2.12-9.973-3.17-14.34-3.17-4.58 0-9.492 1.05-14.746 3.17-5.262 2.13-9.501 3.24-12.742 3.35-4.929.21-9.842-1.96-14.746-6.52-3.13-2.73-7.045-7.41-11.735-14.04-5.032-7.08-9.169-15.29-12.41-24.65C1.74 106.671 0 96.881 0 87.403c0-10.857 2.346-20.221 7.045-28.068C10.738 53.032 15.651 48.06 21.8 44.41c6.149-3.65 12.793-5.51 19.948-5.629 3.915 0 9.049 1.211 15.429 3.591 6.362 2.388 10.447 3.599 12.238 3.599 1.339 0 5.877-1.416 13.57-4.239 7.275-2.618 13.415-3.702 18.445-3.275 13.63 1.1 23.87 6.473 30.68 16.153-12.19 7.386-18.22 17.731-18.1 31.002.11 10.337 3.86 18.939 11.23 25.769 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM102.34 3.241c0 8.1021-2.96 15.667-8.86 22.669-7.12 8.324-15.732 13.134-25.071 12.375-.119-.972-.188-1.995-.188-3.07 0-7.778 3.386-16.102 9.399-22.908 3.002-3.446 6.82-6.3113 11.45-8.597C93.69 1.4584 98.06.2132 102.17 0c.12 1.0831.17 2.1663.17 3.2409z"/>
           </svg>
-          <p class="mu-restart-text">Restarting…</p>
-          <p class="mu-restart-sub">Please don't turn off your Mac</p>
+          <p class="mu-restart-text">{t(locale, 'macupdate.restarting')}</p>
+          <p class="mu-restart-sub">{t(locale, 'macupdate.restart_sub')}</p>
           <div class="mu-boot-dots"><span></span><span></span><span></span></div>
         </div>
       </div>
@@ -56,7 +57,7 @@ const { tool, locale, isCard = false } = Astro.props;
           <svg class="mu-logo mu-logo-restart" viewBox="0 0 136 162" fill="currentColor" aria-hidden="true">
             <path d="M133.6 126.251c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.197-2.12-9.973-3.17-14.34-3.17-4.58 0-9.492 1.05-14.746 3.17-5.262 2.13-9.501 3.24-12.742 3.35-4.929.21-9.842-1.96-14.746-6.52-3.13-2.73-7.045-7.41-11.735-14.04-5.032-7.08-9.169-15.29-12.41-24.65C1.74 106.671 0 96.881 0 87.403c0-10.857 2.346-20.221 7.045-28.068C10.738 53.032 15.651 48.06 21.8 44.41c6.149-3.65 12.793-5.51 19.948-5.629 3.915 0 9.049 1.211 15.429 3.591 6.362 2.388 10.447 3.599 12.238 3.599 1.339 0 5.877-1.416 13.57-4.239 7.275-2.618 13.415-3.702 18.445-3.275 13.63 1.1 23.87 6.473 30.68 16.153-12.19 7.386-18.22 17.731-18.1 31.002.11 10.337 3.86 18.939 11.23 25.769 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM102.34 3.241c0 8.1021-2.96 15.667-8.86 22.669-7.12 8.324-15.732 13.134-25.071 12.375-.119-.972-.188-1.995-.188-3.07 0-7.778 3.386-16.102 9.399-22.908 3.002-3.446 6.82-6.3113 11.45-8.597C93.69 1.4584 98.06.2132 102.17 0c.12 1.0831.17 2.1663.17 3.2409z"/>
           </svg>
-          <p class="mu-restart-text mu-restart-boot-text">Starting up…</p>
+          <p class="mu-restart-text mu-restart-boot-text">{t(locale, 'macupdate.starting_up')}</p>
           <div class="mu-boot-dots"><span></span><span></span><span></span></div>
         </div>
       </div>
@@ -64,8 +65,8 @@ const { tool, locale, isCard = false } = Astro.props;
 
     <div class="mu-controls-overlay" id="muControlsOverlay">
       <div class="mu-co-header">
-        <span class="mu-co-title">Settings</span>
-        <button class="mu-co-close" type="button" aria-label="Close settings" onclick="window.__muUpdate?.toggleControls()">
+        <span class="mu-co-title">{t(locale, 'macupdate.settings')}</span>
+        <button class="mu-co-close" type="button" aria-label={t(locale, 'macupdate.close_settings')} onclick="window.__muUpdate?.toggleControls()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
@@ -74,68 +75,68 @@ const { tool, locale, isCard = false } = Astro.props;
       <div class="mu-co-body">
         <div class="mu-co-row">
           <div class="mu-co-group">
-            <label class="mu-co-label">Theme</label>
+            <label class="mu-co-label">{t(locale, 'macupdate.theme')}</label>
             <select id="muTheme" onchange="window.__muUpdate?.theme(this.value)">
-              <option value="default">macOS Dark</option>
-              <option value="light">macOS Light</option>
-              <option value="space">Space Gray</option>
+              <option value="default">{t(locale, 'macupdate.theme_dark')}</option>
+              <option value="light">{t(locale, 'macupdate.theme_light')}</option>
+              <option value="space">{t(locale, 'macupdate.theme_gray')}</option>
             </select>
           </div>
           <div class="mu-co-group">
-            <label class="mu-co-label">Mode</label>
+            <label class="mu-co-label">{t(locale, 'macupdate.mode')}</label>
             <select id="muMode" onchange="window.__muUpdate?.mode(this.value)">
-              <option value="realistic">Realistic</option>
-              <option value="manual">Manual</option>
-              <option value="timer">Timer</option>
-              <option value="infinite">Infinite</option>
+              <option value="realistic">{t(locale, 'macupdate.mode_realistic')}</option>
+              <option value="manual">{t(locale, 'macupdate.mode_manual')}</option>
+              <option value="timer">{t(locale, 'macupdate.mode_timer')}</option>
+              <option value="infinite">{t(locale, 'macupdate.mode_infinite')}</option>
             </select>
           </div>
           <div class="mu-co-group">
-            <label class="mu-co-label">Speed</label>
+            <label class="mu-co-label">{t(locale, 'macupdate.speed')}</label>
             <input type="range" min="1" max="10" value="5" id="muSpeed" oninput="window.__muUpdate?.speed(this.value)"/>
           </div>
           <div class="mu-co-group" id="muTimerGroup" style="display:none">
-            <label class="mu-co-label">Duration</label>
+            <label class="mu-co-label">{t(locale, 'macupdate.duration')}</label>
             <select id="muTimerDuration" onchange="window.__muUpdate?.timerDuration(this.value)">
-              <option value="5">5 minutes</option>
-              <option value="10">10 minutes</option>
-              <option value="15">15 minutes</option>
-              <option value="30">30 minutes</option>
-              <option value="60">1 hour</option>
+              <option value="5">{t(locale, 'macupdate.minutes', { n: '5' })}</option>
+              <option value="10">{t(locale, 'macupdate.minutes', { n: '10' })}</option>
+              <option value="15">{t(locale, 'macupdate.minutes', { n: '15' })}</option>
+              <option value="30">{t(locale, 'macupdate.minutes', { n: '30' })}</option>
+              <option value="60">{t(locale, 'macupdate.one_hour')}</option>
             </select>
           </div>
           <div class="mu-co-group" id="muManualGroup" style="display:none">
-            <label class="mu-co-label">Progress</label>
+            <label class="mu-co-label">{t(locale, 'macupdate.progress')}</label>
             <div class="mu-co-slider-row">
               <input type="range" min="0" max="100" value="0" id="muManualSlider" oninput="document.getElementById('muManualVal').textContent=this.value+'%';window.__muUpdate?.manualValue(this.value)"/>
               <span class="mu-co-val" id="muManualVal">0%</span>
             </div>
           </div>
           <div class="mu-co-group">
-            <label class="mu-co-label">Scenario</label>
+            <label class="mu-co-label">{t(locale, 'macupdate.scenario')}</label>
             <select id="muScenario" onchange="window.__muUpdate?.scenario(this.value)">
-              <option value="major">macOS Update</option>
-              <option value="security">Security Response</option>
-              <option value="app">App Store Update</option>
-              <option value="firmware">Firmware Update</option>
-              <option value="beta">macOS Beta</option>
+              <option value="major">{t(locale, 'macupdate.scenario_major')}</option>
+              <option value="security">{t(locale, 'macupdate.scenario_security')}</option>
+              <option value="app">{t(locale, 'macupdate.scenario_app')}</option>
+              <option value="firmware">{t(locale, 'macupdate.scenario_firmware')}</option>
+              <option value="beta">{t(locale, 'macupdate.scenario_beta')}</option>
             </select>
           </div>
           <div class="mu-co-group">
             <label class="mu-co-check">
               <input type="checkbox" id="muAutoRestart" onchange="window.__muUpdate?.autoRestart(this.checked)"/>
-              Auto Restart
+              {t(locale, 'macupdate.auto_restart')}
             </label>
             <label class="mu-co-check">
               <input type="checkbox" id="muSound" onchange="window.__muUpdate?.sound(this.checked)"/>
-              Sound
+              {t(locale, 'macupdate.sound')}
             </label>
           </div>
         </div>
         <div class="mu-co-actions">
-          <button onclick="window.__muUpdate?.restart()">Restart</button>
-          <button onclick="window.__muUpdate?.reset()">Reset</button>
-          <button class="mu-co-fs" onclick="window.__muUpdate?.fullscreen()">Fullscreen</button>
+          <button onclick="window.__muUpdate?.restart()">{t(locale, 'macupdate.restart')}</button>
+          <button onclick="window.__muUpdate?.reset()">{t(locale, 'macupdate.reset')}</button>
+          <button class="mu-co-fs" onclick="window.__muUpdate?.fullscreen()">{t(locale, 'macupdate.fullscreen')}</button>
         </div>
       </div>
     </div>
@@ -539,6 +540,7 @@ const { tool, locale, isCard = false } = Astro.props;
 (function() {
   const sim = document.getElementById('muSimulator');
   const wrapper = sim.closest('[data-macos-update]');
+  const T = JSON.parse(wrapper.dataset.i18n || '{}');
   const progressFill = document.getElementById('muProgressFill');
   const pctEl = document.getElementById('muPct');
   const headingEl = document.getElementById('muHeading');
@@ -577,46 +579,46 @@ const { tool, locale, isCard = false } = Astro.props;
   };
 
   const scenarios = {
-    major: { name: 'macOS Sequoia 15.5', phases: [
-      { r: [0,4], m: ['Preparing…', 'Checking system volume…', 'Getting ready…'] },
-      { r: [4,14], m: ['Configuring installation…', 'Preparing volume…', 'Setting up installation…'] },
-      { r: [14,44], m: ['Installing…', 'Writing system files…', 'Installing system content…'] },
-      { r: [44,64], m: ['Optimizing system performance…', 'Configuring system…', 'Applying system optimizations…'] },
-      { r: [64,80], m: ['Applying updates…', 'Updating system components…', 'Migrating system data…'] },
-      { r: [80,92], m: ['Cleaning up…', 'Performing cleanup…', 'Removing temporary files…'] },
-      { r: [92,100], m: ['Finalizing…', 'Almost done…', 'Completing installation…'] },
+    major: { name: T.name_major, phases: [
+      { r: [0,4], m: [T.msg_preparing, T.msg_checking_system_volume, T.msg_getting_ready] },
+      { r: [4,14], m: [T.msg_configuring_installation, T.msg_preparing_volume, T.msg_setting_up_installation] },
+      { r: [14,44], m: [T.msg_installing, T.msg_writing_system_files, T.msg_installing_system_content] },
+      { r: [44,64], m: [T.msg_optimizing_system_performance, T.msg_configuring_system, T.msg_applying_system_optimizations] },
+      { r: [64,80], m: [T.msg_applying_updates, T.msg_updating_system_components, T.msg_migrating_system_data] },
+      { r: [80,92], m: [T.msg_cleaning_up, T.msg_performing_cleanup, T.msg_removing_temporary_files] },
+      { r: [92,100], m: [T.msg_finalizing, T.msg_almost_done, T.msg_completing_installation] },
     ]},
-    security: { name: 'macOS Security Response 7.2', phases: [
-      { r: [0,6], m: ['Preparing security response…', 'Verifying security patch…'] },
-      { r: [6,26], m: ['Installing security update…', 'Applying security patch…'] },
-      { r: [26,50], m: ['Applying security patches…', 'Patching system frameworks…'] },
-      { r: [50,70], m: ['Verifying integrity…', 'Validating system security…'] },
-      { r: [70,86], m: ['Optimizing…', 'Configuring security settings…'] },
-      { r: [86,100], m: ['Finalizing…', 'Completing security update…'] },
+    security: { name: T.name_security, phases: [
+      { r: [0,6], m: [T.msg_preparing_security_response, T.msg_verifying_security_patch] },
+      { r: [6,26], m: [T.msg_installing_security_update, T.msg_applying_security_patch] },
+      { r: [26,50], m: [T.msg_applying_security_patches, T.msg_patching_system_frameworks] },
+      { r: [50,70], m: [T.msg_verifying_integrity, T.msg_validating_system_security] },
+      { r: [70,86], m: [T.msg_optimizing, T.msg_configuring_security_settings] },
+      { r: [86,100], m: [T.msg_finalizing, T.msg_completing_security_update] },
     ]},
-    app: { name: 'App Store Update', phases: [
-      { r: [0,6], m: ['Preparing update…', 'Checking app integrity…'] },
-      { r: [6,30], m: ['Downloading assets…', 'Downloading update content…'] },
-      { r: [30,58], m: ['Installing update…', 'Writing app files…'] },
-      { r: [58,78], m: ['Verifying…', 'Validating installation…'] },
-      { r: [78,100], m: ['Finalizing…', 'Completing installation…'] },
+    app: { name: T.name_app, phases: [
+      { r: [0,6], m: [T.msg_preparing_update, T.msg_checking_app_integrity] },
+      { r: [6,30], m: [T.msg_downloading_assets, T.msg_downloading_update_content] },
+      { r: [30,58], m: [T.msg_installing_update, T.msg_writing_app_files] },
+      { r: [58,78], m: [T.msg_verifying, T.msg_validating_installation] },
+      { r: [78,100], m: [T.msg_finalizing, T.msg_completing_installation] },
     ]},
-    firmware: { name: 'BridgeOS Firmware Update', phases: [
-      { r: [0,3], m: ['Preparing firmware…', 'Verifying firmware signature…'] },
-      { r: [3,10], m: ['Verifying firmware…', 'Checking firmware integrity…'] },
-      { r: [10,40], m: ['Installing firmware…', 'Writing firmware data…'] },
-      { r: [40,66], m: ['Configuring system controller…', 'Updating chipset firmware…'] },
-      { r: [66,82], m: ['Optimizing…', 'Applying firmware settings…'] },
-      { r: [82,100], m: ['Finalizing…', 'Completing firmware update…'] },
+    firmware: { name: T.name_firmware, phases: [
+      { r: [0,3], m: [T.msg_preparing_firmware, T.msg_verifying_firmware_signature] },
+      { r: [3,10], m: [T.msg_verifying_firmware, T.msg_checking_firmware_integrity] },
+      { r: [10,40], m: [T.msg_installing_firmware, T.msg_writing_firmware_data] },
+      { r: [40,66], m: [T.msg_configuring_system_controller, T.msg_updating_chipset_firmware] },
+      { r: [66,82], m: [T.msg_optimizing, T.msg_applying_firmware_settings] },
+      { r: [82,100], m: [T.msg_finalizing, T.msg_completing_firmware_update] },
     ]},
-    beta: { name: 'macOS Sequoia 16.0 Beta', phases: [
-      { r: [0,3], m: ['Preparing beta update…', 'Checking compatibility…'] },
-      { r: [3,11], m: ['Configuring beta installation…', 'Preparing beta volume…'] },
-      { r: [11,42], m: ['Installing beta…', 'Writing beta system files…'] },
-      { r: [42,62], m: ['Optimizing system…', 'Configuring beta features…'] },
-      { r: [62,78], m: ['Applying beta updates…', 'Updating beta components…'] },
-      { r: [78,92], m: ['Cleaning up…', 'Optimizing beta configuration…'] },
-      { r: [92,100], m: ['Finalizing…', 'Completing beta installation…'] },
+    beta: { name: T.name_beta, phases: [
+      { r: [0,3], m: [T.msg_preparing_beta_update, T.msg_checking_compatibility] },
+      { r: [3,11], m: [T.msg_configuring_beta_installation, T.msg_preparing_beta_volume] },
+      { r: [11,42], m: [T.msg_installing_beta, T.msg_writing_beta_system_files] },
+      { r: [42,62], m: [T.msg_optimizing_system, T.msg_configuring_beta_features] },
+      { r: [62,78], m: [T.msg_applying_beta_updates, T.msg_updating_beta_components] },
+      { r: [78,92], m: [T.msg_cleaning_up, T.msg_optimizing_beta_configuration] },
+      { r: [92,100], m: [T.msg_finalizing, T.msg_completing_beta_installation] },
     ]},
   };
 
@@ -665,10 +667,10 @@ const { tool, locale, isCard = false } = Astro.props;
   function updateEta() {
     if (state.paused || state.progress <= 0 || state.progress >= 100) {
       if (state.progress <= 0) {
-        etaEl.textContent = 'Estimating time remaining…';
+        etaEl.textContent = T.eta_estimating;
         etaEl.classList.remove('hidden');
       } else if (state.progress >= 100) {
-        etaEl.textContent = 'Completing…';
+        etaEl.textContent = T.eta_completing;
       }
       return;
     }
@@ -677,7 +679,7 @@ const { tool, locale, isCard = false } = Astro.props;
       const elapsed = (Date.now() - state.timerStart) / 1000;
       const total = state.timerDuration * 60;
       const r = Math.max(0, total - elapsed);
-      etaEl.textContent = r < 60 ? 'Less than a minute remaining…' : 'About ' + Math.round(r / 60) + ' minutes remaining…';
+      etaEl.textContent = r < 60 ? T.eta_less_minute : T.eta_minutes.replace('{n}', Math.round(r / 60));
       etaEl.classList.remove('hidden');
       return;
     }
@@ -688,7 +690,7 @@ const { tool, locale, isCard = false } = Astro.props;
     if (state.etaMode === 0 && state.etaCooldown <= 0) {
       state.etaMode = 1;
       state.etaCooldown = 3 + Math.floor(Math.random() * 8);
-      etaEl.textContent = 'Estimating time remaining…';
+      etaEl.textContent = T.eta_estimating;
       etaEl.classList.remove('hidden');
       return;
     }
@@ -696,7 +698,7 @@ const { tool, locale, isCard = false } = Astro.props;
     if (state.etaCooldown <= 0 && Math.random() < 0.06) {
       state.etaCooldown = 4 + Math.floor(Math.random() * 10);
       state.etaMode = state.etaMode === 1 ? 0 : 1;
-      if (state.etaMode === 0) { etaEl.textContent = 'Estimating time remaining…'; return; }
+      if (state.etaMode === 0) { etaEl.textContent = T.eta_estimating; return; }
     }
 
     if (state.etaMode === 1 && recent.length > 3) {
@@ -705,10 +707,10 @@ const { tool, locale, isCard = false } = Astro.props;
         let remaining = (100 - state.progress) / avg * (0.6 + Math.random() * 0.5);
         if (Math.random() < 0.1) remaining *= 1.5 + Math.random() * 2;
         let text;
-        if (remaining < 60) text = 'Less than a minute remaining…';
-        else if (remaining < 120) text = 'About 1 minute remaining…';
-        else if (remaining < 3600) text = 'About ' + Math.max(1, Math.round(remaining / 60)) + ' minutes remaining…';
-        else text = 'About ' + (remaining / 60 / 60).toFixed(1) + ' hours remaining…';
+        if (remaining < 60) text = T.eta_less_minute;
+        else if (remaining < 120) text = T.eta_one_minute;
+        else if (remaining < 3600) text = T.eta_minutes.replace('{n}', Math.max(1, Math.round(remaining / 60)));
+        else text = T.eta_hours.replace('{n}', (remaining / 60 / 60).toFixed(1));
         if (text !== state.lastEtaText) {
           etaEl.textContent = text;
           state.lastEtaText = text;
@@ -718,7 +720,7 @@ const { tool, locale, isCard = false } = Astro.props;
       }
     }
     if (state.etaMode === 0 || recent.length <= 3) {
-      etaEl.textContent = 'Estimating time remaining…';
+      etaEl.textContent = T.eta_estimating;
       etaEl.classList.remove('hidden');
     }
   }
@@ -923,9 +925,9 @@ const { tool, locale, isCard = false } = Astro.props;
     restartOverlay.classList.remove('fade-in', 'fade-out');
     state.paused = false;
     setProgress(0);
-    statusEl.textContent = 'Preparing…';
+    statusEl.textContent = T.msg_preparing;
     statusEl.style.opacity = '0.65';
-    etaEl.textContent = 'Estimating time remaining…';
+    etaEl.textContent = T.eta_estimating;
   }
 
   function restartSim() { resetProgress(); state.restartCount = 0; }

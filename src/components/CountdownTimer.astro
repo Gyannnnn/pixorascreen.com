@@ -5,12 +5,13 @@ import type { Tool } from '../data/tools';
 import type { Locale } from '../data/locales';
 import ReactCountdownTimer from './CountdownTimer.tsx';
 import ToolFallback from './ToolFallback.astro';
+import { strings } from '../i18n/ui';
 
 type Props = { tool: Tool; locale: Locale };
 const { tool, locale } = Astro.props;
 ---
 
-<ReactCountdownTimer tool={tool} locale={locale} client:only="react">
+<ReactCountdownTimer locale={locale} strings={strings(locale, 'countdown')} client:only="react">
   <ToolFallback slot="fallback" tool={tool} locale={locale} />
 </ReactCountdownTimer>
 

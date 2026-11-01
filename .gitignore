@@ -28,3 +28,7 @@ pnpm-debug.log*
 .dev.vars*
 !.dev.vars.example
 !.env.example
+
+# i18n snapshots (local build comparisons)
+.i18n-snapshots/
+.i18n-work/
